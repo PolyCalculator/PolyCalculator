@@ -208,16 +208,29 @@ bot.on('message', message => {
     console.log("Command triggered!", cmd);
 
     if (cmd === "help") {
-        console.log("Help triggered!");
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .setTitle("How to use the PolyCalculator bot")
-            .addField("**!full** command:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
-            .addField("**!full** example:", `!full 10 10 2 10 10 2`)
-            .addField("**!name** command:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
-            .addField("**!name** example:", `!name 10 warrior vet 10 defender non-vet`)
-            .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
-            .addField("**Example:**", "!full 10 10 2 10 10 2 w")
+        console.log("Help triggered!");
+        if (args[0] === "full") {
+            helpEmbed.setTitle("How to use the `!full` command")
+                .addField("Argument structure:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
+                .addField("Long example:", `!full 10 10 2 10 10 2`)
+        } else if (args[0] === "name") {
+            helpEmbed.setTitle("How to use the `!name` command")
+                .addField("Argument structure:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
+                .addField("Long example:", `!name 10 warrior vet 10 defender non-vet`)
+                .addField("Short example:", `!name 10 w v 10 d n`)
+        } else {
+            helpEmbed.setTitle("How to use the PolyCalculator bot")
+                .addField("**!full** command:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
+                .addField("**!full** example:", `!full 10 10 2 10 10 2`)
+                .addField("**!name** command:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
+                .addField("**!name** example:", `!name 10 warrior vet 10 defender non-vet`)
+                .addField("**Last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
+                .addField("**Example:**", "!full 10 10 2 10 10 2 w")
+                .addBlankField()
+                .addField("**More details:**", "`!help full` or `!help name`")
+        }
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("w")) {
         const helpEmbed = new RichEmbed()
