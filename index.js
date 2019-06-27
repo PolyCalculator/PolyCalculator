@@ -142,6 +142,27 @@ const navalon = {
     def: 4
 }
 
+const boat = {
+    maxhp: 'variable',
+    vethp: 'variable',
+    att: 1,
+    def: 1
+}
+
+const ship = {
+    maxhp: 'variable',
+    vethp: 'variable',
+    att: 2,
+    def: 2
+}
+
+const battleship = {
+    maxhp: 'variable',
+    vethp: 'variable',
+    att: 4,
+    def: 3
+}
+
 const allUnits = new Map()
 allUnits.set("w", warrior)
 allUnits.set("r", rider)
@@ -261,6 +282,33 @@ bot.on('message', message => {
             .addField("**Veteran HP**", catapult.vethp)
             .addField("**Attack**", catapult.att)
             .addField("**Defense**", catapult.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("boat") || cmd === "bo") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Boat stats")
+            .addField("**Max HP**", boat.maxhp)
+            .addField("**Veteran HP**", boat.vethp)
+            .addField("**Attack**", boat.att)
+            .addField("**Defense**", boat.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("ship") || cmd === "sh") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Rider stats")
+            .addField("**Max HP**", ship.maxhp)
+            .addField("**Veteran HP**", ship.vethp)
+            .addField("**Attack**", ship.att)
+            .addField("**Defense**", ship.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("battleship") || cmd === "bs") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Rider stats")
+            .addField("**Max HP**", battleship.maxhp)
+            .addField("**Veteran HP**", battleship.vethp)
+            .addField("**Attack**", battleship.att)
+            .addField("**Defense**", battleship.def)
         message.channel.send(helpEmbed);
     } else if (cmd === "full") {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
