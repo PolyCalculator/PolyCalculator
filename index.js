@@ -337,9 +337,9 @@ bot.on('message', message => {
 //--------------------------------------
 const port = process.env.PORT || 5000;
 
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     res.send('Hello World!')
-})
+})*/
 
 app.listen(port, () => {
     console.log('Listening on ' + port);
