@@ -235,7 +235,7 @@ bot.on('message', message => {
             .addField("**Attack**", tridention.att)
             .addField("**Defense**", tridention.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("de") || cmg === 'd') {
+    } else if (cmd.startsWith("de") || cmd === 'd') {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Defender stats")
