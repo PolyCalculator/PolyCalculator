@@ -1,6 +1,11 @@
 require('dotenv').config();
 const { Client, RichEmbed } = require('discord.js');
 const bot = new Client();
+const http = require("http")
+
+setInterval(function() {
+    http.get("http://polycalculator.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 const express = require('express');
 var app = express();
@@ -70,6 +75,7 @@ bot.on('message', message => {
     const cmd = args.shift().toLowerCase();
 
     if (cmd === "help") {
+        console.log("Help triggered!");
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("How to use the PolyCalculator bot")
@@ -79,6 +85,7 @@ bot.on('message', message => {
             .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
     } else {
+        console.log("Command triggered!");
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
 //        const helpEmbed = new Fight(ahp,amaxhp,aattack,dhp,dmaxhp,dattack)
         message.channel.send(result.calculate());
