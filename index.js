@@ -12,6 +12,7 @@ var app = express();
 
 class Fight {
     constructor(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def) {
+        console.log(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def)
         this.ahp = ahp;
         this.amaxhp = amaxhp;
         this.aattack = aattack;
@@ -53,6 +54,103 @@ class Fight {
     }
 }
 
+const warrior = {
+    maxhp: 10,
+    vethp: 15,
+    att: 2,
+    def: 2
+}
+
+const rider = {
+    maxhp: 10,
+    vethp: 15,
+    att: 2,
+    def: 1
+}
+
+const archer = {
+    maxhp: 10,
+    vethp: 15,
+    att: 2,
+    def: 1
+}
+
+const defender = {
+    maxhp: 15,
+    vethp: 20,
+    att: 1,
+    def: 3
+}
+
+const knight = {
+    maxhp: 15,
+    vethp: 20,
+    att: 3.5,
+    def: 1
+}
+
+const swords = {
+    maxhp: 15,
+    vethp: 20,
+    att: 3,
+    def: 3
+}
+
+const catapult = {
+    maxhp: 10,
+    vethp: 15,
+    att: 4,
+    def: 0
+}
+
+const giant = {
+    maxhp: 40,
+    vethp: 40,
+    att: 5,
+    def: 4
+}
+
+const crab = {
+    maxhp: 40,
+    vethp: 40,
+    att: 4,
+    def: 4
+}
+
+const tridention = {
+    maxhp: 15,
+    vethp: 20,
+    att: 3,
+    def: 1
+}
+
+const polytaur = {
+    maxhp: 15,
+    vethp: 20,
+    att: 3,
+    def: 1
+}
+
+const navalon = {
+    maxhp: 30,
+    vethp: 30,
+    att: 4,
+    def: 4
+}
+
+const allUnits = new Map()
+allUnits.set("w", warrior)
+allUnits.set("r", rider)
+allUnits.set("a", archer)
+allUnits.set("d", defender)
+allUnits.set("k", knight)
+allUnits.set("s", swords)
+allUnits.set("g", giant)
+allUnits.set("c", catapult)
+allUnits.set("t", tridention)
+allUnits.set("p", polytaur)
+allUnits.set("n", navalon)
+
 bot.on('ready', () => {
     const prefix = process.env.PREFIX;
     console.log(`Logged in as ${bot.user.username}`);
@@ -74,75 +172,116 @@ bot.on('message', message => {
 
     const cmd = args.shift().toLowerCase();
 
+    console.log("Command triggered!", cmd);
+
     if (cmd === "help") {
         console.log("Help triggered!");
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("How to use the PolyCalculator bot")
-            .addField("**What each number means:**", `! attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
-            .addField("**1st example:**", `! 10 10 2 10 10 2`)
+            .addField("**!full** command:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
+            .addField("**!full** example:", `!full 10 10 2 10 10 2`)
+            .addField("**!name** command:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
+            .addField("**!name** example:", `!name 10 warrior vet 10 defender non-vet`)
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
             .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
-    } else if (cmd === "warrior" || cmd === "w") {
+    } else if (cmd.startsWith("war") || cmd === "w") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Warrior stats")
-            .addField("**Max HP**", "10")
-            .addField("**Veteran HP**", "15")
-            .addField("**Attack**", "2")
-            .addField("**Defense**", "2")
+            .addField("**Max HP**", warrior.maxhp)
+            .addField("**Veteran HP**", warrior.vethp)
+            .addField("**Attack**", warrior.att)
+            .addField("**Defense**", warrior.def)
         message.channel.send(helpEmbed);
-    } else if (cmd === "rider" || cmd === "r") {
+    } else if (cmd.startsWith("rider") || cmd === "r") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Rider stats")
-            .addField("**Max HP**", "10")
-            .addField("**Veteran HP**", "15")
-            .addField("**Attack**", "2")
-            .addField("**Defense**", "1")
+            .addField("**Max HP**", rider.maxhp)
+            .addField("**Veteran HP**", rider.vethp)
+            .addField("**Attack**", rider.att)
+            .addField("**Defense**", rider.def)
         message.channel.send(helpEmbed);
-    } else if (cmd === "defender" || cmd === "d") {
+    } else if (cmd.startsWith("def") || cmd === "d") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Defender stats")
-            .addField("**Max HP**", "15")
-            .addField("**Veteran HP**", "20")
-            .addField("**Attack**", "1")
-            .addField("**Defense**", "3")
+            .addField("**Max HP**", defender.maxhp)
+            .addField("**Veteran HP**", defender.vethp)
+            .addField("**Attack**", defender.att)
+            .addField("**Defense**", defender.def)
         message.channel.send(helpEmbed);
-    } else if (cmd === "giant" || cmd === "g") {
+    } else if (cmd.startsWith("gia") || cmd === "g") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Giant stats")
-            .addField("**Max HP**", "40")
-            .addField("**Veteran HP**", "None")
-            .addField("**Attack**", "2")
-            .addField("**Defense**", "2")
+            .addField("**Max HP**", giant.maxhp)
+            .addField("**Veteran HP**", giant.vethp)
+            .addField("**Attack**", giant.att)
+            .addField("**Defense**", giant.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("swords") || cmd === "s") {
+    } else if (cmd.startsWith("sword") || cmd === "s") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Swordsman stats")
-            .addField("**Max HP**", "15")
-            .addField("**Veteran HP**", "20")
-            .addField("**Attack**", "3")
-            .addField("**Defense**", "3")
+            .addField("**Max HP**", swords.maxhp)
+            .addField("**Veteran HP**", swords.vethp)
+            .addField("**Attack**", swords.att)
+            .addField("**Defense**", swords.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("knight") || cmd === "k") {
+    } else if (cmd.startsWith("kni") || cmd === "k") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Knight stats")
-            .addField("**Max HP**", "15")
-            .addField("**Veteran HP**", "20")
-            .addField("**Attack**", "3.5")
-            .addField("**Defense**", "1")
+            .addField("**Max HP**", knight.maxhp)
+            .addField("**Veteran HP**", knight.vethp)
+            .addField("**Attack**", knight.att)
+            .addField("**Defense**", knight.def)
         message.channel.send(helpEmbed);
-    } else {
-        console.log("Command triggered!");
+    } else if (cmd.startsWith("arch") || cmd === "a") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Archer stats")
+            .addField("**Max HP**", archer.maxhp)
+            .addField("**Veteran HP**", archer.vethp)
+            .addField("**Attack**", archer.att)
+            .addField("**Defense**", archer.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("cat") || cmd === "c") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Catapult stats")
+            .addField("**Max HP**", catapult.maxhp)
+            .addField("**Veteran HP**", catapult.vethp)
+            .addField("**Attack**", catapult.att)
+            .addField("**Defense**", catapult.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd === "full") {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
-//        const helpEmbed = new Fight(ahp,amaxhp,aattack,dhp,dmaxhp,dattack)
         message.channel.send(result.calculate());
+    } else if (cmd === "name") {
+        console.log("name: ", allUnits)
+
+        oneIsUnit = allUnits.get(args[1].charAt(0))
+        twoIsUnit = allUnits.get(args[4].charAt(0))
+        console.log("attacker", oneIsUnit);
+        console.log("defender", twoIsUnit);
+        if(args[2].startsWith("v"))
+            unitOneMaxHP = oneIsUnit.vethp
+        else if (args[2].startsWith("n"))
+            unitOneMaxHP = oneIsUnit.maxhp
+
+        if(args[5].startsWith("v"))
+            unitTwoMaxHP = twoIsUnit.vethp
+        else if (args[5].startsWith("n"))
+            unitTwoMaxHP = twoIsUnit.maxhp
+        
+        const result = new Fight(Number(args[0]),unitOneMaxHP,oneIsUnit.att,Number(args[3]),unitTwoMaxHP,twoIsUnit.def,args[6])
+        message.channel.send(result.calculate());
+    } else if (cmd === "naval") {
+        
     }
 })
 //--------------------------------------
