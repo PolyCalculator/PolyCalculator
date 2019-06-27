@@ -311,8 +311,6 @@ bot.on('message', message => {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
     } else if (cmd === "name") {
-        console.log("name: ", allUnits)
-
         oneIsUnit = allUnits.get(args[1].charAt(0))
         twoIsUnit = allUnits.get(args[4].charAt(0))
         console.log("attacker", oneIsUnit);
