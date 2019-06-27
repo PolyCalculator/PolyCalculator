@@ -324,6 +324,8 @@ bot.on('message', message => {
             unitTwoMaxHP = twoIsUnit.vethp
         else if (args[5].startsWith("n"))
             unitTwoMaxHP = twoIsUnit.maxhp
+        else
+            return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
         
         const result = new Fight(Number(args[0]),unitOneMaxHP,oneIsUnit.att,Number(args[3]),unitTwoMaxHP,twoIsUnit.def,args[6])
         message.channel.send(result.calculate());
