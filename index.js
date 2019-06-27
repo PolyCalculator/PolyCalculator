@@ -72,7 +72,7 @@ bot.on('message', message => {
     if (cmd === "help") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .setTitle(`How to use the PolyCalculator bot`)
+            .setTitle("How to use the PolyCalculator bot")
             .addField("**What each number means:**", `! attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
             .addField("**1st example:**", `! 10 10 2 10 10 2`)
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
