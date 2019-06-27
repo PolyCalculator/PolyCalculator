@@ -329,8 +329,8 @@ bot.on('message', message => {
         
         const result = new Fight(Number(args[0]),unitOneMaxHP,oneIsUnit.att,Number(args[3]),unitTwoMaxHP,twoIsUnit.def,args[6])
         message.channel.send(result.calculate());
-    } else if (cmd === "naval") {
-        
+    } else {
+        message.channel.send("It seems we don't have that command. If you'd like to request it, ping @jd#0001!");
     }
 })
 //--------------------------------------
