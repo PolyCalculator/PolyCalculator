@@ -10,7 +10,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "push": "git add . && git commit -m . && git push heroku master && git push origin master && heroku logs -t",
+    "jpush": "git add . && git commit -m . && git push heroku master && git push origin master"
   },
   "keywords": [],
   "author": "",
