@@ -76,7 +76,7 @@ bot.on('message', message => {
             .addField("**What each number means:**", `! attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
             .addField("**1st example:**", `! 10 10 2 10 10 2`)
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
-            .addField("**2nd example:**", `! 10 10 2 10 10 2 w`)
+            .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
     } else {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
