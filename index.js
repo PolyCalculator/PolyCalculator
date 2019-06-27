@@ -354,6 +354,8 @@ bot.on('message', message => {
     } else if (cmd === "name") {
         oneIsUnit = allUnits.get(args[1].substr(0,2))
         twoIsUnit = allUnits.get(args[4].substr(0,2))
+        if(twoIsUnit === undefined || oneIsUnit === undefined)
+        return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
         console.log("attacker", oneIsUnit);
         console.log("defender", twoIsUnit);
         if(args[2].startsWith("v"))
@@ -371,7 +373,7 @@ bot.on('message', message => {
         const result = new Fight(Number(args[0]),unitOneMaxHP,oneIsUnit.att,Number(args[3]),unitTwoMaxHP,twoIsUnit.def,args[6])
         message.channel.send(result.calculate());
     } else {
-        message.channel.send("It seems we don't have that command. If you'd like to request it, ping @jd#0001!");
+        message.channel.send("It seems we don't have that command. If you think it should exist, ping @jd#0001!");
     }
 })
 //--------------------------------------
