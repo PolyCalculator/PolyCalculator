@@ -199,7 +199,7 @@ bot.on('message', message => {
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
             .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("war") || cmd === "w") {
+    } else if (cmd.startsWith("w")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Warrior stats")
@@ -208,7 +208,7 @@ bot.on('message', message => {
             .addField("**Attack**", warrior.att)
             .addField("**Defense**", warrior.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("rider") || cmd === "r") {
+    } else if (cmd.startsWith("r")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Rider stats")
@@ -217,7 +217,7 @@ bot.on('message', message => {
             .addField("**Attack**", rider.att)
             .addField("**Defense**", rider.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("tri") || cmd === "t") {
+    } else if (cmd.startsWith("t")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Tridention stats")
@@ -226,7 +226,7 @@ bot.on('message', message => {
             .addField("**Attack**", tridention.att)
             .addField("**Defense**", tridention.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("def") || cmd === "d") {
+    } else if (cmd.startsWith("de")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Defender stats")
@@ -235,7 +235,7 @@ bot.on('message', message => {
             .addField("**Attack**", defender.att)
             .addField("**Defense**", defender.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("gia") || cmd === "g") {
+    } else if (cmd.startsWith("gi")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Giant stats")
@@ -244,7 +244,7 @@ bot.on('message', message => {
             .addField("**Attack**", giant.att)
             .addField("**Defense**", giant.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("sword") || cmd === "s") {
+    } else if (cmd.startsWith("sw") || cmd === "s") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Swordsman stats")
@@ -253,7 +253,7 @@ bot.on('message', message => {
             .addField("**Attack**", swords.att)
             .addField("**Defense**", swords.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("kni") || cmd === "k") {
+    } else if (cmd.startsWith("k")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Knight stats")
@@ -262,7 +262,7 @@ bot.on('message', message => {
             .addField("**Attack**", knight.att)
             .addField("**Defense**", knight.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("arch") || cmd === "a") {
+    } else if (cmd.startsWith("a")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Archer stats")
@@ -271,7 +271,7 @@ bot.on('message', message => {
             .addField("**Attack**", archer.att)
             .addField("**Defense**", archer.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("cat") || cmd === "c") {
+    } else if (cmd.startsWith("ca")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Catapult stats")
@@ -280,7 +280,7 @@ bot.on('message', message => {
             .addField("**Attack**", catapult.att)
             .addField("**Defense**", catapult.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("boat") || cmd === "bo") {
+    } else if (cmd.startsWith("bo")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Boat stats")
@@ -289,7 +289,7 @@ bot.on('message', message => {
             .addField("**Attack**", boat.att)
             .addField("**Defense**", boat.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ship") || cmd === "sh") {
+    } else if (cmd.startsWith("sh") || cmd === "sh") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Ship stats")
@@ -298,7 +298,7 @@ bot.on('message', message => {
             .addField("**Attack**", ship.att)
             .addField("**Defense**", ship.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("battleship") || cmd === "bs") {
+    } else if (cmd.startsWith("ba") || cmd === "bs") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Battleship stats")
