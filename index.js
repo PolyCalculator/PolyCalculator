@@ -70,11 +70,14 @@ bot.on('message', message => {
     const cmd = args.shift().toLowerCase();
 
     if (cmd === "help") {
-        /*const helpEmbed = new RichEmbed()
+        const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .addField("**Attacker :**", `**`+message.cleanContent+`**`)
-            .addField("**Defender :**", message.url)
-        message.channel.send(helpEmbed);*/
+            .setTitle(`How to use the PolyCalculator bot`)
+            .addField("**What each numbers mean:**", `! attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
+            .addField("**1st example:**", `! 10 10 2 10 10 2`)
+            .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = x1.5 bonus; w = x4 bonus.`)
+            .addField("**2nd example:**", `! 10 10 2 10 10 2 w`)
+        message.channel.send(helpEmbed);
     } else {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
 //        const helpEmbed = new Fight(ahp,amaxhp,aattack,dhp,dmaxhp,dattack)
@@ -88,6 +91,7 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log('Listening on ' + port);
+    console.log(`process.env.TOKEN`, process.env.TOKEN)
 });
 
 bot.login(process.env.TOKEN);
