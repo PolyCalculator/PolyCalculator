@@ -21,7 +21,7 @@ class Fight {
         else if (def.startsWith("d"))
             this.dforce = this.dattack*this.dhp/this.dmaxhp*1.5;
         else if (def.startsWith("w"))
-            this.dforce = this.dattack*this.dhp/this.dmaxhp*1.5;
+            this.dforce = this.dattack*this.dhp/this.dmaxhp*4;
     }
   
     calculate() {
@@ -171,6 +171,7 @@ allUnits.set("ca", catapult)
 allUnits.set("tr", tridention)
 allUnits.set("po", polytaur)
 allUnits.set("na", navalon)
+allUnits.set("cr", crab)
 
 bot.on('ready', () => {
     const prefix = process.env.PREFIX;
@@ -234,7 +235,7 @@ bot.on('message', message => {
             .addField("**Attack**", tridention.att)
             .addField("**Defense**", tridention.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("de")) {
+    } else if (cmd.startsWith("de") || cmg === 'd') {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Defender stats")
@@ -243,7 +244,7 @@ bot.on('message', message => {
             .addField("**Attack**", defender.att)
             .addField("**Defense**", defender.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("gi")) {
+    } else if (cmd.startsWith("gi") || cmg === 'g') {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Giant stats")
@@ -279,7 +280,7 @@ bot.on('message', message => {
             .addField("**Attack**", archer.att)
             .addField("**Defense**", archer.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ca")) {
+    } else if (cmd.startsWith("ca") || cmd === "c") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Catapult stats")
@@ -287,6 +288,15 @@ bot.on('message', message => {
             .addField("**Veteran HP**", catapult.vethp)
             .addField("**Attack**", catapult.att)
             .addField("**Defense**", catapult.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("cr")) {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Crab stats")
+            .addField("**Max HP**", crab.maxhp)
+            .addField("**Veteran HP**", crab.vethp)
+            .addField("**Attack**", crab.att)
+            .addField("**Defense**", crab.def)
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("bo")) {
         const helpEmbed = new RichEmbed()
@@ -296,8 +306,9 @@ bot.on('message', message => {
             .addField("**Veteran HP**", boat.vethp)
             .addField("**Attack**", boat.att)
             .addField("**Defense**", boat.def)
+            .addField("**Warning**", "Boat isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("sh") || cmd === "sh") {
+    } else if (cmd.startsWith("sh")) {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Ship stats")
@@ -305,6 +316,7 @@ bot.on('message', message => {
             .addField("**Veteran HP**", ship.vethp)
             .addField("**Attack**", ship.att)
             .addField("**Defense**", ship.def)
+            .addField("**Warning**", "Ship isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("ba") || cmd === "bs") {
         const helpEmbed = new RichEmbed()
@@ -314,6 +326,7 @@ bot.on('message', message => {
             .addField("**Veteran HP**", battleship.vethp)
             .addField("**Attack**", battleship.att)
             .addField("**Defense**", battleship.def)
+            .addField("**Warning**", "Battleship isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("ga")) {
         const helpEmbed = new RichEmbed()
