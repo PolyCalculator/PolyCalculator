@@ -152,17 +152,17 @@ const battleship = {
 }
 
 const allUnits = new Map()
-allUnits.set("w", warrior)
-allUnits.set("r", rider)
-allUnits.set("a", archer)
-allUnits.set("d", defender)
-allUnits.set("k", knight)
-allUnits.set("s", swords)
-allUnits.set("g", giant)
-allUnits.set("c", catapult)
-allUnits.set("t", tridention)
-allUnits.set("p", polytaur)
-allUnits.set("n", navalon)
+allUnits.set("wa", warrior)
+allUnits.set("ri", rider)
+allUnits.set("ar", archer)
+allUnits.set("de", defender)
+allUnits.set("kn", knight)
+allUnits.set("sw", swords)
+allUnits.set("gi", giant)
+allUnits.set("ca", catapult)
+allUnits.set("tr", tridention)
+allUnits.set("po", polytaur)
+allUnits.set("na", navalon)
 
 bot.on('ready', () => {
     const prefix = process.env.PREFIX;
@@ -311,8 +311,8 @@ bot.on('message', message => {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
     } else if (cmd === "name") {
-        oneIsUnit = allUnits.get(args[1].charAt(0))
-        twoIsUnit = allUnits.get(args[4].charAt(0))
+        oneIsUnit = allUnits.get(args[1].substr(0,2))
+        twoIsUnit = allUnits.get(args[4].substr(0,2))
         console.log("attacker", oneIsUnit);
         console.log("defender", twoIsUnit);
         if(args[2].startsWith("v"))
