@@ -151,6 +151,13 @@ const battleship = {
     def: 3
 }
 
+const gaami = {
+    maxhp: 30,
+    vethp: 30,
+    att: 4,
+    def: 4
+}
+
 const allUnits = new Map()
 allUnits.set("wa", warrior)
 allUnits.set("ri", rider)
@@ -159,6 +166,7 @@ allUnits.set("de", defender)
 allUnits.set("kn", knight)
 allUnits.set("sw", swords)
 allUnits.set("gi", giant)
+allUnits.set("ga", gaami)
 allUnits.set("ca", catapult)
 allUnits.set("tr", tridention)
 allUnits.set("po", polytaur)
