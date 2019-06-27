@@ -244,7 +244,7 @@ bot.on('message', message => {
             .addField("**Attack**", defender.att)
             .addField("**Defense**", defender.def)
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("gi") || cmg === 'g') {
+    } else if (cmd.startsWith("gi") || cmd === 'g') {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle("Giant stats")
