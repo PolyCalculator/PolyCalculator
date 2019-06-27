@@ -197,7 +197,7 @@ bot.on('message', message => {
             .addField("**!name** command:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
             .addField("**!name** example:", `!name 10 warrior vet 10 defender non-vet`)
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
-            .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
+            .addField("**2nd example:**", "!full 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("w")) {
         const helpEmbed = new RichEmbed()
@@ -307,7 +307,7 @@ bot.on('message', message => {
             .addField("**Attack**", battleship.att)
             .addField("**Defense**", battleship.def)
         message.channel.send(helpEmbed);
-    } else if (cmd === "full") {
+    } else if (cmd === "full" || cmd === undefined) {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
     } else if (cmd === "name") {
