@@ -84,6 +84,60 @@ bot.on('message', message => {
             .addField("**The last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
             .addField("**2nd example:**", "! 10 10 2 10 10 2 w")
         message.channel.send(helpEmbed);
+    } else if (cmd === "warrior" || cmd === "w") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Warrior stats")
+            .addField("**Max HP**", "10")
+            .addField("**Veteran HP**", "15")
+            .addField("**Attack**", "2")
+            .addField("**Defense**", "2")
+        message.channel.send(helpEmbed);
+    } else if (cmd === "rider" || cmd === "r") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Rider stats")
+            .addField("**Max HP**", "10")
+            .addField("**Veteran HP**", "15")
+            .addField("**Attack**", "2")
+            .addField("**Defense**", "1")
+        message.channel.send(helpEmbed);
+    } else if (cmd === "defender" || cmd === "d") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Defender stats")
+            .addField("**Max HP**", "15")
+            .addField("**Veteran HP**", "20")
+            .addField("**Attack**", "1")
+            .addField("**Defense**", "3")
+        message.channel.send(helpEmbed);
+    } else if (cmd === "giant" || cmd === "g") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Giant stats")
+            .addField("**Max HP**", "40")
+            .addField("**Veteran HP**", "None")
+            .addField("**Attack**", "2")
+            .addField("**Defense**", "2")
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("swords") || cmd === "s") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Swordsman stats")
+            .addField("**Max HP**", "15")
+            .addField("**Veteran HP**", "20")
+            .addField("**Attack**", "3")
+            .addField("**Defense**", "3")
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("knight") || cmd === "k") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Knight stats")
+            .addField("**Max HP**", "15")
+            .addField("**Veteran HP**", "20")
+            .addField("**Attack**", "3.5")
+            .addField("**Defense**", "1")
+        message.channel.send(helpEmbed);
     } else {
         console.log("Command triggered!");
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
