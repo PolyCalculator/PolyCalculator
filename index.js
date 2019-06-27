@@ -23,10 +23,6 @@ class Fight {
         else if (def.startsWith("w"))
             this.dforce = this.dattack*this.dhp/this.dmaxhp*1.5;
     }
-   
-    get res() {
-        return this.calculate();
-    }
   
     calculate() {
         var totaldam = this.aforce+this.dforce;
@@ -220,6 +216,15 @@ bot.on('message', message => {
             .addField("**Veteran HP**", rider.vethp)
             .addField("**Attack**", rider.att)
             .addField("**Defense**", rider.def)
+        message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("tri") || cmd === "t") {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Rider stats")
+            .addField("**Max HP**", tridention.maxhp)
+            .addField("**Veteran HP**", tridention.vethp)
+            .addField("**Attack**", tridention.att)
+            .addField("**Defense**", tridention.def)
         message.channel.send(helpEmbed);
     } else if (cmd.startsWith("def") || cmd === "d") {
         const helpEmbed = new RichEmbed()
