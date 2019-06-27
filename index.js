@@ -220,7 +220,7 @@ bot.on('message', message => {
     } else if (cmd.startsWith("tri") || cmd === "t") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .setTitle("Rider stats")
+            .setTitle("Tridention stats")
             .addField("**Max HP**", tridention.maxhp)
             .addField("**Veteran HP**", tridention.vethp)
             .addField("**Attack**", tridention.att)
@@ -292,7 +292,7 @@ bot.on('message', message => {
     } else if (cmd.startsWith("ship") || cmd === "sh") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .setTitle("Rider stats")
+            .setTitle("Ship stats")
             .addField("**Max HP**", ship.maxhp)
             .addField("**Veteran HP**", ship.vethp)
             .addField("**Attack**", ship.att)
@@ -301,7 +301,7 @@ bot.on('message', message => {
     } else if (cmd.startsWith("battleship") || cmd === "bs") {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .setTitle("Rider stats")
+            .setTitle("Battleship stats")
             .addField("**Max HP**", battleship.maxhp)
             .addField("**Veteran HP**", battleship.vethp)
             .addField("**Attack**", battleship.att)
