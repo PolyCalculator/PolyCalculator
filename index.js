@@ -315,6 +315,15 @@ bot.on('message', message => {
             .addField("**Attack**", battleship.att)
             .addField("**Defense**", battleship.def)
         message.channel.send(helpEmbed);
+    } else if (cmd.startsWith("ga")) {
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle("Gaami stats")
+            .addField("**Max HP**", gaami.maxhp)
+            .addField("**Veteran HP**", gaami.vethp)
+            .addField("**Attack**", gaami.att)
+            .addField("**Defense**", gaami.def)
+        message.channel.send(helpEmbed);
     } else if (cmd === "full" || cmd === undefined) {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
