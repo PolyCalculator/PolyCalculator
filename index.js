@@ -10,10 +10,6 @@ setInterval(function() {
 const express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-})
-
 class Fight {
     constructor(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def) {
         console.log(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def)
@@ -340,6 +336,10 @@ bot.on('message', message => {
 //              END/OTHER
 //--------------------------------------
 const port = process.env.PORT || 5000;
+
+app.get('/', function (req, res) {
+    res.send('Hello World!')
+})
 
 app.listen(port, () => {
     console.log('Listening on ' + port);
