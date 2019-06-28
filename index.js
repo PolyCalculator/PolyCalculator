@@ -200,7 +200,7 @@ bot.on('message', message => {
 
     if(message.author.bot || !message.content.startsWith(prefix))
         return;
-    else if (message.channel.name.startsWith(general) || message.channel.name.startsWith(crawnv)) {
+    else if (message.channel.name.startsWith("general") || message.channel.name.startsWith("crawnv")) {
         message.channel.send('Come on! Not in **#general** or **#crawnversation**');
         return
     }
