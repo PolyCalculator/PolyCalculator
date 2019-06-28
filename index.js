@@ -372,10 +372,12 @@ bot.on('message', message => {
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
     } else if (cmd === "name") {
-        if(twoIsUnit === undefined || oneIsUnit === undefined)
+        if(args[1] === undefined || args[4] === undefined)
             return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
         oneIsUnit = allUnits.get(args[1].substr(0,2))
         twoIsUnit = allUnits.get(args[4].substr(0,2))
+        if(twoIsUnit === undefined || oneIsUnit === undefined)
+            return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
         console.log("attacker", oneIsUnit);
         console.log("defender", twoIsUnit);
         if(args[2].startsWith("v"))
