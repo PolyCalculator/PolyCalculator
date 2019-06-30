@@ -7,16 +7,18 @@ const express = require('express');
 var app = express();
 
 class Fight {
-    constructor(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def) {
-        console.log(ahp, amaxhp, aattack, dhp, dmaxhp, dattack, def)
-        this.ahp = ahp;
-        this.amaxhp = amaxhp;
-        this.aattack = aattack;
-        this.dhp = dhp;
-        this.dmaxhp = dmaxhp;
-        this.dattack = dattack;
+    constructor(attacker,defender) {
+        console.log(attacker,"/" ,defender)
+        this.aname = attacker.name
+        this.ahp = attacker.currentHP;
+        this.amaxhp = attacker.maxHP;
+        this.aattack = attacker.att;
+        this.dname = defender.name
+        this.dhp = defender.currentHP;
+        this.dmaxhp = defender.maxHP;
+        this.ddef = defender.def;
         this.aforce = this.aattack*this.ahp/this.amaxhp;
-        this.dforce = this.dattack*this.dhp/this.dmaxhp*def;
+        this.dforce = this.ddef*this.dhp/this.dmaxhp*def;
     }
   
     calculate() {
@@ -27,7 +29,7 @@ class Fight {
             hpdefender = 'DESTROYED'
         }
         else {
-            var hpattacker = this.ahp - Math.round(this.dforce / totaldam * this.dattack * 4.5);
+            var hpattacker = this.ahp - Math.round(this.dforce / totaldam * this.ddef * 4.5);
         }
 
         if(hpattacker <= 0)
@@ -35,8 +37,8 @@ class Fight {
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .addField("**Attacker :**", hpattacker)
-            .addField("**Defender :**", hpdefender)
+            .addField(`**${this.aname} :**`, hpattacker)
+            .addField(`**${this.dname} :**`, hpdefender)
         return helpEmbed;
     }
 }
@@ -547,7 +549,7 @@ bot.on('message', message => {
         console.log(attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att);
         console.log(defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus);
 
-        const result = new Fight(attackerUnit.currentHP,attackerUnit.maxHP,attackerUnit.att,defenderUnit.currentHP,defenderUnit.maxHP,defenderUnit.def,defenderUnit.bonus)
+        const result = new Fight(attackerUnit,defenderUnit)
         message.channel.send(result.calculate());
     } else {
         message.channel.send("It seems we don't have that command. If you think it should exist, ping @jd#0001!");
