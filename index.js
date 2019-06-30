@@ -314,7 +314,7 @@ bot.on('message', message => {
     let args;
 
     if (cmd === "help") {
-        args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
+        args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
         console.log("Help triggered!");
