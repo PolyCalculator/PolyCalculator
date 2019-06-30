@@ -7,17 +7,17 @@ const express = require('express');
 var app = express();
 
 class Fight {
-    constructor(attacker,defender) {
-        console.log(attacker,"/" ,defender)
-        this.aname = attacker.name
-        this.ahp = attacker.currentHP;
-        this.amaxhp = attacker.maxHP;
-        this.aattack = attacker.att;
-        this.dname = defender.name
-        this.dhp = defender.currentHP;
-        this.dmaxhp = defender.maxHP;
-        this.ddef = defender.def;
-        this.dbonus = defender.bonus;
+    constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus) {
+        console.log(aname,"/",dname)
+        this.aname = aname
+        this.ahp = ahp;
+        this.amaxhp = amaxhp;
+        this.aattack = aattack;
+        this.dname = dname;
+        this.dhp = dhp;
+        this.dmaxhp = dmaxhp;
+        this.ddef = ddef;
+        this.dbonus = dbonus;
         this.aforce = this.aattack*this.ahp/this.amaxhp;
         this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
     }
@@ -242,18 +242,217 @@ allUnits.set("sl", battlesled)
 allUnits.set("if", icefortress)
 
 function getUnit(array) {
+    const warrior = {
+        name: "Warrior",
+        maxhp: 10,
+        vethp: 15,
+        att: 2,
+        def: 2
+    }
+    
+    const rider = {
+        name: "Rider",
+        maxhp: 10,
+        vethp: 15,
+        att: 2,
+        def: 1
+    }
+    
+    const archer = {
+        name: "Archer",
+        maxhp: 10,
+        vethp: 15,
+        att: 2,
+        def: 1
+    }
+    
+    const defender = {
+        name: "Defender",
+        maxhp: 15,
+        vethp: 20,
+        att: 1,
+        def: 3
+    }
+    
+    const knight = {
+        name: "Knight",
+        maxhp: 15,
+        vethp: 20,
+        att: 3.5,
+        def: 1
+    }
+    
+    const swords = {
+        name: "Swordsman",
+        maxhp: 15,
+        vethp: 20,
+        att: 3,
+        def: 3
+    }
+    
+    const catapult = {
+        name: "Catapult",
+        maxhp: 10,
+        vethp: 15,
+        att: 4,
+        def: 0
+    }
+    
+    const giant = {
+        name: "Giant",
+        maxhp: 40,
+        vethp: 40,
+        att: 5,
+        def: 4
+    }
+    
+    const crab = {
+        name: "Crab",
+        maxhp: 40,
+        vethp: 40,
+        att: 4,
+        def: 4
+    }
+    
+    const tridention = {
+        name: "Tridention",
+        maxhp: 15,
+        vethp: 20,
+        att: 3,
+        def: 1
+    }
+    
+    const polytaur = {
+        name: "Polytaur",
+        maxhp: 15,
+        vethp: 20,
+        att: 3,
+        def: 1
+    }
+    
+    const navalon = {
+        name: "Navalon",
+        maxhp: 30,
+        vethp: 30,
+        att: 4,
+        def: 4
+    }
+    
+    const boat = {
+        name: "Boat",
+        maxhp: undefined,
+        vethp: undefined,
+        att: 1,
+        def: 1
+    }
+    
+    const ship = {
+        name: "Ship",
+        maxhp: undefined,
+        vethp: undefined,
+        att: 2,
+        def: 2
+    }
+    
+    const battleship = {
+        name: "Battleship",
+        maxhp: undefined,
+        vethp: undefined,
+        att: 4,
+        def: 3
+    }
+    
+    const gaami = {
+        name: "Gaami",
+        maxhp: 30,
+        vethp: 30,
+        att: 4,
+        def: 4
+    }
+    
+    const mindbender = {
+        name: "Mind Bender",
+        maxhp: 10,
+        vethp: 10,
+        att: 0,
+        def: 1
+    }
+    
+    const babydragon = {
+        name: "Baby Dragon",
+        maxhp: 15,
+        vethp: 20,
+        att: 3,
+        def: 3
+    }
+    
+    const firedragon = {
+        name: "Fire Dragon",
+        maxhp: 20,
+        vethp: 20,
+        att: 4,
+        def: 3
+    }
+    
+    const mooni = {
+        name: "Mooni",
+        maxhp: 10,
+        vethp: 10,
+        att: 0,
+        def: 2
+    }
+    
+    const battlesled = {
+        name: "Battle Sled",
+        maxhp: 15,
+        vethp: 20,
+        att: 3,
+        def: 2
+    }
+    
+    const icefortress = {
+        name: "Ice Fortress",
+        maxhp: 20,
+        vethp: 25,
+        att: 4,
+        def: 3
+    }
+    const allUnits = new Map()
+    allUnits.set("wa", warrior)
+    allUnits.set("ri", rider)
+    allUnits.set("ar", archer)
+    allUnits.set("de", defender)
+    allUnits.set("kn", knight)
+    allUnits.set("sw", swords)
+    allUnits.set("gi", giant)
+    allUnits.set("ga", gaami)
+    allUnits.set("ca", catapult)
+    allUnits.set("tr", tridention)
+    allUnits.set("po", polytaur)
+    allUnits.set("na", navalon)
+    allUnits.set("cr", crab)
+    allUnits.set("mb", mindbender)
+    allUnits.set("bd", babydragon)
+    allUnits.set("fd", firedragon)
+    allUnits.set("mo", mooni)
+    allUnits.set("sl", battlesled)
+    allUnits.set("if", icefortress)
+
     unitKeys = Array.from(allUnits.keys());
     let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
     unitKey = unitKey.toString().substring(0,2)
     unit = allUnits.get(unitKey)
 
     if(array.some(x => x.startsWith("bo"))) {
+        unit.name = unit.name + " Boat";
         unit.att = 1;
         unit.def = 1;
     } else if(array.some(x => x.startsWith("sh"))) {
+        unit.name = unit.name + " Ship";
         unit.att = 2;
         unit.def = 2;
     } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
+        unit.name = unit.name + " Battleship";
         unit.att = 4;
         unit.def = 3;
     }
@@ -281,10 +480,12 @@ function getCurrentHP(array, maxhp) {
     }   
 }
 
-function getBonus(array) {
+function getBonus(array, unit) {
     if(array.some(x => x === 'w')) {
+        unit.name = unit.name + " (walled)"
         return 4;
     } else if(array.some(x => x === 'd')) {
+        unit.name = unit.name + " (protected)"
         return 1.5;
     } else {
         return 1;
@@ -346,154 +547,46 @@ bot.on('message', message => {
                 .addField("**More details:**", "`!help full` or `!help name`")
         }
         message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("wa")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Warrior stats")
-            .addField("**Max HP**", warrior.maxhp)
-            .addField("**Veteran HP**", warrior.vethp)
-            .addField("**Attack**", warrior.att)
-            .addField("**Defense**", warrior.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ri")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Rider stats")
-            .addField("**Max HP**", rider.maxhp)
-            .addField("**Veteran HP**", rider.vethp)
-            .addField("**Attack**", rider.att)
-            .addField("**Defense**", rider.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("tr")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Tridention stats")
-            .addField("**Max HP**", tridention.maxhp)
-            .addField("**Veteran HP**", tridention.vethp)
-            .addField("**Attack**", tridention.att)
-            .addField("**Defense**", tridention.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("de")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Defender stats")
-            .addField("**Max HP**", defender.maxhp)
-            .addField("**Veteran HP**", defender.vethp)
-            .addField("**Attack**", defender.att)
-            .addField("**Defense**", defender.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("gi")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Giant stats")
-            .addField("**Max HP**", giant.maxhp)
-            .addField("**Veteran HP**", giant.vethp)
-            .addField("**Attack**", giant.att)
-            .addField("**Defense**", giant.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("sw")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Swordsman stats")
-            .addField("**Max HP**", swords.maxhp)
-            .addField("**Veteran HP**", swords.vethp)
-            .addField("**Attack**", swords.att)
-            .addField("**Defense**", swords.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("kn")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Knight stats")
-            .addField("**Max HP**", knight.maxhp)
-            .addField("**Veteran HP**", knight.vethp)
-            .addField("**Attack**", knight.att)
-            .addField("**Defense**", knight.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ar")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Archer stats")
-            .addField("**Max HP**", archer.maxhp)
-            .addField("**Veteran HP**", archer.vethp)
-            .addField("**Attack**", archer.att)
-            .addField("**Defense**", archer.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ca")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Catapult stats")
-            .addField("**Max HP**", catapult.maxhp)
-            .addField("**Veteran HP**", catapult.vethp)
-            .addField("**Attack**", catapult.att)
-            .addField("**Defense**", catapult.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("cr")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Crab stats")
-            .addField("**Max HP**", crab.maxhp)
-            .addField("**Veteran HP**", crab.vethp)
-            .addField("**Attack**", crab.att)
-            .addField("**Defense**", crab.def)
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("bo")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Boat stats")
-            .addField("**Max HP**", boat.maxhp)
-            .addField("**Veteran HP**", boat.vethp)
-            .addField("**Attack**", boat.att)
-            .addField("**Defense**", boat.def)
-            .addField("**Warning**", "Boat isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("sh")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Ship stats")
-            .addField("**Max HP**", ship.maxhp)
-            .addField("**Veteran HP**", ship.vethp)
-            .addField("**Attack**", ship.att)
-            .addField("**Defense**", ship.def)
-            .addField("**Warning**", "Ship isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ba") || cmd === "bs") {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Battleship stats")
-            .addField("**Max HP**", battleship.maxhp)
-            .addField("**Veteran HP**", battleship.vethp)
-            .addField("**Attack**", battleship.att)
-            .addField("**Defense**", battleship.def)
-            .addField("**Warning**", "Battleship isn't supported by the `!name` command because of the hp variance, but you can use the `!full` command")
-        message.channel.send(helpEmbed);
-    } else if (cmd.startsWith("ga")) {
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle("Gaami stats")
-            .addField("**Max HP**", gaami.maxhp)
-            .addField("**Veteran HP**", gaami.vethp)
-            .addField("**Attack**", gaami.att)
-            .addField("**Defense**", gaami.def)
-        message.channel.send(helpEmbed);
+//--------------------------------------------------
+//
+//                !UNITS COMMAND
+//
+//--------------------------------------------------
+    } else if (cmd.startsWith("unit") || cmd.startsWith("code")) {
+        unitEmbed = new RichEmbed();
+        unitEmbed.setColor('#FA8072')
+            .setTitle("All units by code")
+        units = [];
+        allUnits.forEach((val, key) => {
+            units.push(`${val.name}: ${key}`)
+        })
+        unitEmbed.setDescription(units);
+        message.channel.send(unitEmbed);
 //--------------------------------------------------
 //
 //                !FULL COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "full" || cmd === undefined) {
+    } else if (cmd === "full") {
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
+        args.shift();
         if(args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help\``)
-        const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
+        let bonus = 1;
+        if(args[6] === 'd')
+            bonus = 1.5;
+        if(args[6] === 'w')
+            bonus = 4;
+        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus)
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
 //                !NAME COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "name") {
+    } else if (cmd === "name" || cmd === 'n') {
 //--------------------------------------------------
-//           HANDLER TO CLEAN THE ARRAY
+//          HANDLER TO CLEAN THE CMD ARRAY
 //--------------------------------------------------
         args = message.content.toLowerCase().slice(prefix.length);
 
@@ -545,15 +638,41 @@ bot.on('message', message => {
         defenderUnit.def = defenderStats.def;
         defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
         defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP);
-        defenderUnit.bonus = getBonus(preDefender);
+        defenderUnit.bonus = getBonus(preDefender, defenderUnit);
 
         console.log(attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att);
         console.log(defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus);
 
-        const result = new Fight(attackerUnit,defenderUnit)
+        const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus)
         message.channel.send(result.calculate());
+//--------------------------------------------------
+//
+//                !{UNIT} HELP COMMANDs
+//
+//--------------------------------------------------
     } else {
-        message.channel.send("It seems we don't have that command. If you think it should exist, ping @jd#0001!");
+        unitKeysArray = Array.from(allUnits.keys())
+        keyIndex = unitKeysArray.findIndex(x => cmd.substring(0, 2) === x)
+        unitHelp = allUnits.get(unitKeysArray[keyIndex])
+
+        if(unitHelp) {
+            const helpEmbed = new RichEmbed()
+                .setColor('#FA8072')
+            let descriptionArray = [];
+            Object.keys(unitHelp).forEach(x => {
+                if(x === 'name')
+                    helpEmbed.setTitle(`**${unitHelp[x]}**`)
+                else
+                    descriptionArray.push(`**${x}**: ${unitHelp[x]}`)
+            })
+            helpEmbed.setDescription(descriptionArray);
+            message.channel.send(helpEmbed);
+        } else {
+//--------------------------------------------------
+//               IF NO KNOWN COMMANDS
+//--------------------------------------------------
+            return message.channel.send("It seems we don't have that command. If you think it should exist, DM @**jd#0001**!"); 
+        }
     }
 })
 //--------------------------------------
