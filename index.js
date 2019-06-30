@@ -38,8 +38,8 @@ class Fight {
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .addField(`**${this.aname} :**`, hpattacker)
-            .addField(`**${this.dname} :**`, hpdefender)
+            .addField(`**${this.aname}**:`, hpattacker)
+            .addField(`**${this.dname}**:`, hpdefender)
         return helpEmbed;
     }
 }
