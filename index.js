@@ -16,12 +16,7 @@ class Fight {
         this.dmaxhp = dmaxhp;
         this.dattack = dattack;
         this.aforce = this.aattack*this.ahp/this.amaxhp;
-        if(def === undefined)
-            this.dforce = this.dattack*this.dhp/this.dmaxhp;
-        else if (def.startsWith("d"))
-            this.dforce = this.dattack*this.dhp/this.dmaxhp*1.5;
-        else if (def.startsWith("w"))
-            this.dforce = this.dattack*this.dhp/this.dmaxhp*4;
+        this.dforce = this.dattack*this.dhp/this.dmaxhp*def;
     }
   
     calculate() {
@@ -190,31 +185,61 @@ allUnits.set("na", navalon)
 allUnits.set("cr", crab)
 
 function getUnit(array) {
+    console.log("array: ", array)
     unitKeys = Array.from(allUnits.keys());
-    let unitKey = array.filter(value => unitKeys.includes(value))
-    console.log("unitKey: ", unitKey.toString())
-    console.log("allUnits.get(unitKey): ", allUnits.get(unitKey.toString()))
-    return allUnits.get(unitKey)
+    let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
+    unitKey = unitKey.toString().substring(0,2)
+    unit = allUnits.get(unitKey)
+    if(array.some(x => x.startsWith("bo") && !unit))
+        return undefined
+    else if(array.some(x => x.startsWith("bo"))) {
+        unit.att = 1;
+        unit.def = 1;
+    }
+    if(array.some(x => x.startsWith("sh") && !unit))
+        return undefined
+    else if(array.some(x => x.startsWith("sh"))) {
+        unit.att = 2;
+        unit.def = 2;
+    }
+    if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")) && !unit))
+        return undefined
+    else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
+        unit.att = 4;
+        unit.def = 3;
+    }
+
+    if(unit)
+        return unit
+    else   
+        return undefined
 }
 
 function getMaxHP(array, unit) {
-    
+    if(array.some(x => x.startsWith('v'))) {
+        return unit.vethp;
+    } else {
+        return unit.maxhp;
+    }
 }
 
-function getCurrentHP(array, maxHP) {
-    console.log("getCurrentHP\nArray:", array);
-    if (array.findIndex(x => !isNaN(Number(x)))) {
-        index = array.findIndex(x => !isNaN(Number(x)));
-        console.log("Index:", index);
-        console.log("Value:", array[index]);
+function getCurrentHP(array, maxhp) {
+    if(array.some(x => !isNaN(Number(x)))) {
+        index = array.findIndex(x => !isNaN(Number(x)))
+        return parseInt(array[index])
     } else {
-
-    }
-    return array[index];
+        return maxhp
+    }   
 }
 
 function getBonus(array) {
-    
+    if(array.some(x => x === 'w')) {
+        return 4;
+    } else if(array.some(x => x === 'd')) {
+        return 1.5;
+    } else {
+        return 1;
+    }
 }
 
 bot.on('ready', () => {
@@ -397,38 +422,62 @@ bot.on('message', message => {
             .addField("**Attack**", gaami.att)
             .addField("**Defense**", gaami.def)
         message.channel.send(helpEmbed);
+//--------------------------------------------------
+//
+//                !FULL COMMAND
+//
+//--------------------------------------------------
     } else if (cmd === "full" || cmd === undefined) {
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         if(args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
-            return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
+            return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help\``)
         const result = new Fight(Number(args[0]),Number(args[1]),Number(args[2]),Number(args[3]),Number(args[4]),Number(args[5]),args[6])
         message.channel.send(result.calculate());
+//--------------------------------------------------
+//
+//                !NAME COMMAND
+//
+//--------------------------------------------------
     } else if (cmd === "name") {
-        units = message.content.toLowerCase().slice(prefix.length).split("-");
+//--------------------------------------------------
+//        HANDLER TO CLEAN THE ARRAY
+//--------------------------------------------------
+        args = message.content.toLowerCase().slice(prefix.length);
+
+        if(args.includes("-"))
+            units = args.split("-")
+        else if(args.includes("/"))
+            units = args.split("/")
+        else if(args.includes(","))
+            units = args.split(",")
+        else
+            return message.channel.send("You need to separate the attacker from the defender using a `-`, a `,` or a `/` ");
 
         preAttacker = units[0].split(/ +/);
-        console.log("preAtt: ", preAttacker);
         preAttacker.shift()
         preAttacker = preAttacker.filter(x => x != "");
-        console.log("postAtt: ", preAttacker);
         preDefender = units[1].split(/ +/);
-        console.log("preDef: ", preDefender);
         preDefender = preDefender.filter(x => x != "");
-        console.log("postDef: ", preDefender);
 
+//--------------------------------------------------
+//        GET FUNCTIONS TO FIND UNITS STATS
+//--------------------------------------------------
         attackerUnit = getUnit(preAttacker)
+        if(attackerUnit === undefined)
+            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
         attackerMaxHP = getMaxHP(preAttacker, attackerUnit);
-        attackerCurrentHP = getCurrentHP(preAttacker, attackerUnit);
+        attackerCurrentHP = getCurrentHP(preAttacker, attackerUnit.maxhp);
         defenderUnit = getUnit(preDefender)
-        defenderCurrentHP = getCurrentHP(preDefender, defenderUnit);
+        if(defenderUnit === undefined)
+            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
+        defenderMaxHP = getMaxHP(preDefender, defenderUnit);
+        defenderCurrentHP = getCurrentHP(preDefender, defenderUnit.maxhp);
         defBonus = getBonus(preDefender);
-        //            return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
-        console.log(attackerCurrentHP, attackerMaxHP, attackerStat);
-        console.log(defenderCurrentHP, defenderMaxHP, defenderStat, defBonus);
-        
-        //    return message.channel.send(`There is a problem with your format, try \`${prefix}help\``)
-        
-        const result = new Fight(attackerCurrentHP,attackerMaxHP,attackerStat,defenderCurrentHP,defenderMaxHP,defenderStat,defBonus)
+
+        console.log(attackerCurrentHP, attackerMaxHP, attackerUnit.att);
+        console.log(defenderCurrentHP, defenderMaxHP, defenderUnit.def, defBonus);
+
+        const result = new Fight(attackerCurrentHP,attackerMaxHP,attackerUnit.att,defenderCurrentHP,defenderMaxHP,defenderUnit.def,defBonus)
         message.channel.send(result.calculate());
     } else {
         message.channel.send("It seems we don't have that command. If you think it should exist, ping @jd#0001!");
