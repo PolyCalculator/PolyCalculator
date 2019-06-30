@@ -19,7 +19,7 @@ class Fight {
         this.ddef = defender.def;
         this.dbonus = defender.bonus;
         this.aforce = this.aattack*this.ahp/this.amaxhp;
-        this.dforce = this.ddef*this.dhp/this.dmaxhp*dbonus;
+        this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
     }
   
     calculate() {
