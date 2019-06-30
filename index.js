@@ -324,9 +324,10 @@ bot.on('message', message => {
                 .addField("Long example:", `!full 10 10 2 10 10 2`)
         } else if (args[0] === "name") {
             helpEmbed.setTitle("How to use the `!name` command")
-                .addField("Argument structure:", `!name attackerCurrentHP unitByName non-vet/vet defenderCurrentHP unitByName non-vet/vet (defense/wall)`)
-                .addField("Long example:", `!name 10 warrior vet 10 defender non-vet`)
-                .addField("Short example:", `!name 10 w v 10 d n`)
+                .setDescription("Parentheses are optional arguments. Units require 2 characters.")
+                .addField("Argument structure:", `!name (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (defense/wall)`)
+                .addField("Long example:", `!name 10 warrior vet, 8 rider walled`)
+                .addField("Short example:", `!name wa, de`)
         } else {
             helpEmbed.setTitle("How to use the PolyCalculator bot")
                 .addField("**!full** command:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
