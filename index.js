@@ -514,14 +514,17 @@ bot.on('message', message => {
     }
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    console.log("Command triggered:", cmd);
+    console.log("Command triggered:", cmd, `in ${message.guild} in ${message.channel}`);
     let args;
-
+//--------------------------------------------------
+//
+//                 !HELP COMMAND
+//
+//--------------------------------------------------
     if (cmd === "help") {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-        console.log("Help triggered!");
         if (args[0] === "full") {
             helpEmbed.setTitle("How to use the `!full` command")
                 .addField("Argument structure:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
@@ -549,7 +552,7 @@ bot.on('message', message => {
         message.channel.send(helpEmbed);
 //--------------------------------------------------
 //
-//                !UNITS COMMAND
+//                 !UNITS COMMAND
 //
 //--------------------------------------------------
     } else if (cmd.startsWith("unit") || cmd.startsWith("code")) {
@@ -629,7 +632,6 @@ bot.on('message', message => {
         attackerUnit.att = attackerStats.att;
         attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
         attackerUnit.currentHP = getCurrentHP(preAttacker, attackerUnit.maxHP);
-        console.log(attackerUnit);
 
         defenderStats = getUnit(preDefender)
         if(defenderStats === undefined)
@@ -640,10 +642,8 @@ bot.on('message', message => {
         defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP);
         defenderUnit.bonus = getBonus(preDefender, defenderUnit);
 
-        console.log(attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att);
-        console.log(defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus);
-
         const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus)
+        console.log(result.calculate());
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
