@@ -169,6 +169,54 @@ const gaami = {
     def: 4
 }
 
+const mindbender = {
+    name: "Mind Bender",
+    maxhp: 10,
+    vethp: 10,
+    att: 0,
+    def: 1
+}
+
+const babydragon = {
+    name: "Baby Dragon",
+    maxhp: 15,
+    vethp: 20,
+    att: 3,
+    def: 3
+}
+
+const firedragon = {
+    name: "Fire Dragon",
+    maxhp: 20,
+    vethp: 20,
+    att: 4,
+    def: 3
+}
+
+const mooni = {
+    name: "Mooni",
+    maxhp: 10,
+    vethp: 10,
+    att: 0,
+    def: 2
+}
+
+const battlesled = {
+    name: "Battle Sled",
+    maxhp: 15,
+    vethp: 20,
+    att: 3,
+    def: 2
+}
+
+const icefortress = {
+    name: "Ice Fortress",
+    maxhp: 20,
+    vethp: 25,
+    att: 4,
+    def: 3
+}
+
 const allUnits = new Map()
 allUnits.set("wa", warrior)
 allUnits.set("ri", rider)
@@ -183,35 +231,33 @@ allUnits.set("tr", tridention)
 allUnits.set("po", polytaur)
 allUnits.set("na", navalon)
 allUnits.set("cr", crab)
+allUnits.set("mb", mindbender)
+allUnits.set("bd", babydragon)
+allUnits.set("fd", firedragon)
+allUnits.set("mo", mooni)
+allUnits.set("sl", battlesled)
+allUnits.set("if", icefortress)
 
 function getUnit(array) {
-    console.log("array: ", array)
     unitKeys = Array.from(allUnits.keys());
     let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
     unitKey = unitKey.toString().substring(0,2)
     unit = allUnits.get(unitKey)
-    if(array.some(x => x.startsWith("bo") && !unit))
-        return undefined
-    else if(array.some(x => x.startsWith("bo"))) {
+
+    if(array.some(x => x.startsWith("bo"))) {
         unit.att = 1;
         unit.def = 1;
-    }
-    if(array.some(x => x.startsWith("sh") && !unit))
-        return undefined
-    else if(array.some(x => x.startsWith("sh"))) {
+    } else if(array.some(x => x.startsWith("sh"))) {
         unit.att = 2;
         unit.def = 2;
-    }
-    if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")) && !unit))
-        return undefined
-    else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
+    } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
         unit.att = 4;
         unit.def = 3;
     }
 
-    if(unit)
+    if(unit) {
         return unit
-    else   
+    } else   
         return undefined
 }
 
@@ -440,7 +486,7 @@ bot.on('message', message => {
 //--------------------------------------------------
     } else if (cmd === "name") {
 //--------------------------------------------------
-//        HANDLER TO CLEAN THE ARRAY
+//           HANDLER TO CLEAN THE ARRAY
 //--------------------------------------------------
         args = message.content.toLowerCase().slice(prefix.length);
 
@@ -462,22 +508,42 @@ bot.on('message', message => {
 //--------------------------------------------------
 //        GET FUNCTIONS TO FIND UNITS STATS
 //--------------------------------------------------
-        attackerUnit = getUnit(preAttacker)
-        if(attackerUnit === undefined)
-            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
-        attackerMaxHP = getMaxHP(preAttacker, attackerUnit);
-        attackerCurrentHP = getCurrentHP(preAttacker, attackerUnit.maxhp);
-        defenderUnit = getUnit(preDefender)
-        if(defenderUnit === undefined)
-            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
-        defenderMaxHP = getMaxHP(preDefender, defenderUnit);
-        defenderCurrentHP = getCurrentHP(preDefender, defenderUnit.maxhp);
-        defBonus = getBonus(preDefender);
+        attackerUnit = {
+            name: undefined,
+            currentHP: undefined,
+            maxHP: undefined,
+            att: undefined
+        }
+        defenderUnit = {
+            name: undefined,
+            currentHP: undefined,
+            maxHP: undefined,
+            def: undefined,
+            bonus: undefined
+        }
 
-        console.log(attackerCurrentHP, attackerMaxHP, attackerUnit.att);
-        console.log(defenderCurrentHP, defenderMaxHP, defenderUnit.def, defBonus);
+        attackerStats = getUnit(preAttacker)
+        if(attackerStats === undefined)
+            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
+        attackerUnit.name = attackerStats.name;
+        attackerUnit.att = attackerStats.att;
+        attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
+        attackerUnit.currentHP = getCurrentHP(preAttacker, attackerUnit.maxHP);
+        console.log(attackerUnit);
 
-        const result = new Fight(attackerCurrentHP,attackerMaxHP,attackerUnit.att,defenderCurrentHP,defenderMaxHP,defenderUnit.def,defBonus)
+        defenderStats = getUnit(preDefender)
+        if(defenderStats === undefined)
+            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!name boat warrior vet, ship warrior`\n   Ex court: `!name bo wa v, sh wa`")
+        defenderUnit.name = defenderStats.name;
+        defenderUnit.def = defenderStats.def;
+        defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
+        defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP);
+        defenderUnit.bonus = getBonus(preDefender);
+
+        console.log(attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att);
+        console.log(defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus);
+
+        const result = new Fight(attackerUnit.currentHP,attackerUnit.maxHP,attackerUnit.att,defenderUnit.currentHP,defenderUnit.maxHP,defenderUnit.def,defenderUnit.bonus)
         message.channel.send(result.calculate());
     } else {
         message.channel.send("It seems we don't have that command. If you think it should exist, ping @jd#0001!");
