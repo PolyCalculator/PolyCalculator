@@ -573,7 +573,7 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push("**(nr) argument:** It will prevent retaliation from the defender unit")
             descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w nr\``)
-            helpEmbed.setFooter(`alias: **${prefix}c**`)
+            helpEmbed.setFooter(`alias: ${prefix}c`)
         } else if (args[0].startsWith("units")) {
             helpEmbed.setTitle(`How to use the \`${prefix}units\` command`)
             descriptionArray.push("Units require 2 characters.")
