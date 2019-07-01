@@ -476,7 +476,7 @@ function getCurrentHP(array, maxhp, message) {
         index = array.findIndex(x => !isNaN(Number(x)))
         currenthp = parseInt(array[index])
         if(currenthp > maxhp) {
-            message.channel.send(`You have inputed a current hp higher than the max hp. You can add a \`v\` (if you haven't already) to get a veteran max hp. In the meantime, this result calculates with the max hp as current hp.`)
+            message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`)
             return maxhp
         }
         if(currenthp < 1)
