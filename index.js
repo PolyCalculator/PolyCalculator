@@ -537,7 +537,7 @@ bot.on('message', message => {
     }
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    console.log("Command triggered:", cmd, `in ${message.guild.name.toUpperCase()} in #${message.channel.name}`);
+    console.log("Command triggered:", cmd, `in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
     /*INSIDER*/
