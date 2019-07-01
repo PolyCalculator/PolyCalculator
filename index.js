@@ -478,10 +478,11 @@ function getCurrentHP(array, maxhp, message) {
         if(currenthp > maxhp) {
             message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`)
             return maxhp
-        }
-        if(currenthp < 1)
+        } else if(currenthp < 1) {
             message.channel.send(`One of the units is already dead. RIP.`)
             return undefined
+        } else
+            return currenthp
             
     } else {
         return maxhp
@@ -514,7 +515,7 @@ bot.on('ready', () => {
 bot.on('message', message => {
     prefix = process.env.PREFIX;
 
-    if(message.author.bot || !message.content.startsWith(prefix))
+    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
         return;
     else if (message.channel.name.startsWith("general") || message.channel.name.startsWith("crawnv")) {
         message.channel.send('Come on! Not in **#general** or **#crawnversation**');
@@ -650,7 +651,7 @@ bot.on('message', message => {
 
         defenderStats = getUnit(preDefender)
         if(defenderStats === undefined)
-            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!calc boat warrior vet, ship warrior`\n   Ex court: `!calc bo wa v, sh wa`")
+            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `!calc boat warrior vet, ship warrior`\n   Ex court: `!calc bo wa v, sh wa`")
         defenderUnit.name = defenderStats.name;
         defenderUnit.def = defenderStats.def;
         defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
