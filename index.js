@@ -471,10 +471,18 @@ function getMaxHP(array, unit) {
     }
 }
 
-function getCurrentHP(array, maxhp) {
+function getCurrentHP(array, maxhp, message) {
     if(array.some(x => !isNaN(Number(x)))) {
         index = array.findIndex(x => !isNaN(Number(x)))
-        return parseInt(array[index])
+        currenthp = parseInt(array[index])
+        if(currenthp > maxhp) {
+            message.channel.send(`You have inputed a current hp higher than the max hp. You can add a \`v\` (if you haven't already) to get a veteran max hp. In the meantime, this result calculates with the max hp as current hp.`)
+            return maxhp
+        }
+        if(currenthp < 1)
+            message.channel.send(`One of the units is already dead. RIP.`)
+            return undefined
+            
     } else {
         return maxhp
     }   
@@ -636,7 +644,9 @@ bot.on('message', message => {
         attackerUnit.name = attackerStats.name;
         attackerUnit.att = attackerStats.att;
         attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
-        attackerUnit.currentHP = getCurrentHP(preAttacker, attackerUnit.maxHP);
+        attackerUnit.currentHP = getCurrentHP(preAttacker, attackerUnit.maxHP, message);
+        if(attackerUnit.currentHP === undefined)
+            return
 
         defenderStats = getUnit(preDefender)
         if(defenderStats === undefined)
@@ -644,7 +654,9 @@ bot.on('message', message => {
         defenderUnit.name = defenderStats.name;
         defenderUnit.def = defenderStats.def;
         defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
-        defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP);
+        defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP, message);
+        if(defenderUnit.currentHP === undefined)
+            return
         defenderUnit.bonus = getBonus(preDefender, defenderUnit);
 
         const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus)
