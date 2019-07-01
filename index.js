@@ -515,6 +515,9 @@ function getRetaliation(array) {
 bot.on('ready', () => {
     const prefix = process.env.PREFIX;
     console.log(`Logged in as ${bot.user.username}`);
+
+    
+    module.exports = bot;
     bot.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
 });
 
@@ -536,6 +539,8 @@ bot.on('message', message => {
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
     console.log("Command triggered:", cmd, `in ${message.guild.name.toUpperCase()} in #${message.channel.name}`);
     let args;
+
+    /*INSIDER*/
 //--------------------------------------------------
 //
 //                 .HELP COMMAND

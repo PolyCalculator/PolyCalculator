@@ -7,6 +7,7 @@ yarn-error.log*
 firebase-debug.log*
 /img
 .env
+insider.js
 
 # Firebase cache
 .firebase/
