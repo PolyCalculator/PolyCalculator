@@ -643,7 +643,6 @@ bot.on('message', message => {
         defenderUnit.bonus = getBonus(preDefender, defenderUnit);
 
         const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus)
-        console.log(result.calculate());
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
