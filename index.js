@@ -530,7 +530,7 @@ bot.on('message', message => {
             helpEmbed.setTitle("How to use the `!full` command")
             descriptionArray.push("Argument structure: `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`")
             descriptionArray.push("Long example: `!full 10 10 2 10 10 2`")
-        } else if (args[0] === "name") {
+        } else if (args[0].startsWith("calc") || args[0] === "name") {
             helpEmbed.setTitle("How to use the `!name` command")
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
             descriptionArray.push(" ")
@@ -592,7 +592,7 @@ bot.on('message', message => {
 //                !NAME COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "name" || cmd === 'n') {
+    } else if (cmd === "calc" || cmd === 'c' || cmd === "name" || cmd === 'n') {
 //--------------------------------------------------
 //          HANDLER TO CLEAN THE CMD ARRAY
 //--------------------------------------------------
