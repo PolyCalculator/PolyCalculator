@@ -8,7 +8,7 @@ var app = express();
 
 class Fight {
     constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus, dretal) {
-        console.log(aname,"/",dname)
+        console.log(aname,"/",dname+",",dbonus,dretal)
         this.aname = aname
         this.ahp = ahp;
         this.amaxhp = amaxhp;
