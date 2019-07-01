@@ -540,7 +540,7 @@ bot.on('message', message => {
     console.log("Command triggered:", cmd, `in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
-    /*INSIDER*/
+    //INSIDER
 //--------------------------------------------------
 //
 //                 .HELP COMMAND
@@ -725,7 +725,9 @@ bot.on('message', message => {
                     descriptionArray.push(`**${x}**: ${unitHelp[x]}`)
             })
             helpEmbed.setDescription(descriptionArray);
-            message.channel.send(helpEmbed);
+            message.channel.send(helpEmbed)
+                .then(() => {})
+                .catch(console.error)
         } /*else {
 //--------------------------------------------------
 //               IF NO KNOWN COMMANDS
