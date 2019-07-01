@@ -538,7 +538,7 @@ bot.on('message', message => {
     let args;
 //--------------------------------------------------
 //
-//                 c!HELP COMMAND
+//                 .HELP COMMAND
 //
 //--------------------------------------------------
     if (cmd === "help") {
@@ -547,60 +547,61 @@ bot.on('message', message => {
             .setColor('#FA8072')
         let descriptionArray = [];
         if (args[0] === "full") {
-            helpEmbed.setTitle("How to use the `c!full` command")
+            helpEmbed.setTitle(`How to use the \`${prefix}full\` command`)
             descriptionArray.push("Parentheses are optional arguments.")
             descriptionArray.push(" ")
-            descriptionArray.push("Argument structure: `c!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w) (nr)`")
+            descriptionArray.push(`Argument structure: \`${prefix}full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w) (nr)\``)
             descriptionArray.push(" ")
-            descriptionArray.push("Example: `c!full 10 10 2 10 10 2`")
+            descriptionArray.push(`Example: \`${prefix}full 10 10 2 10 10 2\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(d/w) argument**: It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.")
-            descriptionArray.push("**Example:** `c!calc 10 warrior vet, 8 rider w`")
+            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(nr)** argument: It will prevent retaliation from the defender unit")
-            descriptionArray.push("**Example:** `c!calc 10 warrior vet, 8 rider w nr`")
+            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w nr\``)
         } else if (args[0].startsWith("calc") || args[0] === "name") {
-            helpEmbed.setTitle("How to use the `c!calc` command")
+            helpEmbed.setTitle(`How to use the \`${prefix}calc\` command`)
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
             descriptionArray.push(" ")
-            descriptionArray.push("**Argument structure:** `c!calc (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w) (nr)`")
+            descriptionArray.push(`**Argument structure:** \`${prefix}calc (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w) (nr)\``)
             descriptionArray.push(" ")
-            descriptionArray.push("**Long example:** `c!calc 10 warrior vet, 8 rider`")
-            descriptionArray.push("**Short example**: `c!calc wa, de`")
+            descriptionArray.push(`**Long example:** \`${prefix}calc 10 warrior vet, 8 rider\``)
+            descriptionArray.push(`**Short example**: \`${prefix}calc wa, de\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(d/w) argument:** It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.")
-            descriptionArray.push("**Example:** `c!calc 10 warrior vet, 8 rider w`")
+            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(nr) argument:** It will prevent retaliation from the defender unit")
-            descriptionArray.push("**Example:** `c!calc 10 warrior vet, 8 rider w nr`")
-            helpEmbed.setFooter("alias: `c!c`")
+            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w nr\``)
+            helpEmbed.setFooter(`alias: \`${prefix}c\``)
         } else if (args[0].startsWith("units")) {
-            helpEmbed.setTitle("How to use the `c!units` command")
+            helpEmbed.setTitle(`How to use the \`${prefix}units\` command`)
             descriptionArray.push("Units require 2 characters.")
             descriptionArray.push(" ")
-            descriptionArray.push("You can use `c!units` to return the list of all available units or use `c!{unit}` to return the stats for a specific unit")
-            descriptionArray.push("**Example 1:** `c!units`")
-            descriptionArray.push("**Example 2:** `c!warrior`")
+            descriptionArray.push(`You can use \`${prefix}units\` to return the list of all available units or use \`${prefix}{unit}\` to return the stats for a specific unit`)
+            descriptionArray.push(" ")
+            descriptionArray.push(`**Example 1:** \`${prefix}units\``)
+            descriptionArray.push(`**Example 1:** \`${prefix}warrior\``)
         } else {
             helpEmbed.setTitle("How to use the PolyCalculator bot")
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
             descriptionArray.push(" ")
             descriptionArray.push("**Commands:**")
-            descriptionArray.push("**c!calc:** calculate the outcome of a fight in the most intuitive format.")
-            descriptionArray.push("**c!full:** calculate the outcome of a fight by specifying all the stats.")
-            descriptionArray.push("**c!units:** show the list of all available units.")
+            descriptionArray.push(`**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
+            descriptionArray.push(`**${prefix}full:** calculate the outcome of a fight by specifying all the stats.`)
+            descriptionArray.push(`**${prefix}units:** show the list of all available units.`)
             descriptionArray.push(" ")
             descriptionArray.push("**Examples:**")
-            descriptionArray.push("`c!calc wa, de`")
-            descriptionArray.push("`c!full 10 10 2 10 10 1`")
+            descriptionArray.push(`\`${prefix}calc wa, de\``)
+            descriptionArray.push(`\`${prefix}full 10 10 2 10 10 1\``)
             descriptionArray.push(" ")
-            descriptionArray.push("**More details**: `c!help calc` or `c!help full`")
+            descriptionArray.push(`**More details**: \`${prefix}help calc\` or \`${prefix}help full\``)
         }
         helpEmbed.setDescription(descriptionArray);
         message.channel.send(helpEmbed);
 //--------------------------------------------------
 //
-//                 c!UNITS COMMAND
+//                 .UNITS COMMAND
 //
 //--------------------------------------------------
     } else if (cmd.startsWith("unit") || cmd.startsWith("code")) {
@@ -615,7 +616,7 @@ bot.on('message', message => {
         message.channel.send(unitEmbed);
 //--------------------------------------------------
 //
-//                c!FULL COMMAND
+//                .FULL COMMAND
 //
 //--------------------------------------------------
     } else if (cmd === "full") {
@@ -632,7 +633,7 @@ bot.on('message', message => {
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
-//                c!CALC COMMAND
+//                .CALC COMMAND
 //
 //--------------------------------------------------
     } else if (cmd === "calc" || cmd === 'c' || cmd === "name" || cmd === 'n') {
@@ -648,7 +649,7 @@ bot.on('message', message => {
         else if(args.includes(","))
             units = args.split(",")
         else
-            return message.channel.send("You need to separate the attacker from the defender using a `-`, a `,` or a `/` ");
+            return message.channel.send("You need an attacker and a defender separated using `-`, `,` or `/`");
 
         preAttacker = units[0].split(/ +/);
         preAttacker.shift()
@@ -676,7 +677,7 @@ bot.on('message', message => {
 
         attackerStats = getUnit(preAttacker)
         if(attackerStats === undefined)
-            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `c!calc boat warrior vet, ship warrior`\n   Ex court: `c!calc bo wa v, sh wa`")
+            return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
         attackerUnit.name = attackerStats.name;
         attackerUnit.att = attackerStats.att;
         attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
@@ -686,7 +687,7 @@ bot.on('message', message => {
 
         defenderStats = getUnit(preDefender)
         if(defenderStats === undefined)
-            return message.channel.send("**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: `c!calc boat warrior vet, ship warrior`\n   Ex court: `c!calc bo wa v, sh wa`")
+            return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
         defenderUnit.name = defenderStats.name;
         defenderUnit.def = defenderStats.def;
         defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
@@ -700,7 +701,7 @@ bot.on('message', message => {
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
-//                c!{UNIT} STATS COMMANDS
+//                .{UNIT} STATS COMMANDS
 //
 //--------------------------------------------------
     } else {
