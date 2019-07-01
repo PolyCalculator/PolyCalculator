@@ -514,7 +514,7 @@ bot.on('message', message => {
     }
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    console.log("Command triggered:", cmd, `in ${message.guild} in ${message.channel}`);
+    console.log("Command triggered:", cmd, `in ${message.guild.name.toUpperCase()} in #${message.channel.name}`);
     let args;
 //--------------------------------------------------
 //
@@ -525,30 +525,35 @@ bot.on('message', message => {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
+        let descriptionArray = [];
         if (args[0] === "full") {
             helpEmbed.setTitle("How to use the `!full` command")
-                .addField("Argument structure:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
-                .addField("Long example:", `!full 10 10 2 10 10 2`)
+            descriptionArray.push("Argument structure: `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`")
+            descriptionArray.push("Long example: `!full 10 10 2 10 10 2`")
         } else if (args[0] === "name") {
             helpEmbed.setTitle("How to use the `!name` command")
-                .setDescription("Parentheses are optional arguments. Units require 2 characters.")
-                .addField("Argument structure:", `!name (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w)`)
-                .addField("Long example:", `!name 10 warrior vet, 8 rider`)
-                .addField("Short example:", `!name wa, de`)
-                .addField("**Last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.`)
-                .addField("**Example:**", "!name 10 warrior vet, 8 rider w")
+            descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
+            descriptionArray.push(" ")
+            descriptionArray.push("**Argument structure**: `!name (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w)`")
+            descriptionArray.push("**Long example**: `!name 10 warrior vet, 8 rider`")
+            descriptionArray.push("**Short example**: `!name wa, de`")
+            descriptionArray.push("**Last argument details**: `It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.`")
+            descriptionArray.push("**Example:** `!name 10 warrior vet, 8 rider w`")
         } else {
             helpEmbed.setTitle("How to use the PolyCalculator bot")
-                .setDescription("Parentheses are optional arguments. Units require 2 characters.")
-                .addField("**!name** command:", `!name (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w)`)
-                .addField("**!name** example:", `!name 10 warrior vet, 8 rider`)
-                .addField("**!full** command:", `!full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (defense/wall)`)
-                .addField("**!full** example:", `!full 10 10 2 10 10 2`)
-                .addField("**Last argument details:**", `It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.`)
-                .addField("**Example:**", "!name 10 wa vet, 8 ri w")
-                .addBlankField()
-                .addField("**More details:**", "`!help full` or `!help name`")
+            descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
+            descriptionArray.push(" ")
+            descriptionArray.push("**!name** command: !name (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w)")
+            descriptionArray.push("**!name** example: !name 10 warrior vet, 8 rider")
+            descriptionArray.push("**!full** command: !full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w)")
+            descriptionArray.push("**!full** example: !full 10 10 2 10 10 2")
+            descriptionArray.push(" ")
+            descriptionArray.push("**Last argument details**: It's the defense bonus. Not putting anything would consider it without a defense bonus. d = defense = x1.5 bonus; w = wall = x4 bonus.")
+            descriptionArray.push("**Example**: !name 10 wa vet, 8 ri w")
+            descriptionArray.push(" ")
+            descriptionArray.push("**More details**: `!help full` or `!help name`")
         }
+        helpEmbed.setDescription(descriptionArray);
         message.channel.send(helpEmbed);
 //--------------------------------------------------
 //
@@ -646,7 +651,7 @@ bot.on('message', message => {
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
-//                !{UNIT} HELP COMMANDs
+//                !{UNIT} STATS COMMANDS
 //
 //--------------------------------------------------
     } else {
