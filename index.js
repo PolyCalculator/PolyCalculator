@@ -546,7 +546,7 @@ bot.on('message', message => {
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
         let descriptionArray = [];
-        if (args[0] === "full") {
+        if (args[0] === "full" || args[0] === "f") {
             helpEmbed.setTitle(`How to use the \`${prefix}full\` command`)
             descriptionArray.push("Parentheses are optional arguments.")
             descriptionArray.push(" ")
@@ -559,7 +559,7 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push("**(nr)** argument: It will prevent retaliation from the defender unit")
             descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w nr\``)
-        } else if (args[0].startsWith("calc") || args[0] === "name") {
+        } else if (args[0].startsWith("calc") || args[0] === "c") {
             helpEmbed.setTitle(`How to use the \`${prefix}calc\` command`)
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
             descriptionArray.push(" ")
