@@ -651,6 +651,7 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push("**Features:**")
             descriptionArray.push("It supports veteran status (with `v`), naval units (with `bo`, `sh` or `bs`), defense bonus (with `d` or `w`) and no-retaliation (by adding `nr` on the defender side).")
+            descriptionArray.push(" ")
             descriptionArray.push(`**For more details**: \`${prefix}help calc\` or \`${prefix}help full\``)
         }
         helpEmbed.setDescription(descriptionArray);
