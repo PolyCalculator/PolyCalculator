@@ -421,14 +421,18 @@ function getUnit(array) {
         att: 4,
         def: 3
     }
+
     const allUnits = new Map()
     allUnits.set("wa", warrior)
     allUnits.set("ri", rider)
     allUnits.set("ar", archer)
     allUnits.set("de", defender)
+    allUnits.set("gi", giant)
+    allUnits.set("bo", boat)
+    allUnits.set("sh", ship)
+    allUnits.set("bs", battleship)
     allUnits.set("kn", knight)
     allUnits.set("sw", swords)
-    allUnits.set("gi", giant)
     allUnits.set("ga", gaami)
     allUnits.set("ca", catapult)
     allUnits.set("tr", tridention)
@@ -609,8 +613,11 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push(`**Argument structure:** \`${prefix}calc (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w) (nr)\``)
             descriptionArray.push(" ")
-            descriptionArray.push(`**Long example:** \`${prefix}calc 10 warrior vet, 8 rider\``)
+            descriptionArray.push(`**Long example**: \`${prefix}calc 13 warrior vet, 8 rider\``)
             descriptionArray.push(`**Short example**: \`${prefix}calc wa, de\``)
+            descriptionArray.push(" ")
+            descriptionArray.push("**Naval units**: Naval units are supported. Just add `bo`, `sh` or `bs` to make the unit into the naval unit.")
+            descriptionArray.push(`**Short example**: \`${prefix}calc 30 gi bs, de sh\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(d/w) argument:** It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.")
             descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w\``)
@@ -648,7 +655,7 @@ bot.on('message', message => {
 //                 .UNITS COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd.startsWith("unit") || cmd.startsWith("code")) {
+    } else if (cmd.startsWith("unit")) {
         unitEmbed = new RichEmbed();
         unitEmbed.setColor('#FA8072')
             .setTitle("All units by code")
