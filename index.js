@@ -8,7 +8,6 @@ var app = express();
 
 class Fight {
     constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus, dretal) {
-        console.log(aname,"/",dname+",",dbonus,dretal)
         this.aname = aname
         this.ahp = ahp;
         this.amaxhp = amaxhp;
@@ -39,6 +38,10 @@ class Fight {
 
         if(hpattacker <= 0)
             hpattacker = 'DESTROYED';
+
+        console.log(hpattacker, "/", aname)
+        console.log(hpdefender, "/", dname)
+        console.log(dbonus, "/", dretal)
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
@@ -517,6 +520,8 @@ function getBonus(array, unit, message) {
 function getRetaliation(array) {
     if(array.some(x => x === 'nr'))
         return false;
+    else
+        return true;
 }
 
 bot.on('ready', () => {
@@ -682,11 +687,10 @@ bot.on('message', message => {
         if(args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help\``)
         let bonus = 1;
-        if(args[6] === 'd')
-            bonus = 1.5;
-        if(args[6] === 'w')
-            bonus = 4;
-        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus)
+        bonus = getBonus(args);
+        retal = getRetaliation(args);
+
+        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus, retal)
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
@@ -752,7 +756,7 @@ bot.on('message', message => {
         if(defenderUnit.currentHP === undefined)
             return
         defenderUnit.bonus = getBonus(preDefender, defenderUnit, message);
-        defenderUnit.retaliation = getRetaliation(preDefender)
+        defenderUnit.retaliation = getRetaliation(preDefender);
 
         const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus, defenderUnit.retaliation)
         message.channel.send(result.calculate());
