@@ -556,7 +556,7 @@ bot.on('message', message => {
             args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
             
             guild = guilds.find(x => {
-                return x.name.toLowerCase() === args[0].toLowerCase()
+                return x.name.toLowerCase().includes(args[0].toLowerCase())
             })
     
             filteredChannels = guild.channels.filter(x => {
