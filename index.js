@@ -569,9 +569,9 @@ bot.on('message', message => {
     
                 return isChannel
             })
-            filteredChannels = filteredChannels.filter(x => {
-                d
-            })
+            /*filteredChannels = filteredChannels.filter(x => {
+                
+            })*/
     
             filteredChannels.forEach(x => {
                 message.channel.send(x.name)
