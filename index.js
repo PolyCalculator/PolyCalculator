@@ -676,7 +676,7 @@ bot.on('message', message => {
 //                .FULL COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "full") {
+    } else if (cmd === "full" || cmd === "f") {
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
         if(args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
