@@ -736,7 +736,6 @@ bot.on('message', message => {
         }
 
         attackerStats = getUnit(preAttacker)
-        console.log("attackerStats:", attackerStats)
         if(attackerStats === undefined)
             return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
         attackerUnit.name = attackerStats.name;
@@ -747,7 +746,6 @@ bot.on('message', message => {
             return
 
         defenderStats = getUnit(preDefender)
-        console.log("defenderStats:", defenderStats)
         if(defenderStats === undefined)
             return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
         defenderUnit.name = defenderStats.name;
