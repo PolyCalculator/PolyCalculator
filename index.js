@@ -476,7 +476,7 @@ function getUnit(array, message) {
         }
         return unit
     } else
-        return `**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``
+        return `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``
 }
 
 function getMaxHP(array, unit) {
@@ -686,7 +686,7 @@ bot.on('message', message => {
     } else if (cmd === "full" || cmd === "f") {
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
-        if(args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
+        if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 0 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help\``)
         let bonus = 1;
         bonus = getBonus(args);
