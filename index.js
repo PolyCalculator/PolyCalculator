@@ -692,7 +692,7 @@ bot.on('message', message => {
         if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
         let bonus = 1;
-        defender = {name: "Defender"}
+        let defender = {name: "Defender"}
         bonus = getBonus(args, defender);
         retal = getRetaliation(args, defender);
 
