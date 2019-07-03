@@ -457,19 +457,19 @@ function getUnit(array, message) {
     if(unit) {
         if(array.some(x => x.startsWith("bo"))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                return "This unit can't go in the a naval unit"
+                return `This ${unit.name.toLowerCase()} can't go in a naval unit`
             unit.name = unit.name + " Boat";
             unit.att = 1;
             unit.def = 1;
         } else if(array.some(x => x.startsWith("sh"))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                return "This unit can't go in the a naval unit"
+            return `This ${unit.name.toLowerCase()} can't go in a naval unit`
             unit.name = unit.name + " Ship";
             unit.att = 2;
             unit.def = 2;
         } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                return "This unit can't go in the a naval unit"
+                return `This ${unit.name.toLowerCase()} can't go in a naval unit`
             unit.name = unit.name + " Battleship";
             unit.att = 4;
             unit.def = 3;
