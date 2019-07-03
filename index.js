@@ -607,6 +607,7 @@ bot.on('message', message => {
             descriptionArray.push("Parentheses are optional arguments.")
             descriptionArray.push(" ")
             descriptionArray.push(`Argument structure: \`${prefix}full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w) (nr)\``)
+            descriptionArray.push("Restrictions: hp between 1 and 40, attack between 1 and 5 and defense between 0 and 5.")
             descriptionArray.push(" ")
             descriptionArray.push(`Example: \`${prefix}full 10 10 2 10 10 2\``)
             descriptionArray.push(" ")
