@@ -12,7 +12,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "push": "git add . && git commit -m . && git push heroku master && heroku logs -t -d=web",
-    "jpush": "git add . && git commit -m . && git push heroku master"
+    "jpush": "git add . && git commit -m . && git push heroku master",
+    "log": "heroku logs -t -d=web"
   },
   "keywords": [],
   "author": "",
