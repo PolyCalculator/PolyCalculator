@@ -643,13 +643,6 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push(`**Example 1:** \`${prefix}units\``)
             descriptionArray.push(`**Example 1:** \`${prefix}warrior\``)
-        } else if (args[0].startsWith("credits")) {
-            helpEmbed.setTitle(`How to use the \`${prefix}units\` command`)
-            descriptionArray.push("**Developper:**")
-            descriptionArray.push("jd (alphaSeahorse)")
-            descriptionArray.push(" ")
-            descriptionArray.push("**Contributions:**")
-            descriptionArray.push("penile partay, WOPWOP, Cake, James.")
         } else {
             helpEmbed.setTitle("How to use the PolyCalculator bot")
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
@@ -779,6 +772,17 @@ bot.on('message', message => {
 //                .{UNIT} STATS COMMANDS
 //
 //--------------------------------------------------
+    } else if (cmd === "credits") {
+        helpEmbed = new RichEmbed()
+        let descriptionArray = []
+        helpEmbed.setColor('#FA8072')
+        descriptionArray.push("**Developper:**")
+        descriptionArray.push("jd (alphaSeahorse)")
+        descriptionArray.push(" ")
+        descriptionArray.push("**Contributions:**")
+        descriptionArray.push("penile partay, WOPWOP, Cake, James.")
+        helpEmbed.setDescription(descriptionArray)
+        message.channel.send(helpEmbed)
     } else {
         unitKeysArray = Array.from(allUnits.keys())
         keyIndex = unitKeysArray.findIndex(x => cmd.substring(0, 2) === x)
