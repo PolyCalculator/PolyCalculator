@@ -498,7 +498,8 @@ function getCurrentHP(array, maxhp, message) {
             message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`)
             return maxhp
         } else if(currenthp < 1) {
-            return message.channel.send(`One of the units is already dead. RIP.`)
+            message.channel.send(`One of the units is already dead. RIP.`)
+            return undefined
         } else
             return currenthp
             
