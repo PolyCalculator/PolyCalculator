@@ -251,7 +251,7 @@ allUnits.set("wa", warrior)
     allUnits.set("sl", battlesled)
     allUnits.set("if", icefortress)
 
-function getUnit(array) {
+function getUnit(array, message) {
     const warrior = {
         name: "Warrior",
         maxhp: 10,
@@ -459,21 +459,27 @@ function getUnit(array) {
 
     if(unit) {
         if(array.some(x => x.startsWith("bo"))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
+                return "This unit can't go in the a naval unit"
             unit.name = unit.name + " Boat";
             unit.att = 1;
             unit.def = 1;
         } else if(array.some(x => x.startsWith("sh"))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
+                return "This unit can't go in the a naval unit"
             unit.name = unit.name + " Ship";
             unit.att = 2;
             unit.def = 2;
         } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
+                return "This unit can't go in the a naval unit"
             unit.name = unit.name + " Battleship";
             unit.att = 4;
             unit.def = 3;
         }
         return unit
     } else
-        return undefined
+        return `**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``
 }
 
 function getMaxHP(array, unit) {
@@ -492,8 +498,7 @@ function getCurrentHP(array, maxhp, message) {
             message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`)
             return maxhp
         } else if(currenthp < 1) {
-            message.channel.send(`One of the units is already dead. RIP.`)
-            return undefined
+            return message.channel.send(`One of the units is already dead. RIP.`)
         } else
             return currenthp
             
@@ -502,9 +507,9 @@ function getCurrentHP(array, maxhp, message) {
     }   
 }
 
-function getBonus(array, unit, message) {
+function getBonus(array, unit) {
     if(array.some(x => x === 'w') && array.some(x => x === 'd'))
-        message.channel.send("You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present.")
+        return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present."
     if(array.some(x => x === 'w')) {
         unit.name = unit.name + " (walled)"
         return 4;
@@ -702,14 +707,12 @@ bot.on('message', message => {
 //--------------------------------------------------
         args = message.content.toLowerCase().slice(prefix.length);
 
-        if(args.includes("-"))
-            units = args.split("-")
-        else if(args.includes("/"))
+        if(args.includes("/"))
             units = args.split("/")
         else if(args.includes(","))
             units = args.split(",")
         else
-            return message.channel.send("You need an attacker and a defender separated using `-`, `,` or `/`");
+            return message.channel.send("You need an attacker and a defender separated using `,` or `/`");
 
         preAttacker = units[0].split(/ +/);
         preAttacker.shift()
@@ -736,8 +739,8 @@ bot.on('message', message => {
         }
 
         attackerStats = getUnit(preAttacker)
-        if(attackerStats === undefined)
-            return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **attacker**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
+        if(typeof attackerStats === 'string')
+            return message.channel.send(attackerStats)
         attackerUnit.name = attackerStats.name;
         attackerUnit.att = attackerStats.att;
         attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
@@ -745,16 +748,18 @@ bot.on('message', message => {
         if(attackerUnit.currentHP === undefined)
             return
 
-        defenderStats = getUnit(preDefender)
-        if(defenderStats === undefined)
-            return message.channel.send(`**ERROR:** We couldn't find a unit in our database for your **defender**.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``)
+        defenderStats = getUnit(preDefender, message)
+        if(typeof defenderStats === 'string')
+            return message.channel.send(defenderStats)
         defenderUnit.name = defenderStats.name;
         defenderUnit.def = defenderStats.def;
         defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
         defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP, message);
         if(defenderUnit.currentHP === undefined)
             return
-        defenderUnit.bonus = getBonus(preDefender, defenderUnit, message);
+        defenderUnit.bonus = getBonus(preDefender, defenderUnit);
+        if(typeof defenderUnit.bonus === 'string')
+            message.channel.send(defenderUnit.bonus)
         defenderUnit.retaliation = getRetaliation(preDefender);
 
         const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus, defenderUnit.retaliation)
