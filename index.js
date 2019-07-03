@@ -530,8 +530,6 @@ bot.on('ready', () => {
     const prefix = process.env.PREFIX;
     console.log(`Logged in as ${bot.user.username}`);
 
-    
-    module.exports = bot;
     bot.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
 });
 
@@ -613,10 +611,10 @@ bot.on('message', message => {
             descriptionArray.push(`Example: \`${prefix}full 10 10 2 10 10 2\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(d/w) argument**: It's the defense bonus. Not putting anything would consider it without a defense bonus. \`d\` = defense = x1.5 bonus; \`w\` = wall = x4 bonus.")
-            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w\``)
+            descriptionArray.push(`**Example:** \`${prefix}full 10 15 2, 8 10 1 w\``)
             descriptionArray.push(" ")
             descriptionArray.push("**(nr)** argument: It will prevent retaliation from the defender unit")
-            descriptionArray.push(`**Example:** \`${prefix}calc 10 warrior vet, 8 rider w nr\``)
+            descriptionArray.push(`**Example:** \`${prefix}full 10 10 2, 8 10 1 w nr\``)
         } else if (args[0].startsWith("calc") || args[0] === "c") {
             helpEmbed.setTitle(`How to use the \`${prefix}calc\` command`)
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
@@ -643,6 +641,13 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push(`**Example 1:** \`${prefix}units\``)
             descriptionArray.push(`**Example 1:** \`${prefix}warrior\``)
+        } else if (args[0].startsWith("credits")) {
+            helpEmbed.setTitle(`How to use the \`${prefix}units\` command`)
+            descriptionArray.push("**Developper:**")
+            descriptionArray.push("jd (alphaSeahorse)")
+            descriptionArray.push(" ")
+            descriptionArray.push("**Contributions:**")
+            descriptionArray.push("penile partay, WOPWOP, Cake, James.")
         } else {
             helpEmbed.setTitle("How to use the PolyCalculator bot")
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
@@ -651,6 +656,7 @@ bot.on('message', message => {
             descriptionArray.push(`**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
             descriptionArray.push(`**${prefix}full:** calculate the outcome of a fight by specifying all the stats.`)
             descriptionArray.push(`**${prefix}units:** show the list of all available units.`)
+            descriptionArray.push(`**${prefix}credits:** show the cresits.`)
             descriptionArray.push(" ")
             descriptionArray.push("**Examples:**")
             descriptionArray.push(`\`${prefix}calc wa, de\``)
