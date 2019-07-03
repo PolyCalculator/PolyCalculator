@@ -741,6 +741,8 @@ bot.on('message', message => {
         attackerStats = getUnit(preAttacker)
         if(typeof attackerStats === 'string')
             return message.channel.send(attackerStats)
+        if(attackerStats.name.toLowerCase() === "mooni" || attackerStats.name.toLowerCase() === "mind bender")
+            return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
         attackerUnit.name = attackerStats.name;
         attackerUnit.att = attackerStats.att;
         attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
