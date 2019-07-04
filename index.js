@@ -555,38 +555,11 @@ bot.on('message', message => {
     //INSIDER
     if(message.channel.name === "insider-information") {
         let guilds = message.client.guilds;
-        if(cmd === "guilds")
-            guilds.forEach(x => message.channel.send(x.name))
-        if(cmd === "channels") {
-            args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-            
-            guild = guilds.find(x => {
-                return x.name.toLowerCase().includes(args[0].toLowerCase())
-            })
-    
-            filteredChannels = guild.channels.filter(x => {
-                patt = new RegExp(/[e][0-9]/, 'i')
-                let isChannel = !patt.test(x.name)
-                isChannel = isChannel && x.type != "category"
-                if(x.parent) {
-                    isChannel = isChannel && !x.parent.name.startsWith("archive")
-                }
-    
-                return isChannel
-            })
-            /*filteredChannels = filteredChannels.filter(x => {
-                
-            })*/
-    
-            filteredChannels.forEach(x => {
-                message.channel.send(x.name)
-            })
-        }
         if(cmd === "stats") {
             owners = [];
             i=0;
             guilds.forEach((x) => {
-                owners[i] = `**${x.name}**: ${x.owner.user}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n\n`
+                owners[i] = `**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`
                 i=i+1;
             })
             message.channel.send(owners)
