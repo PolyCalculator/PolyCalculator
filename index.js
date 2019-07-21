@@ -17,7 +17,10 @@ class Fight {
         this.dmaxhp = dmaxhp;
         this.ddef = ddef;
         this.dbonus = dbonus;
-        this.dretal = dretal;
+        if(dname === "Mooni" || dname === "Mind Bender")
+            this.dretal = false;
+        else
+            this.dretal = dretal;
         this.aforce = this.aattack*this.ahp/this.amaxhp;
         this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
     }
@@ -476,7 +479,7 @@ function getUnit(array, message) {
         }
         return unit
     } else
-        return `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Ex long: \`${prefix}calc boat warrior vet, ship warrior\`\n   Ex court: \`${prefix}calc bo wa v, sh wa\``
+        return `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
 }
 
 function getMaxHP(array, unit) {
