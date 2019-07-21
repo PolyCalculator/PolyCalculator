@@ -42,9 +42,9 @@ class Fight {
         if(hpattacker <= 0)
             hpattacker = 'DESTROYED';
 
-        console.log(hpattacker, "/", this.aname)
-        console.log(hpdefender, "/", this.dname)
-        console.log(this.dbonus, "/", this.dretal)
+        console.log(`${hpattacker} / ${this.aname}`)
+        console.log(`${hpdefender} / ${this.dname}`)
+        console.log(`${this.dbonus} / ${this.dretal}`)
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
