@@ -627,7 +627,7 @@ bot.on('message', message => {
             descriptionArray.push(`**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
             descriptionArray.push(`**${prefix}full:** calculate the outcome of a fight by specifying all the stats.`)
             descriptionArray.push(`**${prefix}units:** show the list of all available units.`)
-            descriptionArray.push(`**${prefix}credits:** show the cresits.`)
+            descriptionArray.push(`**${prefix}credits:** show the credits.`)
             descriptionArray.push(" ")
             descriptionArray.push("**Examples:**")
             descriptionArray.push(`\`${prefix}calc wa, de\``)
