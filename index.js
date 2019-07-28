@@ -26,7 +26,7 @@ class Fight {
     }
   
     calculate() {
-        let deadText = ['', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALISED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED']
+        let deadText = ['', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALISED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED']
         var totaldam = this.aforce+this.dforce;
         var hpdefender = this.dhp - Math.round(this.aforce / totaldam * this.aattack * 4.5);
         var hpattacker
