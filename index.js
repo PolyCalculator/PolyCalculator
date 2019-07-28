@@ -26,12 +26,13 @@ class Fight {
     }
   
     calculate() {
+        let deadText = ['DESTROYED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDURED', 'STEAMED', 'SMOKED']
         var totaldam = this.aforce+this.dforce;
         var hpdefender = this.dhp - Math.round(this.aforce / totaldam * this.aattack * 4.5);
         var hpattacker
         if(hpdefender <= 0) {
             hpattacker = this.ahp;
-            hpdefender = 'DESTROYED'
+            hpdefender = deadText[Math.floor(Math.random() * deadText.length)];
         } else if(this.dretal === false) {
             hpattacker = this.ahp
             this.aname = this.aname + " (no retaliation)"
@@ -39,9 +40,9 @@ class Fight {
             hpattacker = this.ahp - Math.round(this.dforce / totaldam * this.ddef * 4.5);
         }
 
-        if(hpattacker <= 0)
-            hpattacker = 'DESTROYED';
-
+        if(hpattacker <= 0) {
+            hpattacker = deadText[Math.floor(Math.random() * deadText.length)];
+        }
         console.log(`${hpattacker} / ${this.aname}`)
         console.log(`${hpdefender} / ${this.dname}`)
         console.log(`${this.dbonus} / ${this.dretal}`)
