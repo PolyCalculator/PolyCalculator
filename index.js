@@ -26,7 +26,7 @@ class Fight {
     }
   
     calculate() {
-        let deadText = ['DESTROYED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDURED', 'STEAMED', 'SMOKED']
+        let deadText = ['', 'DESTROYED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDURED', 'STEAMED', 'SMOKED']
         var totaldam = this.aforce+this.dforce;
         var hpdefender = this.dhp - Math.round(this.aforce / totaldam * this.aattack * 4.5);
         var hpattacker
