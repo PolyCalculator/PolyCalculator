@@ -449,6 +449,7 @@ function getUnit(array, message) {
     allUnits.set("cr", crab)
     allUnits.set("mb", mindbender)
     allUnits.set("bd", babydragon)
+    allUnits.set("dr", firedragon)
     allUnits.set("fd", firedragon)
     allUnits.set("mo", mooni)
     allUnits.set("sl", battlesled)
