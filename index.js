@@ -26,9 +26,11 @@ class Fight {
     }
   
     calculate() {
-        let deadText = ['OLD BARDUR\'D', 'INCINERATED', 'SQUASHED', 'GRATED', 'FLAYED', 'SNIPED', 'REDACTED', 'DETONATED', 'ASPHYXIATED', 'EXSANGUINATE', 'CAPPED', 'CONDENSED', 'HUGGED', 'IRONED', 'GORED', 'STEAMROLLED', 'FLATTENED', 'DISSOLVED', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALIZED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'CRUSHED', 'BLENDED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED', 'DELETED']
+        let deadText = ['DISSECTED', 'BLASTED', 'OLD BARDUR\'D', 'SPITTED', 'PINGED NELLUK', 'INCINERATED', 'SQUASHED', 'GRATED', 'FLAYED', 'SNIPED', 'REDACTED', 'DETONATED', 'ROASTED', 'ASPHYXIATED', 'EXSANGUINATE', 'CAPPED', 'CONDENSED', 'HUGGED', 'IRONED', 'GORED', 'STEAMROLLED', 'FLATTENED', 'DISSOLVED', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALIZED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'CRUSHED', 'BLENDED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED', 'DELETED']
+        let randomText = deadText[Math.floor(Math.random() * deadText.length)];
         var totaldam = this.aforce+this.dforce;
-        var hpdefender = this.dhp - Math.round(this.aforce / totaldam * this.aattack * 4.5);
+        var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
+        var hpdefender = this.dhp - defdiff;
         var hpattacker
         if(hpdefender <= 0) {
             hpattacker = this.ahp;
@@ -41,7 +43,7 @@ class Fight {
         }
 
         if(hpattacker <= 0) {
-            hpattacker = deadText[Math.floor(Math.random() * deadText.length)];
+            hpattacker = randomText;
         }
         console.log(`${hpattacker} / ${this.aname}`)
         console.log(`${hpdefender} / ${this.dname}`)
@@ -51,6 +53,11 @@ class Fight {
             .setColor('#FA8072')
             .addField(`**${this.aname}**:`, hpattacker)
             .addField(`**${this.dname}**:`, hpdefender)
+
+        if(this.aname === 'Fire Dragon') {
+            helpEmbed.addField(`**Splash damage**:`, Math.floor(defdiff/2))
+        }
+
         return helpEmbed;
     }
 }
