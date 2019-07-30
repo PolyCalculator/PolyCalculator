@@ -26,7 +26,8 @@ class Fight {
     }
   
     calculate() {
-        let deadText = ['', 'INCINERATED', 'SQUASHED', 'GRATED', 'FLAYED', 'SNIPED', 'REDACTED', 'DETONATED', 'ASPHYXIATED', 'EXSANGUINATE', 'CAPPED', 'CONDENSED', 'HUGGED', 'IRONED', 'GORED', 'STEAMROLLED', 'FLATTENED', 'DISSOLVED', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALIZED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'CRUSHED', 'BLENDED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED', 'DELETED']
+        //let deadText = [OLD BARDUR\'D', 'INCINERATED', 'SQUASHED', 'GRATED', 'FLAYED', 'SNIPED', 'REDACTED', 'DETONATED', 'ASPHYXIATED', 'EXSANGUINATE', 'CAPPED', 'CONDENSED', 'HUGGED', 'IRONED', 'GORED', 'STEAMROLLED', 'FLATTENED', 'DISSOLVED', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALIZED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'CRUSHED', 'BLENDED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED', 'DELETED']
+        let deadText = ['OLD BARDUR\'D']
         var totaldam = this.aforce+this.dforce;
         var hpdefender = this.dhp - Math.round(this.aforce / totaldam * this.aattack * 4.5);
         var hpattacker
@@ -250,6 +251,7 @@ allUnits.set("wa", warrior)
     allUnits.set("cr", crab)
     allUnits.set("mb", mindbender)
     allUnits.set("bd", babydragon)
+    allUnits.set("dr", firedragon)
     allUnits.set("fd", firedragon)
     allUnits.set("mo", mooni)
     allUnits.set("sl", battlesled)
