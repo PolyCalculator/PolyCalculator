@@ -554,9 +554,9 @@ bot.on('ready', () => {
 bot.on('message', message => {
     prefix = process.env.PREFIX;
 
-    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
+    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.channel.name.startsWith("."))
         return;
-    else if (message.channel.name.startsWith("general") || message.channel.name.startsWith("crawnv") || message.channel.name.startsWith(".")) {
+    else if (message.channel.name.startsWith("general") || message.channel.name.startsWith("crawnv")) {
         message.channel.send('Come on! Not in **#general** or **#crawnversation**');
         return
     }
