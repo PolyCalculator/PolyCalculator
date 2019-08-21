@@ -31,6 +31,7 @@ class Fight {
         var totaldam = this.aforce+this.dforce;
         var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
         var hpdefender = this.dhp - defdiff;
+        let attdiff = 0
         var hpattacker
         if(hpdefender <= 0) {
             hpattacker = this.ahp;
@@ -39,7 +40,8 @@ class Fight {
             hpattacker = this.ahp
             this.aname = this.aname + " (no retaliation)"
         } else {
-            hpattacker = this.ahp - Math.round(this.dforce / totaldam * this.ddef * 4.5);
+            attdiff = Math.round(this.dforce / totaldam * this.ddef * 4.5)
+            hpattacker = this.ahp - attdiff;
         }
 
         if(hpattacker <= 0) {
@@ -51,8 +53,8 @@ class Fight {
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
-            .addField(`**${this.aname}**:`, hpattacker)
-            .addField(`**${this.dname}**:`, hpdefender)
+            .addField(`**${this.aname}**:`, `${hpattacker} (${attdiff*-1})`)
+            .addField(`**${this.dname}**:`, `${hpdefender} (${defdiff*-1})`)
 
         if(this.aname === 'Fire Dragon') {
             helpEmbed.addField(`**Splash damage**:`, Math.floor(defdiff/2))
@@ -603,6 +605,21 @@ bot.on('message', message => {
             descriptionArray.push(" ")
             descriptionArray.push("**(nr)** argument: It will prevent retaliation from the defender unit")
             descriptionArray.push(`**Example:** \`${prefix}full 10 10 2, 8 10 1 w nr\``)
+        } else if (args[0] === "test" || args[0] === "t") {
+            helpEmbed.setTitle(`How to use the \`${prefix}test\` command`)
+            descriptionArray.push("Parentheses are optional arguments.")
+            descriptionArray.push(" ")
+            descriptionArray.push(`**Argument structure**/: \`${prefix}test attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w) (nr)\``)
+            descriptionArray.push(" ")
+            descriptionArray.push("**---------------------------**")
+            descriptionArray.push("**No stats restrictions**!")
+            descriptionArray.push("**---------------------------**")
+            descriptionArray.push(" ")
+            descriptionArray.push(`**Example**: \`${prefix}test 100 100 100 100 100 20\``)
+            descriptionArray.push(" ")
+            descriptionArray.push("**(d/w)** and **(nr)** are still possible.")
+            descriptionArray.push(` `)
+            descriptionArray.push(`*For the command with possible stats restrictions, try \`${prefix}full\`*`)
         } else if (args[0].startsWith("calc") || args[0] === "c") {
             helpEmbed.setTitle(`How to use the \`${prefix}calc\` command`)
             descriptionArray.push("Parentheses are optional arguments. Units require 2 characters.")
@@ -636,6 +653,7 @@ bot.on('message', message => {
             descriptionArray.push("**Commands:**")
             descriptionArray.push(`**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
             descriptionArray.push(`**${prefix}full:** calculate the outcome of a fight by specifying all the stats.`)
+            descriptionArray.push(`**${prefix}test:** same as \`full\` without the stats restrictions.`)
             descriptionArray.push(`**${prefix}units:** show the list of all available units.`)
             descriptionArray.push(`**${prefix}credits:** show the credits.`)
             descriptionArray.push(" ")
@@ -677,6 +695,23 @@ bot.on('message', message => {
             return message.channel.send(`You need to provide arguments following the \`${prefix}help full\` structure.`)
         if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
+        let bonus = 1;
+        let defender = {name: "Defender"}
+        bonus = getBonus(args, defender);
+        retal = getRetaliation(args, defender);
+
+        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus, retal)
+        message.channel.send(result.calculate());
+//--------------------------------------------------
+//
+//                .TEST COMMAND
+//
+//--------------------------------------------------
+    } else if (cmd === "test" || cmd === "t") {
+        args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
+        args.shift();
+        if(args === undefined)
+            return message.channel.send(`You need to provide arguments following the \`${prefix}help test\` structure.`)
         let bonus = 1;
         let defender = {name: "Defender"}
         bonus = getBonus(args, defender);
