@@ -96,24 +96,24 @@ const na = {
 
 const bo = {
     name: "Boat",
-    maxhp: undefined,
-    vethp: undefined,
+    maxhp: "Depends on the unit inside",
+    vethp: "Depends on the unit inside",
     att: 1,
     def: 1
 }
 
 const sh = {
     name: "Ship",
-    maxhp: undefined,
-    vethp: undefined,
+    maxhp: "Depends on the unit inside",
+    vethp: "Depends on the unit inside",
     att: 2,
     def: 2
 }
 
 const bs = {
     name: "Battleship",
-    maxhp: undefined,
-    vethp: undefined,
+    maxhp: "Depends on the unit inside",
+    vethp: "Depends on the unit inside",
     att: 4,
     def: 3
 }
@@ -179,44 +179,97 @@ const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, d
 const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
 
 module.exports.getFightUnit = function (array) {
-    return new Promise((resolve, reject) => {
-        unitKeys = Object.keys(all);
-        console.log("unitKeys:", unitKeys)
+    //return new Promise((resolve, reject) => {
+        
+        unitKeys = Object.keys(nonnaval);
         let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
+        if(!nonnaval.hasOwnProperty(unitKey))
+            throw `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
         unitKey = unitKey.toString().substring(0,2)
-        console.log("unitKey (post-substring):", unitKey)
-        unit = all[unitKey]
-        console.log("unit:", unit)
+        unit = nonnaval[unitKey]
 
-        if(unit) {
-            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                resolve(`This ${unit.name.toLowerCase()} can't go in a naval unit`)
-            else {
-                if(array.some(x => x.startsWith("bo"))) {
-                    unit.name = unit.name + " Boat";
-                    unit.att = 1;
-                    unit.def = 1;
-                } else if(array.some(x => x.startsWith("sh"))) {
-                    unit.name = unit.name + " Ship";
-                    unit.att = 2;
-                    unit.def = 2;
-                } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
-                    unit.name = unit.name + " Battleship";
-                    unit.att = 4;
-                    unit.def = 3;
-                }
+        if(array.some(x => x.startsWith("bo"))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
+                throw `This ${unit.name.toLowerCase()} can't go in a naval unit`
+            } else {
+                unit.name = unit.name + " Boat";
+                unit.att = bo.att;
+                unit.def = bo.def;
             }
-        } else
-            resolve(`**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``)
-    })
+        } else if(array.some(x => x.startsWith("sh"))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
+                throw `This ${unit.name.toLowerCase()} can't go in a naval unit`
+            } else {
+                unit.name = unit.name + " Ship";
+                unit.att = sh.att;
+                unit.def = sh.def;
+            }
+        } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
+            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
+                throw `This ${unit.name.toLowerCase()} can't go in a naval unit`
+            } else {
+                unit.name = unit.name + " Battleship";
+                unit.att = bs.att;
+                unit.def = bs.def;
+            }
+        }
+        return unit
 }
 
-module.exports.getUnit = function (unitName) {
-    return new Promise((resolve, reject) => {
-
-    })
+module.exports.getUnit = function (unitPartial) {
+    unitKeys = Object.keys(all);
+    let unitKey = unitPartial.substring(0,2)
+    return all[unitKey]
 }
 
-module.exports.all = all
+module.exports.getMaxHP = function (array, unit) {
+    if (array.some(x => x.startsWith('v'))) {
+        return unit.vethp;
+    }
+    else {
+        return unit.maxhp;
+    }
+}
 
-module.exports.nonnaval = nonnaval
+module.exports.getCurrentHP = function (array, maxhp, message) {
+    if (array.some(x => !isNaN(Number(x)))) {
+        index = array.findIndex(x => !isNaN(Number(x)));
+        currenthp = parseInt(array[index]);
+        if (currenthp > maxhp) {
+            message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`);
+            return maxhp;
+        }
+        else if (currenthp < 1) {
+            message.channel.send(`One of the units is already dead. RIP.`);
+            return undefined;
+        }
+        else
+            return currenthp;
+    }
+    else {
+        return maxhp;
+    }
+}
+
+module.exports.getBonus = function (array, unit) {
+    if (array.some(x => x === 'w') && array.some(x => x === 'd'))
+        return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present.";
+    if (array.some(x => x === 'w')) {
+        unit.name = unit.name + " (walled)";
+        return 4;
+    }
+    else if (array.some(x => x === 'd')) {
+        unit.name = unit.name + " (protected)";
+        return 1.5;
+    }
+    else {
+        return 1;
+    }
+}
+
+module.exports.getRetaliation = function (array) {
+    if (array.some(x => x === 'nr'))
+        return false;
+    else
+        return true;
+}
