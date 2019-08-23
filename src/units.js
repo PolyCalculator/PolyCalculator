@@ -175,12 +175,12 @@ const ic = {
 }
 
 const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
-
 const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
 
 module.exports.getFightUnit = function (array) {
     //return new Promise((resolve, reject) => {
-        
+        const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
+
         unitKeys = Object.keys(nonnaval);
         let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
         if(!nonnaval.hasOwnProperty(unitKey))
@@ -217,6 +217,8 @@ module.exports.getFightUnit = function (array) {
 }
 
 module.exports.getUnit = function (unitPartial) {
+    const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
+
     unitKeys = Object.keys(all);
     let unitKey = unitPartial.substring(0,2)
     return all[unitKey]
