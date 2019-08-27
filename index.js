@@ -558,8 +558,8 @@ bot.on('message', message => {
 
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
-    else if (message.channel.name.startsWith("general") || message.channel.name.startsWith("crawnv")) {
-        message.channel.send('Come on! Not in **#general** or **#crawnversation**');
+    else if (message.channel.name.startsWith("general")) {
+        message.channel.send(`Come on! Not in **${message.channel.name}**`);
         return
     }
     
