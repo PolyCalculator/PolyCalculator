@@ -2,544 +2,11 @@ require('dotenv').config();
 const { Client, RichEmbed } = require('discord.js');
 const bot = new Client();
 const http = require("http");
+const { getFightUnit, getUnit, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
+const Fight = require("./src/fight");
 
 const express = require('express');
 var app = express();
-
-class Fight {
-    constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus, dretal) {
-        this.aname = aname
-        this.ahp = ahp;
-        this.amaxhp = amaxhp;
-        this.aattack = aattack;
-        this.dname = dname;
-        this.dhp = dhp;
-        this.dmaxhp = dmaxhp;
-        this.ddef = ddef;
-        this.dbonus = dbonus;
-        if(dname === "Mooni" || dname === "Mind Bender")
-            this.dretal = false;
-        else
-            this.dretal = dretal;
-        this.aforce = this.aattack*this.ahp/this.amaxhp;
-        this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
-    }
-  
-    calculate() {
-        let deadText = ['DRANK RED RUM', 'UTOP\'D', 'MET MIDJIWAN', 'FOLLOWED REAPERSTORMENT', 'BOMBED', 'SQUEEGEED', 'CLEANED', 'VACUMMED', 'DISSECTED', 'BLASTED', 'SHATTERED', 'TORPEDOED', 'SPLINTERED', 'FRAGMENTED', 'TOTALED', 'TRASHED', 'BATTERED', 'BUSTED', 'CLEAVED', 'OLD BARDUR\'D', 'VITIATED', 'NULLIFIED', 'ANNULED', 'SPITTED', 'PINGED NELLUK', 'INCINERATED', 'SQUASHED', 'GRATED', 'FLAYED', 'SNIPED', 'REDACTED', 'DETONATED', 'ROASTED', 'ASPHYXIATED', 'CAPPED', 'CONDENSED', 'HUGGED', 'IRONED', 'GORED', 'STEAMROLLED', 'FLATTENED', 'DISSOLVED', 'REKT', 'REMOVED', 'SHIVVED', 'GUTTED', 'NEUTRALIZED', 'PUT DOWN', 'SNUFFED', 'ICED', 'SPINDLED', 'FOLDED', 'MUTILATED', 'STAPLED', 'CLIPPED', 'WARPED', 'WRECKED', 'JAMED', 'SCRATCHED', 'SLAIN', 'MASSACRED', 'SHREDDED', 'BIG OOF', 'DESTROZADO', 'DECIMATED', 'DECAPITATED', 'CRUSHED', 'BLENDED', 'DISMEMBERED', 'DESTROYED', 'MAULED', 'SCHOOLED', 'SHELLED', 'DEAD', 'ELIMINATED', 'MURDERED', 'STEAMED', 'SMOKED', 'DELETED']
-        let randomText = deadText[Math.floor(Math.random() * deadText.length)];
-        var totaldam = this.aforce+this.dforce;
-        var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
-        var hpdefender = this.dhp - defdiff;
-        let attdiff = 0
-        var hpattacker
-        if(hpdefender <= 0) {
-            hpattacker = this.ahp;
-            hpdefender = deadText[Math.floor(Math.random() * deadText.length)];
-        } else if(this.dretal === false) {
-            hpattacker = this.ahp
-            this.aname = this.aname + " (no retaliation)"
-        } else {
-            attdiff = Math.round(this.dforce / totaldam * this.ddef * 4.5)
-            hpattacker = this.ahp - attdiff;
-        }
-
-        if(hpattacker <= 0) {
-            hpattacker = randomText;
-        }
-        console.log(`${hpattacker} / ${this.aname}`)
-        console.log(`${hpdefender} / ${this.dname}`)
-        console.log(`${this.dbonus} / ${this.dretal}`)
-
-        const helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .addField(`**${this.aname}**:`, `${hpattacker} (${attdiff*-1})`)
-            .addField(`**${this.dname}**:`, `${hpdefender} (${defdiff*-1})`)
-
-        if(this.aname === 'Fire Dragon') {
-            helpEmbed.addField(`**Splash damage**:`, Math.floor(defdiff/2))
-        }
-
-        return helpEmbed;
-    }
-}
-
-const warrior = {
-    name: "Warrior",
-    maxhp: 10,
-    vethp: 15,
-    att: 2,
-    def: 2
-}
-
-const rider = {
-    name: "Rider",
-    maxhp: 10,
-    vethp: 15,
-    att: 2,
-    def: 1
-}
-
-const archer = {
-    name: "Archer",
-    maxhp: 10,
-    vethp: 15,
-    att: 2,
-    def: 1
-}
-
-const defender = {
-    name: "Defender",
-    maxhp: 15,
-    vethp: 20,
-    att: 1,
-    def: 3
-}
-
-const knight = {
-    name: "Knight",
-    maxhp: 15,
-    vethp: 20,
-    att: 3.5,
-    def: 1
-}
-
-const swords = {
-    name: "Swordsman",
-    maxhp: 15,
-    vethp: 20,
-    att: 3,
-    def: 3
-}
-
-const catapult = {
-    name: "Catapult",
-    maxhp: 10,
-    vethp: 15,
-    att: 4,
-    def: 0
-}
-
-const giant = {
-    name: "Giant",
-    maxhp: 40,
-    vethp: 40,
-    att: 5,
-    def: 4
-}
-
-const crab = {
-    name: "Crab",
-    maxhp: 40,
-    vethp: 40,
-    att: 4,
-    def: 4
-}
-
-const tridention = {
-    name: "Tridention",
-    maxhp: 15,
-    vethp: 20,
-    att: 3,
-    def: 1
-}
-
-const polytaur = {
-    name: "Polytaur",
-    maxhp: 15,
-    vethp: 20,
-    att: 3,
-    def: 1
-}
-
-const navalon = {
-    name: "Navalon",
-    maxhp: 30,
-    vethp: 30,
-    att: 4,
-    def: 4
-}
-
-const boat = {
-    name: "Boat",
-    maxhp: undefined,
-    vethp: undefined,
-    att: 1,
-    def: 1
-}
-
-const ship = {
-    name: "Ship",
-    maxhp: undefined,
-    vethp: undefined,
-    att: 2,
-    def: 2
-}
-
-const battleship = {
-    name: "Battleship",
-    maxhp: undefined,
-    vethp: undefined,
-    att: 4,
-    def: 3
-}
-
-const gaami = {
-    name: "Gaami",
-    maxhp: 30,
-    vethp: 30,
-    att: 4,
-    def: 4
-}
-
-const mindbender = {
-    name: "Mind Bender",
-    maxhp: 10,
-    vethp: 10,
-    att: 0,
-    def: 1
-}
-
-const babydragon = {
-    name: "Baby Dragon",
-    maxhp: 15,
-    vethp: 20,
-    att: 3,
-    def: 3
-}
-
-const firedragon = {
-    name: "Fire Dragon",
-    maxhp: 20,
-    vethp: 20,
-    att: 4,
-    def: 3
-}
-
-const mooni = {
-    name: "Mooni",
-    maxhp: 10,
-    vethp: 10,
-    att: 0,
-    def: 2
-}
-
-const battlesled = {
-    name: "Battle Sled",
-    maxhp: 15,
-    vethp: 20,
-    att: 3,
-    def: 2
-}
-
-const icefortress = {
-    name: "Ice Fortress",
-    maxhp: 20,
-    vethp: 25,
-    att: 4,
-    def: 3
-}
-
-const allUnits = new Map()
-allUnits.set("wa", warrior)
-    allUnits.set("ri", rider)
-    allUnits.set("ar", archer)
-    allUnits.set("de", defender)
-    allUnits.set("gi", giant)
-    allUnits.set("bo", boat)
-    allUnits.set("sh", ship)
-    allUnits.set("bs", battleship)
-    allUnits.set("kn", knight)
-    allUnits.set("sw", swords)
-    allUnits.set("ga", gaami)
-    allUnits.set("ca", catapult)
-    allUnits.set("tr", tridention)
-    allUnits.set("po", polytaur)
-    allUnits.set("na", navalon)
-    allUnits.set("cr", crab)
-    allUnits.set("mb", mindbender)
-    allUnits.set("bd", babydragon)
-    allUnits.set("dr", firedragon)
-    allUnits.set("fd", firedragon)
-    allUnits.set("mo", mooni)
-    allUnits.set("sl", battlesled)
-    allUnits.set("if", icefortress)
-
-function getUnit(array, message) {
-    const warrior = {
-        name: "Warrior",
-        maxhp: 10,
-        vethp: 15,
-        att: 2,
-        def: 2
-    }
-    
-    const rider = {
-        name: "Rider",
-        maxhp: 10,
-        vethp: 15,
-        att: 2,
-        def: 1
-    }
-    
-    const archer = {
-        name: "Archer",
-        maxhp: 10,
-        vethp: 15,
-        att: 2,
-        def: 1
-    }
-    
-    const defender = {
-        name: "Defender",
-        maxhp: 15,
-        vethp: 20,
-        att: 1,
-        def: 3
-    }
-    
-    const knight = {
-        name: "Knight",
-        maxhp: 15,
-        vethp: 20,
-        att: 3.5,
-        def: 1
-    }
-    
-    const swords = {
-        name: "Swordsman",
-        maxhp: 15,
-        vethp: 20,
-        att: 3,
-        def: 3
-    }
-    
-    const catapult = {
-        name: "Catapult",
-        maxhp: 10,
-        vethp: 15,
-        att: 4,
-        def: 0
-    }
-    
-    const giant = {
-        name: "Giant",
-        maxhp: 40,
-        vethp: 40,
-        att: 5,
-        def: 4
-    }
-    
-    const crab = {
-        name: "Crab",
-        maxhp: 40,
-        vethp: 40,
-        att: 4,
-        def: 4
-    }
-    
-    const tridention = {
-        name: "Tridention",
-        maxhp: 15,
-        vethp: 20,
-        att: 3,
-        def: 1
-    }
-    
-    const polytaur = {
-        name: "Polytaur",
-        maxhp: 15,
-        vethp: 20,
-        att: 3,
-        def: 1
-    }
-    
-    const navalon = {
-        name: "Navalon",
-        maxhp: 30,
-        vethp: 30,
-        att: 4,
-        def: 4
-    }
-    
-    const boat = {
-        name: "Boat",
-        maxhp: undefined,
-        vethp: undefined,
-        att: 1,
-        def: 1
-    }
-    
-    const ship = {
-        name: "Ship",
-        maxhp: undefined,
-        vethp: undefined,
-        att: 2,
-        def: 2
-    }
-    
-    const battleship = {
-        name: "Battleship",
-        maxhp: undefined,
-        vethp: undefined,
-        att: 4,
-        def: 3
-    }
-    
-    const gaami = {
-        name: "Gaami",
-        maxhp: 30,
-        vethp: 30,
-        att: 4,
-        def: 4
-    }
-    
-    const mindbender = {
-        name: "Mind Bender",
-        maxhp: 10,
-        vethp: 10,
-        att: 0,
-        def: 1
-    }
-    
-    const babydragon = {
-        name: "Baby Dragon",
-        maxhp: 15,
-        vethp: 20,
-        att: 3,
-        def: 3
-    }
-    
-    const firedragon = {
-        name: "Fire Dragon",
-        maxhp: 20,
-        vethp: 20,
-        att: 4,
-        def: 3
-    }
-    
-    const mooni = {
-        name: "Mooni",
-        maxhp: 10,
-        vethp: 10,
-        att: 0,
-        def: 2
-    }
-    
-    const battlesled = {
-        name: "Battle Sled",
-        maxhp: 15,
-        vethp: 20,
-        att: 3,
-        def: 2
-    }
-    
-    const icefortress = {
-        name: "Ice Fortress",
-        maxhp: 20,
-        vethp: 25,
-        att: 4,
-        def: 3
-    }
-
-    const allUnits = new Map()
-    allUnits.set("wa", warrior)
-    allUnits.set("ri", rider)
-    allUnits.set("ar", archer)
-    allUnits.set("de", defender)
-    allUnits.set("gi", giant)
-    allUnits.set("kn", knight)
-    allUnits.set("sw", swords)
-    allUnits.set("ga", gaami)
-    allUnits.set("ca", catapult)
-    allUnits.set("tr", tridention)
-    allUnits.set("po", polytaur)
-    allUnits.set("na", navalon)
-    allUnits.set("cr", crab)
-    allUnits.set("mb", mindbender)
-    allUnits.set("bd", babydragon)
-    allUnits.set("dr", firedragon)
-    allUnits.set("fd", firedragon)
-    allUnits.set("mo", mooni)
-    allUnits.set("sl", battlesled)
-    allUnits.set("if", icefortress)
-
-    unitKeys = Array.from(allUnits.keys());
-    let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
-    unitKey = unitKey.toString().substring(0,2)
-    unit = allUnits.get(unitKey)
-
-    if(unit) {
-        if(array.some(x => x.startsWith("bo"))) {
-            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                return `This ${unit.name.toLowerCase()} can't go in a naval unit`
-            unit.name = unit.name + " Boat";
-            unit.att = 1;
-            unit.def = 1;
-        } else if(array.some(x => x.startsWith("sh"))) {
-            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-            return `This ${unit.name.toLowerCase()} can't go in a naval unit`
-            unit.name = unit.name + " Ship";
-            unit.att = 2;
-            unit.def = 2;
-        } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
-            if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress")
-                return `This ${unit.name.toLowerCase()} can't go in a naval unit`
-            unit.name = unit.name + " Battleship";
-            unit.att = 4;
-            unit.def = 3;
-        }
-        return unit
-    } else
-        return `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
-}
-
-function getMaxHP(array, unit) {
-    if(array.some(x => x.startsWith('v'))) {
-        return unit.vethp;
-    } else {
-        return unit.maxhp;
-    }
-}
-
-function getCurrentHP(array, maxhp, message) {
-    if(array.some(x => !isNaN(Number(x)))) {
-        index = array.findIndex(x => !isNaN(Number(x)))
-        currenthp = parseInt(array[index])
-        if(currenthp > maxhp) {
-            message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`)
-            return maxhp
-        } else if(currenthp < 1) {
-            message.channel.send(`One of the units is already dead. RIP.`)
-            return undefined
-        } else
-            return currenthp
-            
-    } else {
-        return maxhp
-    }   
-}
-
-function getBonus(array, unit) {
-    if(array.some(x => x === 'w') && array.some(x => x === 'd'))
-        return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present."
-    if(array.some(x => x === 'w')) {
-        unit.name = unit.name + " (walled)"
-        return 4;
-    } else if(array.some(x => x === 'd')) {
-        unit.name = unit.name + " (protected)"
-        return 1.5;
-    } else {
-        return 1;
-    }
-}
-
-function getRetaliation(array) {
-    if(array.some(x => x === 'nr'))
-        return false;
-    else
-        return true;
-}
 
 bot.on('ready', () => {
     const prefix = process.env.PREFIX;
@@ -744,70 +211,53 @@ bot.on('message', message => {
 //--------------------------------------------------
 //          HANDLER TO CLEAN THE CMD ARRAY
 //--------------------------------------------------
-        args = message.content.toLowerCase().slice(prefix.length);
+        args = message.content.toLowerCase().slice(prefix.length+cmd.length);
 
         if(args.includes("/"))
-            units = args.split("/")
+            unitsArray = args.split("/")
         else if(args.includes(","))
-            units = args.split(",")
+            unitsArray = args.split(",")
         else
             return message.channel.send("You need an attacker and a defender separated using `,` or `/`");
 
-        preAttacker = units[0].split(/ +/);
-        preAttacker.shift()
-        preAttacker = preAttacker.filter(x => x != "");
-        preDefender = units[1].split(/ +/);
-        preDefender = preDefender.filter(x => x != "");
+        attackerArray = unitsArray[0].split(/ +/).filter(x => x != "");
+        defenderArray = unitsArray[1].split(/ +/).filter(x => x != "")
 
 //--------------------------------------------------
 //        GET FUNCTIONS TO FIND UNITS STATS
 //--------------------------------------------------
-        attackerUnit = {
-            name: undefined,
-            currentHP: undefined,
-            maxHP: undefined,
-            att: undefined
-        }
-        defenderUnit = {
-            name: undefined,
-            currentHP: undefined,
-            maxHP: undefined,
-            def: undefined,
-            bonus: 1,
-            retaliation: true
+        try {
+            attackerStats = getFightUnit(attackerArray)
+            defenderStats = getFightUnit(defenderArray)
+        } catch (error) {
+            console.log("ERROR:", error)
+            return message.channel.send(error)
         }
 
-        attackerStats = getUnit(preAttacker)
-        if(typeof attackerStats === 'string')
-            return message.channel.send(attackerStats)
+        finalAttacker = {
+            name: attackerStats.name,
+            currentHP: getCurrentHP(attackerArray, getMaxHP(attackerArray, attackerStats), message),
+            maxHP: getMaxHP(attackerArray, attackerStats),
+            att: attackerStats.att
+        }
+        defBonusVals = getBonus(defenderArray, defenderStats)
+        finalDefender = {
+            name: `${defenderStats.name}${defBonusVals[1]}`,
+            currentHP: getCurrentHP(defenderArray, getMaxHP(defenderArray, defenderStats), message),
+            maxHP: getMaxHP(defenderArray, defenderStats),
+            def: defenderStats.def,
+            bonus: defBonusVals[0],
+            retaliation: getRetaliation(defenderArray)
+        }
+
         if(attackerStats.name.toLowerCase() === "mooni" || attackerStats.name.toLowerCase() === "mind bender")
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
-        attackerUnit.name = attackerStats.name;
-        attackerUnit.att = attackerStats.att;
-        attackerUnit.maxHP = getMaxHP(preAttacker, attackerStats);
-        attackerUnit.currentHP = getCurrentHP(preAttacker, attackerUnit.maxHP, message);
-        if(attackerUnit.currentHP === undefined)
-            return
 
-        defenderStats = getUnit(preDefender, message)
-        if(typeof defenderStats === 'string')
-            return message.channel.send(defenderStats)
-        defenderUnit.name = defenderStats.name;
-        defenderUnit.def = defenderStats.def;
-        defenderUnit.maxHP = getMaxHP(preDefender, defenderStats);
-        defenderUnit.currentHP = getCurrentHP(preDefender, defenderUnit.maxHP, message);
-        if(defenderUnit.currentHP === undefined)
-            return
-        defenderUnit.bonus = getBonus(preDefender, defenderUnit);
-        if(typeof defenderUnit.bonus === 'string')
-            message.channel.send(defenderUnit.bonus)
-        defenderUnit.retaliation = getRetaliation(preDefender);
-
-        const result = new Fight(attackerUnit.name, attackerUnit.currentHP, attackerUnit.maxHP, attackerUnit.att,defenderUnit.name, defenderUnit.currentHP, defenderUnit.maxHP, defenderUnit.def, defenderUnit.bonus, defenderUnit.retaliation)
+        const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
-//                .{UNIT} STATS COMMANDS
+//                 .CREDITS COMMAND
 //
 //--------------------------------------------------
     } else if (cmd === "credits") {
@@ -821,31 +271,28 @@ bot.on('message', message => {
         descriptionArray.push("penile partay, WOPWOP, Cake, James.")
         helpEmbed.setDescription(descriptionArray)
         message.channel.send(helpEmbed)
+//--------------------------------------------------
+//
+//                .{UNIT} COMMAND
+//
+//--------------------------------------------------
     } else {
-        unitKeysArray = Array.from(allUnits.keys())
-        keyIndex = unitKeysArray.findIndex(x => cmd.substring(0, 2) === x)
-        unitHelp = allUnits.get(unitKeysArray[keyIndex])
+        cmd = cmd.substring(0, 2)
+        unit = getUnit(cmd)
 
-        if(unitHelp) {
-            const helpEmbed = new RichEmbed()
-                .setColor('#FA8072')
-            let descriptionArray = [];
-            Object.keys(unitHelp).forEach(x => {
-                if(x === 'name')
-                    helpEmbed.setTitle(`**${unitHelp[x]}**`)
-                else
-                    descriptionArray.push(`**${x}**: ${unitHelp[x]}`)
-            })
-            helpEmbed.setDescription(descriptionArray);
-            message.channel.send(helpEmbed)
-                .then(() => {})
-                .catch(console.error)
-        } /*else {
-//--------------------------------------------------
-//               IF NO KNOWN COMMANDS
-//--------------------------------------------------
-            return message.channel.send("It seems we don't have that command. If you think it should exist, DM @**jd#0001**!"); 
-        }*/
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setTitle(unit.name)
+        let descriptionArray = [];
+        descriptionArray.push(`maxhp: ${unit.maxhp}`)
+        descriptionArray.push(`vethp: ${unit.vethp}`)
+        descriptionArray.push(`attack: ${unit.att}`)
+        descriptionArray.push(`defense: ${unit.def}`)
+
+        helpEmbed.setDescription(descriptionArray);
+        message.channel.send(helpEmbed)
+            .then(() => {})
+            .catch(console.error)
     }
 })
 //--------------------------------------
