@@ -822,10 +822,6 @@ bot.on('message', message => {
         helpEmbed.setDescription(descriptionArray)
         message.channel.send(helpEmbed)
     } else {
-        if (message.channel.name.startsWith("general")) {
-            message.channel.send(`Come on! Not in **${message.channel.name}**`);
-            return
-        }
         unitKeysArray = Array.from(allUnits.keys())
         keyIndex = unitKeysArray.findIndex(x => cmd.substring(0, 2) === x)
         unitHelp = allUnits.get(unitKeysArray[keyIndex])
