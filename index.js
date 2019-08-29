@@ -281,7 +281,7 @@ bot.on('message', message => {
         unit = getUnit(cmd)
 
         if(unit)
-        const helpEmbed = new RichEmbed()
+        let helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle(unit.name)
         let descriptionArray = [];
