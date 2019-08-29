@@ -25,7 +25,7 @@ class Fight {
     }
 
     numberofhits() {
-        
+
     }
 
     calculate() {
@@ -55,6 +55,7 @@ class Fight {
 
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
+            .setDescription(`The outcome of the fight is:`)
             .addField(`**${this.aname}**:`, `${hpattacker} (${attdiff*-1})`)
             .addField(`**${this.dname}**:`, `${hpdefender} (${defdiff*-1})`)
 
