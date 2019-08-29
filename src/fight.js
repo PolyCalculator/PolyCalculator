@@ -20,6 +20,14 @@ class Fight {
         this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
     }
   
+    hpneeded() {
+
+    }
+
+    numberofhits() {
+        
+    }
+
     calculate() {
         let randomText = deadText[Math.floor(Math.random() * deadText.length)];
         var totaldam = this.aforce+this.dforce;

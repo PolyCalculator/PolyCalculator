@@ -280,6 +280,7 @@ bot.on('message', message => {
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
 
+        if(unit)
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
             .setTitle(unit.name)
