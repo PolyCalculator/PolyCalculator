@@ -558,10 +558,6 @@ bot.on('message', message => {
 
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
-    else if (message.channel.name.startsWith("general")) {
-        message.channel.send(`Come on! Not in **${message.channel.name}**`);
-        return
-    }
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
@@ -586,6 +582,10 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     if (cmd === "help") {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         const helpEmbed = new RichEmbed()
             .setColor('#FA8072')
@@ -674,6 +674,10 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     } else if (cmd.startsWith("unit")) {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
         unitEmbed = new RichEmbed();
         unitEmbed.setColor('#FA8072')
             .setTitle("All units by code")
@@ -689,6 +693,10 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     } else if (cmd === "full" || cmd === "f") {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
         if(args === undefined)
@@ -708,6 +716,10 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     } else if (cmd === "test" || cmd === "t") {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
         if(args === undefined)
@@ -725,6 +737,10 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     } else if (cmd === "calc" || cmd === 'c' || cmd === "name" || cmd === 'n') {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
 //--------------------------------------------------
 //          HANDLER TO CLEAN THE CMD ARRAY
 //--------------------------------------------------
@@ -806,6 +822,10 @@ bot.on('message', message => {
         helpEmbed.setDescription(descriptionArray)
         message.channel.send(helpEmbed)
     } else {
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`);
+            return
+        }
         unitKeysArray = Array.from(allUnits.keys())
         keyIndex = unitKeysArray.findIndex(x => cmd.substring(0, 2) === x)
         unitHelp = allUnits.get(unitKeysArray[keyIndex])
