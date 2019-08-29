@@ -224,12 +224,13 @@ bot.on('message', message => {
             maxHP: getMaxHP(attackerArray, attackerStats),
             att: attackerStats.att
         }
+        defBonusVals = getBonus(defenderArray, defenderStats)
         finalDefender = {
-            name: defenderStats.name,
+            name: `${defenderStats.name}${defBonusVals[1]}`,
             currentHP: getCurrentHP(defenderArray, getMaxHP(defenderArray, defenderStats), message),
             maxHP: getMaxHP(defenderArray, defenderStats),
             def: defenderStats.def,
-            bonus: getBonus(defenderArray, defenderStats),
+            bonus: defBonusVals[0],
             retaliation: getRetaliation(defenderArray)
         }
 

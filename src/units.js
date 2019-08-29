@@ -186,7 +186,7 @@ module.exports.getFightUnit = function (array) {
         if(!nonnaval.hasOwnProperty(unitKey))
             throw `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
         unitKey = unitKey.toString().substring(0,2)
-        unit = nonnaval[unitKey]
+        unit = Object.assign({},nonnaval[unitKey])
 
         if(array.some(x => x.startsWith("bo"))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
@@ -257,12 +257,10 @@ module.exports.getBonus = function (array, unit) {
     if (array.some(x => x === 'w') && array.some(x => x === 'd'))
         return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present.";
     if (array.some(x => x === 'w')) {
-        unit.name = unit.name + " (walled)";
-        return 4;
+        return [4,  " (walled)"];
     }
     else if (array.some(x => x === 'd')) {
-        unit.name = unit.name + " (protected)";
-        return 1.5;
+        return [1.5, " (protected)"];
     }
     else {
         return 1;
