@@ -179,10 +179,11 @@ const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo
 
 module.exports.getFightUnit = function (array) {
     //return new Promise((resolve, reject) => {
-        const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
 
         unitKeys = Object.keys(nonnaval);
         let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
+        unitKey = unitKey[0].substring(0,2);
+        console.log("unitKey:", unitKey)
         if(!nonnaval.hasOwnProperty(unitKey))
             throw `**ERROR:** We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit. The list is available with \`${prefix}units\`*\n\nFor naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
         unitKey = unitKey.toString().substring(0,2)
