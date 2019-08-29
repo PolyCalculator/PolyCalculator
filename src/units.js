@@ -224,6 +224,10 @@ module.exports.getUnit = function (unitPartial) {
     return all[unitKey]
 }
 
+module.exports.getUnits = function () {
+    return all
+}
+
 module.exports.getMaxHP = function (array, unit) {
     if (array.some(x => x.startsWith('v'))) {
         return unit.vethp;

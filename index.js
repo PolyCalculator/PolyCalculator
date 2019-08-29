@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Client, RichEmbed } = require('discord.js');
 const bot = new Client();
 const http = require("http");
-const { getFightUnit, getUnit, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
+const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
 const Fight = require("./src/fight");
 
 const express = require('express');
@@ -149,9 +149,12 @@ bot.on('message', message => {
         unitEmbed.setColor('#FA8072')
             .setTitle("All units by code")
         units = [];
-        allUnits.forEach((val, key) => {
-            units.push(`${val.name}: ${key}`)
-        })
+
+        allUnits = getUnits();
+        Object.keys(allUnits).forEach(function (key) {
+            units.push(`${allUnits[key].name}: ${key}`)
+        });
+        
         unitEmbed.setDescription(units);
         message.channel.send(unitEmbed);
 //--------------------------------------------------
