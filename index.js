@@ -280,20 +280,21 @@ bot.on('message', message => {
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
 
-        if(unit)
-        let helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setTitle(unit.name)
-        let descriptionArray = [];
-        descriptionArray.push(`maxhp: ${unit.maxhp}`)
-        descriptionArray.push(`vethp: ${unit.vethp}`)
-        descriptionArray.push(`attack: ${unit.att}`)
-        descriptionArray.push(`defense: ${unit.def}`)
+        if(unit) {
+            helpEmbed = new RichEmbed()
+                .setColor('#FA8072')
+                .setTitle(unit.name)
+            let descriptionArray = [];
+            descriptionArray.push(`maxhp: ${unit.maxhp}`)
+            descriptionArray.push(`vethp: ${unit.vethp}`)
+            descriptionArray.push(`attack: ${unit.att}`)
+            descriptionArray.push(`defense: ${unit.def}`)
 
-        helpEmbed.setDescription(descriptionArray);
-        message.channel.send(helpEmbed)
-            .then(() => {})
-            .catch(console.error)
+            helpEmbed.setDescription(descriptionArray);
+            message.channel.send(helpEmbed)
+                .then(() => {})
+                .catch(console.error)
+        }
     }
 })
 //--------------------------------------
