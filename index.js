@@ -206,7 +206,7 @@ bot.on('message', message => {
 //                .CALC COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "calc" || cmd === 'c' || cmd === "name" || cmd === 'n') {
+    } else if (cmd === "calc" || cmd === 'c' || cmd === "kill" || cmd === 'k') {
         if (message.channel.name.startsWith("general")) {
             message.channel.send(`Come on! Not in **${message.channel.name}**`);
             return
@@ -257,7 +257,15 @@ bot.on('message', message => {
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
 
         const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
-        message.channel.send(result.calculate());
+        if(args.some(x => x.includes('?'))) {
+            if(attackerArray.some(x => x.includes('?'))) {
+                d
+            }
+            if(defenderArray.some(x => x.includes('?'))) {
+                d
+            }
+        } else
+            message.channel.send(result.calculate());
 //--------------------------------------------------
 //
 //                 .CREDITS COMMAND
