@@ -57,7 +57,7 @@ module.exports = function (args, message) {
         helpEmbed.addField(`Advanced commands`, `**${prefix}elim:** displays the most effective way to kill a unit.\n**${prefix}full:** calculate the outcome of a fight by specifying all the stats.\n**${prefix}test:** same as \`full\` without the stats restrictions.\n**${prefix}units:** show the list of all available units.\n**${prefix}credits:** show the credits.`)
         helpEmbed.addField("Examples", `\`${prefix}calc wa, de\`\n\`${prefix}full 10 10 2 10 10 1\``)
         helpEmbed.addField("Features", "It supports veteran status (with `v`), naval units (with `bo`, `sh` or `bs`), defense bonus (with `d` or `w`) and no-retaliation (by adding `nr` on the defender side).")
-        helpEmbed.addField(`For more details`, `\`${prefix}help calc\` or \`${prefix}help full\``)
+        helpEmbed.addField(`For more details`, `\`${prefix}help {command}\` followed by the the command you want help with\n**Example:** \`${prefix}help c\``)
     }
     helpEmbed.setDescription(descriptionArray);
     return message.channel.send(helpEmbed)
