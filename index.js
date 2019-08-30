@@ -204,7 +204,7 @@ bot.on('message', message => {
         helpEmbed = new RichEmbed()
         helpEmbed.setColor('#FA8072')
             .setTitle('**Contributors**')
-        helpEmbed.addField("Developper", "jd (alphaSeahorse)")
+        helpEmbed.addField("Developer", "jd (alphaSeahorse)")
         helpEmbed.addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
         message.channel.send(helpEmbed)
 //--------------------------------------------------
