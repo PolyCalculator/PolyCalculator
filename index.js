@@ -88,7 +88,7 @@ bot.on('message', message => {
 
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
-        
+
         if(args.length === 0)
             return Help(cmd, message)
 
@@ -181,7 +181,8 @@ bot.on('message', message => {
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
 
         const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
-        if((cmd === "kill" || cmd === "k")) {
+
+        if((cmd.startsWith("elim") || cmd === "e")) {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                 message.channel.send(result.provideDefHP());
