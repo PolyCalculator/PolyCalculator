@@ -186,7 +186,7 @@ module.exports.getFightUnit = function (array) {
             throw `We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nYou can get the list is available with \`${prefix}units\``
         unitKey = unitKey[0].substring(0,2);
         if(!nonnaval.hasOwnProperty(unitKey))
-            throw `For naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc boat warrior vet, ship warrior\`\n   Short ex: \`${prefix}calc bo wa v, sh wa\``
+            throw `For naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc warrior boat vet, warrior ship\`\n   Short ex: \`${prefix}calc wa bo v, wa sh\``
         unitKey = unitKey.toString().substring(0,2)
         unit = Object.assign({},nonnaval[unitKey])
 
