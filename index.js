@@ -259,10 +259,10 @@ bot.on('message', message => {
         const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
         if(args.some(x => x.includes('?'))) {
             if(attackerArray.some(x => x.includes('?'))) {
-                d
+                message.channel.send(result.provideDefHP());
             }
             if(defenderArray.some(x => x.includes('?'))) {
-                d
+                message.channel.send(result.provideAttHP());
             }
         } else
             message.channel.send(result.calculate());
