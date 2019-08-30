@@ -50,7 +50,7 @@ module.exports = function (args, message) {
         //helpEmbed.addField(`On the attacker's side`,`A \`?\` on the attacker side starts the attacker hp at 0(+1) until the defending unit is killed.`)
         helpEmbed.addField(`Examples and outcomes`,`\`${prefix}e gi 32, def w ?\`\nThis returns the strongest defender the 32hp giant can kill.\n\n\`${prefix}e gi ?, def w 6\`\nThis returns the weakest giant needed to kill a walled defender with 6hp`)
         helpEmbed.setFooter(`alias: ${prefix}e`)
-    } else if(args === undefined) {
+    } else {
         helpEmbed.setTitle("**How to use the PolyCalculator bot**")
         descriptionArray.push("*Parentheses are optional arguments. Units require 2 characters.*")
         helpEmbed.addField("Main command", `**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
