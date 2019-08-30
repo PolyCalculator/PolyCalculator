@@ -19,13 +19,58 @@ class Fight {
         this.aforce = this.aattack*this.ahp/this.amaxhp;
         this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
     }
-  
-    hpneeded() {
+//-------------------------------------------------------------------------------------
+//--------------provideDefHP | .kill gi ?, def w 8-------------------------------------
+//-------------------------------------------------------------------------------------
+    provideDefHP() {
+        var totaldam;
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+        for(this.ahp = 0;this.ahp != this.amaxhp;this.ahp++) {
+            this.aforce = this.aattack*this.ahp/this.amaxhp;
+            var totaldam = this.aforce+this.dforce;
+            var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
+            if(this.dhp - defdiff <= 0)
+                break
+        }
+        if(this.ahp === this.amaxhp) {
+            console.log("Can't kill")
+            helpEmbed.setTitle(`A full hp ${this.aname} cannot kill a ${this.dhp}hp ${this.dname}.`)
+        } else {
+            console.log(`The min attacker hp required is: ${this.ahp}`)
+            helpEmbed
+                .setTitle(`The minimum attacker hp required to kill a ${this.dhp}hp ${this.dname} is:`)
+                .addField(`**${this.aname}**:`, `${this.ahp}`)
+        }
 
+        return helpEmbed;
     }
+//-------------------------------------------------------------------------------------
+//--------------provideAttHP | .kill gi 32, def w ?------------------------------------
+//-------------------------------------------------------------------------------------
+    provideAttHP() {
+        var totaldam;
+        this.dhp = this.dmaxhp
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+        for(var defdiff = 0;this.dhp > 0;this.dhp--) {
+            this.dforce = this.ddef*this.dhp/this.dmaxhp*this.dbonus;
+            totaldam = this.aforce+this.dforce;
+            defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
+            if(this.dhp - defdiff <= 0)
+                break
+        }
+        if(this.dhp === 0) {
+            console.log("Can't kill")
+            helpEmbed.setTitle(`A ${this.ahp}hp ${this.aname} cannot even kill a 1hp ${this.dname}.`)
+        } else {
+            console.log(`The defender hp required is: ${this.dhp}`)
+            helpEmbed
+                .setTitle(`The defender hp required for a kill with a ${this.ahp}hp ${this.aname} is:`)
+                .addField(`**${this.dname}**:`, `${this.dhp}`)
+        }
 
-    numberofhits() {
-
+        return helpEmbed;
     }
 
     calculate() {

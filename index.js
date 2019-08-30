@@ -257,13 +257,13 @@ bot.on('message', message => {
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
 
         const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
-        if(args.some(x => x.includes('?'))) {
-            if(attackerArray.some(x => x.includes('?'))) {
+        if((cmd === "kill" || cmd === "k")) {
+            if(attackerArray.some(x => x.includes('?')))
                 message.channel.send(result.provideDefHP());
-            }
-            if(defenderArray.some(x => x.includes('?'))) {
+            else if(defenderArray.some(x => x.includes('?')))
                 message.channel.send(result.provideAttHP());
-            }
+            else
+                message.channel.send(`You are looking for the \`${prefix}c\` command.\n\`${prefix}k\` is made to know the necessary hp of a unit to kill another. Try \`${prefix}help k\` for more information.`);
         } else
             message.channel.send(result.calculate());
 //--------------------------------------------------
