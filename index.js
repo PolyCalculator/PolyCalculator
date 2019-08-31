@@ -192,7 +192,7 @@ bot.on('message', message => {
             else if(defenderArray.some(x => x.includes('?')))
                 message.channel.send(result.provideAttHP());
             else
-                message.channel.send(`You are looking for the \`${prefix}c\` command.\n\`${prefix}k\` is used to display the necessary hp of a unit to kill another. Try \`${prefix}help k\` for more information.`);
+                message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`);
         } else
             message.channel.send(result.calculate());
 //--------------------------------------------------
