@@ -46,8 +46,6 @@ module.exports = function (args, message) {
     } else if (args.startsWith("elim") || args === "e") {
         helpEmbed.setTitle(`**How to use the \`${prefix}eliminate\` command**`)
         descriptionArray.push("Allows to put a `?` on either side (attacker or defender) to display the most optimal hp to eliminate units.")
-        //helpEmbed.addField(`On the defender's side`,`A \`?\` on the defender start with the defender hp at max(-1) unitl the defender unit is killed.`)
-        //helpEmbed.addField(`On the attacker's side`,`A \`?\` on the attacker side starts the attacker hp at 0(+1) until the defending unit is killed.`)
         helpEmbed.addField(`Examples and outcomes`,`\`${prefix}e gi 32, def w ?\`\nThis returns the strongest defender the 32hp giant can kill.\n\n\`${prefix}e gi ?, def w 6\`\nThis returns the weakest giant needed to kill a walled defender with 6hp`)
         helpEmbed.setFooter(`alias: ${prefix}e`)
     } else {
