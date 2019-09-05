@@ -184,7 +184,7 @@ module.exports.getFightUnit = function (array) {
         let unitKey = array.filter(value => unitKeys.includes(value.substring(0,2)))
         if(unitKey.length === 0)
             throw `We couldn't find one of the units.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nYou can get the list is available with \`${prefix}units\``
-        unitKey = unitKey.filter(x => nonnaval.hasOwnProperty(x));
+        unitKey = unitKey.filter(x => nonnaval.hasOwnProperty(x.substring(0,2)));
         
         if(unitKey.length === 0)
             throw `For naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc warrior boat vet, warrior ship\`\n   Short ex: \`${prefix}calc wa bo v, wa sh\``
