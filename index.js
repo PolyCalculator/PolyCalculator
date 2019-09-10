@@ -94,12 +94,14 @@ bot.on('message', message => {
 
         if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
-        let bonus = 1;
+        
         let defender = {name: "Defender"}
-        bonus = getBonus(args, defender);
-        retal = getRetaliation(args, defender);
+        defBonusVals = getBonus(args)
+        defender.name = defender.name+`${defBonusVals[1]}`
+        retal = getRetaliation(args)
 
-        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus, retal)
+        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //
@@ -114,13 +116,13 @@ bot.on('message', message => {
         args.shift();
         if(args.length === 0)
             return Help(cmd, message)
-                
-        let bonus = 1;
-        let defender = {name: "Defender"}
-        bonus = getBonus(args, defender);
-        retal = getRetaliation(args, defender);
 
-        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),"Defender",Number(args[3]),Number(args[4]),Number(args[5]),bonus, retal)
+        let defender = {name: "Defender"}
+        defBonusVals = getBonus(args)
+        defender.name = defender.name+`${defBonusVals[1]}`
+        retal = getRetaliation(args)
+
+        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
         message.channel.send(result.calculate());
 //--------------------------------------------------
 //

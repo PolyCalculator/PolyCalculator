@@ -260,7 +260,7 @@ module.exports.getCurrentHP = function (array, maxhp, message) {
     }
 }
 
-module.exports.getBonus = function (array, unit) {
+module.exports.getBonus = function (array) {
     if (array.some(x => x === 'w') && array.some(x => x === 'd'))
         return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present.";
     if (array.some(x => x === 'w')) {
