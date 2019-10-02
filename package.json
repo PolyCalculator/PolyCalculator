@@ -6,7 +6,8 @@
   "dependencies": {
     "discord.js": "11.5.1",
     "dotenv": "8.0.0",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "heroku": "7.27.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,7 +15,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "push": "git add . && git commit -m . && git push heroku master && heroku logs -t -d=web",
     "jpush": "git add . && git commit -m . && git push heroku master",
-    "log": "heroku logs -t -d=web"
+    "log": "heroku logs -t -d=web -a=polycalculator"
   },
   "keywords": [],
   "author": "",
