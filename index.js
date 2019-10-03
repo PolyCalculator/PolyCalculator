@@ -28,7 +28,6 @@ bot.on('message', message => {
         return;
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    console.log("cmd:", cmd)
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
