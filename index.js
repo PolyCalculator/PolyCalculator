@@ -214,7 +214,7 @@ bot.on('message', message => {
 //                .{UNIT} COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "auto") {
+    } else if (cmd.startsWith("auto")) {
         console.log('AUTO')
         polytopia = client.guilds.get('283436219780825088')
         console.log('polytopia:', polytopia)
