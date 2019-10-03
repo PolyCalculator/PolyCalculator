@@ -214,6 +214,14 @@ bot.on('message', message => {
 //                .{UNIT} COMMAND
 //
 //--------------------------------------------------
+    } else if(cmd === "auto") {
+        polytopia = client.guilds.get('283436219780825088')
+        console.log('polytopia:', polytopia)
+        botcommands = polytopia.channels.get('403724174532673536')
+        console.log('botcommands:', botcommands)
+        message = {'channel':botcommands}
+        console.log("message:", message)
+        Help(undefined, message) 
     } else {
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
@@ -242,11 +250,6 @@ const port = process.env.PORT || 5000;
 
 setInterval(function() {
     http.get("http://polycalculator.herokuapp.com");
-    polytopia = client.guilds.get('283436219780825088')
-    botcommands = polytopia.channels.get('403724174532673536')
-    message = {'channel':botcommands}
-    console.log("message:", message)
-    Help(undefined, message)
 }, 300000); // every 5 minutes (300000)
 
 app.get('/', function (req, res) {
