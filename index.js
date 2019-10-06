@@ -253,8 +253,8 @@ setInterval(function() {
     polytopia = bot.guilds.get('283436219780825088')
     botcommands = polytopia.channels.get('403724174532673536')
     message = {'channel':botcommands}
-    Help('help', message)
-}, 5400000); // every 1.5h (5400000)
+    Help('c', message)
+}, 10800000); // every 1.5h (5400000)
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
