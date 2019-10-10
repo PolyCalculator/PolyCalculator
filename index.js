@@ -50,7 +50,8 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     if (cmd === "help") {
-        if (message.channel.name.startsWith("general"))
+        console.log(message.author.id)
+        if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
