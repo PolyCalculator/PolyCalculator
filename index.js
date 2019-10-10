@@ -50,7 +50,7 @@ bot.on('message', message => {
 //
 //--------------------------------------------------
     if (cmd === "help") {
-        console.log(message.author.id)
+
         if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
 
@@ -226,6 +226,9 @@ bot.on('message', message => {
         message = {'channel':botcommands}
         Help('help', message)
     } else {
+        if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
+            return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
 
