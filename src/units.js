@@ -261,15 +261,11 @@ module.exports.getCurrentHP = function (array, maxhp, message) {
 }
 
 module.exports.getBonus = function (array) {
-    if (array.some(x => x === 'w') && array.some(x => x === 'd'))
-        return "You've put both `d` and `w`. By default, it'll take `w` over `d` if it's present.";
     if (array.some(x => x === 'w')) {
         return [4,  " (walled)"];
-    }
-    else if (array.some(x => x === 'd')) {
+    } else if (array.some(x => x === 'd')) {
         return [1.5, " (protected)"];
-    }
-    else {
+    } else {
         return [1, " "];
     }
 }

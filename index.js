@@ -96,6 +96,7 @@ bot.on('message', message => {
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
         
         let defender = {name: "Defender"}
+
         defBonusVals = getBonus(args)
         defender.name = defender.name+`${defBonusVals[1]}`
         retal = getRetaliation(args)
@@ -169,6 +170,10 @@ bot.on('message', message => {
             maxHP: getMaxHP(attackerArray, attackerStats),
             att: attackerStats.att
         }
+
+        if (args.includes(' w') && args.includes(' d'))
+            message.channel.send("You've put both `d` and `w`. By default, it'll take `w` over `d` if both are present.")
+
         defBonusVals = getBonus(defenderArray, defenderStats)
         finalDefender = {
             name: `${defenderStats.name}${defBonusVals[1]}`,
