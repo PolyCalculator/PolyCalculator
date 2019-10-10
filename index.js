@@ -226,7 +226,7 @@ bot.on('message', message => {
         message = {'channel':botcommands}
         Help('help', message)
     } else {
-        if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
+        if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
 
         cmd = cmd.substring(0, 2)
