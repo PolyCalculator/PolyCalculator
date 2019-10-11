@@ -270,10 +270,7 @@ setInterval(function() {
     unrankedgames = polytopia.channels.get('511906353476927498')
     unrankedgames = {'channel':unrankedgames}
     Help('c', unrankedgames)
-    multidiscussion = polytopia.channels.get('396069729657421824')
-    multidiscussion = {'channel':multidiscussion}
-    Help('c', multidiscussion)
-}, 10800000); // every 1.5h (5400000)
+}, 10800000); // every 3h (10800000)
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
