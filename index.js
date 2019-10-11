@@ -260,9 +260,19 @@ setInterval(function() {
 
 setInterval(function() {
     polytopia = bot.guilds.get('283436219780825088')
+
     botcommands = polytopia.channels.get('403724174532673536')
-    message = {'channel':botcommands}
-    Help('c', message)
+    botcommands = {'channel':botcommands}
+    Help('c', botcommands)
+    rankedelogames = polytopia.channels.get('511316081160355852')
+    rankedelogames = {'channel':rankedelogames}
+    Help('c', rankedelogames)
+    unrankedgames = polytopia.channels.get('511906353476927498')
+    unrankedgames = {'channel':unrankedgames}
+    Help('c', unrankedgames)
+    multidiscussion = polytopia.channels.get('396069729657421824')
+    multidiscussion = {'channel':multidiscussion}
+    Help('c', multidiscussion)
 }, 10800000); // every 1.5h (5400000)
 
 app.get('/', function (req, res) {
