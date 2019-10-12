@@ -172,7 +172,7 @@ bot.on('message', message => {
             att: attackerStats.att
         }
 
-        if (args.includes(' w') && args.includes(' d'))
+        if(args.some(x => x === 'w') && args.some(x => x === 'w'))
             message.channel.send("You've put both `d` and `w`. By default, it'll take `w` over `d` if both are present.")
 
         defBonusVals = getBonus(defenderArray, defenderStats)
