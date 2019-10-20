@@ -270,6 +270,9 @@ setInterval(function() {
     unrankedgames = polytopia.channels.get('511906353476927498')
     unrankedgames = {'channel':unrankedgames}
     Help('c', unrankedgames)
+    elobotcommands = polytopia.channels.get('635091071717867521')
+    elobotcommands = {'channel':elobotcommands}
+    Help('c', elobotcommands)
 }, 10800000); // every 3h (10800000)
 
 app.get('/', function (req, res) {
