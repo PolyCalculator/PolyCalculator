@@ -2,7 +2,7 @@ const { RichEmbed } = require('discord.js');
 const deadText = require("./deadtexts")
 
 class Fight {
-    constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus, dretal, dfort) {
+    constructor(aname, ahp, amaxhp, aattack, dname, dhp, dmaxhp, ddef, dbonus, dretal) {
         this.aname = aname
         this.ahp = ahp;
         this.amaxhp = amaxhp;

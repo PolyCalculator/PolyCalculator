@@ -177,23 +177,33 @@ bot.on('message', message => {
 
         defBonusVals = getBonus(defenderArray, defenderStats)
         finalDefender = {
-            name: `${defenderStats.name}${defBonusVals[1]}`,
             currentHP: getCurrentHP(defenderArray, getMaxHP(defenderArray, defenderStats), message),
             maxHP: getMaxHP(defenderArray, defenderStats),
             def: defenderStats.def,
             bonus: defBonusVals[0],
-            retaliation: getRetaliation(defenderArray)
+            retaliation: getRetaliation(defenderArray),
+        }
+        //finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
+
+        if(defenderStats.fort === false && defBonusVals[0] === 4) {
+            finalDefender.name = `${defenderStats.name}`
+            finalDefender.bonus = 1
+            message.channel.send("This defender doesn't have fortify, so it doesn't benefit from a wall.\nFor a single bonus, use `d` instead of `w` used for wall.")
+        } else {
+            finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
+            finalDefender.bonus = defBonusVals[0];
         }
 
         if(attackerStats.name.toLowerCase() === "mooni" || attackerStats.name.toLowerCase() === "mind bender")
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
 
-        const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
+        let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
 
         if((cmd.startsWith("elim") || cmd === "e")) {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                 message.channel.send(result.provideDefHP());
+                result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
                 message.channel.send(result.provideAttHP());
             } else if(attackerArray.some(x => x.includes('?')))
                 message.channel.send(result.provideDefHP());

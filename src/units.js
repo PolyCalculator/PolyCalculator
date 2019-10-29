@@ -3,7 +3,8 @@ const wa = {
     maxhp: 10,
     vethp: 15,
     att: 2,
-    def: 2
+    def: 2,
+    fort: true
 }
 
 const ri = {
@@ -11,7 +12,8 @@ const ri = {
     maxhp: 10,
     vethp: 15,
     att: 2,
-    def: 1
+    def: 1,
+    fort: true
 }
 
 const ar = {
@@ -19,7 +21,8 @@ const ar = {
     maxhp: 10,
     vethp: 15,
     att: 2,
-    def: 1
+    def: 1,
+    fort: true
 }
 
 const de = {
@@ -27,7 +30,8 @@ const de = {
     maxhp: 15,
     vethp: 20,
     att: 1,
-    def: 3
+    def: 3,
+    fort: true
 }
 
 const kn = {
@@ -35,7 +39,8 @@ const kn = {
     maxhp: 15,
     vethp: 20,
     att: 3.5,
-    def: 1
+    def: 1,
+    fort: true
 }
 
 const sw = {
@@ -43,7 +48,8 @@ const sw = {
     maxhp: 15,
     vethp: 20,
     att: 3,
-    def: 3
+    def: 3,
+    fort: true
 }
 
 const ca = {
@@ -51,7 +57,8 @@ const ca = {
     maxhp: 10,
     vethp: 15,
     att: 4,
-    def: 0
+    def: 0,
+    fort: false
 }
 
 const gi = {
@@ -59,7 +66,8 @@ const gi = {
     maxhp: 40,
     vethp: 40,
     att: 5,
-    def: 4
+    def: 4,
+    fort: false
 }
 
 const cr = {
@@ -67,7 +75,8 @@ const cr = {
     maxhp: 40,
     vethp: 40,
     att: 4,
-    def: 4
+    def: 4,
+    fort: false
 }
 
 const tr = {
@@ -75,7 +84,8 @@ const tr = {
     maxhp: 15,
     vethp: 20,
     att: 3,
-    def: 1
+    def: 1,
+    fort: true
 }
 
 const po = {
@@ -83,7 +93,8 @@ const po = {
     maxhp: 15,
     vethp: 20,
     att: 3,
-    def: 1
+    def: 1,
+    fort: true
 }
 
 const na = {
@@ -91,7 +102,8 @@ const na = {
     maxhp: 30,
     vethp: 30,
     att: 4,
-    def: 4
+    def: 4,
+    fort: false
 }
 
 const bo = {
@@ -99,7 +111,8 @@ const bo = {
     maxhp: "Depends on the unit inside",
     vethp: "Depends on the unit inside",
     att: 1,
-    def: 1
+    def: 1,
+    fort: false
 }
 
 const sh = {
@@ -107,7 +120,8 @@ const sh = {
     maxhp: "Depends on the unit inside",
     vethp: "Depends on the unit inside",
     att: 2,
-    def: 2
+    def: 2,
+    fort: false
 }
 
 const bs = {
@@ -115,7 +129,8 @@ const bs = {
     maxhp: "Depends on the unit inside",
     vethp: "Depends on the unit inside",
     att: 4,
-    def: 3
+    def: 3,
+    fort: false    
 }
 
 const ga = {
@@ -123,7 +138,8 @@ const ga = {
     maxhp: 30,
     vethp: 30,
     att: 4,
-    def: 4
+    def: 4,
+    fort: false
 }
 
 const mb = {
@@ -131,7 +147,8 @@ const mb = {
     maxhp: 10,
     vethp: 10,
     att: 0,
-    def: 1
+    def: 1,
+    fort: false
 }
 
 const bd = {
@@ -139,7 +156,8 @@ const bd = {
     maxhp: 15,
     vethp: 20,
     att: 3,
-    def: 3
+    def: 3,
+    fort: false
 }
 
 const dr = {
@@ -147,7 +165,8 @@ const dr = {
     maxhp: 20,
     vethp: 20,
     att: 4,
-    def: 3
+    def: 3,
+    fort: false
 }
 
 const mo = {
@@ -155,7 +174,8 @@ const mo = {
     maxhp: 10,
     vethp: 10,
     att: 0,
-    def: 2
+    def: 2,
+    fort: false
 }
 
 const sl = {
@@ -163,7 +183,8 @@ const sl = {
     maxhp: 15,
     vethp: 20,
     att: 3,
-    def: 2
+    def: 2,
+    fort: false
 }
 
 const ic = {
@@ -171,7 +192,8 @@ const ic = {
     maxhp: 20,
     vethp: 25,
     att: 4,
-    def: 3
+    def: 3,
+    fort: false
 }
 
 const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
@@ -198,6 +220,7 @@ module.exports.getFightUnit = function (array) {
                 unit.name = unit.name + " Boat";
                 unit.att = bo.att;
                 unit.def = bo.def;
+                unit.fort = bo.fort;
             }
         } else if(array.some(x => x.startsWith("sh"))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
@@ -206,6 +229,7 @@ module.exports.getFightUnit = function (array) {
                 unit.name = unit.name + " Ship";
                 unit.att = sh.att;
                 unit.def = sh.def;
+                unit.fort = sh.fort;
             }
         } else if(array.some(x => (x.startsWith("ba") || x.startsWith("bs")))) {
             if(unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "tridention" || unit.name.toLowerCase() === "crab" || unit.name.toLowerCase() === "baby dragon" || unit.name.toLowerCase() === "fire dragon" || unit.name.toLowerCase() === "navalon" || unit.name.toLowerCase() === "battle sled" || unit.name.toLowerCase() === "ice fortress") {
@@ -214,6 +238,7 @@ module.exports.getFightUnit = function (array) {
                 unit.name = unit.name + " Battleship";
                 unit.att = bs.att;
                 unit.def = bs.def;
+                unit.fort = bs.fort;
             }
         }
         return unit
@@ -266,7 +291,7 @@ module.exports.getBonus = function (array) {
     } else if (array.some(x => x === 'd')) {
         return [1.5, " (protected)"];
     } else {
-        return [1, " "];
+        return [1, ""];
     }
 }
 
