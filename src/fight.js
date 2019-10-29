@@ -12,7 +12,7 @@ class Fight {
         this.dmaxhp = dmaxhp;
         this.ddef = ddef;
         this.dbonus = dbonus;
-        if(dname === "Mooni" || dname === "Mind Bender")
+        if(dname.startsWith("Mooni") || dname.startsWith("Mind Bender"))
             this.dretal = false;
         else
             this.dretal = dretal;
