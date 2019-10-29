@@ -182,7 +182,6 @@ bot.on('message', message => {
             def: defenderStats.def,
             retaliation: getRetaliation(defenderArray),
         }
-        //finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
 
         if(defenderStats.fort === false && defBonusVals[0] === 4) {
             finalDefender.name = `${defenderStats.name}`
