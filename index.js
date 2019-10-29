@@ -180,7 +180,6 @@ bot.on('message', message => {
             currentHP: getCurrentHP(defenderArray, getMaxHP(defenderArray, defenderStats), message),
             maxHP: getMaxHP(defenderArray, defenderStats),
             def: defenderStats.def,
-            bonus: defBonusVals[0],
             retaliation: getRetaliation(defenderArray),
         }
         //finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
