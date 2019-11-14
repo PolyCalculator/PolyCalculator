@@ -295,13 +295,15 @@ bot.on('message', message => {
         message = {'channel':botcommands}
         Help('help', message)
     } else {
-        if (message.channel.name.startsWith("general"))
-            return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+        if (message.channel.name.startsWith("general")) {
+            message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
                     x.delete(5000)
                     message.delete(5000)                    
                 })
                 .catch(console.error)
+            return 
+        }
 
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
