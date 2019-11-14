@@ -264,10 +264,10 @@ bot.on('message', message => {
                 message.delete(60000)
         } else {
             message.channel.send(result.calculate())
-                .then(x => {
-                    if(notBotChannel)
-                        x.delete(60000)
-                })
+            .then(x => {
+                if(notBotChannel)
+                    x.delete(60000)
+            })
                 .catch(console.error)
             if(notBotChannel)
                 message.delete(60000)
@@ -297,6 +297,11 @@ bot.on('message', message => {
     } else {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    x.delete(5000)
+                    message.delete(5000)                    
+                })
+                .catch(console.error)
 
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
