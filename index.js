@@ -147,13 +147,17 @@ bot.on('message', message => {
         else if(args.includes(","))
             unitsArray = args.split(",")
         else
-            return message.channel.send("You need an attacker and a defender separated using `,` or `/`");
+            return message.channel.send("You need an attacker and a defender separated using `,` or `/`")
+                .then(x => x.delete(60000))
+                .catch(console.error)
 
         attackerArray = unitsArray[0].split(/ +/).filter(x => x != "")
         defenderArray = unitsArray[1].split(/ +/).filter(x => x != "")
 
         if(attackerArray.length === 0 || defenderArray.length === 0)
-            return message.channel.send("You need an attacker and a defender separated using `,` or `/`");
+            return message.channel.send("You need an attacker and a defender separated using `,` or `/`")
+                .then(x => x.delete(60000))
+                .catch(console.error)
 //--------------------------------------------------
 //        GET FUNCTIONS TO FIND UNITS STATS
 //--------------------------------------------------
@@ -174,6 +178,8 @@ bot.on('message', message => {
 
         if(defenderArray.some(x => x === 'w') && defenderArray.some(x => x === 'd'))
             message.channel.send("You've put both `d` and `w`. By default, it'll take `w` over `d` if both are present.")
+                .then(x => x.delete(60000))
+                .catch(console.error)
 
         defBonusVals = getBonus(defenderArray, defenderStats)
         finalDefender = {
@@ -187,6 +193,8 @@ bot.on('message', message => {
             finalDefender.name = `${defenderStats.name}`
             finalDefender.bonus = 1
             message.channel.send("This defender doesn't have fortify, so it doesn't benefit from a wall.\nFor a single bonus, use `d` instead of `w` used for wall.")
+                .then(x => x.delete(60000))
+                .catch(console.error)
         } else {
             finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
             finalDefender.bonus = defBonusVals[0];
@@ -200,17 +208,34 @@ bot.on('message', message => {
         if((cmd.startsWith("elim") || cmd === "e")) {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
-                message.channel.send(result.provideDefHP());
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
+                message.channel.send(result.provideDefHP())
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
                 result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
-                message.channel.send(result.provideAttHP());
+                message.channel.send(result.provideAttHP())
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
             } else if(attackerArray.some(x => x.includes('?')))
-                message.channel.send(result.provideDefHP());
+                message.channel.send(result.provideDefHP())
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
             else if(defenderArray.some(x => x.includes('?')))
-                message.channel.send(result.provideAttHP());
+                message.channel.send(result.provideAttHP())
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
             else
-                message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`);
-        } else
-            message.channel.send(result.calculate());
+                message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`)
+                    .then(x => x.delete(60000))
+                    .catch(console.error)
+            message.delete(60000)
+        } else {
+            message.channel.send(result.calculate())
+                .then(x => x.delete(60000))
+                .catch(console.error)
+            message.delete(60000)
+        }
 //--------------------------------------------------
 //
 //                 .CREDITS COMMAND
