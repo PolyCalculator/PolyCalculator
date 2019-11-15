@@ -1,7 +1,7 @@
 const { RichEmbed } = require('discord.js');
 
 module.exports = function (args, message) {
-    const notBotChannel = !message.channel.name.includes("bot") || !message.channel.name.includes("command")
+    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
             .setColor('#FA8072')
     let descriptionArray = [];
@@ -62,7 +62,7 @@ module.exports = function (args, message) {
     helpEmbed.setDescription(descriptionArray);
     return message.channel.send(helpEmbed)
         .then(x => {
-            if(notBotChannel) {
+            if(!botChannel) {
                 x.delete(60000)
                     .then(x => console.log("Response deleted after 1 min"))
                     .catch(console.error)
