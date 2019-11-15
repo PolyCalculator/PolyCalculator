@@ -64,10 +64,10 @@ module.exports = function (args, message) {
         .then(x => {
             if(!botChannel) {
                 x.delete(60000)
-                    .then(x => console.log("Response deleted after 1 min"))
+                    .then(x => {})
                     .catch(console.error)
                 message.delete(60000)
-                    .then(x => console.log("Message deleted after 1 min"))
+                    .then(x => console.log(`Messages deleted in ${message.channel.name} after 1 min`))
                     .catch(console.error)
             }
         })
