@@ -1,9 +1,11 @@
 const { RichEmbed } = require('discord.js');
 
 module.exports = function (args, message) {
+    const notBotChannel = !message.channel.name.includes("bot") || !message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
             .setColor('#FA8072')
     let descriptionArray = [];
+
     if (args === "full" || args === "f") {
         helpEmbed.setTitle(`**How to use the \`${prefix}full\` command**`)
         descriptionArray.push("*Parentheses are optional arguments.*")
@@ -59,6 +61,15 @@ module.exports = function (args, message) {
     }
     helpEmbed.setDescription(descriptionArray);
     return message.channel.send(helpEmbed)
-        .then()
-        .catch()
+        .then(x => {
+            if(notBotChannel) {
+                x.delete(60000)
+                    .then(console.log("Response should delete"))
+                    .catch(console.error)
+                message.delete(60000)
+                    .then(console.log("Message should delete"))
+                    .catch(console.error)
+            }
+        })
+        .catch(console.error) 
 }
