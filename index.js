@@ -53,6 +53,12 @@ bot.on('message', message => {
 
         if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    console.log("x", x.cleanContent)
+                    x.delete(5000)
+                    message.delete(5000)
+                })
+                .catch(console.error)    
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         return Help(args[0], message)
@@ -65,6 +71,12 @@ bot.on('message', message => {
     } else if (cmd.startsWith("unit")) {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    console.log("x", x.cleanContent)
+                    x.delete(5000)
+                    message.delete(5000)
+                })
+                .catch(console.error)    
 
         unitEmbed = new RichEmbed();
         unitEmbed.setColor('#FA8072')
@@ -86,6 +98,12 @@ bot.on('message', message => {
     } else if (cmd === "full" || cmd === "f") {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    console.log("x", x.cleanContent)
+                    x.delete(5000)
+                    message.delete(5000)
+                })
+                .catch(console.error)    
 
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
@@ -113,6 +131,12 @@ bot.on('message', message => {
     } else if (cmd === "test" || cmd === "t") {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    console.log("x", x.cleanContent)
+                    x.delete(5000)
+                    message.delete(5000)
+                })
+                .catch(console.error)    
 
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
@@ -134,6 +158,12 @@ bot.on('message', message => {
     } else if (cmd === "calc" || cmd === 'c' || cmd.startsWith("elim") || cmd === 'e') {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                .then(x => {
+                    console.log("x", x.cleanContent)
+                    x.delete(5000)
+                    message.delete(5000)
+                })
+                .catch(console.error)    
 //--------------------------------------------------
 //          HANDLER TO CLEAN THE CMD ARRAY
 //--------------------------------------------------
@@ -296,13 +326,13 @@ bot.on('message', message => {
         Help('help', message)
     } else {
         if (message.channel.name.startsWith("general")) {
-            message.channel.send(`Come on! Not in **${message.channel.name}**`)
+            return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
+                    console.log("x", x.cleanContent)
                     x.delete(5000)
-                    message.delete(5000)                    
+                    message.delete(5000)
                 })
-                .catch(console.error)
-            return 
+                .catch(console.error)            
         }
 
         cmd = cmd.substring(0, 2)
