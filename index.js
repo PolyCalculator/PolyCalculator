@@ -58,10 +58,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(5000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 5 seconds"))
                             .catch(console.error)
                         message.delete(5000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 5 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -81,10 +81,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(5000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 5 seconds"))
                             .catch(console.error)
                         message.delete(5000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 5 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -105,10 +105,10 @@ bot.on('message', message => {
             .then(x => {
                 if(notBotChannel) {
                     x.delete(60000)
-                        .then(x => console.log("Response should delete"))
+                        .then(x => console.log("Response deleted after 1 min"))
                         .catch(console.error)
                     message.delete(60000)
-                        .then(x => console.log("Message should delete"))
+                        .then(x => console.log("Message deleted after 1 min"))
                         .catch(console.error)
                 }
             })
@@ -124,10 +124,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(5000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 5 seconds"))
                             .catch(console.error)
                         message.delete(5000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 5 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -144,10 +144,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(10000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 10 seconds"))
                             .catch(console.error)
                         message.delete(10000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 10 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -165,10 +165,10 @@ bot.on('message', message => {
             .then(x => {
                 if(notBotChannel) {
                     x.delete(60000)
-                        .then(x => console.log("Response should delete"))
+                        .then(x => console.log("Response deleted after 1 min"))
                         .catch(console.error)
                     message.delete(60000)
-                        .then(x => console.log("Message should delete"))
+                        .then(x => console.log("Message deleted after 1 min"))
                         .catch(console.error)
                 }
             })
@@ -184,10 +184,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(5000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 5 seconds"))
                             .catch(console.error)
                         message.delete(5000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 5 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -208,10 +208,10 @@ bot.on('message', message => {
             .then(x => {
                 if(notBotChannel) {
                     x.delete(60000)
-                        .then(x => console.log("Response should delete"))
+                        .then(x => console.log("Response deleted after 1 min"))
                         .catch(console.error)
                     message.delete(60000)
-                        .then(x => console.log("Message should delete"))
+                        .then(x => console.log("Message deleted after 1 min"))
                         .catch(console.error)
                 }
             })
@@ -226,10 +226,10 @@ bot.on('message', message => {
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
                     x.delete(5000)
-                        .then(x => console.log("Response should delete"))
+                        .then(x => console.log("Response deleted after 5 seconds"))
                         .catch(console.error)
                     message.delete(5000)
-                        .then(x => console.log("Message should delete"))
+                        .then(x => console.log("Message deleted after 5 seconds"))
                         .catch(console.error)
                 })
                 .catch(console.error)    
@@ -250,10 +250,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(10000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 10 seconds"))
                             .catch(console.error)
                         message.delete(10000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 10 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -267,10 +267,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(10000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 10 seconds"))
                             .catch(console.error)
                         message.delete(10000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 10 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -287,10 +287,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(10000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 10 seconds"))
                             .catch(console.error)
                         message.delete(10000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 10 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -351,10 +351,10 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(10000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 10 seconds"))
                             .catch(console.error)
                         message.delete(10000)
-                            .then(x => console.log("Message should delete"))
+                            .then(x => console.log("Message deleted after 10 seconds"))
                             .catch(console.error)
                     }
                 })
@@ -484,7 +484,7 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(20000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 20 seconds"))
                             .catch(console.error)
                         message.delete(20000)
                             .then(x => console.log("Message should delete"))
@@ -512,7 +512,7 @@ bot.on('message', message => {
                 .then(x => {
                     if(notBotChannel) {
                         x.delete(20000)
-                            .then(x => console.log("Response should delete"))
+                            .then(x => console.log("Response deleted after 20 seconds"))
                             .catch(console.error)
                         message.delete(20000)
                             .then(x => console.log("Message should delete"))
