@@ -41,6 +41,7 @@ bot.on('message', message => {
                 owners[i] = `**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`
                 i=i+1;
             })
+            message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
             message.channel.send(owners)
         }
     }
