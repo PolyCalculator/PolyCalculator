@@ -23,12 +23,11 @@ bot.on('ready', () => {
 //--------------------------------------
 bot.on('message', message => {
     prefix = process.env.PREFIX;
-    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
-    console.log("botChannel:", botChannel)
 
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
-    
+
+        const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
