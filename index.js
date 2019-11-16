@@ -27,7 +27,7 @@ bot.on('message', message => {
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
 
-        const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
+    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
