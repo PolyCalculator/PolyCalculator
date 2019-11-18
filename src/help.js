@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
 
-module.exports = function (args, message) {
+module.exports = function (args, message, auto) {
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
             .setColor('#FA8072')
@@ -62,7 +62,7 @@ module.exports = function (args, message) {
     helpEmbed.setDescription(descriptionArray);
     return message.channel.send(helpEmbed)
         .then(x => {
-            if(!botChannel) {
+            if(!botChannel && auto === false) {
                 x.delete(60000)
                     .then(x => {})
                     .catch(console.error)

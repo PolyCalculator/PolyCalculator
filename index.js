@@ -68,7 +68,7 @@ bot.on('message', message => {
                 .catch(console.error)    
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-        return Help(args[0], message)
+        return Help(args[0], message, false)
         
 //--------------------------------------------------
 //
@@ -137,7 +137,7 @@ bot.on('message', message => {
         args.shift();
 
         if(args.length === 0)
-            return Help(cmd, message)
+            return Help(cmd, message, false)
 
         if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
@@ -196,7 +196,7 @@ bot.on('message', message => {
         args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
         args.shift();
         if(args.length === 0)
-            return Help(cmd, message)
+            return Help(cmd, message, false)
 
         let defender = {name: "Defender"}
         defBonusVals = getBonus(args)
@@ -239,7 +239,7 @@ bot.on('message', message => {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length);
 
         if(args.length === 0)
-            return Help(cmd, message)
+            return Help(cmd, message, false)
 
         if(args.includes("/"))
             unitsArray = args.split("/")
@@ -477,7 +477,7 @@ bot.on('message', message => {
         polytopia = bot.guilds.get('283436219780825088')
         botcommands = polytopia.channels.get('403724174532673536')
         message = {'channel':botcommands}
-        Help('help', message)
+        Help('help', message, false)
     } else {
         if (message.channel.name.startsWith("general")) {
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
@@ -537,16 +537,16 @@ setInterval(function() {
 
     botcommands = polytopia.channels.get('403724174532673536')
     botcommands = {'channel':botcommands}
-    Help('c', botcommands)
+    Help('c', botcommands, true)
     rankedelogames = polytopia.channels.get('511316081160355852')
     rankedelogames = {'channel':rankedelogames}
-    Help('c', rankedelogames)
+    Help('c', rankedelogames, true)
     unrankedgames = polytopia.channels.get('511906353476927498')
     unrankedgames = {'channel':unrankedgames}
-    Help('c', unrankedgames)
+    Help('c', unrankedgames, true)
     elobotcommands = polytopia.channels.get('635091071717867521')
     elobotcommands = {'channel':elobotcommands}
-    Help('c', elobotcommands)
+    Help('c', elobotcommands, true)
 }, 10800000); // every 3h (10800000)
 
 app.get('/', function (req, res) {
