@@ -5,6 +5,7 @@ const http = require("http");
 const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
 const Fight = require("./src/fight");
 const Help = require("./src/help")
+let logChannel = {}
 
 const express = require('express');
 var app = express();
@@ -14,6 +15,9 @@ bot.on('ready', () => {
     console.log(`Logged in as ${bot.user.username}`);
 
     bot.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
+
+    const calcServer = bot.guilds.get("581872879386492929")
+    logChannel = calcServer.channels.get("648688924155314176")
 });
 
 //--------------------------------------
