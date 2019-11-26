@@ -34,7 +34,7 @@ bot.on('message', message => {
 
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    logChannel.send(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel} by ${message.author} (${message.author.tag})`)
+    logChannel.send(`\`${message.cleanContent}\` in ${message.guild.name.toUpperCase()} in #${message.channel} by ${message.author} (${message.author.tag})`)
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
