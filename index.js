@@ -483,11 +483,11 @@ bot.on('message', message => {
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
                     if(!botChannel) {
-                        x.delete(20000)
+                        x.delete(5000)
                             .then(x => {})
                             .catch(console.error)
-                        message.delete(20000)
-                            .then(x => console.log(`Message deleted in ${message.channel.name} after 20 seconds`))
+                        message.delete(5000)
+                            .then(x => console.log(`Message deleted in ${message.channel.name} after 5 seconds`))
                             .catch(console.error)
                     }
                 })
