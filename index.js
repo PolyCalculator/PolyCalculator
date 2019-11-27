@@ -17,8 +17,9 @@ bot.on('ready', () => {
     bot.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
 
     const calcServer = bot.guilds.get("581872879386492929")
+    const meee = calcServer.members.get('217385992837922819')
     logChannel = calcServer.channels.get("648688924155314176")
-    logChannel.send(`Logged in as ${bot.user.username}`);
+    logChannel.send(`Logged in as ${bot.user.username}, ${meee}`);
 });
 
 //--------------------------------------
