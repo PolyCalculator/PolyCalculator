@@ -34,7 +34,7 @@ bot.on('message', message => {
 
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    logChannel.send(`\`${message.cleanContent}\` in ${message.guild.name.toUpperCase()} in #${message.channel} by ${message.author} (${message.author.tag})`)
+    logChannel.send(`\`${message.cleanContent}\` in ${message.guild.name.toUpperCase()}\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
@@ -321,7 +321,6 @@ bot.on('message', message => {
             attackerStats = getFightUnit(attackerArray)
             defenderStats = getFightUnit(defenderArray)
         } catch (error) {
-            logChannel.send("ERROR:", error)
             console.log("ERROR:", error)
             return message.channel.send(`**ERROR:** ${error}`)
                 .then(x => {
