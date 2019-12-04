@@ -551,28 +551,29 @@ bot.on('message', message => {
         message = {'channel':botcommands}
         Help('help', message, false)
     } else {
-        if (message.channel.name.startsWith("general")) {
-            return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-                .then(x => {
-                    if(!botChannel) {
-                        x.delete(5000)
-                            .then(x => {})
-                            .catch(console.error)
-                        message.delete(5000)
-                            .then(x => {
-                                logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
-                                console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-                            })
-                            .catch(console.error)
-                    }
-                })
-                .catch(console.error)            
-        }
-
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
 
         if(unit) {
+
+            if (message.channel.name.startsWith("general")) {
+                return message.channel.send(`Come on! Not in **${message.channel.name}**`)
+                    .then(x => {
+                        if(!botChannel) {
+                            x.delete(5000)
+                                .then(x => {})
+                                .catch(console.error)
+                            message.delete(5000)
+                                .then(x => {
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
+                                    console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
+                                })
+                                .catch(console.error)
+                        }
+                    })
+                    .catch(console.error)            
+            }
+
             helpEmbed = new RichEmbed()
                 .setColor('#FA8072')
                 .setTitle(unit.name)
