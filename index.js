@@ -45,12 +45,11 @@ bot.on('message', message => {
         if(cmd === "stats") {
             owners = [];
             i=0;
+            message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
             guilds.forEach((x) => {
-                owners[i] = `**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`
+                message.channel.send(`**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
                 i=i+1;
             })
-            message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
-            message.channel.send(owners)
         }
     }
 //--------------------------------------------------
