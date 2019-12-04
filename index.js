@@ -27,6 +27,14 @@ bot.on('ready', () => {
 //          EVENT ON MESSAGE
 //
 //--------------------------------------
+bot.on('guildCreate', guild => {
+    const calcServer = bot.guilds.get("581872879386492929")
+    const meee = calcServer.members.get('217385992837922819')
+    logChannel = calcServer.channels.get("648688924155314176")
+    logChannel.send(`Hey ${meee}, I was just added to "**${guild.name}**"\nOwner: ${guild.owner.user} (${guild.owner.user.tag})`)
+    console.log(`Hey @${meee.user.username}, I was just added to ${guild.name}\nOwner: @${guild.owner.user.tag}`)
+})
+
 bot.on('message', message => {
     prefix = process.env.PREFIX;
 
@@ -48,9 +56,10 @@ bot.on('message', message => {
             i=0;
             message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
             guilds.forEach((x) => {
-                message.channel.send(`**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
+                owners[i] = `**${x.name}**: ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`
                 i=i+1;
             })
+            message.channel.send(owners)
         }
     }
 //--------------------------------------------------
@@ -535,9 +544,10 @@ bot.on('message', message => {
     } else if (cmd === "credits") {
         helpEmbed = new RichEmbed()
         helpEmbed.setColor('#FA8072')
-            .setTitle('**Contributors**')
+            .setTitle('Invite in my server')
         helpEmbed.addField("Developer", "jd (alphaSeahorse)")
         helpEmbed.addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
+        helpEmbed.setURL("https://discordapp.com/api/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot")
         message.channel.send(helpEmbed)
             .then(x => {})
             .catch(console.error)

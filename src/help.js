@@ -4,6 +4,7 @@ module.exports = function (args, message, auto) {
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
             .setColor('#FA8072')
+            .setURL("https://discordapp.com/api/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot")
     let descriptionArray = [];
 
     if (args === "full" || args === "f") {
