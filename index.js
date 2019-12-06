@@ -43,8 +43,13 @@ bot.on('message', message => {
 
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
-    if(message.author.tag != "Skrealder#4823")
-        logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+
+    let logEmbed = new RichEmbed().setColor('#FA8072')
+    logEmbed.setTitle(`**${message.cleanContent}**`)
+        .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+    //logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+    logChannel.send(logEmbed)
+
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
