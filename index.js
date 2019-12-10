@@ -642,7 +642,7 @@ setInterval(function() {
     elobotcommands = polytopia.channels.get('635091071717867521')
     elobotcommands = {'channel':elobotcommands}
     Help('c', elobotcommands, true)
-}, 10800000); // every 3h (10800000)
+}, 21600000); // every 3h (10800000) 6h (21600000)
 
 app.get('/', function (req, res) {
     res.send('Hello World!')
