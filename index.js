@@ -35,6 +35,15 @@ bot.on('guildCreate', guild => {
     console.log(`Hey @${meee.user.username}, I was just added to ${guild.name}\nOwner: @${guild.owner.user.tag}`)
 })
 
+bot.on('guildMemberAdd', newMember => {
+    if (newMember.guild.id === '581872879386492929') {
+        newMember.addRole('654164652741099540')
+            .then(x => {
+                console.log(`${x.user.tag} just got in PolyCalculator server!`)
+            })
+    }
+})
+
 bot.on('message', message => {
     prefix = process.env.PREFIX;
 
@@ -549,10 +558,11 @@ bot.on('message', message => {
     } else if (cmd === "credits") {
         helpEmbed = new RichEmbed()
         helpEmbed.setColor('#FA8072')
-            .setTitle('Invite in my server')
-        helpEmbed.addField("Developer", "jd (alphaSeahorse)")
-        helpEmbed.addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
-        helpEmbed.setURL("https://discordapp.com/api/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot")
+            .setTitle('PolyCalculator\'s server.')
+            .setDescription('For bot updates, feature requests and bug reports')
+            .addField("Developer", "jd (alphaSeahorse)")
+            .addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
+            .setURL("https://discord.gg/heCjtjQ")
         message.channel.send(helpEmbed)
             .then(x => {})
             .catch(console.error)

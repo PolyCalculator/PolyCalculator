@@ -3,8 +3,8 @@ const { RichEmbed } = require('discord.js');
 module.exports = function (args, message, auto) {
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
-            .setColor('#FA8072')
-            .setURL("https://discordapp.com/api/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot")
+        .setColor('#FA8072')
+        .setURL("https://discord.gg/heCjtjQ")
     let descriptionArray = [];
 
     if (args === "full" || args === "f") {
@@ -60,7 +60,8 @@ module.exports = function (args, message, auto) {
         helpEmbed.addField("Features", "It supports veteran status (with `v`), naval units (with `bo`, `sh` or `bs`), defense bonus (with `d` or `w`) and no-retaliation (by adding `nr` on the defender side).")
         helpEmbed.addField(`For more details`, `\`${prefix}help {command}\` followed by the the command you want help with\n**Example:** \`${prefix}help c\``)
     }
-    helpEmbed.setDescription(descriptionArray);
+    helpEmbed.setDescription(descriptionArray)
+        .addField("You can catch all the bot updates, make suggestions and flag bugs here:","https://discord.gg/heCjtjQ.")
     return message.channel.send(helpEmbed)
         .then(x => {
             if(!botChannel && auto === false) {
