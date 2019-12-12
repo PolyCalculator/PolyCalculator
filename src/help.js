@@ -61,6 +61,7 @@ module.exports = function (args, message, auto) {
         helpEmbed.addField(`For more details`, `\`${prefix}help {command}\` followed by the the command you want help with\n**Example:** \`${prefix}help c\``)
     }
     helpEmbed.setDescription(descriptionArray)
+        .addBlankField()
         .addField("You can catch all the bot updates, make suggestions and flag bugs here:","https://discord.gg/heCjtjQ.")
     return message.channel.send(helpEmbed)
         .then(x => {
