@@ -558,7 +558,7 @@ bot.on('message', message => {
     } else if (cmd === "credits") {
         helpEmbed = new RichEmbed()
         helpEmbed.setColor('#FA8072')
-            .setTitle('PolyCalculator\'s server.')
+            .setTitle('PolyCalculator\'s server')
             .setDescription('For bot updates, feature requests and bug reports')
             .addField("Developer", "jd (alphaSeahorse)")
             .addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
