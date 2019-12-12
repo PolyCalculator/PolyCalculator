@@ -209,7 +209,7 @@ module.exports.getFightUnit = function (array) {
         unitKey = unitKey.filter(x => nonnaval.hasOwnProperty(x.substring(0,2)));
         
         if(unitKey.length === 0)
-            throw `For naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc warrior boat vet, warrior ship\`\n   Short ex: \`${prefix}calc wa bo v, wa sh\``
+            throw `For naval units, make sure you include which unit is in.\n   Long ex: \`${prefix}calc warrior boat vet, warrior ship\`\n   Short ex: \`${prefix}c wa bo v, wa sh\``
         unitKey = unitKey.toString().substring(0,2)
         unit = Object.assign({},nonnaval[unitKey])
 
