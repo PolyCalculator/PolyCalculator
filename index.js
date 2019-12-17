@@ -50,7 +50,7 @@ bot.on('message', message => {
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
 
-    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo")
+    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
@@ -275,7 +275,7 @@ bot.on('message', message => {
 //                .CALC COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "calc" || cmd === 'c' || cmd.startsWith("elim") || cmd === 'e') {
+    } else if (cmd === "cal" || cmd === 'c' || cmd.startsWith("eli") || cmd === 'e') {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {

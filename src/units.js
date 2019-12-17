@@ -257,7 +257,7 @@ module.exports.getUnits = function () {
 }
 
 module.exports.getMaxHP = function (array, unit) {
-    if (array.some(x => x.startsWith('v'))) {
+    if (array.some(x => x.startsWith('v')) || array.some(x => Number(x) > unit.maxhp)) {
         return unit.vethp;
     }
     else {
@@ -270,7 +270,7 @@ module.exports.getCurrentHP = function (array, maxhp, message) {
         index = array.findIndex(x => !isNaN(Number(x)));
         currenthp = parseInt(array[index]);
         if (currenthp > maxhp) {
-            message.channel.send(`You have inputed a current hp higher than the max hp.\nYou can add a \`v\` (if you haven't already) to get a veteran max hp.\nIn the meantime, this result calculates with the max hp as current hp.`);
+            message.channel.send(`You have inputed a current hp higher than the veteran hp.\nIn the meantime, this result calculates with the veteran hp as current hp.`);
             return maxhp;
         }
         else if (currenthp < 1) {
