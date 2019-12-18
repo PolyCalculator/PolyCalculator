@@ -50,7 +50,7 @@ bot.on('message', message => {
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
         return;
 
-    const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
+    const botChannel = message.channel.name.includes("bugs") || message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
