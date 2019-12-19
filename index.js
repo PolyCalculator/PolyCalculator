@@ -275,7 +275,7 @@ bot.on('message', message => {
 //                .CALC COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd === "cal" || cmd === 'c' || cmd.startsWith("eli") || cmd === 'e') {
+    } else if (cmd.startsWith("cal") || cmd === 'c' || cmd.startsWith("eli") || cmd === 'e') {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
