@@ -1,6 +1,18 @@
 const { RichEmbed } = require('discord.js');
+const db = require("./db")
+let prefix = process.env.PREFIX
 
 module.exports = function (args, message, auto) {
+    db.getPrefix(message.guild.id)
+        .then(guildPrefix => {
+            prefix = guildPrefix
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg)
+                .then(() => {})
+                .catch(() => {})
+        })
+
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
         .setColor('#FA8072')

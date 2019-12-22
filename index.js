@@ -5,36 +5,53 @@ const http = require("http");
 const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
 const Fight = require("./src/fight");
 const Help = require("./src/help")
-let logChannel = {}
+const db = require("./src/db")
+let prefix = process.env.PREFIX
+let calcServer
+let meee
+let logChannel
+let errorChannel
 
 const express = require('express');
 var app = express();
 
 bot.on('ready', () => {
-    const prefix = process.env.PREFIX;
     console.log(`Logged in as ${bot.user.username}`);
 
-    bot.user.setActivity(`prefix: ${prefix}`, { type: 'LISTENING' });
-
-    const calcServer = bot.guilds.get("581872879386492929")
-    const meee = calcServer.members.get('217385992837922819')
+    calcServer = bot.guilds.get("581872879386492929")
+    meee = calcServer.members.get('217385992837922819')
     logChannel = calcServer.channels.get("648688924155314176")
+    errorChannel = calcServer.channels.get("658125562455261185")
+
+    bot.user.setActivity(`to you`, { type: 'LISTENING' });
+
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`);
 });
 
 //--------------------------------------
 //
-//          EVENT ON MESSAGE
+//        EVENT ON NEW GUILD JOIN
 //
 //--------------------------------------
 bot.on('guildCreate', guild => {
-    const calcServer = bot.guilds.get("581872879386492929")
-    const meee = calcServer.members.get('217385992837922819')
-    logChannel = calcServer.channels.get("648688924155314176")
-    logChannel.send(`Hey ${meee}, I was just added to "**${guild.name}**"\nOwner: ${guild.owner.user} (${guild.owner.user.tag})`)
-    console.log(`Hey @${meee.user.username}, I was just added to ${guild.name}\nOwner: @${guild.owner.user.tag}`)
+    db.addNewServer(guild.id, guild.name)
+        .then(logMsg => {
+            logChannel.send(logMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
 })
 
+//--------------------------------------
+//
+//  EVENT ON NEW MEMBER IN DEV SERVER
+//
+//--------------------------------------
 bot.on('guildMemberAdd', newMember => {
     if (newMember.guild.id === '581872879386492929') {
         newMember.addRole('654164652741099540')
@@ -44,13 +61,29 @@ bot.on('guildMemberAdd', newMember => {
     }
 })
 
-bot.on('message', message => {
-    prefix = process.env.PREFIX;
+//--------------------------------------
+//
+//          EVENT ON MESSAGE
+//
+//--------------------------------------
+bot.on('message', async message => {
+    
+    prefix = await db.getPrefix(message.guild.id)
+        /*.then(guildPrefix => {
+            prefix = guildPrefix
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg)
+                .then(() => {})
+                .catch(() => {})
+        })*/
 
-    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`))
-        return;
+    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`)) {
+//        console.log(`${message.author.bot}`,`${!message.content.startsWith(prefix)}`,`${message.content === prefix}`,`${message.content.startsWith(`${prefix}`)}`)
+        return
+    }
 
-    const botChannel = message.channel.name.includes("bugs") || message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
+    const botChannel = db.getBotChannels()//message.channel.name.includes("bugs") || message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
@@ -103,7 +136,49 @@ bot.on('message', message => {
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         return Help(args[0], message, false)
-        
+
+//--------------------------------------------------
+//
+//                .SETPREFIX COMMAND
+//
+//--------------------------------------------------
+    } else if(cmd === "setprefix") {
+        args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
+        if (message.member.hasPermission(`ADMINISTRATOR`)) {
+            if (args[0] || args[0] === prefix)
+                db.changePrefix(message.guild.id, args[0])
+                    .then(msg => {
+                        message.channel.send(msg)
+                            .then(()=>{})
+                            .catch(()=>{})
+                    })
+                    .catch(console.error)
+            else
+                message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
+        } else {
+            message.channel.send(`Only an admin can change the prefix, sorry!`)
+        }
+//--------------------------------------------------
+//
+//                .ADDBOTCHANNELS COMMAND
+//
+//--------------------------------------------------
+} else if(cmd === "addbotchannels") {
+    args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
+    if (message.member.hasPermission(`ADMINISTRATOR`)) {
+        if (args[0] || args[0] === prefix)
+            db.changePrefix(message.guild.id, args[0])
+                .then(msg => {
+                    message.channel.send(msg)
+                        .then(()=>{})
+                        .catch(()=>{})
+                })
+                .catch(console.error)
+        else
+            message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
+    } else {
+        message.channel.send(`Only an admin can change the prefix, sorry!`)
+    }
 //--------------------------------------------------
 //
 //                 .UNITS COMMAND
@@ -658,13 +733,5 @@ setInterval(function() {
 app.get('/', function (req, res) {
     res.send('Hello World!')
 })
-
-app.get('/login/', function (req, res) {
-
-})
-
-app.listen(port, () => {
-    console.log('Listening on ' + port);
-});
 
 bot.login(process.env.TOKEN);
