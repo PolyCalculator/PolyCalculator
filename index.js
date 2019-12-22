@@ -152,7 +152,12 @@ bot.on('message', async message => {
                             .then(()=>{})
                             .catch(()=>{})
                     })
-                    .catch(console.error)
+                    .catch(msg => {
+                        msg = msg.substring(0, 1).toUpperCase() + msg.substring(1)
+                        message.channel.send(msg)
+                            .then(()=>{})
+                            .catch(()=>{})
+                    })
             else
                 message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
         } else {
@@ -173,7 +178,11 @@ bot.on('message', async message => {
                         .then(()=>{})
                         .catch(()=>{})
                 })
-                .catch(console.error)
+                .catch(msg => {
+                    message.channel.send(msg)
+                        .then(()=>{})
+                        .catch(()=>{})
+                })
         else
             message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
     } else {
