@@ -23,7 +23,7 @@ bot.on('ready', () => {
     logChannel = calcServer.channels.get("648688924155314176")
     errorChannel = calcServer.channels.get("658125562455261185")
 
-    bot.user.setActivity(`to you`, { type: 'LISTENING' });
+    bot.user.setActivity(`you`, { type: 'LISTENING' });
 
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`);
 });
@@ -34,7 +34,9 @@ bot.on('ready', () => {
 //
 //--------------------------------------
 bot.on('guildCreate', guild => {
-    db.addNewServer(guild.id, guild.name)
+    botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
+
+    db.addNewServer(guild.id, guild.name, botChannels)
         .then(logMsg => {
             logChannel.send(logMsg.concat(', ', `${meee}!`))
                 .then(() => {})
@@ -82,8 +84,10 @@ bot.on('message', async message => {
 //        console.log(`${message.author.bot}`,`${!message.content.startsWith(prefix)}`,`${message.content === prefix}`,`${message.content.startsWith(`${prefix}`)}`)
         return
     }
-
-    const botChannel = db.getBotChannels()//message.channel.name.includes("bugs") || message.channel.name.includes("bot") || message.channel.name.includes("command") || message.channel.name.includes("elo") || message.channel.name.includes("log")
+    let botChannel = []
+    await db.getBotChannels(message.guild.id)
+        .then(x => { botChannel = x })
+    
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
@@ -120,7 +124,7 @@ bot.on('message', async message => {
         if (message.channel.name.startsWith("general") && message.author.id != '217385992837922819')
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(5000)
                             .then(x => {})
                             .catch(console.error)
@@ -142,101 +146,164 @@ bot.on('message', async message => {
 //                .SETPREFIX COMMAND
 //
 //--------------------------------------------------
-    } else if(cmd === "setprefix") {
+    } else if(cmd === "setprefix" || cmd === "prefix") {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-        if (message.member.hasPermission(`ADMINISTRATOR`)) {
-            if (args[0] || args[0] === prefix)
-                db.changePrefix(message.guild.id, args[0])
-                    .then(msg => {
-                        message.channel.send(msg)
-                            .then(()=>{})
-                            .catch(()=>{})
-                    })
-                    .catch(msg => {
-                        msg = msg.substring(0, 1).toUpperCase() + msg.substring(1)
-                        message.channel.send(msg)
-                            .then(()=>{})
-                            .catch(()=>{})
-                    })
-            else
-                message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
-        } else {
-            message.channel.send(`Only an admin can change the prefix, sorry!`)
-        }
-//--------------------------------------------------
-//
-//                .ADDBOTCHANNELS COMMAND
-//
-//--------------------------------------------------
-} else if(cmd === "addbotchannels") {
-    args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-    if (message.member.hasPermission(`ADMINISTRATOR`)) {
+        if (!message.member.hasPermission(`ADMINISTRATOR`))
+            return message.channel.send(`Only an admin can change the prefix, sorry!`)
+
         if (args[0] || args[0] === prefix)
-            db.changePrefix(message.guild.id, args[0])
+            db.setPrefix(message.guild.id, args[0])
                 .then(msg => {
                     message.channel.send(msg)
-                        .then(()=>{})
-                        .catch(()=>{})
+                        .then(() => {})
+                        .catch(console.error)
                 })
                 .catch(msg => {
+                    msg = msg.substring(0, 1).toUpperCase() + msg.substring(1)
                     message.channel.send(msg)
-                        .then(()=>{})
-                        .catch(()=>{})
+                        .then(() => {})
+                        .catch(console.error)
                 })
         else
             message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
-    } else {
-        message.channel.send(`Only an admin can change the prefix, sorry!`)
+
+//--------------------------------------------------
+//
+//             .REMOVEBOTCHANNEL COMMAND
+//
+//--------------------------------------------------
+} else if(cmd === "removebotchannel" || cmd === "rbc") {
+    if (!message.member.hasPermission(`ADMINISTRATOR`))
+        return message.channel.send(`Only an admin can modify the registerd bot channels, sorry!`)
+    
+    let channelToRemove = message.mentions.channels.first()
+    
+    if(channelToRemove) {
+        await db.removeABotChannel(message.guild.id, channelToRemove.id)
+            .then(x => {
+                console.log('channelToRemove',channelToRemove.id)
+                msg = ['This is the updated list of registered bot channels:']
+                x.forEach(x => {
+                    msg.push(message.guild.channels.get(x))
+                })
+                message.channel.send(msg)
+            })
+            .catch(x => {
+                message.channel.send(x)
+                    .then(x => errorChannel.send([x.cleanContent,x.url]))
+            })
+    }
+    else {
+        await db.getBotChannels(message.guild.id)
+            .then(x => {
+                let msg = []
+                if (x === []) {
+                    msg.push('You need to specify a channel to be removed.')
+                    msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
+                    x.forEach(x => {
+                        msg.push(message.guild.channels.get(x))
+                    })
+                } else {
+                    msg.push('You don\'t yet have bot channels registered with me.')
+                    msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
+                }
+                message.channel.send(msg)
+            })
+            .catch(x => {message.channel.send(x)})
+    }
+//--------------------------------------------------
+//
+//             .ADDBOTCHANNEL COMMAND
+//
+//--------------------------------------------------
+} else if(cmd === "addbotchannel" || cmd === "abc") {
+    if (!message.member.hasPermission(`ADMINISTRATOR`))
+        return message.channel.send(`Only an admin can modify the registerd bot channels, sorry!`)
+
+    let channelToAdd = message.mentions.channels.first()
+
+    if(channelToAdd) {
+        await db.addABotChannel(message.guild.id, channelToAdd.id)
+            .then(x => {
+                console.log('channelToRemove',channelToAdd.id)
+                msg = ['This is the updated list of registered bot channels:']
+                x.forEach(x => {
+                    msg.push(message.guild.channels.get(x))
+                })
+                message.channel.send(msg)
+            })
+            .catch(x => {
+                message.channel.send(x)
+                    .then(x => errorChannel.send([x.cleanContent,x.url]))
+            })
+    }
+    else {
+        await db.getBotChannels(message.guild.id)
+            .then(x => {
+                let msg = []
+                if (x === []) {
+                    msg.push('You need to specify a channel to be removed.')
+                    msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
+                    x.forEach(x => {
+                        msg.push(message.guild.channels.get(x))
+                    })
+                } else {
+                    msg.push('You don\'t yet have bot channels registered with me.')
+                    msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
+                }
+                message.channel.send(msg)
+            })
+            .catch(x => {message.channel.send(x)})
     }
 //--------------------------------------------------
 //
 //                 .UNITS COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd.startsWith("unit")) {
-        if (message.channel.name.startsWith("general"))
-            return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-                .then(x => {
-                    if(!botChannel) {
-                        x.delete(5000)
-                            .then(x => {})
-                            .catch(console.error)
-                        message.delete(5000)
-                            .then(x => {
-                                logChannel.send(`Message deleted in ${message.channel} after 5 seconds`)
-                                console.log(`Message deleted in ${message.channel} after 5 seconds`)
-                            })
-                            .catch(console.error)
-                    }
-                })
-                .catch(console.error)    
-
-        unitEmbed = new RichEmbed();
-        unitEmbed.setColor('#FA8072')
-            .setTitle("All units by code")
-        units = [];
-
-        allUnits = getUnits();
-        Object.keys(allUnits).forEach(function (key) {
-            units.push(`${allUnits[key].name}: ${key}`)
-        });
-        
-        unitEmbed.setDescription(units);
-        message.channel.send(unitEmbed)
+} else if (cmd.startsWith("unit")) {
+    if (message.channel.name.startsWith("general"))
+        return message.channel.send(`Come on! Not in **${message.channel.name}**`)
             .then(x => {
-                if(!botChannel) {
-                    x.delete(60000)
+                if(botChannel.some(x => { x.id === message.channel.id})) {
+                    x.delete(5000)
                         .then(x => {})
                         .catch(console.error)
-                    message.delete(60000)
+                    message.delete(5000)
                         .then(x => {
-                            logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                            console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                            logChannel.send(`Message deleted in ${message.channel} after 5 seconds`)
+                            console.log(`Message deleted in ${message.channel} after 5 seconds`)
                         })
                         .catch(console.error)
                 }
             })
-            .catch(console.error)
+            .catch(console.error)    
+
+    unitEmbed = new RichEmbed();
+    unitEmbed.setColor('#FA8072')
+        .setTitle("All units by code")
+    units = [];
+
+    allUnits = getUnits();
+    Object.keys(allUnits).forEach(function (key) {
+        units.push(`${allUnits[key].name}: ${key}`)
+    });
+    
+    unitEmbed.setDescription(units);
+    message.channel.send(unitEmbed)
+        .then(x => {
+            if(botChannel.some(x => { x.id === message.channel.id})) {
+                x.delete(60000)
+                    .then(x => {})
+                    .catch(console.error)
+                message.delete(60000)
+                    .then(x => {
+                        logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                        console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                    })
+                    .catch(console.error)
+            }
+        })
+        .catch(console.error)
 //--------------------------------------------------
 //
 //                .FULL COMMAND
@@ -246,7 +313,7 @@ bot.on('message', async message => {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(5000)
                             .then(x => {})
                             .catch(console.error)
@@ -269,7 +336,7 @@ bot.on('message', async message => {
         if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
             return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(10000)
                             .then(x => {})
                             .catch(console.error)
@@ -293,7 +360,7 @@ bot.on('message', async message => {
 
         message.channel.send(result.calculate())
             .then(x => {
-                if(!botChannel) {
+                if(botChannel.some(x => { x.id === message.channel.id})) {
                     x.delete(60000)
                         .then(x => {})
                         .catch(console.error)
@@ -315,7 +382,7 @@ bot.on('message', async message => {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(5000)
                             .then(x => {})
                             .catch(console.error)
@@ -342,7 +409,7 @@ bot.on('message', async message => {
         const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
         message.channel.send(result.calculate())
             .then(x => {
-                if(!botChannel) {
+                if(botChannel.some(x => { x.id === message.channel.id})) {
                     x.delete(60000)
                         .then(x => {})
                         .catch(console.error)
@@ -390,7 +457,7 @@ bot.on('message', async message => {
         else
             return message.channel.send("You need an attacker and a defender separated using `,` or `/`")
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(10000)
                             .then(x => {})
                             .catch(console.error)
@@ -410,7 +477,7 @@ bot.on('message', async message => {
         if(attackerArray.length === 0 || defenderArray.length === 0)
             return message.channel.send("You need an attacker and a defender separated using `,` or `/`")
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(10000)
                             .then(x => {})
                             .catch(console.error)
@@ -433,7 +500,7 @@ bot.on('message', async message => {
             console.log("ERROR:", error)
             return message.channel.send(`**ERROR:** ${error}`)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(10000)
                             .then(x => {})
                             .catch(console.error)
@@ -458,7 +525,7 @@ bot.on('message', async message => {
         if(defenderArray.some(x => x === 'w') && defenderArray.some(x => x === 'd'))
             message.channel.send("You've put both `d` and `w`. By default, it'll take `w` over `d` if both are present.")
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(60000)
                             .then(x => {})
                             .catch(console.error)
@@ -485,7 +552,7 @@ bot.on('message', async message => {
             finalDefender.bonus = 1
             message.channel.send("This defender doesn't have fortify, so it doesn't benefit from a wall.\nFor a single bonus, use `d` instead of `w` used for wall.")
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(60000)
                             .then(x => {})
                             .catch(console.error)
@@ -506,7 +573,7 @@ bot.on('message', async message => {
         if(attackerStats.name.toLowerCase() === "mooni" || attackerStats.name.toLowerCase() === "mind bender")
             return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(10000)
                             .then(x => {})
                             .catch(console.error)
@@ -526,7 +593,7 @@ bot.on('message', async message => {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -541,7 +608,7 @@ bot.on('message', async message => {
                     .catch(console.error)
                 message.channel.send(result.provideDefHP())
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -557,7 +624,7 @@ bot.on('message', async message => {
                 result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
                 message.channel.send(result.provideAttHP())
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -573,7 +640,7 @@ bot.on('message', async message => {
             } else if(attackerArray.some(x => x.includes('?')))
                 message.channel.send(result.provideDefHP())
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -589,7 +656,7 @@ bot.on('message', async message => {
             else if(defenderArray.some(x => x.includes('?')))
                 message.channel.send(result.provideAttHP())
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -605,7 +672,7 @@ bot.on('message', async message => {
             else
                 message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`)
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -621,7 +688,7 @@ bot.on('message', async message => {
         } else {
             message.channel.send(result.calculate())
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(60000)
                             .then(x => {})
                             .catch(console.error)
@@ -670,7 +737,7 @@ bot.on('message', async message => {
             if (message.channel.name.startsWith("general")) {
                 return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                     .then(x => {
-                        if(!botChannel) {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(5000)
                                 .then(x => {})
                                 .catch(console.error)
@@ -697,7 +764,7 @@ bot.on('message', async message => {
             helpEmbed.setDescription(descriptionArray);
             message.channel.send(helpEmbed)
                 .then(x => {
-                    if(!botChannel) {
+                    if(botChannel.some(x => { x.id === message.channel.id})) {
                         x.delete(20000)
                             .then(x => {})
                             .catch(console.error)

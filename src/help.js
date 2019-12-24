@@ -2,8 +2,8 @@ const { RichEmbed } = require('discord.js');
 const db = require("./db")
 let prefix = process.env.PREFIX
 
-module.exports = function (args, message, auto) {
-    db.getPrefix(message.guild.id)
+module.exports = async function (args, message, auto) {
+    await db.getPrefix(message.guild.id)
         .then(guildPrefix => {
             prefix = guildPrefix
         })
