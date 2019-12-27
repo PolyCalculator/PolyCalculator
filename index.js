@@ -205,7 +205,7 @@ bot.on('message', async message => {
 //--------------------------------------------------
     } else if(cmd === "setprefix" || cmd === "prefix") {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-        if (!message.member.hasPermission(`ADMINISTRATOR`))
+        if (!message.member.hasPermission(`ADMINISTRATOR`) || message.author != meee.user)
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
 
         stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
@@ -238,7 +238,7 @@ bot.on('message', async message => {
 //
 //--------------------------------------------------
 } else if(cmd === "removebotchannel" || cmd === "rbc") {
-    if (!message.member.hasPermission(`ADMINISTRATOR`))
+    if (!message.member.hasPermission(`ADMINISTRATOR`) || message.author != meee.user)
         return message.channel.send(`Only an admin can modify the registerd bot channels, sorry!`)
     
     let channelToRemove = message.mentions.channels.first()
@@ -255,10 +255,13 @@ bot.on('message', async message => {
     if(channelToRemove) {
         await db.removeABotChannel(message.guild.id, channelToRemove.id)
             .then(x => {
-                msg = ['This is the updated list of registered bot channels:']
-                x.forEach(x => {
-                    msg.push(message.guild.channels.get(x))
-                })
+                if(x.size === 0) {
+                    msg = ['This is the updated list of registered bot channels:']
+                    x.forEach(x => {
+                        msg.push(message.guild.channels.get(x))
+                    })
+                } else
+                    msg = [`You don't have any registered bot channels anymore.\nUse \`${prefix}addbotchannel\` with a channel pinged to register a bot channel with me!`]
                 message.channel.send(msg)
             })
             .catch(x => {
@@ -291,7 +294,7 @@ bot.on('message', async message => {
 //
 //--------------------------------------------------
 } else if(cmd === "addbotchannel" || cmd === "abc") {
-    if (!message.member.hasPermission(`ADMINISTRATOR`))
+    if (!message.member.hasPermission(`ADMINISTRATOR`) || message.author != meee.user)
         return message.channel.send(`Only an admin can modify the registerd bot channels, sorry!`)
 
     let channelToAdd = message.mentions.channels.first()
@@ -334,6 +337,7 @@ bot.on('message', async message => {
                     msg.push('You don\'t yet have bot channels registered with me.')
                     msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
                 }
+                console.log('msg:', msg)
                 message.channel.send(msg)
             })
             .catch(x => {message.channel.send(x)})

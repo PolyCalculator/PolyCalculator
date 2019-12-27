@@ -105,6 +105,7 @@ module.exports.addABotChannel = function (serverId, channelId) {
                     } else {
                         newBotChannels = [channelId]
                     }
+                    console.log('newBotChannels:', newBotChannels)
 
                     let sql = `UPDATE settings SET bot_channels = $1 WHERE server_id = $2`
                     let values = [newBotChannels, serverId];
