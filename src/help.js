@@ -68,6 +68,7 @@ module.exports = async function (args, message, auto) {
         descriptionArray.push("*Parentheses are optional arguments. Units require 2 characters.*")
         helpEmbed.addField("Main command", `**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
         helpEmbed.addField(`Advanced commands`, `**${prefix}elim:** displays the most effective way to kill a unit.\n**${prefix}full:** calculate the outcome of a fight by specifying all the stats.\n**${prefix}test:** same as \`full\` without the stats restrictions.\n**${prefix}units:** show the list of all available units.\n**${prefix}credits:** show the credits.`)
+        helpEmbed.addField(`Settings commands (only for admins)`, `**${prefix}setprefix:** changes the prefix for the server.\n**${prefix}addbotchannel:** Adding a channel in which the messages won't be automatically deleted.\n**${prefix}removebotchannel:** Removing a channel in which the messages won't be automatically deleted.\n\nYou can use \`${prefix}addbotchannel\` to discover the current bot channels.`)
         helpEmbed.addField("Examples", `\`${prefix}c wa, de\`\n\`${prefix}e gi ?, def 5 w\`\n\`${prefix}e gi 28, def w ?\``)
         helpEmbed.addField("Features", "It supports veteran status (with `v`), naval units (with `bo`, `sh` or `bs`), defense bonus (with `d` or `w`) and no-retaliation (by adding `nr` on the defender side).")
         helpEmbed.addField(`For more details`, `\`${prefix}help {command}\` followed by the the command you want help with\n**Example:** \`${prefix}help c\``)

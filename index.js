@@ -11,6 +11,7 @@ let calcServer
 let meee
 let logChannel
 let errorChannel
+let serverCounter
 
 const express = require('express');
 var app = express();
@@ -22,10 +23,14 @@ bot.on('ready', () => {
     meee = calcServer.members.get('217385992837922819')
     logChannel = calcServer.channels.get("648688924155314176")
     errorChannel = calcServer.channels.get("658125562455261185")
+    serverCounter = calcServer.channels.get("659926148788125726")
 
-    bot.user.setActivity(`you`, { type: 'LISTENING' });
+    if(bot.user.id === process.env.BETABOT_ID)
+        bot.user.setActivity('..', { type: 'LISTENING' })
 
-    logChannel.send(`Logged in as ${bot.user.username}, ${meee}`);
+    logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
+    if(bot.user.id != process.env.BETABOT_ID)
+        serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
 });
 
 //--------------------------------------
@@ -47,6 +52,8 @@ bot.on('guildCreate', guild => {
                 .then(() => {})
                 .catch(() => {})
         })
+    if(bot.user.id != process.env.BETABOT_ID)
+        serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
 })
 
 //--------------------------------------
@@ -69,32 +76,39 @@ bot.on('guildMemberAdd', newMember => {
 //
 //--------------------------------------
 bot.on('message', async message => {
-    
-    prefix = await db.getPrefix(message.guild.id)
-        /*.then(guildPrefix => {
-            prefix = guildPrefix
-        })
-        .catch(errorMsg => {
-            errorChannel.send(errorMsg)
-                .then(() => {})
-                .catch(() => {})
-        })*/
+    let botChannel = []
 
-    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix || message.content.startsWith(`${prefix}.`)) {
-//        console.log(`${message.author.bot}`,`${!message.content.startsWith(prefix)}`,`${message.content === prefix}`,`${message.content.startsWith(`${prefix}`)}`)
+    if(message.channel.type != 'dm') {
+        prefix = await db.getPrefix(message.guild.id)
+        await db.getBotChannels(message.guild.id)
+            .then(x => { botChannel = x })
+    } else {
+        if(message.author.bot)
+            return
+        let logEmbed = new RichEmbed().setColor('#FA8072')
+            .setDescription(`${message.author}`)
+            .addField(`Content:`,`${message.content}`)
+        return await logChannel.send(logEmbed)
+            .then(x => { logChannel.send(`${meee}`) } )
+    }
+
+    if(bot.user.id === process.env.BETABOT_ID)
+        prefix = '..'
+
+    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix) {
+//        console.log(message.author.bot, !message.content.startsWith(prefix), message.content === prefix, message.content.startsWith(`${prefix}.`))
         return
     }
-    let botChannel = []
-    await db.getBotChannels(message.guild.id)
-        .then(x => { botChannel = x })
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
-    logEmbed.setTitle(`**${message.cleanContent}**`)
-        .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
-    //logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
-    logChannel.send(logEmbed)
+    if(message.cleanContent.length <= 256) {
+        logEmbed.setTitle(`**${message.cleanContent}**`)
+            .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+        //logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+        logChannel.send(logEmbed)
+    }
 
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
@@ -112,6 +126,21 @@ bot.on('message', async message => {
                 i=i+1;
             })
             message.channel.send(embed)
+        }
+        if(cmd === "pingowners") {
+            guilds.forEach((x) => {
+                args = message.content.slice(prefix.length+cmd.length+1);
+                owner = x.owner.user
+
+                owner.send(args)
+                    .then(x => {
+                        logChannel.send(`${x.channel.recipient} got the message!`)
+                    })
+                    .catch(x => {
+                        errorChannel.send(`${x.channel.recipient} didn't get the message!`)
+                    })
+            })
+            
         }
     }
 //--------------------------------------------------
@@ -197,7 +226,8 @@ bot.on('message', async message => {
         await db.getBotChannels(message.guild.id)
             .then(x => {
                 let msg = []
-                if (x === []) {
+                console.log('x:', x)
+                if (x != []) {
                     msg.push('You need to specify a channel to be removed.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
@@ -226,7 +256,7 @@ bot.on('message', async message => {
         await db.addABotChannel(message.guild.id, channelToAdd.id)
             .then(x => {
                 console.log('channelToRemove',channelToAdd.id)
-                msg = ['This is the updated list of registered bot channels:']
+                msg = ['The channel was added!\n', 'This is the updated list of registered bot channels:']
                 x.forEach(x => {
                     msg.push(message.guild.channels.get(x))
                 })
@@ -241,8 +271,8 @@ bot.on('message', async message => {
         await db.getBotChannels(message.guild.id)
             .then(x => {
                 let msg = []
-                if (x === []) {
-                    msg.push('You need to specify a channel to be removed.')
+                if (x != []) {
+                    msg.push('You need to ping a channel for it to be added.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
                         msg.push(message.guild.channels.get(x))

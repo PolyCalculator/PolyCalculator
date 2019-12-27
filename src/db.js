@@ -17,17 +17,14 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
             } else {
                 if(res.rows[0] === undefined) {
                     botChannels = Array.from(botChannels.keys())
-                    console.log('botChannels:', botChannels)
 
                     let sql1 = `INSERT INTO settings (server_id, prefix, bot_channels, server_name) VALUES ($1, '.', $2, $3)`
                     let values1 = [serverId, botChannels, serverName];
 
                     pool.query(sql1, values1, (err, res) => {
                         if(err) {
-                            console.log('err:', err)
                             reject(`${err.message}. Ping an @**admin** if you need help!`)
                         } else {
-                            console.log('res:', res)
                             resolve(`**PolyCalculator** was added to **${serverName}**!`)
                         }
                     })
@@ -108,7 +105,7 @@ module.exports.addABotChannel = function (serverId, channelId) {
                     } else {
                         newBotChannels = [channelId]
                     }
-                    
+
                     let sql = `UPDATE settings SET bot_channels = $1 WHERE server_id = $2`
                     let values = [newBotChannels, serverId];
 
@@ -139,8 +136,7 @@ module.exports.removeABotChannel = function (serverId, channelId) {
             } else {
                 if(res.rows[0].bot_channels.some(x => x === channelId)) {
                     newBotChannels = res.rows[0].bot_channels.filter(x => x != channelId)
-                    console.log('oldBotChannels:', res.rows[0].bot_channels)
-                    console.log('newBotChannels:', newBotChannels)
+
                     let sql = `UPDATE settings SET bot_channels = $1 WHERE server_id = $2`
                     let values = [newBotChannels, serverId];
 
