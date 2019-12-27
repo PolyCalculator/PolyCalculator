@@ -36,7 +36,7 @@ bot.on('ready', () => {
         serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
         stats.getTriggers()
             .then(x => {
-                newX = Number(x) + 6111
+                newX = Number(x) + 6222
                 cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
             })
             .catch(x => {
@@ -127,7 +127,7 @@ bot.on('message', async message => {
 
     stats.getTriggers()
         .then(x => {
-            newX = Number(x) + 6111
+            newX = Number(x) + 6222
             cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
         })
         .catch(x => {
@@ -189,7 +189,7 @@ bot.on('message', async message => {
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         if (message.channel.id != '660136237725777955')
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
@@ -211,7 +211,7 @@ bot.on('message', async message => {
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
         
         if (message.channel.id != '660136237725777955')
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
@@ -247,7 +247,7 @@ bot.on('message', async message => {
     let channelToRemove = message.mentions.channels.first()
     
     if (message.channel.id != '660136237725777955')
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -304,7 +304,7 @@ bot.on('message', async message => {
     let channelToAdd = message.mentions.channels.first()
 
     if (message.channel.id != '660136237725777955')
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -383,7 +383,7 @@ bot.on('message', async message => {
     unitEmbed.setDescription(units)
     
     if (message.channel.id != '660136237725777955')
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -461,7 +461,7 @@ bot.on('message', async message => {
         const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
 
         if (message.channel.id != '660136237725777955')
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, result.calculate(), message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
@@ -519,7 +519,7 @@ bot.on('message', async message => {
         const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
 
         if (message.channel.id != '660136237725777955')
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, result.calculate(), message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
@@ -889,7 +889,7 @@ bot.on('message', async message => {
 //--------------------------------------------------
     } else if (cmd === "credits") {
         if (message.channel.id != '660136237725777955')
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '', message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
