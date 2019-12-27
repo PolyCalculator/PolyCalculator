@@ -882,15 +882,6 @@ bot.on('message', async message => {
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
 
-        stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '')
-            .then()
-            .catch(errorMsg => {
-                errorMsg = errorMsg.toString()
-                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                    .then(() => {})
-                    .catch(() => {})
-            })
-
         if(unit) {
 
             if (message.channel.name.startsWith("general")) {
@@ -910,6 +901,15 @@ bot.on('message', async message => {
                     })
                     .catch(console.error)            
             }
+
+            stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '')
+                .then()
+                .catch(errorMsg => {
+                    errorMsg = errorMsg.toString()
+                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                        .then(() => {})
+                        .catch(() => {})
+                })
 
             helpEmbed = new RichEmbed()
                 .setColor('#FA8072')
