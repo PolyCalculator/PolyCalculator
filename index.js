@@ -274,8 +274,8 @@ bot.on('message', async message => {
             .then(x => {
                 let msg = []
 
-                if (x != []) {
-                    msg.push('You need to specify a channel to be removed.')
+                if (x.size === 0) {
+                    msg.push('You need to ping a channel for it to be removed.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
                         msg.push(message.guild.channels.get(x))
@@ -327,7 +327,7 @@ bot.on('message', async message => {
         await db.getBotChannels(message.guild.id)
             .then(x => {
                 let msg = []
-                if (x != []) {
+                if (x.size === 0) {
                     msg.push('You need to ping a channel for it to be added.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
