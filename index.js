@@ -6,6 +6,7 @@ const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP,
 const Fight = require("./src/fight");
 const Help = require("./src/help")
 const db = require("./src/db")
+const stats = require("./src/stats")
 let prefix = process.env.PREFIX
 let calcServer
 let meee
