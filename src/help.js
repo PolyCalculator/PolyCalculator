@@ -19,7 +19,14 @@ module.exports = async function (args, message, auto) {
         .setURL("https://discord.gg/rtSTmd8")
     let descriptionArray = [];
 
-    if (args === "full" || args === "f") {
+    if (args === "bulk" || args === "b") {
+        helpEmbed.setTitle(`**How to use the \`${prefix}bulk\` command**`)
+        descriptionArray.push("*Parentheses are optional arguments.*")
+        helpEmbed.addField(`Purpose:`, `It'll calculate the number of attackers needed to kill the defender.`)
+        helpEmbed.addField(`Argument structure:`, `\`${prefix}bulk (attackerCurrentHP) attackerByName (vet), (defenderCurrentHP) unitByName (vet) (d/w) (nr)\``)
+        helpEmbed.addField(`Example`, `Long: \`${prefix}bulk 13 warrior vet, 8 rider\`\nShort: \`${prefix}c wa, de\``)
+        helpEmbed.setFooter(`alias: ${prefix}b`)
+    } else if (args === "full" || args === "f") {
         helpEmbed.setTitle(`**How to use the \`${prefix}full\` command**`)
         descriptionArray.push("*Parentheses are optional arguments.*")
         helpEmbed.addField(`Argument structure`,`\`${prefix}full attackerCurrentHP attackerMaxHP attack defenderCurrentHP defenderMaxHP defense (d/w) (nr)\``)
@@ -67,9 +74,9 @@ module.exports = async function (args, message, auto) {
         helpEmbed.setTitle("**How to use the PolyCalculator bot**")
         descriptionArray.push("*Parentheses are optional arguments. Units require 2 characters.*")
         helpEmbed.addField("Main command", `**${prefix}calc:** calculate the outcome of a fight in the most intuitive format.`)
-        helpEmbed.addField(`Advanced commands`, `**${prefix}elim:** displays the most effective way to kill a unit.\n**${prefix}full:** calculate the outcome of a fight by specifying all the stats.\n**${prefix}test:** same as \`full\` without the stats restrictions.\n**${prefix}units:** show the list of all available units.\n**${prefix}credits:** show the credits.`)
+        helpEmbed.addField(`Advanced commands`, `**${prefix}elim:** displays the most effective way to kill a unit.\n**${prefix}bulk:** calculate the number of attackers needed to kill the defender.\n**${prefix}full:** calculate the outcome of a fight by specifying all the stats.\n**${prefix}test:** same as \`full\` without the stats restrictions.\n**${prefix}units:** show the list of all available units.\n**${prefix}credits:** show the credits.`)
         helpEmbed.addField(`Settings commands (only for admins)`, `**${prefix}setprefix:** changes the prefix for the server.\n**${prefix}addbotchannel:** Adding a channel in which the messages won't be automatically deleted.\n**${prefix}removebotchannel:** Removing a channel in which the messages won't be automatically deleted.\n\nYou can use \`${prefix}addbotchannel\` to discover the current bot channels.`)
-        helpEmbed.addField("Examples", `\`${prefix}c wa, de\`\n\`${prefix}e gi ?, def 5 w\`\n\`${prefix}e gi 28, def w ?\``)
+        helpEmbed.addField("Examples", `\`${prefix}c wa, de\`\n\`${prefix}e gi ?, def 5 w\`\n\`${prefix}e gi 28, def w ?\`\n\`${prefix}b gi, def w\``)
         helpEmbed.addField("Features", "It supports veteran status (with `v`), naval units (with `bo`, `sh` or `bs`), defense bonus (with `d` or `w`) and no-retaliation (by adding `nr` on the defender side).")
         helpEmbed.addField(`For more details`, `\`${prefix}help {command}\` followed by the the command you want help with\n**Example:** \`${prefix}help c\``)
     }

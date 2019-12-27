@@ -199,7 +199,7 @@ const ic = {
 const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
 const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
 
-module.exports.getFightUnit = function (array) {
+module.exports.getFightUnit = function (array, prefix) {
     //return new Promise((resolve, reject) => {
 
         unitKeys = Object.keys(all);

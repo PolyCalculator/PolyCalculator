@@ -538,7 +538,7 @@ bot.on('message', async message => {
 //                .CALC COMMAND
 //
 //--------------------------------------------------
-    } else if (cmd.startsWith("cal") || cmd === 'c' || cmd.startsWith("eli") || cmd === 'e') {
+    } else if (cmd.startsWith("cal") || cmd === 'c' || cmd.startsWith("eli") || cmd === 'e' || cmd.startsWith("bulk") || cmd === 'b') {
         if (message.channel.name.startsWith("general"))
             return message.channel.send(`Come on! Not in **${message.channel.name}**`)
                 .then(x => {
@@ -605,8 +605,8 @@ bot.on('message', async message => {
 //        GET FUNCTIONS TO FIND UNITS STATS
 //--------------------------------------------------
         try {
-            attackerStats = getFightUnit(attackerArray)
-            defenderStats = getFightUnit(defenderArray)
+            attackerStats = getFightUnit(attackerArray, prefix)
+            defenderStats = getFightUnit(defenderArray, prefix)
         } catch (error) {
             return message.channel.send(`**ERROR:** ${error}`)
                 .then(x => {
@@ -699,7 +699,7 @@ bot.on('message', async message => {
                 
         let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
 
-        if((cmd.startsWith("elim") || cmd === "e")) {
+        if(cmd.startsWith("elim") || cmd === "e") {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                     .then(x => {
@@ -806,6 +806,31 @@ bot.on('message', async message => {
                     .catch(console.error)
             } else
                 message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`)
+                    .then(x => {
+                        if(botChannel.some(x => { x.id === message.channel.id})) {
+                            x.delete(60000)
+                                .then(x => {})
+                                .catch(console.error)
+                            message.delete(60000)
+                                .then(x => {
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
+                                })
+                                .catch(console.error)
+                        }
+                    })
+                    .catch(console.error)
+        } else if(cmd.startsWith("bulk") || cmd === "b") {
+
+            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+                .then()
+                .catch(errorMsg => {
+                    errorMsg = errorMsg.toString()
+                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                        .then(() => {})
+                        .catch(() => {})
+                })
+            message.channel.send(result.bulk())
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
                             x.delete(60000)

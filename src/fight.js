@@ -103,6 +103,32 @@ class Fight {
 
         return helpEmbed;
     }
+
+    bulk() {
+        var totaldam = this.aforce+this.dforce;
+        var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
+        var hpdefender = this.dhp;
+        let attdiff = 0
+        var hpattacker
+
+        let hp = this.dhp
+        let i = 0
+
+        for(; hpdefender > 0; i++) {
+            hpdefender = hpdefender - defdiff;
+        }
+
+        const helpEmbed = new RichEmbed()
+            .setColor('#FA8072')
+            .setDescription(`You'll need this many hits from the ${this.aname} to kill the ${this.dname}:`)
+            .addField(`**Number of ${this.aname}s**:`, `${i}`)
+
+        if(this.aname === 'Fire Dragon') {
+            helpEmbed.addField(`**Splash damage**:`, Math.floor(defdiff/2))
+        }
+
+        return helpEmbed;
+    }
 }
 
 module.exports = Fight;

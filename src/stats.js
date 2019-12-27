@@ -30,14 +30,15 @@ module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed) {
         if(index != -1)
             defender = defender.substring(0, index)
     }
+    let timeStamp = Date.now();
 
     return new Promise((resolve, reject) => {
-        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender) VALUES ($1, $2, $3, $4, $5, $6, $7)`
-        let values = [cleanContent, author.id, author.tag, cmd, url, attacker, defender]
+        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
+        let values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp]
 
         pool.query(sql, values, (err, res) => {
             if(err) {
-                reject(`Stats: ${err.message}\n${url}`)
+                reject(`Stats: ${err.stack}\n${url}`)
             } else {
                 resolve()
             }
