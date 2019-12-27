@@ -20,7 +20,7 @@ module.exports.getTriggers = function() {
     })
 }
 
-module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed) {
+module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, guildName) {
     let attacker = ''
     let defender = ''
     if(resEmbed) {
@@ -33,8 +33,8 @@ module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed) {
     let timeStamp = Date.now();
 
     return new Promise((resolve, reject) => {
-        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`
-        let values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp]
+        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date, server_name) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+        let values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp, guildName]
 
         pool.query(sql, values, (err, res) => {
             if(err) {
