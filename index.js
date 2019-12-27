@@ -125,6 +125,14 @@ bot.on('message', async message => {
     console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
     let args;
 
+    stats.getTriggers()
+        .then(x => {
+            newX = Number(x) + 6111
+            cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
+        })
+        .catch(x => {
+            errorChannel.send(x)
+        })   
     //INSIDER
     if(message.channel.name === "insider-information") {
         let guilds = message.client.guilds;
