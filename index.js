@@ -321,7 +321,7 @@ bot.on('message', async message => {
             })
             .catch(x => {
                 message.channel.send(x)
-                    .then(x => errorChannel.send([x.cleanContent,x.url]))
+                    .then(()=>{})
             })
     }
     else {
@@ -339,8 +339,9 @@ bot.on('message', async message => {
                     msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
                 }
                 message.channel.send(msg)
+                    .then(()=>{})
             })
-            .catch(x => {message.channel.send(x)})
+            .catch(x => {message.channel.send(x).then(()=>{})})
     }
 //--------------------------------------------------
 //
