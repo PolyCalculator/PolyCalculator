@@ -254,7 +254,6 @@ bot.on('message', async message => {
             })
         await db.removeABotChannel(message.guild.id, channelToRemove.id)
             .then(x => {
-                console.log('channelToRemove',channelToRemove.id)
                 msg = ['This is the updated list of registered bot channels:']
                 x.forEach(x => {
                     msg.push(message.guild.channels.get(x))
@@ -270,7 +269,7 @@ bot.on('message', async message => {
         await db.getBotChannels(message.guild.id)
             .then(x => {
                 let msg = []
-                console.log('x:', x)
+
                 if (x != []) {
                     msg.push('You need to specify a channel to be removed.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
@@ -307,7 +306,7 @@ bot.on('message', async message => {
             })
         await db.addABotChannel(message.guild.id, channelToAdd.id)
             .then(x => {
-                console.log('channelToRemove',channelToAdd.id)
+
                 msg = ['The channel was added!\n', 'This is the updated list of registered bot channels:']
                 x.forEach(x => {
                     msg.push(message.guild.channels.get(x))
@@ -388,7 +387,7 @@ bot.on('message', async message => {
                 message.delete(60000)
                     .then(x => {
                         logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                        console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                        console.log(`Message deleted in ${message.channel.name} after 1 min`)
                     })
                     .catch(console.error)
             }
@@ -463,8 +462,8 @@ bot.on('message', async message => {
                         .catch(console.error)
                     message.delete(60000)
                         .then(x => {
-                            logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                            console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                            logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                            console.log(`Message deleted in ${message.channel.name} after 1 min`)
                         })
                         .catch(console.error)
                 }
@@ -520,8 +519,8 @@ bot.on('message', async message => {
                         .catch(console.error)
                     message.delete(60000)
                         .then(x => {
-                            logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                            console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                            logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                            console.log(`Message deleted in ${message.channel.name} after 1 min`)
                         })
                         .catch(console.error)
                 }
@@ -602,7 +601,6 @@ bot.on('message', async message => {
             attackerStats = getFightUnit(attackerArray)
             defenderStats = getFightUnit(defenderArray)
         } catch (error) {
-            console.log("ERROR:", error)
             return message.channel.send(`**ERROR:** ${error}`)
                 .then(x => {
                     if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -636,8 +634,8 @@ bot.on('message', async message => {
                             .catch(console.error)
                         message.delete(60000)
                             .then(x => {
-                                logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                console.log(`Message deleted in ${message.channel.name} after 1 min`)
                             })
                             .catch(console.error)
                     }
@@ -663,8 +661,8 @@ bot.on('message', async message => {
                             .catch(console.error)
                         message.delete(60000)
                             .then(x => {
-                                logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                console.log(`Message deleted in ${message.channel.name} after 1 min`)
                             })
                             .catch(console.error)
                     }
@@ -695,7 +693,6 @@ bot.on('message', async message => {
         let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
 
         if((cmd.startsWith("elim") || cmd === "e")) {
-            console.log(result.calculate())
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                     .then(x => {
@@ -705,8 +702,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -729,8 +726,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -745,8 +742,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -769,8 +766,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -793,8 +790,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -809,8 +806,8 @@ bot.on('message', async message => {
                                 .catch(console.error)
                             message.delete(60000)
                                 .then(x => {
-                                    logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                    console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                    logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                    console.log(`Message deleted in ${message.channel.name} after 1 min`)
                                 })
                                 .catch(console.error)
                         }
@@ -832,8 +829,8 @@ bot.on('message', async message => {
                             .catch(console.error)
                         message.delete(60000)
                             .then(x => {
-                                logChannel.send(`Messages deleted in ${message.channel.name} after 1 min`)
-                                console.log(`Messages deleted in ${message.channel.name} after 1 min`)
+                                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
+                                console.log(`Message deleted in ${message.channel.name} after 1 min`)
                             })
                             .catch(console.error)
                     }

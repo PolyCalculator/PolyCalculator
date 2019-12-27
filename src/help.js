@@ -83,7 +83,7 @@ module.exports = async function (args, message, auto) {
                     .then(x => {})
                     .catch(console.error)
                 message.delete(60000)
-                    .then(x => console.log(`Messages deleted in ${message.channel.name} after 1 min`))
+                    .then(x => console.log(`Message deleted in ${message.channel.name} after 1 min`))
                     .catch(console.error)
             }
         })

@@ -35,10 +35,8 @@ class Fight {
                 break
         }
         if(this.dhp === 0) {
-            console.log("Can't kill")
             helpEmbed.setTitle(`A ${this.ahp}hp ${this.aname} cannot even kill a 1hp ${this.dname}.`)
         } else {
-            console.log(`The defender hp required is: ${this.dhp}`)
             helpEmbed
                 .setTitle(`The defender hp required for a kill with a ${this.ahp}hp ${this.aname} is:`)
                 .addField(`**${this.dname}**:`, `${this.dhp}`)
@@ -61,10 +59,8 @@ class Fight {
                 break
         }
         if(this.ahp === this.amaxhp) {
-            console.log("Can't kill")
             helpEmbed.setTitle(`A full hp ${this.aname} cannot kill a ${this.dhp}hp ${this.dname}.`)
         } else {
-            console.log(`The min attacker hp required is: ${this.ahp}`)
             helpEmbed
                 .setTitle(`The minimum attacker hp required to kill a ${this.dhp}hp ${this.dname} is:`)
                 .addField(`**${this.aname}**:`, `${this.ahp}`)
