@@ -255,7 +255,7 @@ bot.on('message', async message => {
     if(channelToRemove) {
         await db.removeABotChannel(message.guild.id, channelToRemove.id)
             .then(x => {
-                if(x.length === 0) {
+                if(x.length != 0) {
                     msg = ['This is the updated list of registered bot channels:']
                     x.forEach(x => {
                         msg.push(message.guild.channels.get(x))
@@ -274,7 +274,7 @@ bot.on('message', async message => {
             .then(x => {
                 let msg = []
 
-                if (x.length === 0) {
+                if (x.length != 0) {
                     msg.push('You need to ping a channel for it to be removed.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
@@ -326,8 +326,9 @@ bot.on('message', async message => {
     else {
         await db.getBotChannels(message.guild.id)
             .then(x => {
+                console.log('x:', x.length)
                 let msg = []
-                if (x.length === 0) {
+                if (x.length != 0) {
                     msg.push('You need to ping a channel for it to be added.')
                     msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
                     x.forEach(x => {
@@ -337,7 +338,6 @@ bot.on('message', async message => {
                     msg.push('You don\'t yet have bot channels registered with me.')
                     msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
                 }
-                console.log('msg:', msg)
                 message.channel.send(msg)
             })
             .catch(x => {message.channel.send(x)})
