@@ -142,7 +142,7 @@ bot.on('message', async message => {
             i=0;
             message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
             guilds.forEach((x) => {
-                embed.addField(`**${x.name}** (${x.id}):, ${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
+                embed.addField(`**${x.name}** (${x.id}):`, `${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
                 i=i+1;
             })
             message.channel.send(embed)
