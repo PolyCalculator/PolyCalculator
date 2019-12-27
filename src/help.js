@@ -16,7 +16,7 @@ module.exports = async function (args, message, auto) {
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()
         .setColor('#FA8072')
-        .setURL("https://discord.gg/heCjtjQ")
+        .setURL("https://discord.gg/rtSTmd8")
     let descriptionArray = [];
 
     if (args === "full" || args === "f") {
@@ -75,7 +75,7 @@ module.exports = async function (args, message, auto) {
     }
     helpEmbed.setDescription(descriptionArray)
         .addBlankField()
-        .addField("You can catch all the bot updates, make suggestions and flag bugs here:","https://discord.gg/heCjtjQ.")
+        .addField("You can catch all the bot updates, make suggestions and flag bugs here:","https://discord.gg/rtSTmd8.")
     return message.channel.send(helpEmbed)
         .then(x => {
             if(!botChannel && auto === false) {

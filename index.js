@@ -13,6 +13,7 @@ let meee
 let logChannel
 let errorChannel
 let serverCounter
+let cmdCounter
 
 const express = require('express');
 var app = express();
@@ -25,13 +26,23 @@ bot.on('ready', () => {
     logChannel = calcServer.channels.get("648688924155314176")
     errorChannel = calcServer.channels.get("658125562455261185")
     serverCounter = calcServer.channels.get("659926148788125726")
+    cmdCounter = calcServer.channels.get("659959506104614913")
 
     if(bot.user.id === process.env.BETABOT_ID)
         bot.user.setActivity('..', { type: 'LISTENING' })
 
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
-    if(bot.user.id != process.env.BETABOT_ID)
+    if(bot.user.id != process.env.BETABOT_ID) {
         serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
+        stats.getTriggers()
+            .then(x => {
+                newX = Number(x) + 6111
+                cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
+            })
+            .catch(x => {
+                errorChannel.send(x)
+            })   
+    }
 });
 
 //--------------------------------------
@@ -169,6 +180,14 @@ bot.on('message', async message => {
                 .catch(console.error)    
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         return Help(args[0], message, false)
 
 //--------------------------------------------------
@@ -181,7 +200,15 @@ bot.on('message', async message => {
         if (!message.member.hasPermission(`ADMINISTRATOR`))
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
 
-        if (args[0] || args[0] === prefix)
+        if (args[0] || args[0] === prefix) {
+            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+                .then()
+                .catch(errorMsg => {
+                    errorMsg = errorMsg.toString()
+                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                        .then(() => {})
+                        .catch(() => {})
+                })
             db.setPrefix(message.guild.id, args[0])
                 .then(msg => {
                     message.channel.send(msg)
@@ -194,7 +221,7 @@ bot.on('message', async message => {
                         .then(() => {})
                         .catch(console.error)
                 })
-        else
+        } else
             message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
 
 //--------------------------------------------------
@@ -209,6 +236,14 @@ bot.on('message', async message => {
     let channelToRemove = message.mentions.channels.first()
     
     if(channelToRemove) {
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         await db.removeABotChannel(message.guild.id, channelToRemove.id)
             .then(x => {
                 console.log('channelToRemove',channelToRemove.id)
@@ -254,6 +289,14 @@ bot.on('message', async message => {
     let channelToAdd = message.mentions.channels.first()
 
     if(channelToAdd) {
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         await db.addABotChannel(message.guild.id, channelToAdd.id)
             .then(x => {
                 console.log('channelToRemove',channelToAdd.id)
@@ -319,7 +362,15 @@ bot.on('message', async message => {
         units.push(`${allUnits[key].name}: ${key}`)
     });
     
-    unitEmbed.setDescription(units);
+    unitEmbed.setDescription(units)
+    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+        .then()
+        .catch(errorMsg => {
+            errorMsg = errorMsg.toString()
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
     message.channel.send(unitEmbed)
         .then(x => {
             if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -389,6 +440,13 @@ bot.on('message', async message => {
 
         const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
 
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+            .then()
+            .catch(errorMsg => {
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         message.channel.send(result.calculate())
             .then(x => {
                 if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -438,6 +496,14 @@ bot.on('message', async message => {
         retal = getRetaliation(args)
 
         const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+            .then()
+            .catch(errorMsg => {
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         message.channel.send(result.calculate())
             .then(x => {
                 if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -617,10 +683,11 @@ bot.on('message', async message => {
                     }
                 })
                 .catch(console.error)
-
-        let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation)
+                
+        let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
 
         if((cmd.startsWith("elim") || cmd === "e")) {
+            console.log(result.calculate())
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
                 message.channel.send(`*Note that any hp input will be disregarded.*`)
                     .then(x => {
@@ -637,6 +704,15 @@ bot.on('message', async message => {
                         }
                     })
                     .catch(console.error)
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+                    .then()
+                    .catch(errorMsg => {
+                        errorMsg = errorMsg.toString()
+                        errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                            .then(() => {})
+                            .catch(() => {})
+                    })
+
                 message.channel.send(result.provideDefHP())
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -652,7 +728,7 @@ bot.on('message', async message => {
                         }
                     })
                     .catch(console.error)
-                result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
+
                 message.channel.send(result.provideAttHP())
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -668,7 +744,15 @@ bot.on('message', async message => {
                         }
                     })
                     .catch(console.error)
-            } else if(attackerArray.some(x => x.includes('?')))
+            } else if(attackerArray.some(x => x.includes('?'))) {
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+                    .then()
+                    .catch(errorMsg => {
+                        errorMsg = errorMsg.toString()
+                        errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                            .then(() => {})
+                            .catch(() => {})
+                    })
                 message.channel.send(result.provideDefHP())
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -684,7 +768,15 @@ bot.on('message', async message => {
                         }
                     })
                     .catch(console.error)
-            else if(defenderArray.some(x => x.includes('?')))
+            } else if(defenderArray.some(x => x.includes('?'))) {
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+                    .then()
+                    .catch(errorMsg => {
+                        errorMsg = errorMsg.toString()
+                        errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                            .then(() => {})
+                            .catch(() => {})
+                    })
                 message.channel.send(result.provideAttHP())
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -700,7 +792,7 @@ bot.on('message', async message => {
                         }
                     })
                     .catch(console.error)
-            else
+            } else
                 message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`)
                     .then(x => {
                         if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -717,6 +809,13 @@ bot.on('message', async message => {
                     })
                     .catch(console.error)
         } else {
+            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate())
+                .then()
+                .catch(errorMsg => {
+                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                        .then(() => {})
+                        .catch(() => {})
+                })
             message.channel.send(result.calculate())
                 .then(x => {
                     if(botChannel.some(x => { x.id === message.channel.id})) {
@@ -739,29 +838,46 @@ bot.on('message', async message => {
 //
 //--------------------------------------------------
     } else if (cmd === "credits") {
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         helpEmbed = new RichEmbed()
         helpEmbed.setColor('#FA8072')
             .setTitle('PolyCalculator\'s server')
             .setDescription('For bot updates, feature requests and bug reports')
             .addField("Developer", "jd (alphaSeahorse)")
             .addField("Contributions","penile partay, WOPWOP, Cake, James, LiNoKami.")
-            .setURL("https://discord.gg/heCjtjQ")
+            .setURL("https://discord.gg/rtSTmd8")
         message.channel.send(helpEmbed)
             .then(x => {})
             .catch(console.error)
-//--------------------------------------------------
-//
-//                .{UNIT} COMMAND
-//
-//--------------------------------------------------
     } else if (cmd === "auto") {
         polytopia = bot.guilds.get('283436219780825088')
         botcommands = polytopia.channels.get('403724174532673536')
         message = {'channel':botcommands}
         Help('help', message, false)
+//--------------------------------------------------
+//
+//                .{UNIT} COMMAND
+//
+//--------------------------------------------------
     } else {
         cmd = cmd.substring(0, 2)
         unit = getUnit(cmd)
+
+        stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
 
         if(unit) {
 

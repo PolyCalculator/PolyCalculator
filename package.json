@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "log": "heroku logs -t -a=polycalculator -d=web"
+    "log": "heroku logs -t -a=polycalculator -d=worker"
   },
   "keywords": [],
   "author": "jd (alphaSeahorse)",
