@@ -208,15 +208,15 @@ bot.on('message', async message => {
         if (!message.member.hasPermission(`ADMINISTRATOR`))
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
 
+        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+            .then()
+            .catch(errorMsg => {
+                errorMsg = errorMsg.toString()
+                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                    .then(() => {})
+                    .catch(() => {})
+            })
         if (args[0] || args[0] === prefix) {
-            stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
-                .then()
-                .catch(errorMsg => {
-                    errorMsg = errorMsg.toString()
-                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                        .then(() => {})
-                        .catch(() => {})
-                })
             db.setPrefix(message.guild.id, args[0])
                 .then(msg => {
                     message.channel.send(msg)
@@ -243,15 +243,16 @@ bot.on('message', async message => {
     
     let channelToRemove = message.mentions.channels.first()
     
+    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+        .then()
+        .catch(errorMsg => {
+            errorMsg = errorMsg.toString()
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+
     if(channelToRemove) {
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
-            .then()
-            .catch(errorMsg => {
-                errorMsg = errorMsg.toString()
-                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                    .then(() => {})
-                    .catch(() => {})
-            })
         await db.removeABotChannel(message.guild.id, channelToRemove.id)
             .then(x => {
                 msg = ['This is the updated list of registered bot channels:']
@@ -295,15 +296,16 @@ bot.on('message', async message => {
 
     let channelToAdd = message.mentions.channels.first()
 
+    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
+        .then()
+        .catch(errorMsg => {
+            errorMsg = errorMsg.toString()
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+
     if(channelToAdd) {
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
-            .then()
-            .catch(errorMsg => {
-                errorMsg = errorMsg.toString()
-                errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                    .then(() => {})
-                    .catch(() => {})
-            })
         await db.addABotChannel(message.guild.id, channelToAdd.id)
             .then(x => {
 
