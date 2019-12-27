@@ -205,7 +205,10 @@ bot.on('message', async message => {
 //--------------------------------------------------
     } else if(cmd === "setprefix" || cmd === "prefix") {
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-        if (!message.member.hasPermission(`ADMINISTRATOR`) || message.author != meee.user)
+        console.log('message.author:', message.author)
+        console.log('meee.user:', meee.user)
+        console.log(message.author != meee.user)
+        if (!message.member.hasPermission(`ADMINISTRATOR`) && message.author != meee.user)
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
 
         stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, '')
@@ -326,7 +329,6 @@ bot.on('message', async message => {
     else {
         await db.getBotChannels(message.guild.id)
             .then(x => {
-                console.log('x:', x.length)
                 let msg = []
                 if (x.length != 0) {
                     msg.push('You need to ping a channel for it to be added.')
