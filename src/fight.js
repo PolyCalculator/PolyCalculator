@@ -116,6 +116,9 @@ class Fight {
 
         for(; hpdefender > 0; i++) {
             hpdefender = hpdefender - defdiff;
+            this.dforce = this.ddef*hpdefender/this.dmaxhp*this.dbonus;
+            totaldam = this.aforce+this.dforce;
+            defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
         }
 
         const helpEmbed = new RichEmbed()
