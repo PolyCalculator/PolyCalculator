@@ -20,6 +20,28 @@ module.exports.getTriggers = function() {
     })
 }
 
+module.exports.getUserCount = function() {
+    return new Promise((resolve, reject) => {
+        let sql = `SELECT COUNT(id), author_tag FROM stats GROUP BY author_tag ORDER BY COUNT (id) DESC`
+
+        pool.query(sql, (err, res) => {
+            if(err) {
+                reject(`Get triggers: ${err.message}`)
+            } else {
+                var stats = ''
+                res.rows.forEach(x => {
+                    stats.concat(x.count, "")
+                })
+                resolve(`Unique users: ${Number(res.rows.length)}`)
+            }
+        })
+    })
+}
+
+module.exports.getUsers = function() {
+    
+}
+
 module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, guildName) {
     let attacker = ''
     let defender = ''

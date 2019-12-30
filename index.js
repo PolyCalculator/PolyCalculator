@@ -14,6 +14,7 @@ let logChannel
 let errorChannel
 let serverCounter
 let cmdCounter
+let userCounter
 
 const express = require('express');
 var app = express();
@@ -27,6 +28,7 @@ bot.on('ready', () => {
     errorChannel = calcServer.channels.get("658125562455261185")
     serverCounter = calcServer.channels.get("659926148788125726")
     cmdCounter = calcServer.channels.get("659959506104614913")
+    userCounter = calcServer.channels.get("661033300025933824")
 
     if(bot.user.id === process.env.BETABOT_ID)
         bot.user.setActivity('..', { type: 'LISTENING' })
@@ -133,6 +135,13 @@ bot.on('message', async message => {
         .catch(x => {
             errorChannel.send(x)
         })   
+    stats.getUserCount()
+        .then(x => {
+            userCounter.edit({ name: x })
+        })
+        .catch(x => {
+            errorChannel.send(x)
+        })
     //INSIDER
     if(message.channel.name === "insider-information") {
         let guilds = message.client.guilds;
