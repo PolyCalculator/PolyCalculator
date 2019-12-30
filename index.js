@@ -38,7 +38,7 @@ bot.on('ready', () => {
         serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
         stats.getTriggers()
             .then(x => {
-                newX = Number(x) + 6222
+                newX = Number(x) + 6555
                 cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
             })
             .catch(x => {
@@ -129,7 +129,7 @@ bot.on('message', async message => {
 
     stats.getTriggers()
         .then(x => {
-            newX = Number(x) + 6222
+            newX = Number(x) + 6555
             cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
         })
         .catch(x => {
