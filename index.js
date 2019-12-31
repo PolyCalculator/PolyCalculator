@@ -49,6 +49,22 @@ bot.on('ready', () => {
 
 //--------------------------------------
 //
+//        EVENT ON CHANNEL DELETE
+//
+//--------------------------------------
+bot.on('channelDelete', deletedChannel => {
+    db.getBotChannels(deletedChannel.guild.id)
+        .then(x => { // x = array of bot channels
+            console.log('deleted channel is registered:', x.some(x => x === deletedChannel.id))
+            if(x.some(x => x === deletedChannel.id))
+                db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+        })
+        .catch(console.error)
+})
+//--------------------------------------
+//
 //        EVENT ON NEW GUILD JOIN
 //
 //--------------------------------------

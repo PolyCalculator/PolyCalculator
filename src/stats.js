@@ -26,20 +26,13 @@ module.exports.getUserCount = function() {
 
         pool.query(sql, (err, res) => {
             if(err) {
-                reject(`Get triggers: ${err.message}`)
+                reject(`Get user count: ${err.message}`)
             } else {
-                var stats = ''
-                res.rows.forEach(x => {
-                    stats.concat(x.count, "")
-                })
+                console.log('Number(res.rows.length):', Number(res.rows.length))
                 resolve(`Unique users: ${Number(res.rows.length)}`)
             }
         })
     })
-}
-
-module.exports.getUsers = function() {
-    
 }
 
 module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, guildName) {
