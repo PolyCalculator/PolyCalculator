@@ -28,7 +28,6 @@ module.exports.getUserCount = function() {
             if(err) {
                 reject(`Get user count: ${err.message}`)
             } else {
-                console.log('Number(res.rows.length):', Number(res.rows.length))
                 resolve(`Unique users: ${Number(res.rows.length)}`)
             }
         })

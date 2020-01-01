@@ -116,7 +116,7 @@ bot.on('message', async message => {
         if(message.author.bot)
             return
         let logEmbed = new RichEmbed().setColor('#FA8072')
-            .setDescription(`${message.author}`)
+            .setTitle(`DM from ${message.author}`)
             .addField(`Content:`,`${message.content}`)
         return await logChannel.send(logEmbed)
             .then(x => { logChannel.send(`${meee}`) } )
@@ -133,7 +133,7 @@ bot.on('message', async message => {
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
     let logEmbed = new RichEmbed().setColor('#FA8072')
-    if(message.cleanContent.length <= 256) {
+    if(message.cleanContent.length <= 256 && !cmd.startsWith('.')) {
         logEmbed.setTitle(`**${message.cleanContent}**`)
             .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
         //logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
