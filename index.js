@@ -483,17 +483,18 @@ bot.on('message', async message => {
         defender.name = defender.name+`${defBonusVals[1]}`
         retal = getRetaliation(args)
 
-        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+        let result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+        let resEmbed = result.calculate()
 
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, result.calculate(), message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
                         .then(() => {})
                         .catch(() => {})
                 })
-        message.channel.send(result.calculate())
+        message.channel.send(resEmbed)
             .then(x => {
                 if(!botChannel.some(x => x === message.channel.id)) {
                     x.delete(60000)
@@ -541,17 +542,18 @@ bot.on('message', async message => {
         defender.name = defender.name+`${defBonusVals[1]}`
         retal = getRetaliation(args)
 
-        const result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+        let result = new Fight("Attacker", Number(args[0]),Number(args[1]),Number(args[2]),`${defender.name}`,Number(args[3]),Number(args[4]),Number(args[5]), defBonusVals[0], retal)
+        let resEmbed = result.calculate()
 
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, result.calculate(), message.guild.name)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.name)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
                         .then(() => {})
                         .catch(() => {})
                 })
-        message.channel.send(result.calculate())
+        message.channel.send(resEmbed)
             .then(x => {
                 if(!botChannel.some(x => x === message.channel.id)) {
                     x.delete(60000)
@@ -731,6 +733,7 @@ bot.on('message', async message => {
                 .catch(console.error)
                 
         let result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att,finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
+        let resEmbed = result.calculate()
 
         if(cmd.startsWith("elim") || cmd === "e") {
             if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
@@ -751,7 +754,7 @@ bot.on('message', async message => {
                     .catch(console.error)
 
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -793,7 +796,7 @@ bot.on('message', async message => {
                     .catch(console.error)
             } else if(attackerArray.some(x => x.includes('?'))) {
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -818,7 +821,7 @@ bot.on('message', async message => {
                     .catch(console.error)
             } else if(defenderArray.some(x => x.includes('?'))) {
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -859,7 +862,7 @@ bot.on('message', async message => {
                     .catch(console.error)
         } else if(cmd.startsWith("bulk") || cmd === "b") {
             if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name)
                     .then()
                     .catch(errorMsg => {
                         errorMsg = errorMsg.toString()
@@ -884,14 +887,14 @@ bot.on('message', async message => {
                     .catch(console.error)
         } else {
             if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, result.calculate(), message.guild.name)
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name)
                     .then()
                     .catch(errorMsg => {
                         errorChannel.send(errorMsg.concat(', ', `${meee}!`))
                             .then(() => {})
                             .catch(() => {})
                     })
-            message.channel.send(result.calculate())
+            message.channel.send(resEmbed)
                 .then(x => {
                     if(!botChannel.some(x => x === message.channel.id)) {
                         x.delete(60000)
