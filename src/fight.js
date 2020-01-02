@@ -81,7 +81,6 @@ class Fight {
             hpdefender = deadText[Math.floor(Math.random() * deadText.length)];
         } else if(this.dretal === false) {
             hpattacker = this.ahp
-            console.log('hey1\n')
             this.aname = this.aname + " (no retaliation)"
         } else {
             attdiff = Math.round(this.dforce / totaldam * this.ddef * 4.5)
