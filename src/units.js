@@ -151,6 +151,15 @@ const mb = {
     fort: false
 }
 
+const eg = {
+    name: "Dragon Egg",
+    maxhp: 10,
+    vethp: 10,
+    att: 0,
+    def: 2,
+    fort: false
+}
+
 const bd = {
     name: "Baby Dragon",
     maxhp: 15,
@@ -196,8 +205,8 @@ const ic = {
     fort: false
 }
 
-const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic }
-const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
+const nonnaval = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, eg, bd, dr, mo, sl, ic }
+const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, eg, bd, dr, mo, sl, ic, bo, sh, bs }
 
 module.exports.getFightUnit = function (array, prefix) {
     //return new Promise((resolve, reject) => {
@@ -245,7 +254,7 @@ module.exports.getFightUnit = function (array, prefix) {
 }
 
 module.exports.getUnit = function (unitPartial) {
-    const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, bd, dr, mo, sl, ic, bo, sh, bs }
+    const all = { wa, ri, ar, de, kn, sw, ca, gi, cr, tr, po, na, ga, mb, eg, bd, dr, mo, sl, ic, bo, sh, bs }
 
     unitKeys = Object.keys(all);
     let unitKey = unitPartial.substring(0,2)

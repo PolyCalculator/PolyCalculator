@@ -715,8 +715,8 @@ bot.on('message', async message => {
             finalDefender.bonus = defBonusVals[0];
         }
 
-        if(attackerStats.name.toLowerCase() === "mooni" || attackerStats.name.toLowerCase() === "mind bender")
-            return message.channel.send(`You know very well that ${attackerStats.name.toLowerCase()}s can't attack...`)
+        if(attackerStats.att === 0)
+            return message.channel.send(`You know very well that ${attackerStats.name}s can't attack...`)
                 .then(x => {
                     if(!botChannel.some(x => x === message.channel.id)) {
                         x.delete(10000)
