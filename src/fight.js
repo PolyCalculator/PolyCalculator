@@ -107,6 +107,8 @@ class Fight {
     bulk() {
         var totaldam = this.aforce+this.dforce;
         var defdiff = Math.round(this.aforce / totaldam * this.aattack * 4.5);
+        if(defdiff < 1)
+            return `This **${this.ahp}hp ${this.aname}** doesn't deal any damage to a **${this.dhp}hp ${this.dname}**.`
         var hpdefender = this.dhp;
         let attdiff = 0
         var hpattacker
