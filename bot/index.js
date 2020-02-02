@@ -2,11 +2,11 @@ require('dotenv').config();
 const { Client, RichEmbed } = require('discord.js');
 const bot = new Client();
 const http = require("http");
-const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./src/units");
-const Fight = require("./src/fight");
-const Help = require("./src/help")
-const db = require("./src/db")
-const stats = require("./src/stats")
+const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./units");
+const Fight = require("./fight");
+const Help = require("./help")
+const db = require("./db")
+const stats = require("./stats")
 let prefix = process.env.PREFIX
 let calcServer
 let meee
