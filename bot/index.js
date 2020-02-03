@@ -1010,11 +1010,11 @@ bot.on('message', async message => {
 //--------------------------------------
 //              END/OTHER
 //--------------------------------------
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
 
-setInterval(function() {
-    http.get("http://polycalculator.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+// setInterval(function() {
+//     http.get("http://polycalculator.herokuapp.com");
+// }, 300000); // every 5 minutes (300000)
 
 setInterval(function() {
     polytopia = bot.guilds.get('283436219780825088')
@@ -1034,7 +1034,9 @@ setInterval(function() {
 }, 21600000); // every 3h (10800000) 6h (21600000)
 
 app.get('/', function (req, res) {
-    res.send('Hello World!')
+    res.send('Hello, from @jd (alphaSeahorse)!')
 })
+
+app.listen(3300)
 
 bot.login(process.env.TOKEN);
