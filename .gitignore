@@ -7,6 +7,7 @@ yarn-error.log*
 firebase-debug.log*
 /img
 .env
+/client
 
 # Firebase cache
 .firebase/
