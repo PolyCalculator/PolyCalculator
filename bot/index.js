@@ -1030,13 +1030,4 @@ setInterval(function() {
     Help('c', elobotcommands, true)
 }, 21600000); // every 3h (10800000) 6h (21600000)
 
-<<<<<<< HEAD
-app.get('/', function (req, res) {
-    res.send('Hello, from @jd (alphaSeahorse)!')
-})
-
-app.listen(3300)
-
-=======
->>>>>>> Great headway for express+vue integration
 bot.login(process.env.TOKEN);
