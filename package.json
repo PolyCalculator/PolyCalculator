@@ -7,6 +7,7 @@
     "@vue/cli": "4.2.2",
     "@vue/cli-service": "4.2.2",
     "body-parser": "1.19.0",
+    "bootstrap-vue": "2.4.2",
     "cors": "2.8.5",
     "discord.js": "github:discordjs/discord.js#11.5-dev",
     "dotenv": "8.0.0",
@@ -29,6 +30,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "nodemon server/index.js",
+    "api": "node server/index.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "node server/index.js",

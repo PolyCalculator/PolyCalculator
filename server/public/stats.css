@@ -1,0 +1,9 @@
+body {
+    width: 90%;
+    margin: auto;
+}
+
+input {
+    all:inherit;
+    width: 1.3em;
+}
