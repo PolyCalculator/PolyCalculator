@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/totalTriggers', async (req, res) => {
     const { rows } = await db.query('SELECT COUNT(id) AS recordedcount FROM stats')
     rows[0].recordedcount = Number(rows[0].recordedcount)
-    rows[0].totalCount = rows[0].recordedcount + 6555;
     res.send(rows)
 })
 

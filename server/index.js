@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const topUsers = require('./api/topUsers')
-const totalTriggers = require('./api/totalTriggers') 
+const helmet = require('helmet')
 
 const app = express();
 const stats = express();
+const topUsers = require('./api/topUsers')
+const totalTriggers = require('./api/totalTriggers') 
 
 // Middleware
+app.use(helmet())
 app.use(bodyParser.json());
 app.use(cors());
 
