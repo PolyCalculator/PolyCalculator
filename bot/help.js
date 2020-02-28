@@ -7,11 +7,7 @@ module.exports = async function (args, message, auto) {
         .then(guildPrefix => {
             prefix = guildPrefix
         })
-        .catch(errorMsg => {
-            errorChannel.send(errorMsg)
-                .then(() => {})
-                .catch(() => {})
-        })
+        .catch(console.error)
 
     const botChannel = message.channel.name.includes("bot") || message.channel.name.includes("command")
     let helpEmbed = new RichEmbed()

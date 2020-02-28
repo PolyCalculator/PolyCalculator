@@ -3,7 +3,9 @@ const connectionString = process.env.DATABASE_URL
 
 const pool = new Pool({
     connectionString: connectionString,
-    ssl: true,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 })
 
 module.exports.addNewServer = function (serverId, serverName, botChannels) {
