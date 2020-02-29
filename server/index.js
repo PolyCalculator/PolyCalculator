@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+<<<<<<< HEAD
 const helmet = require('helmet')
 
 const app = express();
@@ -10,11 +11,21 @@ const totalTriggers = require('./api/totalTriggers')
 
 // Middleware
 app.use(helmet())
+=======
+const topUsers = require('./api/topUsers')
+const totalTriggers = require('./api/totalTriggers') 
+
+const app = express();
+const stats = express();
+
+// Middleware
+>>>>>>> 74adeb1de7e6cf850ee21e3c2aac60b5d6f65874
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api/stats', stats)
 
+<<<<<<< HEAD
 // Handle production
 if(process.env.NODE_ENV === 'production') {
     // Static folder
@@ -24,6 +35,8 @@ if(process.env.NODE_ENV === 'production') {
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 }
 
+=======
+>>>>>>> 74adeb1de7e6cf850ee21e3c2aac60b5d6f65874
 // app.get('/', (req, res) => {
 //     res.send(`If you're looking for the API, try http://${req.hostname}/api/docs`)
 // })
