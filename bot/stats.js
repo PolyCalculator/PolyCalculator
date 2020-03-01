@@ -34,7 +34,7 @@ module.exports.getUserCount = function() {
     })
 }
 
-module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, guildName, guildId) {
+module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, guildId) {
     let attacker = ''
     let defender = ''
     if(resEmbed) {
@@ -47,8 +47,8 @@ module.exports.addStats = function (cleanContent, author, cmd, url, resEmbed, gu
     let timeStamp = Date.now();
 
     return new Promise((resolve, reject) => {
-        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date, server_name, server_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
-        let values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp, guildName, guildId]
+        let sql = `INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date, server_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
+        let values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp, guildId]
 
         pool.query(sql, values, (err, res) => {
             if(err) {

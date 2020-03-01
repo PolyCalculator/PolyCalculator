@@ -214,7 +214,7 @@ bot.on('message', async message => {
 
         args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
@@ -236,7 +236,7 @@ bot.on('message', async message => {
             return message.channel.send(`Only an admin can change the prefix, sorry!`)
         
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
@@ -272,7 +272,7 @@ bot.on('message', async message => {
     let channelToRemove = message.mentions.channels.first()
     
     if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -329,7 +329,7 @@ bot.on('message', async message => {
     let channelToAdd = message.mentions.channels.first()
 
     if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -408,7 +408,7 @@ bot.on('message', async message => {
     unitEmbed.setDescription(units)
     
     if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+        stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
             .then()
             .catch(errorMsg => {
                 errorMsg = errorMsg.toString()
@@ -487,7 +487,7 @@ bot.on('message', async message => {
         let resEmbed = result.calculate()
 
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.id)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
@@ -546,7 +546,7 @@ bot.on('message', async message => {
         let resEmbed = result.calculate()
 
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.id)
                 .then()
                 .catch(errorMsg => {
                     errorChannel.send(errorMsg.concat(', ', `${meee}!`))
@@ -754,7 +754,7 @@ bot.on('message', async message => {
                     .catch(console.error)
 
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -796,7 +796,7 @@ bot.on('message', async message => {
                     .catch(console.error)
             } else if(attackerArray.some(x => x.includes('?'))) {
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -821,7 +821,7 @@ bot.on('message', async message => {
                     .catch(console.error)
             } else if(defenderArray.some(x => x.includes('?'))) {
                 if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+                    stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
                         .then()
                         .catch(errorMsg => {
                             errorMsg = errorMsg.toString()
@@ -862,7 +862,7 @@ bot.on('message', async message => {
                     .catch(console.error)
         } else if(cmd.startsWith("bulk") || cmd === "b") {
             if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
                     .then()
                     .catch(errorMsg => {
                         errorMsg = errorMsg.toString()
@@ -887,7 +887,7 @@ bot.on('message', async message => {
                     .catch(console.error)
         } else {
             if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.name, message.guild.id)
+                stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
                     .then()
                     .catch(errorMsg => {
                         errorChannel.send(errorMsg.concat(', ', `${meee}!`))
@@ -917,7 +917,7 @@ bot.on('message', async message => {
 //--------------------------------------------------
     } else if (cmd === "credits") {
         if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
                 .then()
                 .catch(errorMsg => {
                     errorMsg = errorMsg.toString()
@@ -970,7 +970,7 @@ bot.on('message', async message => {
             }
 
             if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-                stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '', message.guild.name, message.guild.id)
+                stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '', message.guild.id)
                     .then()
                     .catch(errorMsg => {
                         errorMsg = errorMsg.toString()
