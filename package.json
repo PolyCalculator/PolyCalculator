@@ -11,11 +11,9 @@
     "discord.js": "github:discordjs/discord.js#11.5-dev",
     "dotenv": "8.0.0",
     "express": "4.17.1",
-    "helmet": "3.21.3",
     "heroku": "7.27.1",
-    "http-errors": "~1.6.3",
-    "pg": "7.18.1",
-    "vue": "2.6.11"
+    "pg-promise": "10.3.1",
+    "prism-media": "1.2.0"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -25,7 +23,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "dev": "nodemon server/index.js",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "node server/index.js",
