@@ -4,14 +4,16 @@
   "description": "Discord bot, CLI calculator for Polytopia",
   "main": "index.js",
   "dependencies": {
-    "@vue/cli": "4.2.2",
+    "@vue/cli": "4.2.3",
     "@vue/cli-service": "4.2.2",
     "body-parser": "1.19.0",
     "cors": "2.8.5",
     "discord.js": "github:discordjs/discord.js#11.5-dev",
     "dotenv": "8.0.0",
     "express": "4.17.1",
+    "helmet": "3.21.3",
     "heroku": "7.27.1",
+    "pg": "7.18.2",
     "pg-promise": "10.3.1",
     "prism-media": "1.2.0"
   },
@@ -27,6 +29,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "start": "node server/index.js",
+    "api": "nodemon server/index.js",
     "bot": "nodemon bot/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "log": "heroku logs -t -a=polycalculator -d=worker"

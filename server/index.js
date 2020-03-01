@@ -6,7 +6,9 @@ const helmet = require('helmet')
 const app = express();
 const stats = express();
 
+const topServers = require('./api/topServers')
 const topUsers = require('./api/topUsers')
+const topCommands = require('./api/topCommands')
 const totalTriggers = require('./api/totalTriggers') 
 
 // Middleware
@@ -39,6 +41,10 @@ stats.use('/', topUsers)
 
     // api/topusers/(guild_id) for top guilds
 stats.use('/', totalTriggers)
+
+stats.use('/', topCommands)
+
+stats.use('/', topServers)
 
 const port = process.env.PORT || 3333
 
