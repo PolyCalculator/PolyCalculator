@@ -30,16 +30,14 @@ bot.on('ready', () => {
     cmdCounter = calcServer.channels.get("659959506104614913")
     userCounter = calcServer.channels.get("661033300025933824")
 
-    if(bot.user.id === process.env.BETABOT_ID)
-        bot.user.setActivity('..', { type: 'LISTENING' })
+    bot.user.setActivity('.help c', { type: 'LISTENING' })
 
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
     if(bot.user.id != process.env.BETABOT_ID) {
         serverCounter.edit({ name: `Number of servers: ${bot.guilds.size}` })
         stats.getTriggers()
             .then(x => {
-                newX = Number(x) + 6555
-                cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
+                cmdCounter.edit({ name: `Triggers: ${x}` })
             })
             .catch(x => {
                 errorChannel.send(x)
