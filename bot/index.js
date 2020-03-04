@@ -53,7 +53,6 @@ bot.on('ready', () => {
 bot.on('channelDelete', deletedChannel => {
     db.getBotChannels(deletedChannel.guild.id)
         .then(x => { // x = array of bot channels
-            console.log('deleted channel is registered:', x.some(x => x === deletedChannel.id))
             if(x.some(x => x === deletedChannel.id))
                 db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
                     .then(() => {})
