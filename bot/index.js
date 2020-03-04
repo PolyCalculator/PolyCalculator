@@ -143,8 +143,7 @@ bot.on('message', async message => {
 
     stats.getTriggers()
         .then(x => {
-            newX = Number(x) + 6555
-            cmdCounter.edit({ name: `Triggers: ${x} (≈${newX})` })
+            cmdCounter.edit({ name: `Triggers: ${x}` })
         })
         .catch(x => {
             errorChannel.send(x)
