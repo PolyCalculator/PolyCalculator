@@ -1013,22 +1013,22 @@ bot.on('message', async message => {
 //     http.get("http://polycalculator.herokuapp.com");
 // }, 300000); // every 5 minutes (300000)
 
-setInterval(function() {
-    polytopia = bot.guilds.get('283436219780825088')
+// setInterval(function() {
+//     polytopia = bot.guilds.get('283436219780825088')
 
-    botcommands = polytopia.channels.get('403724174532673536')
-    botcommands = {'guild':{'id': message.guild.id},'channel':botcommands}
-    Help('c', botcommands, true)
-    rankedelogames = polytopia.channels.get('511316081160355852')
-    rankedelogames = {'guild':{'id': message.guild.id},'channel':rankedelogames}
-    Help('c', rankedelogames, true)
-    unrankedgames = polytopia.channels.get('511906353476927498')
-    unrankedgames = {'guild':{'id': message.guild.id},'channel':unrankedgames}
-    Help('c', unrankedgames, true)
-    elobotcommands = polytopia.channels.get('635091071717867521')
-    elobotcommands = {'guild':{'id': message.guild.id},'channel':elobotcommands}
-    Help('c', elobotcommands, true)
-}, 21600000); // every 3h (10800000) 6h (21600000)
+//     botcommands = polytopia.channels.get('403724174532673536')
+//     botcommands = {'guild':{'id': message.guild.id},'channel':botcommands}
+//     Help('c', botcommands, true)
+//     rankedelogames = polytopia.channels.get('511316081160355852')
+//     rankedelogames = {'guild':{'id': message.guild.id},'channel':rankedelogames}
+//     Help('c', rankedelogames, true)
+//     unrankedgames = polytopia.channels.get('511906353476927498')
+//     unrankedgames = {'guild':{'id': message.guild.id},'channel':unrankedgames}
+//     Help('c', unrankedgames, true)
+//     elobotcommands = polytopia.channels.get('635091071717867521')
+//     elobotcommands = {'guild':{'id': message.guild.id},'channel':elobotcommands}
+//     Help('c', elobotcommands, true)
+// }, 21600000); // every 3h (10800000) 6h (21600000)
 
 app.get('/', function (req, res) {
     res.send('Hello, from @jd (alphaSeahorse)!')
