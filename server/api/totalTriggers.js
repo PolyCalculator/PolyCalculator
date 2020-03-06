@@ -17,4 +17,10 @@ router.get('/totalTriggers/:guildid', async (req, res) => {
     res.send(rows)
 })
 
+router.get('/totalservers', async (req, res) => {
+    const { rows } = await db.query('SELECT COUNT(server_id) AS nbservers FROM settings WHERE active = true')
+    rows[0].nbservers = Number(rows[0].nbservers)
+    res.send(rows)
+})
+
 module.exports = router
