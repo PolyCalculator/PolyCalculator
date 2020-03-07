@@ -21,8 +21,7 @@ bot.on('ready', () => {
     logChannel = calcServer.channels.get("648688924155314176")
     errorChannel = calcServer.channels.get("658125562455261185")
 
-    if(bot.user.id === process.env.BETABOT_ID)
-        bot.user.setActivity('..', { type: 'LISTENING' })
+    bot.user.setActivity('.help c', { type: 'LISTENING' })
 
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
