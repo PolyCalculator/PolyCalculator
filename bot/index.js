@@ -13,6 +13,11 @@ let meee
 let logChannel
 let errorChannel
 
+//--------------------------------------
+//
+//           EVENT ON LOGIN
+//
+//--------------------------------------
 bot.on('ready', () => {
     console.log(`Logged in as ${bot.user.username}`);
 
@@ -21,9 +26,10 @@ bot.on('ready', () => {
     logChannel = calcServer.channels.get("648688924155314176")
     errorChannel = calcServer.channels.get("658125562455261185")
 
-    bot.user.setActivity('.help c', { type: 'LISTENING' })
+    bot.user.setActivity(`${prefix}help c`, { type: 'LISTENING' })
 
-    logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
+    if(bot.user.id != process.env.BETABOT_ID)
+        logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
 
 //--------------------------------------
@@ -34,7 +40,6 @@ bot.on('ready', () => {
 bot.on('channelDelete', deletedChannel => {
     db.getBotChannels(deletedChannel.guild.id)
         .then(x => { // x = array of bot channels
-            console.log('deleted channel is registered:', x.some(x => x === deletedChannel.id))
             if(x.some(x => x === deletedChannel.id))
                 db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
                     .then(() => {})
@@ -44,13 +49,70 @@ bot.on('channelDelete', deletedChannel => {
 })
 //--------------------------------------
 //
-//        EVENT ON NEW GUILD JOIN
+//        EVENT ON CHANNEL CREATE
+//
+//--------------------------------------
+bot.on('channelCreate', createdChannel => {
+    if(createdChannel.type != 'text')
+        return
+
+    if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
+        db.addABotChannel(createdChannel.guild.id, createdChannel.id)
+            .then(() => {})
+            .catch(console.error)
+})
+//--------------------------------------
+//
+//        EVENT ON CHANNEL UPDATE
+//
+//--------------------------------------
+bot.on('channelUpdate', (oldChannel, updatedChannel) => {
+    if(updatedChannel.type != 'text')
+        return
+
+    db.getBotChannels(updatedChannel.guild.id)
+        .then(x => { // x = array of bot channels
+            if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
+                console.log('channelUpdate')
+                db.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+            } else if (x.some(x => x === updatedChannel.id))
+                db.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+            else
+                return
+        })
+        .catch(console.error)
+})
+//--------------------------------------
+//
+//       EVENT ON NEW GUILD JOIN
 //
 //--------------------------------------
 bot.on('guildCreate', guild => {
     botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
 
     db.addNewServer(guild.id, guild.name, botChannels)
+        .then(logMsg => {
+            logChannel.send(logMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+})
+//--------------------------------------
+//
+//     EVENT ON REMOVE GUILD JOIN
+//
+//--------------------------------------
+bot.on('guildDelete', guild => {
+    db.removeServer(guild.id, guild.name)
         .then(logMsg => {
             logChannel.send(logMsg.concat(', ', `${meee}!`))
                 .then(() => {})
@@ -74,6 +136,7 @@ bot.on('guildMemberAdd', newMember => {
             .then(x => {
                 console.log(`${x.user.tag} just got in PolyCalculator server!`)
             })
+            .catch(console.error)
     }
 })
 
@@ -83,6 +146,10 @@ bot.on('guildMemberAdd', newMember => {
 //
 //--------------------------------------
 bot.on('message', async message => {
+    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix) {
+//        console.log(message.author.bot, !message.content.startsWith(prefix), message.content === prefix, message.content.startsWith(`${prefix}.`))
+        return
+    }
     let botChannel = []
 
     if(message.channel.type != 'dm') {
@@ -96,11 +163,6 @@ bot.on('message', async message => {
             .addField(`Content:`,`${message.content}`)
         return await logChannel.send(logEmbed)
             .then(x => { logChannel.send(`${meee}`) } )
-    }
-
-    if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix) {
-//        console.log(message.author.bot, !message.content.startsWith(prefix), message.content === prefix, message.content.startsWith(`${prefix}.`))
-        return
     }
     
     let cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();

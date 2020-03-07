@@ -18,7 +18,7 @@ router.get('/totalTriggers/:guildid', async (req, res) => {
 })
 
 router.get('/totalservers', async (req, res) => {
-    const { rows } = await db.query('SELECT COUNT(server_id) AS nbservers FROM settings WHERE active = true')
+    const { rows } = await db.query('SELECT COUNT(server_id) AS nbservers FROM servers WHERE active = true')
     rows[0].nbservers = Number(rows[0].nbservers)
     res.send(rows[0])
 })
