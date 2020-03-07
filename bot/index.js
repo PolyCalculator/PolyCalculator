@@ -86,7 +86,6 @@ bot.on('message', async message => {
     let botChannel = []
 
     if(message.channel.type != 'dm') {
-        prefix = await db.getPrefix(message.guild.id)
         await db.getBotChannels(message.guild.id)
             .then(x => { botChannel = x })
     } else {
@@ -98,9 +97,6 @@ bot.on('message', async message => {
         return await logChannel.send(logEmbed)
             .then(x => { logChannel.send(`${meee}`) } )
     }
-
-    if(bot.user.id === process.env.BETABOT_ID)
-        prefix = '..'
 
     if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix) {
 //        console.log(message.author.bot, !message.content.startsWith(prefix), message.content === prefix, message.content.startsWith(`${prefix}.`))
@@ -188,46 +184,10 @@ bot.on('message', async message => {
 
 //--------------------------------------------------
 //
-//                .SETPREFIX COMMAND
+//                .REMOVEBOTCHANNEL COMMAND
 //
 //--------------------------------------------------
-    } else if(cmd === "setprefix" || cmd === "prefix") {
-        args = message.content.toLowerCase().slice(prefix.length+cmd.length+1).split(/ +/);
-
-        if (!message.member.hasPermission(`ADMINISTRATOR`) && message.author != meee.user)
-            return message.channel.send(`Only an admin can change the prefix, sorry!`)
-        
-        if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-            stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
-                .then()
-                .catch(errorMsg => {
-                    errorMsg = errorMsg.toString()
-                    errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                        .then(() => {})
-                        .catch(() => {})
-                })
-        if (args[0] || args[0] === prefix) {
-            db.setPrefix(message.guild.id, args[0])
-                .then(msg => {
-                    message.channel.send(msg)
-                        .then(() => {})
-                        .catch(console.error)
-                })
-                .catch(msg => {
-                    msg = msg.substring(0, 1).toUpperCase() + msg.substring(1)
-                    message.channel.send(msg)
-                        .then(() => {})
-                        .catch(console.error)
-                })
-        } else
-            message.channel.send(`You need to specify what prefix you wanna set it to\nOn this server, it's already \`${prefix}\`!`)
-
-//--------------------------------------------------
-//
-//             .REMOVEBOTCHANNEL COMMAND
-//
-//--------------------------------------------------
-} else if(cmd === "removebotchannel" || cmd === "rbc") {
+    } else if(cmd === "removebotchannel" || cmd === "rbc") {
     if (!message.member.hasPermission(`ADMINISTRATOR`) && message.author != meee.user)
         return message.channel.send(`Only an admin can modify the registerd bot channels, sorry!`)
     

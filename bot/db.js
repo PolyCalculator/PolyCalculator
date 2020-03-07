@@ -10,7 +10,7 @@ const pool = new Pool({
 
 module.exports.addNewServer = function (serverId, serverName, botChannels) {
     return new Promise((resolve, reject) => {
-        let sql = `SELECT prefix, server_name FROM settings WHERE server_id = $1`
+        let sql = `SELECT server_name FROM settings WHERE server_id = $1`
         let values = [serverId]
 
         pool.query(sql, values, (err, res) => {
@@ -20,7 +20,7 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
                 if(res.rows[0] === undefined) {
                     botChannels = Array.from(botChannels.keys())
 
-                    let sql1 = `INSERT INTO settings (server_id, prefix, bot_channels, server_name) VALUES ($1, '.', $2, $3)`
+                    let sql1 = `INSERT INTO settings (server_id, bot_channels, server_name) VALUES ($1, $2, $3)`
                     let values1 = [serverId, botChannels, serverName];
 
                     pool.query(sql1, values1, (err, res) => {
@@ -33,39 +33,6 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
                 } else {
                     resolve(`A server is back, __**${res.rows[0].server_name}**__ came back`)
                 }
-            }
-        })
-    })
-}
-
-module.exports.getPrefix = function (serverId) {
-    return new Promise((resolve, reject) => {
-        const sql = `SELECT prefix FROM settings WHERE server_id = $1`
-        const values = [serverId]
-
-        pool.query(sql, values, (err, res) => {
-            if(err) {
-                reject(`${err.message}. Ping an @**admin** if you need help!`)
-            } else {
-                if(res.rows.length != 0)
-                    resolve(res.rows[0].prefix)
-                else
-                    resolve('.')
-            }
-        })
-    })
-}
-
-module.exports.setPrefix = async function (serverId, arg) {
-    return new Promise((resolve, reject) => {
-        const sql = `UPDATE settings SET prefix = $1 WHERE server_id = $2`
-        const values = [arg, serverId];
-
-        pool.query(sql, values, (err, res) => {
-            if(err) {
-                reject(`${err.message}. Ping an @**admin** if you need help!`)
-            } else {
-                resolve(`New server prefix is now set to \`${arg}\``)
             }
         })
     })
