@@ -2,8 +2,6 @@ require('dotenv').config();
 const fs = require('fs')
 const { Client, RichEmbed, Collection } = require('discord.js');
 const bot = new Client();
-bot.commands = new Collection();
-
 const http = require("http");
 const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./units");
 const Fight = require("./fight");
@@ -15,15 +13,6 @@ let calcServer
 let meee
 let logChannel
 let errorChannel
-
-const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js') && !file.endsWith('units.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-
-	// set a new item in the Collection
-	// with the key as the command name and the value as the exported module
-	bot.commands.set(command.name, command);
-}
 
 //--------------------------------------
 //
