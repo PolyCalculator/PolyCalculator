@@ -1,6 +1,9 @@
 require('dotenv').config();
-const { Client, RichEmbed } = require('discord.js');
+const fs = require('fs')
+const { Client, RichEmbed, Collection } = require('discord.js');
 const bot = new Client();
+bot.commands = new Collection();
+
 const http = require("http");
 const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./units");
 const Fight = require("./fight");
@@ -12,6 +15,15 @@ let calcServer
 let meee
 let logChannel
 let errorChannel
+
+const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js') && !file.endsWith('units.js'));
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+
+	// set a new item in the Collection
+	// with the key as the command name and the value as the exported module
+	bot.commands.set(command.name, command);
+}
 
 //--------------------------------------
 //
@@ -31,114 +43,6 @@ bot.on('ready', () => {
     if(bot.user.id != process.env.BETABOT_ID)
         logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
-
-//--------------------------------------
-//
-//        EVENT ON CHANNEL DELETE
-//
-//--------------------------------------
-bot.on('channelDelete', deletedChannel => {
-    db.getBotChannels(deletedChannel.guild.id)
-        .then(x => { // x = array of bot channels
-            if(x.some(x => x === deletedChannel.id))
-                db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
-                    .then(() => {})
-                    .catch(console.error)
-        })
-        .catch(console.error)
-})
-//--------------------------------------
-//
-//        EVENT ON CHANNEL CREATE
-//
-//--------------------------------------
-bot.on('channelCreate', createdChannel => {
-    if(createdChannel.type != 'text')
-        return
-
-    if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
-        db.addABotChannel(createdChannel.guild.id, createdChannel.id)
-            .then(() => {})
-            .catch(console.error)
-})
-//--------------------------------------
-//
-//        EVENT ON CHANNEL UPDATE
-//
-//--------------------------------------
-bot.on('channelUpdate', (oldChannel, updatedChannel) => {
-    if(updatedChannel.type != 'text')
-        return
-
-    db.getBotChannels(updatedChannel.guild.id)
-        .then(x => { // x = array of bot channels
-            if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
-                console.log('channelUpdate')
-                db.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
-                    .then(() => {})
-                    .catch(console.error)
-            } else if (x.some(x => x === updatedChannel.id))
-                db.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
-                    .then(() => {})
-                    .catch(console.error)
-            else
-                return
-        })
-        .catch(console.error)
-})
-//--------------------------------------
-//
-//       EVENT ON NEW GUILD JOIN
-//
-//--------------------------------------
-bot.on('guildCreate', guild => {
-    botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
-
-    db.addNewServer(guild.id, guild.name, botChannels)
-        .then(logMsg => {
-            logChannel.send(logMsg.concat(', ', `${meee}!`))
-                .then(() => {})
-                .catch(() => {})
-        })
-        .catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                .then(() => {})
-                .catch(() => {})
-        })
-})
-//--------------------------------------
-//
-//     EVENT ON REMOVE GUILD JOIN
-//
-//--------------------------------------
-bot.on('guildDelete', guild => {
-    db.removeServer(guild.id, guild.name)
-        .then(logMsg => {
-            logChannel.send(logMsg.concat(', ', `${meee}!`))
-                .then(() => {})
-                .catch(() => {})
-        })
-        .catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                .then(() => {})
-                .catch(() => {})
-        })
-})
-
-//--------------------------------------
-//
-//  EVENT ON NEW MEMBER IN DEV SERVER
-//
-//--------------------------------------
-bot.on('guildMemberAdd', newMember => {
-    if (newMember.guild.id === '581872879386492929') {
-        newMember.addRole('654164652741099540')
-            .then(x => {
-                console.log(`${x.user.tag} just got in PolyCalculator server!`)
-            })
-            .catch(console.error)
-    }
-})
 
 //--------------------------------------
 //
@@ -991,6 +895,115 @@ bot.on('message', async message => {
         }
     }
 })
+
+//--------------------------------------
+//
+//        EVENT ON CHANNEL DELETE
+//
+//--------------------------------------
+bot.on('channelDelete', deletedChannel => {
+    db.getBotChannels(deletedChannel.guild.id)
+        .then(x => { // x = array of bot channels
+            if(x.some(x => x === deletedChannel.id))
+                db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+        })
+        .catch(console.error)
+})
+//--------------------------------------
+//
+//        EVENT ON CHANNEL CREATE
+//
+//--------------------------------------
+bot.on('channelCreate', createdChannel => {
+    if(createdChannel.type != 'text')
+        return
+
+    if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
+        db.addABotChannel(createdChannel.guild.id, createdChannel.id)
+            .then(() => {})
+            .catch(console.error)
+})
+//--------------------------------------
+//
+//        EVENT ON CHANNEL UPDATE
+//
+//--------------------------------------
+bot.on('channelUpdate', (oldChannel, updatedChannel) => {
+    if(updatedChannel.type != 'text')
+        return
+
+    db.getBotChannels(updatedChannel.guild.id)
+        .then(x => { // x = array of bot channels
+            if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
+                console.log('channelUpdate')
+                db.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+            } else if (x.some(x => x === updatedChannel.id))
+                db.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
+                    .then(() => {})
+                    .catch(console.error)
+            else
+                return
+        })
+        .catch(console.error)
+})
+//--------------------------------------
+//
+//       EVENT ON NEW GUILD JOIN
+//
+//--------------------------------------
+bot.on('guildCreate', guild => {
+    botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
+
+    db.addNewServer(guild.id, guild.name, botChannels)
+        .then(logMsg => {
+            logChannel.send(logMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+})
+//--------------------------------------
+//
+//     EVENT ON REMOVE GUILD JOIN
+//
+//--------------------------------------
+bot.on('guildDelete', guild => {
+    db.removeServer(guild.id, guild.name)
+        .then(logMsg => {
+            logChannel.send(logMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+        .catch(errorMsg => {
+            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+                .then(() => {})
+                .catch(() => {})
+        })
+})
+
+//--------------------------------------
+//
+//  EVENT ON NEW MEMBER IN DEV SERVER
+//
+//--------------------------------------
+bot.on('guildMemberAdd', newMember => {
+    if (newMember.guild.id === '581872879386492929') {
+        newMember.addRole('654164652741099540')
+            .then(x => {
+                console.log(`${x.user.tag} just got in PolyCalculator server!`)
+            })
+            .catch(console.error)
+    }
+})
+
 //--------------------------------------
 //              END/OTHER
 //--------------------------------------

@@ -92,7 +92,7 @@ module.exports.addABotChannel = function (serverId, channelId) {
                 reject(`${err.message}. Ping an @**admin** if you need help!`)
             } else {
                 let newBotChannels = []
-                if(res.rows[0] != undefined) {
+                if(res.rows[0].bot_channels.length > 0) {
                     if(!res.rows[0].bot_channels.some(x => x === channelId)) {
                         newBotChannels = res.rows[0].bot_channels
                         newBotChannels.push(channelId)
