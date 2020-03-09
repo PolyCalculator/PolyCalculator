@@ -1,8 +1,7 @@
 require('dotenv').config();
-const fs = require('fs')
 const { Client, RichEmbed, Collection } = require('discord.js');
 const bot = new Client();
-const http = require("http");
+const open = require('open');
 const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require("./units");
 const Fight = require("./fight");
 const Help = require("./help")
@@ -32,6 +31,14 @@ bot.on('ready', () => {
     if(bot.user.id != process.env.BETABOT_ID)
         logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
+
+bot.on('voiceStateUpdate', async (oldState, newState) => {
+    console.log('newState.voiceChannelID', newState.voiceChannelID)
+    if(newState.voiceChannelID != '659926148788125726')
+        return
+
+    await open('https://polycalculatorbot.com');
+})
 
 //--------------------------------------
 //
