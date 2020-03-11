@@ -1,14 +1,14 @@
 module.exports = {
-	name: 'pingowners',
-    description: '',
-    aliases: [],
-    shortUsage: '',
-    longUsage: '',
-    permsAllowed: [],
-    usersAllowed: [],
-    rolesAllowed: [],
-    channelsAllowed: [],
-	execute(message, args) {
-		
-	},
+  name: 'pingowners',
+  description: '',
+  aliases: [],
+  shortUsage: '',
+  longUsage: '',
+  permsAllowed: [],
+  usersAllowed: [],
+  rolesAllowed: [],
+  channelsAllowed: [],
+  execute(message, args) {
+
+  },
 };
