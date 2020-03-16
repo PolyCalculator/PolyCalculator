@@ -2,29 +2,22 @@ require('dotenv').config();
 const { Client, RichEmbed, Collection } = require('discord.js');
 const bot = new Client();
 const fs = require('fs')
-const open = require('open');
-const { getFightUnit, getUnit, getUnits, getBonus, getRetaliation, getCurrentHP, getMaxHP } = require('./units');
-const Fight = require('./fight');
-const Help = require('./help')
-const db = require('./db')
-const stats = require('./stats')
 const prefix = process.env.PREFIX
-let calcServer
-let meee
-let logChannel
-let errorChannel
+let calcServer = {}
+let meee = {}
+let logChannel = {}
+let errorChannel = {}
 
+// bot.commands as a collection(Map) of commands from ./commands
+const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'));
 bot.commands = new Collection();
-const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('addbotchannel.js'));
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-
-  // set a new item in the Collection
-  // with the key as the command name and the value as the exported module
   bot.commands.set(command.name, command);
 }
 
-console.log('bot.commands:', bot.commands)
+const dbStats = require('./util/dbStats');
+const dbServers = require('./util/dbServers');
 
 // --------------------------------------
 //
@@ -32,6 +25,7 @@ console.log('bot.commands:', bot.commands)
 //
 // --------------------------------------
 bot.on('ready', () => {
+  // eslint-disable-next-line no-console
   console.log(`Logged in as ${bot.user.username}`);
 
   calcServer = bot.guilds.get('581872879386492929')
@@ -45,819 +39,80 @@ bot.on('ready', () => {
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
 
-bot.on('voiceStateUpdate', async (oldState, newState) => {
-  console.log('newState.voiceChannelID', newState.voiceChannelID)
-  if(newState.voiceChannelID != '659926148788125726')
-    return
-
-  await open('https://polycalculatorbot.com');
-})
-
 // --------------------------------------
 //
 //      EVENT ON MESSAGE
 //
 // --------------------------------------
 bot.on('message', async message => {
-  if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix) {
-    //    console.log(message.author.bot, !message.content.startsWith(prefix), message.content === prefix, message.content.startsWith(`${prefix}.`))
+  if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
-  }
-  let botChannel = []
-
-  if(message.channel.type != 'dm') {
-    await db.getBotChannels(message.guild.id)
-      .then(x => { botChannel = x })
-  } else {
-    if(message.author.bot)
-      return
-    const logEmbed = new RichEmbed().setColor('#FA8072')
-      .setTitle(`DM from ${message.author}`)
-      .addField('Content:', `${message.content}`)
-    return await logChannel.send(logEmbed)
-      .then(() => { logChannel.send(`${meee}`) })
-  }
-
-  const cmd = message.content.toLowerCase().slice(prefix.length).split(/ +/, 1).toString();
 
   const logEmbed = new RichEmbed().setColor('#FA8072')
-  if(message.cleanContent.length <= 256 && !cmd.startsWith('.')) {
-    logEmbed.setTitle(`**${message.cleanContent}**`)
-      .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
-    // logChannel.send(`**\`${message.cleanContent}\`** in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
-    logChannel.send(logEmbed)
+  // If it's a DM
+  if(message.channel.type === 'dm') {
+    logEmbed
+      .setTitle(`DM from ${message.author}`)
+      .addField('Content:', `${message.content}`)
+    message.channel.send(`I do not (yet?) support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.`)
+    logChannel.send(logEmbed).then()
+    return logChannel.send(`${meee}`).then()
   }
 
-  console.log(`${message.cleanContent} in ${message.guild.name.toUpperCase()} in #${message.channel.name} by ${message.author.tag}`);
-  let args;
+  // BOOLEAN for if the channel is registered as a bot channel in the bot
+  let isBotChannel = false
+  await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
+    .then(x => isBotChannel = x)
 
-  // INSIDER
-  if(message.channel.name === 'insider-information') {
-    const guilds = message.client.guilds;
-    if(cmd === 'stats') {
-      const embed = new RichEmbed()
-      let i = 0;
-      message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
-      guilds.forEach((x) => {
-        embed.addField(`**${x.name}** (${x.id}):`, `${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
-        i = i + 1;
-      })
-      message.channel.send(embed)
-    }
-    if(cmd === 'pingowners') {
-      guilds.forEach((x) => {
-        args = message.content.slice(prefix.length + cmd.length + 1);
-        const owner = x.owner.user
+  const argsArray = message.content.slice(prefix.length).split(/ +/);
+  const args = message.content.slice(prefix.length);
+  const commandName = argsArray.shift().toLowerCase();
 
-        owner.send(args)
-          .then(() => {
-            logChannel.send(`${x.channel.recipient} got the message!`)
-          })
-          .catch(() => {
-            errorChannel.send(`${x.channel.recipient} didn't get the message!`)
-          })
-      })
-    }
+  const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+  if (!command) {
+    return logChannel.send(`Not a command:\n**${message.cleanContent}**, by **${message.author.tag}**\n${message.url}`)
   }
-  // --------------------------------------------------
-  //
-  //         .HELP COMMAND
-  //
-  // --------------------------------------------------
-  if (cmd === 'help') {
+  const embed = new RichEmbed().setColor('#FA8072')
 
-    if (message.channel.name.startsWith('general') && message.author.id != '217385992837922819')
-      return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(5000)
-              .then()
-              .catch(console.error)
-            message.delete(5000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel} after 5 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
+  if(message.channel.name.includes('general'))
+    return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
+      .then(x => x.delete(5000).then().catch(console.error)).catch(console.error).catch(console.error)
 
-    args = message.content.toLowerCase().slice(prefix.length + cmd.length + 1).split(/ +/);
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorMsg = errorMsg.toString()
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-    return Help(args[0], message, false)
+  if(command.channelsAllowed) { // Certain commands can only be triggered in specific channels
+    if(!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
+      return
+  }
 
-    // --------------------------------------------------
-    //
-    //        .REMOVEBOTCHANNEL COMMAND
-    //
-    // --------------------------------------------------
-  } else if(cmd === 'removebotchannel' || cmd === 'rbc') {
-    if (!message.member.hasPermission('ADMINISTRATOR') && message.author != meee.user)
-      return message.channel.send('Only an admin can modify the registerd bot channels, sorry!')
+  if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(() => message.author.id)))
+    return message.channel.send('Only an admin can modify the registerd bot channels, sorry!')
 
-    const channelToRemove = message.mentions.channels.first()
+  try {
+    // EXECUTE COMMAND
+    const reply = command.execute(message, args, embed);
 
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorMsg = errorMsg.toString()
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-
-    if(channelToRemove) {
-      await db.removeABotChannel(message.guild.id, channelToRemove.id)
-        .then(x => {
-          let msg
-          if(x.length != 0) {
-            msg = ['This is the updated list of registered bot channels:']
-            x.forEach(y => {
-              msg.push(message.guild.channels.get(y))
-            })
-          } else
-            msg = [`You don't have any registered bot channels anymore.\nUse \`${prefix}addbotchannel\` with a channel pinged to register a bot channel with me!`]
-          message.channel.send(msg)
-        })
-        .catch(x => {
-          message.channel.send(x)
-            .then(y => errorChannel.send([y.cleanContent, y.url]))
-        })
+    // Log the command
+    if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
+      logEmbed.setTitle(`**${message.cleanContent}**`)
+        .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
+      logChannel.send(logEmbed)
     }
-    else {
-      await db.getBotChannels(message.guild.id)
-        .then(x => {
-          const msg = []
 
-          if (x.length != 0) {
-            msg.push('You need to ping a channel for it to be removed.')
-            msg.push('Here are the registered bot channels that won\'t auto-delete the commands:')
-            x.forEach(y => {
-              msg.push(message.guild.channels.get(y))
-            })
-          } else {
-            msg.push('You don\'t yet have bot channels registered with me.')
-            msg.push(`You can register them one by one using \`${prefix}addbotchannel\` with a channel ping!`)
-          }
-          message.channel.send(msg)
-        })
-        .catch(x => {message.channel.send(x)})
-    }
-    // --------------------------------------------------
-    //
-    //       .ADDBOTCHANNEL COMMAND
-    //
-    // --------------------------------------------------
-  } else if(cmd === 'addbotchannel' || cmd === 'abc') {
-    bot.commands.get(cmd).execute(message, stats, db)
-    // --------------------------------------------------
-    //
-    //         .UNITS COMMAND
-    //
-    // --------------------------------------------------
-  } else if (cmd.startsWith('unit')) {
-    if (message.channel.name.startsWith('general'))
-      return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(5000)
-              .then()
-              .catch(console.error)
-            message.delete(5000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel} after 5 seconds`)
-                console.log(`Message deleted in ${message.channel} after 5 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    const unitEmbed = new RichEmbed();
-    unitEmbed.setColor('#FA8072')
-      .setTitle('All units by code')
-    const units = [];
-
-    const allUnits = getUnits();
-    Object.keys(allUnits).forEach(function(key) {
-      units.push(`${allUnits[key].name}: ${key}`)
-    });
-
-    unitEmbed.setDescription(units)
-
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorMsg = errorMsg.toString()
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-    message.channel.send(unitEmbed)
+    return message.channel.send(reply)
       .then(x => {
-        if(!botChannel.some(y => y === message.channel.id)) {
-          x.delete(60000)
-            .then()
-            .catch(console.error)
-          message.delete(60000)
-            .then(() => {
-              logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-              console.log(`Message deleted in ${message.channel.name} after 1 min`)
-            })
-            .catch(console.error)
+        if(!isBotChannel) {
+          x.delete(60000).then().catch(console.error)
+          message.delete(60000).then().catch(console.error)
         }
-      })
-      .catch(console.error)
-    // --------------------------------------------------
-    //
-    //        .FULL COMMAND
-    //
-    // --------------------------------------------------
-  } else if (cmd === 'full' || cmd === 'f') {
-    if (message.channel.name.startsWith('general'))
-      return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(5000)
-              .then()
-              .catch(console.error)
-            message.delete(5000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
-    args.shift();
-
-    if(args.length === 0)
-      return Help(cmd, message, false)
-
-    if(isNaN(args[0]) || isNaN(args[1]) || isNaN(args[2]) || isNaN(args[3]) || isNaN(args[4]) || isNaN(args[5]) || args[0] === undefined || Number(args[0]) > 40 || Number(args[0]) < 1 || Number(args[1]) > 40 || Number(args[1]) < 1 || Number(args[0]) > Number(args[1]) || Number(args[2]) < 1 || Number(args[2]) > 5 || Number(args[3]) > 40 || Number(args[3]) < 1 || Number(args[4]) > 40 || Number(args[4]) < 1 || Number(args[3]) > Number(args[4]) || Number(args[5]) < 0 || Number(args[5]) > 5)
-      return message.channel.send(`ERROR: There is a problem with your format, try \`${prefix}help full\``)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(10000)
-              .then()
-              .catch(console.error)
-            message.delete(10000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 10 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 10 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    const defender = { name: 'Defender' }
-
-    const defBonusVals = getBonus(args)
-    defender.name = defender.name + `${defBonusVals[1]}`
-    const retal = getRetaliation(args)
-
-    const result = new Fight('Attacker', Number(args[0]), Number(args[1]), Number(args[2]), `${defender.name}`, Number(args[3]), Number(args[4]), Number(args[5]), defBonusVals[0], retal)
-    const resEmbed = result.calculate()
-
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-    message.channel.send(resEmbed)
+      }).catch(console.error)
+  } catch (error) {
+    errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
+    return message.channel.send(`${error}`)
       .then(x => {
-        if(!botChannel.some(y => y === message.channel.id)) {
-          x.delete(60000)
-            .then()
-            .catch(console.error)
-          message.delete(60000)
-            .then(() => {
-              logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-              console.log(`Message deleted in ${message.channel.name} after 1 min`)
-            })
-            .catch(console.error)
+        if(!isBotChannel) {
+          x.delete(15000).then().catch(console.error)
+          message.delete(15000).then().catch(console.error)
         }
-      })
-      .catch(console.error)
-    // --------------------------------------------------
-    //
-    //        .TEST COMMAND
-    //
-    // --------------------------------------------------
-  } else if (cmd === 'test' || cmd === 't') {
-    if (message.channel.name.startsWith('general'))
-      return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(5000)
-              .then()
-              .catch(console.error)
-            message.delete(5000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    args = message.content.toLowerCase().slice(prefix.length).split(/ +/);
-    args.shift();
-    if(args.length === 0)
-      return Help(cmd, message, false)
-
-    const defender = { name: 'Defender' }
-    const defBonusVals = getBonus(args)
-    defender.name = defender.name + `${defBonusVals[1]}`
-    const retal = getRetaliation(args)
-
-    const result = new Fight('Attacker', Number(args[0]), Number(args[1]), Number(args[2]), `${defender.name}`, Number(args[3]), Number(args[4]), Number(args[5]), defBonusVals[0], retal)
-    const resEmbed = result.calculate()
-
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, resEmbed, message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-    message.channel.send(resEmbed)
-      .then(x => {
-        if(!botChannel.some(y => y === message.channel.id)) {
-          x.delete(60000)
-            .then()
-            .catch(console.error)
-          message.delete(60000)
-            .then(() => {
-              logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-              console.log(`Message deleted in ${message.channel.name} after 1 min`)
-            })
-            .catch(console.error)
-        }
-      })
-      .catch(console.error)
-    // --------------------------------------------------
-    //
-    //        .CALC COMMAND
-    //
-    // --------------------------------------------------
-  } else if (cmd.startsWith('cal') || cmd === 'c' || cmd.startsWith('eli') || cmd === 'e' || cmd.startsWith('bulk') || cmd === 'b') {
-    if (message.channel.name.startsWith('general'))
-      return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-        .then(x => {
-          x.delete(5000)
-            .then()
-            .catch(console.error)
-          message.delete(5000)
-            .then(() => {
-              logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
-              console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-            })
-            .catch(console.error)
-        })
-        .catch(console.error)
-    // --------------------------------------------------
-    //      HANDLER TO CLEAN THE CMD ARRAY
-    // --------------------------------------------------
-    args = message.content.toLowerCase().slice(prefix.length + cmd.length);
-
-    if(args.length === 0)
-      return Help(cmd, message, false)
-
-    let unitsArray
-    if(args.includes('/'))
-      unitsArray = args.split('/')
-    else if(args.includes(','))
-      unitsArray = args.split(',')
-    else
-      return message.channel.send('You need an attacker and a defender separated using `,` or `/`')
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(10000)
-              .then()
-              .catch(console.error)
-            message.delete(10000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 10 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 10 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
-    const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
-
-    if(attackerArray.length === 0 || defenderArray.length === 0)
-      return message.channel.send('You need an attacker and a defender separated using `,` or `/`')
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(10000)
-              .then()
-              .catch(console.error)
-            message.delete(10000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 10 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 10 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    // --------------------------------------------------
-    //    GET FUNCTIONS TO FIND UNITS STATS
-    // --------------------------------------------------
-    let attackerStats
-    let defenderStats
-    try {
-      attackerStats = getFightUnit(attackerArray, prefix)
-      defenderStats = getFightUnit(defenderArray, prefix)
-    } catch (error) {
-      return message.channel.send(`**ERROR:** ${error}`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(10000)
-              .then()
-              .catch(console.error)
-            message.delete(10000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 10 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 10 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    }
-
-    const finalAttacker = {
-      name: attackerStats.name,
-      currentHP: getCurrentHP(attackerArray, getMaxHP(attackerArray, attackerStats), message),
-      maxHP: getMaxHP(attackerArray, attackerStats),
-      att: attackerStats.att
-    }
-
-    if(defenderArray.some(x => x === 'w') && defenderArray.some(x => x === 'd'))
-      message.channel.send('You\'ve put both `d` and `w`. By default, it\'ll take `w` over `d` if both are present.')
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(60000)
-              .then()
-              .catch(console.error)
-            message.delete(60000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                console.log(`Message deleted in ${message.channel.name} after 1 min`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    const defBonusVals = getBonus(defenderArray, defenderStats)
-    const finalDefender = {
-      currentHP: getCurrentHP(defenderArray, getMaxHP(defenderArray, defenderStats), message),
-      maxHP: getMaxHP(defenderArray, defenderStats),
-      def: defenderStats.def,
-      retaliation: getRetaliation(defenderArray),
-    }
-
-    if(defenderStats.fort === false && defBonusVals[0] === 4) {
-      finalDefender.name = `${defenderStats.name}`
-      finalDefender.bonus = 1
-      message.channel.send('This defender doesn\'t have fortify, so it doesn\'t benefit from a wall.\nFor a single bonus, use `d` instead of `w` used for wall.')
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(60000)
-              .then()
-              .catch(console.error)
-            message.delete(60000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                console.log(`Message deleted in ${message.channel.name} after 1 min`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    } else {
-      finalDefender.name = `${defenderStats.name}${defBonusVals[1]}`
-      finalDefender.bonus = defBonusVals[0];
-    }
-
-    if(attackerStats.att === 0)
-      return message.channel.send(`You know very well that ${attackerStats.name}s can't attack...`)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(10000)
-              .then()
-              .catch(console.error)
-            message.delete(10000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 10 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 10 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-
-    const result = new Fight(finalAttacker.name, finalAttacker.currentHP, finalAttacker.maxHP, finalAttacker.att, finalDefender.name, finalDefender.currentHP, finalDefender.maxHP, finalDefender.def, finalDefender.bonus, finalDefender.retaliation, finalDefender.fort)
-    const resEmbed = result.calculate()
-
-    if(cmd.startsWith('elim') || cmd === 'e') {
-      if(attackerArray.some(x => x.includes('?')) && defenderArray.some(x => x.includes('?'))) {
-        message.channel.send('*Note that any hp input will be disregarded.*')
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-
-        if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-          stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
-            .then()
-            .catch(errorMsg => {
-              errorMsg = errorMsg.toString()
-              errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                .then()
-                .catch()
-            })
-
-        message.channel.send(result.provideDefHP())
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-
-        message.channel.send(result.provideAttHP())
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-      } else if(attackerArray.some(x => x.includes('?'))) {
-        if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-          stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
-            .then()
-            .catch(errorMsg => {
-              errorMsg = errorMsg.toString()
-              errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                .then()
-                .catch()
-            })
-        message.channel.send(result.provideDefHP())
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-      } else if(defenderArray.some(x => x.includes('?'))) {
-        if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-          stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
-            .then()
-            .catch(errorMsg => {
-              errorMsg = errorMsg.toString()
-              errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-                .then()
-                .catch()
-            })
-        message.channel.send(result.provideAttHP())
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-      } else
-        message.channel.send(`You are either missing a \`?\` to display the most optimal hp to eliminate units.\n\`${prefix}help e\` for more information.\n\nOr you are looking for the basic \`${prefix}c\` command.\n\`${prefix}help c\` for more information.`)
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(60000)
-                .then()
-                .catch(console.error)
-              message.delete(60000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                  console.log(`Message deleted in ${message.channel.name} after 1 min`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-    } else if(cmd.startsWith('bulk') || cmd === 'b') {
-      if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
-          .then()
-          .catch(errorMsg => {
-            errorMsg = errorMsg.toString()
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-              .then()
-              .catch()
-          })
-      message.channel.send(result.bulk())
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(60000)
-              .then()
-              .catch(console.error)
-            message.delete(60000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                console.log(`Message deleted in ${message.channel.name} after 1 min`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    } else {
-      if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(message.cleanContent.slice(prefix.length).toLowerCase(), message.author, cmd, message.url, resEmbed, message.guild.id)
-          .then()
-          .catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-              .then()
-              .catch()
-          })
-      message.channel.send(resEmbed)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(60000)
-              .then()
-              .catch(console.error)
-            message.delete(60000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-                console.log(`Message deleted in ${message.channel.name} after 1 min`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    }
-    // --------------------------------------------------
-    //
-    //         .CREDITS COMMAND
-    //
-    // --------------------------------------------------
-  } else if (cmd === 'credits') {
-    if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-      stats.addStats(message.cleanContent, message.author, cmd, message.url, '', message.guild.id)
-        .then()
-        .catch(errorMsg => {
-          errorMsg = errorMsg.toString()
-          errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-            .then()
-            .catch()
-        })
-    const helpEmbed = new RichEmbed()
-    helpEmbed.setColor('#FA8072')
-      .setTitle('PolyCalculator\'s server')
-      .setDescription('For bot updates, feature requests and bug reports')
-      .addField('Developer', 'jd (alphaSeahorse)')
-      .addField('Contributions', 'penile partay, WOPWOP, Cake, James, LiNoKami.')
-      .setURL('https://discord.gg/rtSTmd8')
-    message.channel.send(helpEmbed)
-      .then()
-      .catch(console.error)
-    // --------------------------------------------------
-    //
-    //        .{UNIT} COMMAND
-    //
-    // --------------------------------------------------
-  } else {
-    const embed = new RichEmbed()
-    const unit = getUnit(cmd, prefix)
-    embed.setColor('#FA8072')
-      .setTitle(unit.name)
-    const descriptionArray = [];
-    descriptionArray.push(`maxhp: ${unit.maxhp}`)
-    descriptionArray.push(`vethp: ${unit.vethp}`)
-    descriptionArray.push(`attack: ${unit.att}`)
-    descriptionArray.push(`defense: ${unit.def}`)
-
-    if(unit) {
-
-      if (message.channel.name.startsWith('general')) {
-        return message.channel.send(`Come on! Not in **${message.channel.name}**`)
-          .then(x => {
-            if(!botChannel.some(y => y === message.channel.id)) {
-              x.delete(5000)
-                .then()
-                .catch(console.error)
-              message.delete(5000)
-                .then(() => {
-                  logChannel.send(`Message deleted in ${message.channel.name} after 5 seconds`)
-                  console.log(`Message deleted in ${message.channel.name} after 5 seconds`)
-                })
-                .catch(console.error)
-            }
-          })
-          .catch(console.error)
-      }
-
-      if (message.channel.id != '660136237725777955' || bot.user.id != '600161946867597322')
-        stats.addStats(unit.name.toLowerCase(), message.author, cmd, message.url, '', message.guild.id)
-          .then()
-          .catch(errorMsg => {
-            errorMsg = errorMsg.toString()
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
-              .then()
-              .catch()
-          })
-
-      const helpEmbed = new RichEmbed()
-        .setColor('#FA8072')
-        .setTitle(unit.name)
-      const descriptionArray = [];
-      descriptionArray.push(`maxhp: ${unit.maxhp}`)
-      descriptionArray.push(`vethp: ${unit.vethp}`)
-      descriptionArray.push(`attack: ${unit.att}`)
-      descriptionArray.push(`defense: ${unit.def}`)
-
-      helpEmbed.setDescription(descriptionArray);
-      message.channel.send(helpEmbed)
-        .then(x => {
-          if(!botChannel.some(y => y === message.channel.id)) {
-            x.delete(20000)
-              .then()
-              .catch(console.error)
-            message.delete(20000)
-              .then(() => {
-                logChannel.send(`Message deleted in ${message.channel.name} after 20 seconds`)
-                console.log(`Message deleted in ${message.channel.name} after 20 seconds`)
-              })
-              .catch(console.error)
-          }
-        })
-        .catch(console.error)
-    }
+      }).catch(console.error)
   }
 })
 
@@ -867,10 +122,10 @@ bot.on('message', async message => {
 //
 // --------------------------------------
 bot.on('channelDelete', deletedChannel => {
-  db.getBotChannels(deletedChannel.guild.id)
+  dbServers.getBotChannels(deletedChannel.guild.id)
     .then(x => { // x = array of bot channels
       if(x.some(y => y === deletedChannel.id))
-        db.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
+        dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
           .then()
           .catch(console.error)
     })
@@ -886,7 +141,7 @@ bot.on('channelCreate', createdChannel => {
     return
 
   if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
-    db.addABotChannel(createdChannel.guild.id, createdChannel.id)
+    dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id)
       .then()
       .catch(console.error)
 })
@@ -899,15 +154,14 @@ bot.on('channelUpdate', (oldChannel, updatedChannel) => {
   if(updatedChannel.type != 'text')
     return
 
-  db.getBotChannels(updatedChannel.guild.id)
+  dbServers.getBotChannels(updatedChannel.guild.id)
     .then(x => { // x = array of bot channels
       if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
-        console.log('channelUpdate')
-        db.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
+        dbServers.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
           .then()
           .catch(console.error)
       } else if (x.some(y => y === updatedChannel.id))
-        db.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
+        dbServers.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
           .then()
           .catch(console.error)
       else
@@ -923,7 +177,7 @@ bot.on('channelUpdate', (oldChannel, updatedChannel) => {
 bot.on('guildCreate', guild => {
   const botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
 
-  db.addNewServer(guild.id, guild.name, botChannels)
+  dbServers.addNewServer(guild.id, guild.name, botChannels)
     .then(logMsg => {
       logChannel.send(logMsg.concat(', ', `${meee}!`))
         .then()
@@ -941,7 +195,7 @@ bot.on('guildCreate', guild => {
 //
 // --------------------------------------
 bot.on('guildDelete', guild => {
-  db.removeServer(guild.id, guild.name)
+  dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
       logChannel.send(logMsg.concat(', ', `${meee}!`))
         .then()
@@ -963,6 +217,7 @@ bot.on('guildMemberAdd', newMember => {
   if (newMember.guild.id === '581872879386492929') {
     newMember.addRole('654164652741099540')
       .then(x => {
+        // eslint-disable-next-line no-console
         console.log(`${x.user.tag} just got in PolyCalculator server!`)
       })
       .catch(console.error)
@@ -972,27 +227,24 @@ bot.on('guildMemberAdd', newMember => {
 // --------------------------------------
 //        END/OTHER
 // --------------------------------------
-// const port = process.env.PORT || 5000;
-
-// setInterval(function() {
-//   http.get("http://polycalculator.herokuapp.com");
-// }, 300000); // every 5 minutes (300000)
-
 setInterval(function() {
-  const polytopia = bot.guilds.get('283436219780825088')
+  // PICK A RANDOM BOT CHANNEL EVERY 3h?
 
-  let botcommands = polytopia.channels.get('403724174532673536')
-  botcommands = { 'channel':botcommands }
-  Help('c', botcommands, true)
-  let rankedelogames = polytopia.channels.get('511316081160355852')
-  rankedelogames = { 'channel':rankedelogames }
-  Help('c', rankedelogames, true)
-  let unrankedgames = polytopia.channels.get('511906353476927498')
-  unrankedgames = { 'channel':unrankedgames }
-  Help('c', unrankedgames, true)
-  let elobotcommands = polytopia.channels.get('635091071717867521')
-  elobotcommands = { 'channel':elobotcommands }
-  Help('c', elobotcommands, true)
-}, 21600000); // every 3h (10800000) 6h (21600000)
+
+  // const polytopia = bot.guilds.get('283436219780825088')
+
+  // let botcommands = polytopia.channels.get('403724174532673536')
+  // botcommands = { 'channel':botcommands }
+  // Help('c', botcommands, true)
+  // let rankedelogames = polytopia.channels.get('511316081160355852')
+  // rankedelogames = { 'channel':rankedelogames }
+  // Help('c', rankedelogames, true)
+  // let unrankedgames = polytopia.channels.get('511906353476927498')
+  // unrankedgames = { 'channel':unrankedgames }
+  // Help('c', unrankedgames, true)
+  // let elobotcommands = polytopia.channels.get('635091071717867521')
+  // elobotcommands = { 'channel':elobotcommands }
+  // Help('c', elobotcommands, true)
+}, 10800000); // every 3h (10800000) 6h (21600000)
 
 bot.login(process.env.TOKEN);

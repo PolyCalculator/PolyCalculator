@@ -8,10 +8,10 @@ const pool = new Pool({
   },
 })
 
-module.exports.addNewServer = function (serverId, serverName, botChannels) {
+module.exports.addNewServer = function(serverId, serverName, botChannels) {
   return new Promise((resolve, reject) => {
-    let sql = `SELECT server_name FROM servers WHERE server_id = $1`
-    let values = [serverId]
+    const sql = 'SELECT server_name FROM servers WHERE server_id = $1'
+    const values = [serverId]
 
     pool.query(sql, values, (err, res) => {
       if(err) {
@@ -20,8 +20,8 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
         if(res.rows[0] === undefined) { // If server didn't exist
           botChannels = Array.from(botChannels.keys())
 
-          let sql1 = `INSERT INTO servers (server_id, bot_channels, server_name, active) VALUES ($1, $2, $3, true)`
-          let values1 = [serverId, botChannels, serverName];
+          const sql1 = 'INSERT INTO servers (server_id, bot_channels, server_name, active) VALUES ($1, $2, $3, true)'
+          const values1 = [serverId, botChannels, serverName];
 
           pool.query(sql1, values1, (err, res1) => {
             if(err) {
@@ -31,8 +31,8 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
             }
           })
         } else { // If server existed
-          let sql1 = `UPDATE servers SET active = true WHERE server_id = $1`
-          let values1 = [serverId];
+          const sql1 = 'UPDATE servers SET active = true WHERE server_id = $1'
+          const values1 = [serverId];
 
           pool.query(sql1, values1, (err, res2) => {
             if(err) {
@@ -47,10 +47,10 @@ module.exports.addNewServer = function (serverId, serverName, botChannels) {
   })
 }
 
-module.exports.removeServer = function (serverId, serverName) {
+module.exports.removeServer = function(serverId, serverName) {
   return new Promise((resolve, reject) => {
-    let sql1 = `UPDATE servers SET active = false WHERE server_id = $1`
-    let values1 = [serverId];
+    const sql1 = 'UPDATE servers SET active = false WHERE server_id = $1'
+    const values1 = [serverId];
 
     pool.query(sql1, values1, (err, res) => {
       if(err) {
@@ -62,17 +62,17 @@ module.exports.removeServer = function (serverId, serverName) {
   })
 }
 
-module.exports.getBotChannels = function (serverId) {
+module.exports.getBotChannels = function(serverId) {
   return new Promise((resolve, reject) => {
 
-    const sql = `SELECT bot_channels FROM servers WHERE server_id = $1`
+    const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
     const values = [serverId];
 
     pool.query(sql, values, (err, res) => {
       if(err) {
         reject(`${err.message}. Ping an @**admin** if you need help!`)
       } else {
-        let resolveMsg = []
+        const resolveMsg = []
         res.rows[0].bot_channels.forEach(x => {
           resolveMsg.push(x)
         })
@@ -82,10 +82,10 @@ module.exports.getBotChannels = function (serverId) {
   })
 }
 
-module.exports.addABotChannel = function (serverId, channelId) {
+module.exports.addABotChannel = function(serverId, channelId) {
   return new Promise((resolve, reject) => {
-    let sql = `SELECT bot_channels FROM servers WHERE server_id = $1`
-    let values = [serverId];
+    const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
+    const values = [serverId];
 
     pool.query(sql, values, (err, res) => {
       if(err) {
@@ -97,12 +97,12 @@ module.exports.addABotChannel = function (serverId, channelId) {
             newBotChannels = res.rows[0].bot_channels
             newBotChannels.push(channelId)
           } else
-            reject(`The channel you specified is already registered as a bot channel with me!`)
+            reject('The channel you specified is already registered as a bot channel with me!')
         } else {
           newBotChannels = [channelId]
         }
-        let sql = `UPDATE servers SET bot_channels = $1 WHERE server_id = $2`
-        let values = [newBotChannels, serverId];
+        const sql = 'UPDATE servers SET bot_channels = $1 WHERE server_id = $2'
+        const values = [newBotChannels, serverId];
 
         pool.query(sql, values, (err, res) => {
           if(err) {
@@ -116,11 +116,11 @@ module.exports.addABotChannel = function (serverId, channelId) {
   })
 }
 
-module.exports.removeABotChannel = function (serverId, channelId) {
+module.exports.removeABotChannel = function(serverId, channelId) {
   return new Promise((resolve, reject) => {
 
-    let sql = `SELECT bot_channels FROM servers WHERE server_id = $1`
-    let values = [serverId];
+    const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
+    const values = [serverId];
 
     pool.query(sql, values, (err, res) => {
       if(err) {
@@ -129,8 +129,8 @@ module.exports.removeABotChannel = function (serverId, channelId) {
         if(res.rows[0].bot_channels.some(x => x === channelId)) {
           newBotChannels = res.rows[0].bot_channels.filter(x => x != channelId)
 
-          let sql = `UPDATE servers SET bot_channels = $1 WHERE server_id = $2`
-          let values = [newBotChannels, serverId];
+          const sql = 'UPDATE servers SET bot_channels = $1 WHERE server_id = $2'
+          const values = [newBotChannels, serverId];
 
           pool.query(sql, values, (err, res) => {
             if(err) {
@@ -141,7 +141,24 @@ module.exports.removeABotChannel = function (serverId, channelId) {
           })
         }
         else
-          reject(`The channel you specified is already not registered as a bot channel with me!`)
+          reject('The channel you specified is already not registered as a bot channel with me!')
+      }
+    })
+  })
+}
+
+module.exports.isRegisteredChannel = function(serverId, channelId) {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
+    const values = [serverId];
+
+    pool.query(sql, values, (err, res) => {
+      if(err) {
+        reject(`${err.message}. Ping an @**admin** if you need help!`)
+      } else {
+        const botChannels = res.rows[0].bot_channels // array
+        const isRegistered = botChannels.some(x => x === channelId)
+        resolve(isRegistered)
       }
     })
   })
