@@ -18,11 +18,14 @@ module.exports = {
 
     if (args.length != 0) {
       const cmd = commands.get(args[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(args[0]))
+      if (!cmd)
+        throw 'This command doesn\'t exist.\nYou can try `.help` to get the list of commands!'
 
       embed.setTitle(`Help card for \`${process.env.PREFIX}${cmd.name}\``)
         .setDescription(`**Description:** ${cmd.description}`)
-        .addField('**Short usage:**', cmd.shortUsage(process.env.PREFIX))
-        .addField('**Long usage:**', cmd.longUsage(process.env.PREFIX))
+      if(cmd.name !== 'elim')
+        embed.addField('**Short usage:**', cmd.shortUsage(process.env.PREFIX))
+      embed.addField('**Long usage:**', cmd.longUsage(process.env.PREFIX))
       if(cmd.category === 'Main' || cmd.category === 'Advanced') {
         embed.addField('\u200b', '**Other features**')
           .addField('**Naval units:**', 'You can add `bo`, `sh` or `bs` to make the units into their respective naval units')

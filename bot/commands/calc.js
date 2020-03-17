@@ -15,8 +15,8 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute(message, args, embed) {
-    if(args.length === 0)
-      throw 'try `.help c` for more information on how to use this command!'
+    if(args.length === 0 || args.includes('help'))
+      throw 'Try `.help c` for more information on how to use this command!'
 
     const unitsArray = units.getBothUnitArray(args, message)
 

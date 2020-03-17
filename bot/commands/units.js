@@ -5,10 +5,10 @@ module.exports = {
   description: 'show the list of unit codes. ***Units require 2 characters.***',
   aliases: ['unit', 'u'],
   shortUsage(prefix) {
-    return `${prefix}units`
+    return `${prefix}u`
   },
   longUsage(prefix) {
-    return `${prefix}u`
+    return `${prefix}units`
   },
   category: 'Main',
   permsAllowed: ['VIEW_CHANNEL'],
@@ -42,7 +42,7 @@ module.exports = {
   },
   getUnitFromArray: function(unitArray, message) {
     const unitKeys = Object.keys(unitList);
-    let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2)))
+    let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
 
     if(unitCode.length === 0 && isNaval.length != 0)
@@ -50,7 +50,7 @@ module.exports = {
     if(unitCode.length === 0)
       throw 'We couldn\'t find one of the units.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nYou can get the list is available with `.units`'
 
-    unitCode = unitCode.toString().substring(0, 2)
+    unitCode = unitCode.toString().substring(0, 2).toLowerCase()
     const unit = this.getUnit(unitCode)
 
     let defenseBonus = unitArray.filter(value => value === 'w' || value === 'd')

@@ -3,7 +3,7 @@ module.exports = {
   description: 'show the team!',
   aliases: ['cred', 'credit'],
   shortUsage(prefix) {
-    return this.longUsage(prefix)
+    return `${prefix}cred`
   },
   longUsage(prefix) {
     return `${prefix}credits`
@@ -13,11 +13,9 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   execute(message, args, embed) {
     embed.setColor('#FA8072')
-      .setTitle('PolyCalculator\'s server')
-      .setDescription('For bot updates, feature requests and bug reports')
+      .setTitle('**PolyCalculator bot credits!**')
       .addField('Developer', 'jd (alphaSeahorse)')
-      .addField('Contributions', 'penile partay, WOPWOP, Cake, James, LiNoKami.')
-      .setURL('https://discord.gg/rtSTmd8')
+      .addField('Contributions', 'penile partay, WOPWOP, LiNoKami, HelloIAmBush, Cake, James.')
     return embed
   }
 };
