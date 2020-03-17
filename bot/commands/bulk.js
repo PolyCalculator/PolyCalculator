@@ -14,8 +14,8 @@ module.exports = {
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, args, embed) {
-    if(args.length === 0)
+  execute(message, argsStr, embed) {
+    if(argsStr.length === 0)
       throw 'try `.help b` for more information on how to use this command!'
 
 

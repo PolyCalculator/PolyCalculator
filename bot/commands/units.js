@@ -17,28 +17,45 @@ module.exports = {
     success: 6000,
     failure: 1000
   },
-  execute(message, args, embed) {
-    embed.setColor('#FA8072')
-      .setTitle('All units by code')
-    for(const key in unitList) {
-      if(embed.description === undefined)
-        embed.setDescription(`${unitList[key].name}: ${key}`)
-      else {
-        if(unitList[key].name === 'Boat') {
-          embed.setDescription(`${embed.description}\n\n**Water units**:\n${unitList[key].name}: ${key}`)
-        } else
-          embed.setDescription(`${embed.description}\n${unitList[key].name}: ${key}`)
+  execute(message, argsStr, embed) {
+    if (argsStr.length != 0) {
+      argsArray = argsStr.split(/ +/)
+      const unitCode = argsArray[0].slice(0, 2).toLowerCase()
+
+      const unit = this.getUnit(unitCode)
+
+      const descriptionArray = [];
+      descriptionArray.push(`maxhp: ${unit.maxhp}`)
+      descriptionArray.push(`vethp: ${unit.vet ? unit.maxhp+5 : 'No'}`)
+      descriptionArray.push(`attack: ${unit.att}`)
+      descriptionArray.push(`defense: ${unit.def}`)
+      embed.setTitle(unit.name)
+        .setDescription(descriptionArray)
+      
+      return embed
+    } else {
+      embed.setColor('#FA8072')
+        .setTitle('All units by code')
+      for(const key in unitList) {
+        if(embed.description === undefined)
+          embed.setDescription(`${unitList[key].name}: ${key}`)
+        else {
+          if(unitList[key].name === 'Boat') {
+            embed.setDescription(`${embed.description}\n\n**Water units**:\n${unitList[key].name}: ${key}`)
+          } else
+            embed.setDescription(`${embed.description}\n${unitList[key].name}: ${key}`)
+        }
       }
     }
     return embed
   },
-  getUnit: function(unitPartial, prefix) {
-    if(unitPartial.length < 2)
-      return 'You need a minimum of two characters to return the stats for a specific unit!'
-    if(!unitList[unitPartial])
-      return `The unit you are looking for doesn't exist or is under a different code.\nTry ${prefix}units to get the list of all units codes!`
-    // const clone = { ...unitList[unitPartial] }
-    return { ...unitList[unitPartial] }
+  getUnit: function(unitCode) {
+    if(unitCode.length < 2)
+      throw 'You need a minimum of two characters to return the stats for a specific unit!'
+    if(!unitList[unitCode])
+      throw `The unit you are looking for doesn't exist or is under a different code.\nTry ${process.env.PREFIX}units to get the list of all units codes!`
+
+    return { ...unitList[unitCode] }
   },
   getUnitFromArray: function(unitArray, message) {
     const unitKeys = Object.keys(unitList);

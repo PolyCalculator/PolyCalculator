@@ -1,6 +1,19 @@
 const deadText = require('./deadtexts')
 
-module.exports.calc = (attacker, defender, embed) => {
+// module.exports.curate = function(cmd, argsStr) {
+//   if(argsStr.length === 0 || argsStr.includes('help'))
+//     throw `Try \`.help ${cmd.name}\` for more information on how to use this command!`
+
+//   let unitsArray
+//   if(args.includes('/'))
+//     unitsArray = args.split('/')
+//   else if(args.includes(','))
+//     unitsArray = args.split(',')
+//   else
+//     return message.channel.send('You need an attacker and a defender separated using `,` or `/`')
+// }
+
+module.exports.calc = function(attacker, defender, embed) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   const randomText = deadText[Math.floor(Math.random() * deadText.length)];
@@ -30,17 +43,18 @@ module.exports.calc = (attacker, defender, embed) => {
     .addField(`**${defender.name}**:`, `${hpdefender} (${defdiff * -1})`)
 
   if(attacker.name === 'Fire Dragon') {
-    embed.addField('**Splash damage**:', Math.floor(defdiff / 2))
+    const halfdragondefdiff = Math.round(aforce / 2 / totaldam * attacker.att * 4.5);
+    embed.addField('**If splashed**:', halfdragondefdiff)
   }
 
   return embed;
 }
 
-module.exports.bulk = (attacker, defender, embed) => {
+module.exports.bulk = function(attacker, defender, embed) {
 
 }
 
-module.exports.elimAttacker = (attacker, defender, embed) => {
+module.exports.elimAttacker = function(attacker, defender, embed) {
   let totaldam;
   this.dhp = this.dmaxhp
   
@@ -63,7 +77,7 @@ module.exports.elimAttacker = (attacker, defender, embed) => {
   return helpEmbed;
 }
 
-module.exports.elimDefender = (attacker, defender, embed) => {
+module.exports.elimDefender = function(attacker, defender, embed) {
   let totaldam;
 
   for(attacker.currenthp = 0;attacker.currenthp != this.amaxhp;attacker.currenthp++) {

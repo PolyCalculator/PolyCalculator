@@ -11,13 +11,12 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, args, embed) {
-    args = args.split(/ +/)
-    args.shift()
+  execute(message, argsStr, embed) {
     const { commands } = message.client;
-
-    if (args.length != 0) {
-      const cmd = commands.get(args[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(args[0]))
+    if (argsStr.length != 0) {
+      argsArray = argsStr.split(/ +/)
+    
+      const cmd = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
       if (!cmd)
         throw 'This command doesn\'t exist.\nYou can try `.help` to get the list of commands!'
 

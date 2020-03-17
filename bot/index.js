@@ -18,6 +18,7 @@ for (const file of commandFiles) {
 
 const dbStats = require('./util/dbStats');
 const dbServers = require('./util/dbServers');
+const unitList = require('./util/unitsList')
 
 // --------------------------------------
 //
@@ -64,13 +65,14 @@ bot.on('message', async message => {
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
     .then(x => isBotChannel = x)
 
-  const argsStr = message.content.slice(prefix.length)
-  const commandName = argsStr.split(/ +/).shift().toLowerCase();
+  const textStr = message.content.slice(prefix.length)
+  const commandName = textStr.split(/ +/).shift().toLowerCase();
+  const argsStr = textStr.slice(commandName.length + 1)
 
   const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-  if (!command) {
-    return logChannel.send(`Not a command:\n**${message.cleanContent}**, by **${message.author.tag}**\n${message.url}`)
-  }
+  if (!command)
+    return
+
   const embed = new RichEmbed().setColor('#FA8072')
 
   if(message.channel.name.includes('general'))

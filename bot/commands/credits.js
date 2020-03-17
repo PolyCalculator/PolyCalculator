@@ -11,7 +11,7 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, args, embed) {
+  execute(message, argsStr, embed) {
     embed.setColor('#FA8072')
       .setTitle('**PolyCalculator bot credits!**')
       .addField('Developer', 'jd (alphaSeahorse)')

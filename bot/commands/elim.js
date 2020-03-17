@@ -14,8 +14,8 @@ module.exports = {
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, args, embed) {
-    if(args.length === 0)
+  execute(message, argsStr, embed) {
+    if(argsStr.length === 0)
       throw 'try `.help e` for more information on how to use this command!'
 
     const unitsArray = units.getBothUnitArray(args, message)
@@ -26,8 +26,8 @@ module.exports = {
     const attacker = units.getUnitFromArray(attackerArray, message)
     const defender = units.getUnitFromArray(defenderArray, message)
 
-    if(!args.includes('?')) {
-      message.channel.send(`You didn't provide a \`?\` on any side, so here's the basic calculation that \`.c ${args.slice(process.env.PREFIX.length)}\` would have given you!\nFor more help, do \`.help e\``)
+    if(!argsStr.includes('?')) {
+      message.channel.send(`You didn't provide a \`?\` on any side, so here's the basic calculation that \`.c ${argsStr}\` would have given you!\nFor more help, do \`.help e\``)
       fight.calc(attacker, defender, embed)
     }
 
