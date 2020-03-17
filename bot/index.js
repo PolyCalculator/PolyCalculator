@@ -64,9 +64,8 @@ bot.on('message', async message => {
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
     .then(x => isBotChannel = x)
 
-  const argsArray = message.content.slice(prefix.length).split(/ +/);
-  const args = message.content.slice(prefix.length);
-  const commandName = argsArray.shift().toLowerCase();
+  const argsStr = message.content.slice(prefix.length)
+  const commandName = argsStr.split(/ +/).shift().toLowerCase();
 
   const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
   if (!command) {
@@ -88,7 +87,7 @@ bot.on('message', async message => {
 
   try {
     // EXECUTE COMMAND
-    const reply = command.execute(message, args, embed);
+    const reply = command.execute(message, argsStr, embed);
 
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {

@@ -3,36 +3,10 @@ const connectionString = process.env.DATABASE_URL
 
 const pool = new Pool({
   connectionString: connectionString,
-  ssl: true,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 })
-
-module.exports.getTriggers = function() {
-  return new Promise((resolve, reject) => {
-    const sql = 'SELECT COUNT(id) FROM stats'
-
-    pool.query(sql, (err, res) => {
-      if(err) {
-        reject(`Get triggers: ${err.message}`)
-      } else {
-        resolve(Number(res.rows[0].count))
-      }
-    })
-  })
-}
-
-module.exports.getUserCount = function() {
-  return new Promise((resolve, reject) => {
-    const sql = 'SELECT COUNT(id), author_tag FROM stats GROUP BY author_tag ORDER BY COUNT (id) DESC'
-
-    pool.query(sql, (err, res) => {
-      if(err) {
-        reject(`Get user count: ${err.message}`)
-      } else {
-        resolve(`Unique users: ${Number(res.rows.length)}`)
-      }
-    })
-  })
-}
 
 module.exports.addStats = function(cleanContent, author, cmd, url, resEmbed, guildId) {
   let attacker = ''
