@@ -1,7 +1,4 @@
-// https://rpm.newrelic.com/accounts/2645843/applications/setup#nodejs
-// https://rpm.newrelic.com/accounts/2645843/browser/new#/?_k=ny1qvo
-// npm install newrelic
-// require('newrelic');
+require('newrelic');
 require('dotenv').config();
 const { Client, RichEmbed, Collection } = require('discord.js');
 const bot = new Client();
