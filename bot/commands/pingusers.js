@@ -1,6 +1,8 @@
+const dbStats = require('../util/dbStats')
+
 module.exports = {
-  name: 'pingowners',
-  description: 'ping every owner.',
+  name: 'pingusers',
+  description: 'ping every user with at least 100 uses.',
   aliases: [],
   shortUsage() {
     return undefined

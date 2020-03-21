@@ -8,9 +8,9 @@ const pool = new Pool({
   },
 })
 
-module.exports.addStats = function(cleanContent, author, cmd, url, resEmbed, guildId) {
-  let attacker = ''
-  let defender = ''
+module.exports.addStats = function(message, textStr, commandName, attacker, defender, reply, willDelete) {
+  // cleanContent, author, cmd, url, resEmbed, guildId) {
+
   if(resEmbed) {
     attacker = resEmbed.fields[0].name.replace(/\*|:/g, '')
     defender = resEmbed.fields[1].name.replace(/\*|:/g, '')
@@ -21,8 +21,8 @@ module.exports.addStats = function(cleanContent, author, cmd, url, resEmbed, gui
   const timeStamp = Date.now();
 
   return new Promise((resolve, reject) => {
-    const sql = 'INSERT INTO stats (content, author_id, author_tag, command, url, attacker, defender, date, server_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
-    const values = [cleanContent, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp, guildId]
+    const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, url, attacker, defender, date, server_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
+    const values = [textStr, author.id, author.tag, cmd.substring(0, 1), url, attacker, defender, timeStamp, guildId]
 
     pool.query(sql, values, (err, res) => {
       if(err) {

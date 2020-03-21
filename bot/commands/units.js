@@ -3,7 +3,7 @@ const unitList = require('../util/unitsList')
 module.exports = {
   name: 'units',
   description: 'show the list of unit codes. ***Units require 2 characters.***',
-  aliases: ['unit', 'u'],
+  aliases: ['u', 'unit'],
   shortUsage(prefix) {
     return `${prefix}u`
   },
@@ -19,19 +19,19 @@ module.exports = {
   },
   execute(message, argsStr, embed) {
     if (argsStr.length != 0) {
-      argsArray = argsStr.split(/ +/)
+      const argsArray = argsStr.split(/ +/)
       const unitCode = argsArray[0].slice(0, 2).toLowerCase()
 
       const unit = this.getUnit(unitCode)
 
       const descriptionArray = [];
       descriptionArray.push(`maxhp: ${unit.maxhp}`)
-      descriptionArray.push(`vethp: ${unit.vet ? unit.maxhp+5 : 'No'}`)
+      descriptionArray.push(`vethp: ${unit.vet ? unit.maxhp + 5 : 'No'}`)
       descriptionArray.push(`attack: ${unit.att}`)
       descriptionArray.push(`defense: ${unit.def}`)
       embed.setTitle(unit.name)
         .setDescription(descriptionArray)
-      
+
       return embed
     } else {
       embed.setColor('#FA8072')
@@ -63,25 +63,32 @@ module.exports = {
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
 
     if(unitCode.length === 0 && isNaval.length != 0)
-      throw `You need to provide a unit inside the \`**${isNaval[0]}**\``
+      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**`
     if(unitCode.length === 0)
-      throw 'We couldn\'t find one of the units.\n*REQUIRED: You need to type at least two characters of the unit.*\n\nYou can get the list is available with `.units`'
+      throw 'We couldn\'t find one of the units.\n\nYou can get the list is available with `.units`'
 
     unitCode = unitCode.toString().substring(0, 2).toLowerCase()
     const unit = this.getUnit(unitCode)
 
-    let defenseBonus = unitArray.filter(value => value === 'w' || value === 'd')
-    defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
+    const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
+    if(currentHPArray.length > 0)
+      unit.setHP(message, currentHPArray)
 
-    if(defenseBonus.length === 2)
-      message.channel.send('You\'ve provided both `w` and `d`\nBy default, I take `w` over `d` if both are present.')
+    const defenseBonusArray = unitArray.filter(value => value === 'w' || value === 'd')
+    if(defenseBonusArray.length > 0)
+      unit.addBonus(message, defenseBonusArray)
 
-    if(defenseBonus.length === 1)
-      unit.addBonus(defenseBonus.toString())
+    const navalUnitArray = unitArray.filter(value => value.toLowerCase().startsWith('bs') || value.toLowerCase().startsWith('sh') || value.toLowerCase().startsWith('bo'))
+    if(navalUnitArray.length > 0) {
+      if(unit.onTheWater)
+        unit.onTheWater(navalUnitArray)
+      else
+        throw `Are you really trying to put the **${unit.name}** in a naval unit...`
+    }
 
-    unit.setHP(unitArray, message)
     return unit
   },
+  // eslint-disable-next-line no-unused-vars
   getBothUnitArray: function(args, message) {
     if(args.includes('/'))
       return args.split('/')

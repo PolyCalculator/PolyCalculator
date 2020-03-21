@@ -48,7 +48,7 @@ class Fight {
   // --------------provideDefHP | .kill gi ?, def w 8-------------------------------------
   // -------------------------------------------------------------------------------------
   provideDefHP() {
-    var totaldam;
+    let totaldam;
     const helpEmbed = new RichEmbed()
       .setColor('#FA8072')
     for(this.ahp = 0;this.ahp != this.amaxhp;this.ahp++) {

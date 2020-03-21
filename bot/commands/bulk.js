@@ -18,21 +18,14 @@ module.exports = {
     if(argsStr.length === 0)
       throw 'try `.help b` for more information on how to use this command!'
 
+    const unitsArray = units.getBothUnitArray(argsStr, message)
 
-    message.channel.send(result.bulk())
-      .then(x => {
-        if(!botChannel.some(y => y === message.channel.id)) {
-          x.delete(60000)
-            .then()
-            .catch(console.error)
-          message.delete(60000)
-            .then(() => {
-              logChannel.send(`Message deleted in ${message.channel.name} after 1 min`)
-              console.log(`Message deleted in ${message.channel.name} after 1 min`)
-            })
-            .catch(console.error)
-        }
-      })
-      .catch(console.error)
+    const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
+    const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
+
+    const attacker = units.getUnitFromArray(attackerArray, message)
+    const defender = units.getUnitFromArray(defenderArray, message)
+    fight.bulk(attacker, defender, embed)
+    return embed
   },
 };

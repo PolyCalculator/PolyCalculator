@@ -16,9 +16,9 @@ for (const file of commandFiles) {
   bot.commands.set(command.name, command);
 }
 
-const dbStats = require('./util/dbStats');
+// const dbStats = require('./util/dbStats');
 const dbServers = require('./util/dbServers');
-const unitList = require('./util/unitsList')
+// const unitList = require('./util/unitsList')
 
 // --------------------------------------
 //
@@ -69,23 +69,30 @@ bot.on('message', async message => {
   const commandName = textStr.split(/ +/).shift().toLowerCase();
   const argsStr = textStr.slice(commandName.length + 1)
 
+  // Map all the commands
   const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+  // Return if the command doesn't exist
   if (!command)
     return
 
+  // Instantiate the embed that's sent to every command execution
   const embed = new RichEmbed().setColor('#FA8072')
 
+  // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general'))
     return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
       .then(x => x.delete(5000).then().catch(console.error)).catch(console.error).catch(console.error)
 
+  // Check if command is allowed in that channel
   if(command.channelsAllowed) { // Certain commands can only be triggered in specific channels
     if(!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
       return
   }
 
-  if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(() => message.author.id)))
-    return message.channel.send('Only an admin can modify the registerd bot channels, sorry!')
+  // Check if the user has the permissions necessary to execute the command
+  if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
+    return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
     // EXECUTE COMMAND

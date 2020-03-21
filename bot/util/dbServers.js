@@ -73,6 +73,7 @@ module.exports.getBotChannels = function(serverId) {
         reject(`${err.message}. Ping an @**admin** if you need help!`)
       } else {
         const resolveMsg = []
+        console.log('res:', res)
         res.rows[0].bot_channels.forEach(x => {
           resolveMsg.push(x)
         })
