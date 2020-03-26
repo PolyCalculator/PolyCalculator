@@ -1,3 +1,5 @@
+const dbStats = require('../../db/index')
+
 module.exports = {
   name: 'help',
   description: 'display all the commands\' details.',
@@ -11,11 +13,11 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, argsStr, embed) {
+  execute(message, argsStr, embed, willDelete) {
     const { commands } = message.client;
     if (argsStr.length != 0) {
-      argsArray = argsStr.split(/ +/)
-    
+      const argsArray = argsStr.split(/ +/)
+
       const cmd = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
       if (!cmd)
         throw 'This command doesn\'t exist.\nYou can try `.help` to get the list of commands!'
@@ -32,6 +34,7 @@ module.exports = {
           .addField('**Defense bonus:**', 'Put `d` for the single bonus defense and `w` for the wall defense bonus.')
           .setFooter(`aliases: ${cmd.aliases}`)
       }
+      return embed
     } else {
       const categoriesMapped = {
         Main: {},
@@ -56,7 +59,7 @@ module.exports = {
       })
 
       embed.setTitle('Help card for all commands')
-        .setFooter('For more help on a command: .help {command}\nExample: .help calc')
+        .setFooter(`For more help on a command: ${process.env.PREFIX}help {command}\nExample: ${process.env.PREFIX}help calc`)
 
       for (const [cat, commandsList] of Object.entries(categoriesMapped)) {
         const field = []
@@ -65,7 +68,27 @@ module.exports = {
         }
         embed.addField(`**${cat}:**`, field)
       }
+      return embed
     }
-    return embed
   },
+
+
+  // Add to stats database
+  addStats: function(message, argStr, commandName, success, willDelete) {
+    const date = Date();
+    const replyFields = [success]
+
+    return new Promise((resolve, reject) => {
+      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
+      const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
+
+      dbStats.query(sql, values, (err, res) => {
+        if(err) {
+          reject(`Stats: ${err.stack}\n${message.url}`)
+        } else {
+          resolve()
+        }
+      })
+    })
+  }
 };

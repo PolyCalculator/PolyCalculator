@@ -16,7 +16,6 @@ for (const file of commandFiles) {
   bot.commands.set(command.name, command);
 }
 
-// const dbStats = require('./util/dbStats');
 const dbServers = require('./util/dbServers');
 // const unitList = require('./util/unitsList')
 
@@ -33,8 +32,17 @@ bot.on('ready', () => {
   meee = calcServer.members.get('217385992837922819')
   logChannel = calcServer.channels.get('648688924155314176')
   errorChannel = calcServer.channels.get('658125562455261185')
+  let toggle = true
 
-  bot.user.setActivity(`${prefix}help c`, { type: 'LISTENING' })
+  setInterval(function() {
+    if(toggle) {
+      bot.user.setActivity(`${prefix}links`, { type: 'PLAYING' })
+      toggle = false
+    } else {
+      bot.user.setActivity(`${prefix}help c`, { type: 'PLAYING' })
+      toggle = true
+    }
+  }, 10000);
 
   if(bot.user.id != process.env.BETABOT_ID)
     logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
@@ -49,13 +57,14 @@ bot.on('message', async message => {
   if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
-  const logEmbed = new RichEmbed().setColor('#FA8072')
+  const logEmbed = new RichEmbed().setColor('#ff0066')
   // If it's a DM
   if(message.channel.type === 'dm') {
     logEmbed
       .setTitle(`DM from ${message.author}`)
       .addField('Content:', `${message.content}`)
     message.channel.send(`I do not (yet?) support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.`)
+      .then().catch(console.error)
     logChannel.send(logEmbed).then()
     return logChannel.send(`${meee}`).then()
   }
@@ -77,7 +86,7 @@ bot.on('message', async message => {
     return
 
   // Instantiate the embed that's sent to every command execution
-  const embed = new RichEmbed().setColor('#FA8072')
+  const embed = new RichEmbed().setColor('#ff0066')
 
   // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general'))
@@ -91,34 +100,42 @@ bot.on('message', async message => {
   }
 
   // Check if the user has the permissions necessary to execute the command
-  if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
-    return message.channel.send('Only an admin can use this command, sorry!')
+  // if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
+  //   return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
     // EXECUTE COMMAND
-    const reply = command.execute(message, argsStr, embed);
+    const reply = await command.execute(message, argsStr, embed, !isBotChannel);
 
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
       logEmbed.setTitle(`**${message.cleanContent}**`)
         .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
       logChannel.send(logEmbed)
+        .then(sent => {
+          if(!isBotChannel) {
+            setInterval(function() {
+              logEmbed.setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n~~${message.url}~~`)
+              sent.edit(logEmbed)}, 60000)
+          }
+        })
     }
-
-    return message.channel.send(reply)
-      .then(x => {
-        if(!isBotChannel) {
-          x.delete(60000).then().catch(console.error)
-          message.delete(60000).then().catch(console.error)
-        }
-      }).catch(console.error)
+    if(reply)
+      message.channel.send(reply)
+        .then(x => {
+          if(!isBotChannel) {
+            x.delete(60000).then(() => {}).catch(console.error)
+            message.delete(60000).then(() => {}).catch(console.error)
+          }
+        }).catch(console.error)
+    return
   } catch (error) {
     errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
     return message.channel.send(`${error}`)
       .then(x => {
         if(!isBotChannel) {
-          x.delete(15000).then().catch(console.error)
-          message.delete(15000).then().catch(console.error)
+          x.delete(15000).then(() => {}).catch(console.error)
+          message.delete(15000).then(() => {}).catch(console.error)
         }
       }).catch(console.error)
   }
@@ -183,9 +200,10 @@ bot.on('channelUpdate', (oldChannel, updatedChannel) => {
 //
 // --------------------------------------
 bot.on('guildCreate', guild => {
-  const botChannels = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
+  const botChannelsMap = guild.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
+  const botChannels = botChannelsMap.keys()
 
-  dbServers.addNewServer(guild.id, guild.name, botChannels)
+  dbServers.addNewServer(guild.id, guild.name, botChannels, meee)
     .then(logMsg => {
       logChannel.send(logMsg.concat(', ', `${meee}!`))
         .then()
@@ -236,23 +254,7 @@ bot.on('guildMemberAdd', newMember => {
 //        END/OTHER
 // --------------------------------------
 setInterval(function() {
-  // PICK A RANDOM BOT CHANNEL EVERY 3h?
 
-
-  // const polytopia = bot.guilds.get('283436219780825088')
-
-  // let botcommands = polytopia.channels.get('403724174532673536')
-  // botcommands = { 'channel':botcommands }
-  // Help('c', botcommands, true)
-  // let rankedelogames = polytopia.channels.get('511316081160355852')
-  // rankedelogames = { 'channel':rankedelogames }
-  // Help('c', rankedelogames, true)
-  // let unrankedgames = polytopia.channels.get('511906353476927498')
-  // unrankedgames = { 'channel':unrankedgames }
-  // Help('c', unrankedgames, true)
-  // let elobotcommands = polytopia.channels.get('635091071717867521')
-  // elobotcommands = { 'channel':elobotcommands }
-  // Help('c', elobotcommands, true)
-}, 10800000); // every 3h (10800000) 6h (21600000)
+}, 3600000); // every 1h (3600000) 3h (10800000) 6h (21600000)
 
 bot.login(process.env.TOKEN);

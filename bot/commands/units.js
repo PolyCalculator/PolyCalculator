@@ -1,4 +1,5 @@
 const unitList = require('../util/unitsList')
+const dbStats = require('../../db/index')
 
 module.exports = {
   name: 'units',
@@ -17,7 +18,7 @@ module.exports = {
     success: 6000,
     failure: 1000
   },
-  execute(message, argsStr, embed) {
+  execute(message, argsStr, embed, willDelete) {
     if (argsStr.length != 0) {
       const argsArray = argsStr.split(/ +/)
       const unitCode = argsArray[0].slice(0, 2).toLowerCase()
@@ -34,8 +35,7 @@ module.exports = {
 
       return embed
     } else {
-      embed.setColor('#FA8072')
-        .setTitle('All units by code')
+      embed.setTitle('All units by code')
       for(const key in unitList) {
         if(embed.description === undefined)
           embed.setDescription(`${unitList[key].name}: ${key}`)
@@ -57,7 +57,7 @@ module.exports = {
 
     return { ...unitList[unitCode] }
   },
-  getUnitFromArray: function(unitArray, message) {
+  getUnitFromArray: function(unitArray, message, willDelete) {
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
@@ -71,12 +71,13 @@ module.exports = {
     const unit = this.getUnit(unitCode)
 
     const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
+
     if(currentHPArray.length > 0)
-      unit.setHP(message, currentHPArray)
+      unit.setHP(message, currentHPArray, willDelete)
 
     const defenseBonusArray = unitArray.filter(value => value === 'w' || value === 'd')
     if(defenseBonusArray.length > 0)
-      unit.addBonus(message, defenseBonusArray)
+      unit.addBonus(message, defenseBonusArray, willDelete)
 
     const navalUnitArray = unitArray.filter(value => value.toLowerCase().startsWith('bs') || value.toLowerCase().startsWith('sh') || value.toLowerCase().startsWith('bo'))
     if(navalUnitArray.length > 0) {
@@ -96,5 +97,25 @@ module.exports = {
       return args.split(',')
     else
       throw 'You need an attacker and a defender separated using `,` or `/`'
+  },
+
+
+  // Add to stats database
+  addStats: function(message, argStr, commandName, success, willDelete) {
+    const date = Date();
+    const replyFields = [success]
+
+    return new Promise((resolve, reject) => {
+      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
+      const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
+
+      dbStats.query(sql, values, (err, res) => {
+        if(err) {
+          reject(`Stats: ${err.stack}\n${message.url}`)
+        } else {
+          resolve()
+        }
+      })
+    })
   }
 };

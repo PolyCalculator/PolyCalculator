@@ -1,22 +1,12 @@
 const deadText = require('./deadtexts')
 
-// module.exports.curate = function(cmd, argsStr) {
-//   if(argsStr.length === 0 || argsStr.includes('help'))
-//     throw `Try \`.help ${cmd.name}\` for more information on how to use this command!`
-
-//   let unitsArray
-//   if(args.includes('/'))
-//     unitsArray = args.split('/')
-//   else if(args.includes(','))
-//     unitsArray = args.split(',')
-//   else
-//     return message.channel.send('You need an attacker and a defender separated using `,` or `/`')
-// }
-
 module.exports.calc = function(attacker, defender, embed) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   const randomText = deadText[Math.floor(Math.random() * deadText.length)];
+
+  if(attacker.att <= 0)
+    throw `When will you ever be able to attack with a **${attacker.name}**...`
 
   const totaldam = aforce + dforce;
   const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
@@ -26,6 +16,8 @@ module.exports.calc = function(attacker, defender, embed) {
   if(hpdefender <= 0) {
     hpattacker = attacker.currenthp;
     hpdefender = deadText[Math.floor(Math.random() * deadText.length)];
+  } else if(!defender.retaliation) {
+    hpattacker = attacker.currenthp
   } else {
     attdiff = Math.round(dforce / totaldam * defender.def * 4.5)
     hpattacker = attacker.currenthp - attdiff;
@@ -36,8 +28,8 @@ module.exports.calc = function(attacker, defender, embed) {
   }
 
   embed.setDescription('The outcome of the fight is:')
-    .addField(`**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${hpattacker} (${attdiff * -1})`)
-    .addField(`**${defender.name}${defender.description} ${(defender.bonus !== 1 && defender.bonus !== 1.5) ? '(walled)' : '(protected)'}**:`, `${hpdefender} (${defdiff * -1})`)
+    .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Attacking ' : ''}${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${hpattacker} (${attdiff * -1})`)
+    .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Defending ' : ''}${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${hpdefender} (${defdiff * -1})`)
 
   if(attacker.name === 'Fire Dragon') {
     const halfdragondefdiff = Math.round(aforce / 2 / totaldam * attacker.att * 4.5);
@@ -53,8 +45,12 @@ module.exports.bulk = function(attacker, defender, embed) {
 
   let totaldam = aforce + dforce;
   let defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+
+  if(attacker.att <= 0)
+    throw `When will you ever be able to attack with a **${attacker.name}**...`
   if(defdiff < 1)
     throw `This **${attacker.currenthp}hp ${attacker.name}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}**.`
+
   let hpdefender = defender.currenthp;
 
   let i = 0
@@ -66,54 +62,60 @@ module.exports.bulk = function(attacker, defender, embed) {
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
-  embed.setDescription(`You'll need this many hits from the ${this.aname} to kill the ${this.dname}:`)
+  embed.setDescription(`You'll need this many hits from the ${attacker.name} to kill the ${defender.name}:`)
     .addField(`**Number of ${attacker.name}s**:`, `${i}`)
 
   return embed;
 }
 
 // eslint-disable-next-line no-unused-vars
-module.exports.elimAttacker = function(attacker, defender, embed) {
-  // let totaldam;
-  // this.dhp = this.dmaxhp
+module.exports.provideDefHP = function(attacker, defender, embed) {
+  let aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  let totaldam;
 
-  //   .setColor('#FA8072')
-  // for(let defdiff = 0;this.dhp > 0;this.dhp--) {
-  //   dforce = this.ddef * this.dhp / this.dmaxhp * this.dbonus;
-  //   totaldam = aforce + dforce;
-  //   defdiff = Math.round(aforce / totaldam * this.aattack * 4.5);
-  //   if(this.dhp - defdiff <= 0)
-  //     break
-  // }
-  // if(this.dhp === 0) {
-  //   helpEmbed.setTitle(`A ${attacker.currenthp}hp ${attacker.name} cannot even kill a 1hp ${defender.name}.`)
-  // } else {
-  //   helpEmbed
-  //     .setTitle(`The defender hp required for a kill with a ${attacker.currenthp}hp ${attacker.name} is:`)
-  //     .addField(`**${defender.name}**:`, `${this.dhp}`)
-  // }
+  for(attacker.currenthp = 0;attacker.currenthp != attacker.maxhp;attacker.currenthp++) {
+    aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+    totaldam = aforce + dforce;
+    const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+    if(defender.currenthp - defdiff <= 0)
+      break
+  }
+  if(attacker.currenthp === attacker.maxhp) {
+    embed.setTitle(`A full hp ${attacker.name} cannot kill a ${defender.currenthp}hp ${defender.name}.`)
+  } else {
+    embed
+      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.name} is:`)
+      .addField(`**${attacker.name}**:`, `${attacker.currenthp}`)
+  }
 
-  // return helpEmbed;
+  return embed;
 }
 
 // eslint-disable-next-line no-unused-vars
-module.exports.elimDefender = function(attacker, defender, embed) {
-  // let totaldam;
+module.exports.provideAttHP = function(attacker, defender, embed) {
+  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+  let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  let totaldam;
 
-  // for(attacker.currenthp = 0;attacker.currenthp != this.amaxhp;attacker.currenthp++) {
-  //   aforce = this.aattack * attacker.currenthp / this.amaxhp;
-  //   totaldam = aforce + dforce;
-  //   const defdiff = Math.round(aforce / totaldam * this.aattack * 4.5);
-  //   if(this.dhp - defdiff <= 0)
-  //     break
-  // }
-  // if(attacker.currenthp === this.amaxhp) {
-  //   helpEmbed.setTitle(`A full hp ${attacker.name} cannot kill a ${this.dhp}hp ${defender.name}.`)
-  // } else {
-  //   helpEmbed
-  //     .setTitle(`The minimum attacker hp required to kill a ${this.dhp}hp ${defender.name} is:`)
-  //     .addField(`**${attacker.name}**:`, `${attacker.currenthp}`)
-  // }
+  if(attacker.att <= 0)
+    throw `When will you ever be able to attack with a **${attacker.name}**...`
 
-  // return helpEmbed;
+  defender.currenthp = defender.maxhp
+
+  for(let defdiff = 0;defender.currenthp > 0;defender.currenthp--) {
+    dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+    totaldam = aforce + dforce;
+    defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+    if(defender.currenthp - defdiff <= 0)
+      break
+  }
+  if(defender.currenthp === 0) {
+    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.name} cannot even kill a 1hp ${defender.name}.`)
+  } else {
+    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.name} will kill a defending:`)
+      .addField(`**${defender.name}**:`, `Max: ${defender.currenthp}hp`)
+  }
+
+  return embed;
 }
