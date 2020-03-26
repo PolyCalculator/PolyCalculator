@@ -74,19 +74,19 @@ module.exports.provideDefHP = function(attacker, defender, embed) {
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   let totaldam;
 
-  for(attacker.currenthp = 0;attacker.currenthp != attacker.maxhp;attacker.currenthp++) {
+  for(attacker.currenthp = 0;attacker.currenthp <= attacker.maxhp;attacker.currenthp++) {
     aforce = attacker.att * attacker.currenthp / attacker.maxhp;
     totaldam = aforce + dforce;
     const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
     if(defender.currenthp - defdiff <= 0)
       break
   }
-  if(attacker.currenthp === attacker.maxhp) {
-    embed.setTitle(`A full hp ${attacker.name} cannot kill a ${defender.currenthp}hp ${defender.name}.`)
+  if(attacker.currenthp > attacker.maxhp) {
+    embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}.`)
   } else {
     embed
-      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.name} is:`)
-      .addField(`**${attacker.name}**:`, `${attacker.currenthp}`)
+      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name} is:`)
+      .addField(`**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}**:`, `${attacker.currenthp}`)
   }
 
   return embed;
@@ -111,10 +111,10 @@ module.exports.provideAttHP = function(attacker, defender, embed) {
       break
   }
   if(defender.currenthp === 0) {
-    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.name} cannot even kill a 1hp ${defender.name}.`)
+    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}.`)
   } else {
-    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.name} will kill a defending:`)
-      .addField(`**${defender.name}**:`, `Max: ${defender.currenthp}hp`)
+    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name} will kill a defending:`)
+      .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}**:`, `Max: ${defender.currenthp}hp`)
   }
 
   return embed;

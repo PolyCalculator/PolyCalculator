@@ -34,8 +34,10 @@ module.exports = {
     }
 
     if(unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
+      const attackerClone = { ...attacker }
+      const defenderClone = { ...defender }
       message.channel.send(fight.provideDefHP(attacker, defender, embed))
-      message.channel.send(fight.provideAttHP(attacker, defender, embed))
+      message.channel.send(fight.provideAttHP(attackerClone, defenderClone, embed))
       return
     }
     if(unitsArray[0].includes('?'))

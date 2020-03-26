@@ -12,7 +12,7 @@ module.exports = {
     return `${prefix}removebotcchannel #bot-commands`
   },
   category: 'Settings',
-  // permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
+  permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
   execute: async function(message, argsStr, embed, willDelete) {
@@ -44,7 +44,7 @@ module.exports = {
       const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
       const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
 
-      dbStats.query(sql, values, (err, res) => {
+      dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`Stats: ${err.stack}\n${message.url}`)
         } else {

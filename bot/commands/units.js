@@ -18,6 +18,7 @@ module.exports = {
     success: 6000,
     failure: 1000
   },
+  // eslint-disable-next-line no-unused-vars
   execute(message, argsStr, embed, willDelete) {
     if (argsStr.length != 0) {
       const argsArray = argsStr.split(/ +/)
@@ -65,7 +66,7 @@ module.exports = {
     if(unitCode.length === 0 && isNaval.length != 0)
       throw `You need to provide a unit inside the **\`${isNaval[0]}\`**`
     if(unitCode.length === 0)
-      throw 'We couldn\'t find one of the units.\n\nYou can get the list is available with `.units`'
+      throw 'We couldn\'t find one of the units.\n\nYou can get the list with `.units`'
 
     unitCode = unitCode.toString().substring(0, 2).toLowerCase()
     const unit = this.getUnit(unitCode)
@@ -109,7 +110,7 @@ module.exports = {
       const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
       const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
 
-      dbStats.query(sql, values, (err, res) => {
+      dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`Stats: ${err.stack}\n${message.url}`)
         } else {
