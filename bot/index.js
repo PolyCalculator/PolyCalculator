@@ -63,16 +63,16 @@ bot.on('message', async message => {
     logEmbed
       .setTitle(`DM from ${message.author}`)
       .addField('Content:', `${message.content}`)
-    message.channel.send(`I do not (yet?) support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.`)
+    message.channel.send(`I do not (yet?) support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .then().catch(console.error)
     logChannel.send(logEmbed).then()
     return logChannel.send(`${meee}`).then()
   }
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
-  let isBotChannel = false
+  let isNotBotChannel = true
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
-    .then(x => isBotChannel = x)
+    .then(x => isNotBotChannel = !x)
 
   const textStr = message.content.slice(prefix.length)
   const commandName = textStr.split(/ +/).shift().toLowerCase();
@@ -106,9 +106,10 @@ bot.on('message', async message => {
   if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
     return message.channel.send('Only an admin can use this command, sorry!')
 
+  const willDelete = isNotBotChannel && !command.forceNoDelete
   try {
     // EXECUTE COMMAND
-    const reply = await command.execute(message, argsStr, embed, !isBotChannel);
+    const reply = await command.execute(message, argsStr, embed, willDelete);
 
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
@@ -116,7 +117,7 @@ bot.on('message', async message => {
         .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
       logChannel.send(logEmbed)
         .then(sent => {
-          if(!isBotChannel) {
+          if(willDelete) {
             setInterval(function() {
               logEmbed.setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n~~${message.url}~~`)
               sent.edit(logEmbed)}, 60000)
@@ -126,7 +127,7 @@ bot.on('message', async message => {
     if(reply)
       message.channel.send(reply)
         .then(x => {
-          if(!isBotChannel) {
+          if(willDelete && !(command.name !== 'links' || command.name !== 'credits')) {
             x.delete(60000).then().catch(console.error)
             message.delete(60000).then().catch(console.error)
           }
@@ -136,7 +137,7 @@ bot.on('message', async message => {
     errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
     return message.channel.send(`${error}`)
       .then(x => {
-        if(!isBotChannel) {
+        if(willDelete) {
           x.delete(15000).then().catch(console.error)
           message.delete(15000).then().catch(console.error)
         }
@@ -155,12 +156,12 @@ bot.on('channelDelete', deletedChannel => {
       if(x.some(y => y === deletedChannel.id))
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
           .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
               .then()
               .catch()
           })
     }).catch(errorMsg => {
-      errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+      errorChannel.send(errorMsg.concat('\n', `${meee}!`))
         .then().catch()
     })
 })
@@ -177,7 +178,7 @@ bot.on('channelCreate', createdChannel => {
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id)
       .then()
       .catch(errorMsg => {
-        errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+        errorChannel.send(errorMsg.concat('\n', `${meee}!`))
           .then().catch()
       })
 })
@@ -187,7 +188,7 @@ bot.on('channelCreate', createdChannel => {
 //
 // --------------------------------------
 bot.on('channelUpdate', (oldChannel, updatedChannel) => {
-  if(updatedChannel.type != 'text')
+  if(updatedChannel.type != 'text' && oldChannel.name === updatedChannel.name)
     return
 
   dbServers.getBotChannels(updatedChannel.guild.id)
@@ -195,20 +196,20 @@ bot.on('channelUpdate', (oldChannel, updatedChannel) => {
       if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
         dbServers.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
           .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
               .then().catch()
           })
       } else if (x.some(y => y === updatedChannel.id))
         dbServers.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
           .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
               .then().catch()
           })
       else
         return
     })
     .catch(errorMsg => {
-      errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+      errorChannel.send(errorMsg.concat('\n', `${meee}!`))
         .then().catch()
     })
 })
@@ -227,7 +228,7 @@ bot.on('guildCreate', guild => {
         .then().catch()
     })
     .catch(errorMsg => {
-      errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+      errorChannel.send(errorMsg.concat('\n', `${meee}!`))
         .then().catch()
     })
 })
@@ -243,7 +244,7 @@ bot.on('guildDelete', guild => {
         .then().catch()
     })
     .catch(errorMsg => {
-      errorChannel.send(errorMsg.concat(', ', `${meee}!`))
+      errorChannel.send(errorMsg.concat('\n', `${meee}!`))
         .then().catch()
     })
 })

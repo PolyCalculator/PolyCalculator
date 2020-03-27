@@ -12,6 +12,7 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}calc warrior 7, rider 5`
   },
+  forceNoDelete: false,
   category: 'Main',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],

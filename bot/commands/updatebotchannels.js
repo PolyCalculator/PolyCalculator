@@ -10,6 +10,7 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}updatebotchannels 581872879386492929`
   },
+  forceNoDelete: true,
   category: 'hidden',
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],

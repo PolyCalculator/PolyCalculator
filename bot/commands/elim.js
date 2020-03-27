@@ -13,6 +13,7 @@ module.exports = {
   longUsage(prefix) {
     return `\`${prefix}e gi 32, de w ?\`\nThis returns the strongest defender the 32hp giant can kill.\n\n\`${prefix}e gi ?, de w 6\`\nThis returns the weakest giant needed to kill a walled defender with 6hp.`
   },
+  forceNoDelete: false,
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],

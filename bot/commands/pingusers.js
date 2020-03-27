@@ -10,6 +10,7 @@ module.exports = {
   longUsage() {
     return undefined
   },
+  forceNoDelete: true,
   category: 'hidden',
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],

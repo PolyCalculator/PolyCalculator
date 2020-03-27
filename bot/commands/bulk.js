@@ -12,6 +12,7 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}bulk warrior, defender d`
   },
+  forceNoDelete: false,
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],

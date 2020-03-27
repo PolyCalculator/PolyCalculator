@@ -10,6 +10,7 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}removebotcchannel #bot-commands`
   },
+  forceNoDelete: true,
   category: 'Settings',
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
