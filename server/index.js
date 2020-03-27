@@ -26,7 +26,6 @@ if(process.env.NODE_ENV === 'production') {
   // Handle SPA
   app.get(/.*/, (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
-    console.log('I\'M IN')
   })
 }
 
@@ -51,4 +50,5 @@ stats.use('/', topServers)
 
 const port = process.env.PORT || 3333
 
+// eslint-disable-next-line no-console
 app.listen(port, () => {return console.log(`Listening on http://localhost:${port}/api`)})

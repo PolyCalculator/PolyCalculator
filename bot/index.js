@@ -73,8 +73,6 @@ bot.on('message', async message => {
   let isBotChannel = false
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
     .then(x => isBotChannel = x)
-  if(message.author.id != meee.id)
-    isBotChannel = false
 
   const textStr = message.content.slice(prefix.length)
   const commandName = textStr.split(/ +/).shift().toLowerCase();

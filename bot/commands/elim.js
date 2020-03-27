@@ -28,37 +28,46 @@ module.exports = {
     const attacker = units.getUnitFromArray(attackerArray, message, willDelete)
     const defender = units.getUnitFromArray(defenderArray, message, willDelete)
 
-    if(!argsStr.includes('?')) {
-      message.channel.send(`You didn't provide a \`?\` on any side, so here's the basic calculation that \`${process.env.PREFIX}c ${argsStr}\` would have given you!\nFor more help, do \`${process.env.PREFIX}help e\``)
-      return fight.calc(attacker, defender, embed)
-    }
+    if(!argsStr.includes('?'))
+      throw `\`${process.env.PREFIX}elim\` requires a \`?\`\nYou'll need to either use the \`${process.env.PREFIX}calc\` command or do \`${process.env.PREFIX}help elim\` for more information on how to use it!`
 
     if(unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
       const attackerClone = { ...attacker }
       const defenderClone = { ...defender }
       message.channel.send(fight.provideDefHP(attacker, defender, embed))
       message.channel.send(fight.provideAttHP(attackerClone, defenderClone, embed))
+      this.addStats(message, this.name, attacker, defender, embed, willDelete, true)
+        .then().catch(err => { throw err })
       return
     }
-    if(unitsArray[0].includes('?'))
-      return fight.provideDefHP(attacker, defender, embed)
-    if(unitsArray[1].includes('?'))
-      return fight.provideAttHP(attacker, defender, embed)
+    if(unitsArray[0].includes('?')) {
+      embed = fight.provideDefHP(attacker, defender, embed)
+      this.addStats(message, this.name, attacker, defender, embed, willDelete)
+        .then().catch(err => { throw err })
+      return embed
+    }
+    if(unitsArray[1].includes('?')) {
+      embed = fight.provideAttHP(attacker, defender, embed)
+      this.addStats(message, this.name, attacker, defender, embed, willDelete)
+        .then().catch(err => { throw err })
+      return embed
+    }
   },
 
 
   // Add to stats database
-  addStats: function(message, argStr, commandName, success, willDelete) {
-    const date = Date();
-    const replyFields = [success]
+  addStats(message, commandName, attacker, defender, embed, willDelete, noEmbed) {
+    let replyFields = []
+
+    if(!noEmbed && embed.fields[0])
+      replyFields = [ embed.fields[0].name.replace(/\*\*/gi, ''), embed.fields[0].value]
 
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
-      const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
-
-      dbStats.query(sql, values, (err, res) => {
+      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_attacker_vet, is_defender_vet, attacker_description, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
+      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attacker.name, defender.name, message.url, message.guild.id, attacker.vetNow, defender.vetNow, attacker.description, defender.description, willDelete, replyFields]
+      dbStats.query(sql, values, (err) => {
         if(err) {
-          reject(`Stats: ${err.stack}\n${message.url}`)
+          reject(`${commandName} stats: ${err.stack}\n${message.url}`)
         } else {
           resolve()
         }

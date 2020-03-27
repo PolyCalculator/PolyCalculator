@@ -1,5 +1,4 @@
 const dbServers = require('../util/dbServers')
-const dbStats = require('../../db/index')
 
 module.exports = {
   name: 'removebotchannel',
@@ -32,25 +31,5 @@ module.exports = {
     } catch(err) {
       throw err
     }
-  },
-
-
-  // Add to stats database
-  addStats: function(message, argStr, commandName, success, willDelete) {
-    const date = Date();
-    const replyFields = [success]
-
-    return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, reply_fields, url, date, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
-      const values = [message.cleanContent, message.author.id, message.author.tag, commandName, replyFields, message.url, date, message.guild.id, willDelete]
-
-      dbStats.query(sql, values, (err) => {
-        if(err) {
-          reject(`Stats: ${err.stack}\n${message.url}`)
-        } else {
-          resolve()
-        }
-      })
-    })
   }
 };

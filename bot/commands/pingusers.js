@@ -29,9 +29,5 @@ module.exports = {
             .then(message.channel.send(`Message sent to ${user} (${user.tag})!`)).catch(console.error)
         })
       }).catch(console.error)
-    // message.client.guilds.forEach((x) => {
-    //   const owner = x.owner.user
-    //   owner.send(argsStr).then().catch(console.error)
-    // })
   }
 };
