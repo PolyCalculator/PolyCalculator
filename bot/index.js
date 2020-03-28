@@ -156,7 +156,7 @@ bot.on('channelDelete', deletedChannel => {
       if(x.some(y => y === deletedChannel.id))
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
           .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
+            errorChannel.send(errorMsg + `\n${deletedChannel.channel.name} in ${deletedChannel.guild.name}\n${meee}!`)
               .then()
               .catch()
           })
@@ -178,40 +178,9 @@ bot.on('channelCreate', createdChannel => {
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id)
       .then()
       .catch(errorMsg => {
-        errorChannel.send(errorMsg.concat('\n', `${meee}!`))
+        errorChannel.send(errorMsg + `\n${createdChannel.channel.name} in ${createdChannel.guild.name}\n${meee}!`)
           .then().catch()
       })
-})
-// --------------------------------------
-//
-//    EVENT ON CHANNEL UPDATE
-//
-// --------------------------------------
-bot.on('channelUpdate', (oldChannel, updatedChannel) => {
-  if(updatedChannel.type != 'text' && oldChannel.name === updatedChannel.name)
-    return
-
-  dbServers.getBotChannels(updatedChannel.guild.id)
-    .then(x => { // x = array of bot channels
-      if(updatedChannel.name.includes('bot') || updatedChannel.name.includes('command')) {
-        dbServers.addABotChannel(updatedChannel.guild.id, updatedChannel.id)
-          .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
-              .then().catch()
-          })
-      } else if (x.some(y => y === updatedChannel.id))
-        dbServers.removeABotChannel(updatedChannel.guild.id, updatedChannel.id)
-          .then().catch(errorMsg => {
-            errorChannel.send(errorMsg.concat('\n', `${meee}!`))
-              .then().catch()
-          })
-      else
-        return
-    })
-    .catch(errorMsg => {
-      errorChannel.send(errorMsg.concat('\n', `${meee}!`))
-        .then().catch()
-    })
 })
 // --------------------------------------
 //
@@ -234,7 +203,7 @@ bot.on('guildCreate', guild => {
 })
 // --------------------------------------
 //
-//   EVENT ON REMOVE GUILD JOIN
+//      EVENT ON REMOVE GUILD JOIN
 //
 // --------------------------------------
 bot.on('guildDelete', guild => {
