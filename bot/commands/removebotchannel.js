@@ -27,7 +27,7 @@ module.exports = {
       } else {
         const botChannelsArray = await dbServers.getBotChannels(message.guild.id)
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
-        throw 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
+        return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
       }
     } catch(err) {
       throw err

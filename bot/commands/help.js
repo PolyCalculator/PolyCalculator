@@ -35,12 +35,12 @@ module.exports = {
       if(command.name !== 'elim')
         embed.addField('**Short usage:**', command.shortUsage(process.env.PREFIX))
       embed.addField('**Long usage:**', command.longUsage(process.env.PREFIX))
+        .setFooter(`aliases: ${command.aliases.join(', ')}`)
       if(command.category === 'Main' || command.category === 'Advanced') {
         embed.addField('\u200b', '**Other features**')
           .addField('**Naval units:**', 'You can add `bo`, `sh` or `bs` to make the units into their respective naval units')
           .addField('**Veteran:**', 'You can just add a `v` to make the unit veteran. I will also recognize if you input hp higher than the normal and automatically make your unit veteran.')
           .addField('**Defense bonus:**', 'Put `d` for the single bonus defense and `w` for the wall defense bonus.')
-          .setFooter(`aliases: ${command.aliases.join(', ')}`)
       }
       return embed
     } else {

@@ -18,7 +18,7 @@ module.exports = {
     if(!argsStr)
       throw 'You need to include a message...'
 
-    message.client.guilds.forEach((x) => {
+    message.client.guilds.cache.forEach((x) => {
       const owner = x.owner.user
       owner.send(argsStr).then().catch(console.error)
     })

@@ -16,8 +16,8 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   execute(message, argsStr, embed, willDelete) {
     let i = 0;
-    message.channel.send(`Total de serveurs: ${message.client.guilds.size}`)
-    message.client.guilds.forEach((x) => {
+    message.channel.send(`Total de serveurs: ${message.client.guilds.cache.size}`)
+    message.client.guilds.cache.forEach((x) => {
       embed.addField(`**${x.name}** (${x.id}):`, `${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
       i = i + 1;
     })

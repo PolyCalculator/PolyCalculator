@@ -176,7 +176,7 @@ module.exports.channelExists = function(serverId, channelId) {
 
 module.exports.updateBotChannels = function(serverObj) {
   return new Promise((resolve, reject) => {
-    const botChannelsMap = serverObj.channels.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
+    const botChannelsMap = serverObj.channels.cache.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
     const botChannels = botChannelsMap.keyArray()
 
     this.addNewServer(serverObj.id, serverObj.name, botChannels)

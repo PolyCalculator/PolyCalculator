@@ -22,11 +22,11 @@ module.exports = {
     if(argsStr.length != 18) {
       throw 'Looks like an invalid server id :thinking:...'
     }
-    if(!message.client.guilds.get(argsStr))
+    if(!message.client.guilds.cache.get(argsStr))
       throw 'Doesn\'t look I\'m in that server (yet?)'
 
     try {
-      const guild = message.client.guilds.get(argsStr)
+      const guild = message.client.guilds.cache.get(argsStr)
       const newBotChannelsArray = await dbServers.updateBotChannels(guild)
       const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
       return `The channels for **${guild.name}** were reset to:\n` + returnedArray
