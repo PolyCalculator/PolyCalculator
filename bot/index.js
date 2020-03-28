@@ -127,7 +127,7 @@ bot.on('message', async message => {
     if(reply)
       message.channel.send(reply)
         .then(x => {
-          if(willDelete && !(command.name !== 'links' || command.name !== 'credits')) {
+          if(willDelete) {
             x.delete(60000).then().catch(console.error)
             message.delete(60000).then().catch(console.error)
           }
