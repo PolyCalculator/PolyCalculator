@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, RichEmbed, Collection } = require('discord.js');
+const { Client, MessageEmbed, Collection } = require('discord.js');
 const bot = new Client();
 const fs = require('fs')
 const prefix = process.env.PREFIX
@@ -28,10 +28,10 @@ bot.on('ready', () => {
   // eslint-disable-next-line no-console
   console.log(`Logged in as ${bot.user.username}`);
 
-  calcServer = bot.guilds.get('581872879386492929')
-  meee = calcServer.members.get('217385992837922819')
-  logChannel = calcServer.channels.get('648688924155314176')
-  errorChannel = calcServer.channels.get('658125562455261185')
+  calcServer = bot.guilds.cache.get('581872879386492929')
+  meee = calcServer.members.fetch('217385992837922819')
+  logChannel = calcServer.channels.cache.get('648688924155314176')
+  errorChannel = calcServer.channels.cache.get('658125562455261185')
   let toggle = true
 
   setInterval(function() {
@@ -57,7 +57,7 @@ bot.on('message', async message => {
   if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
-  const logEmbed = new RichEmbed().setColor('#ff0066')
+  const logEmbed = new MessageEmbed().setColor('#ff0066')
   // If it's a DM
   if(message.channel.type === 'dm') {
     logEmbed
@@ -86,7 +86,7 @@ bot.on('message', async message => {
     return
 
   // Instantiate the embed that's sent to every command execution
-  const embed = new RichEmbed().setColor('#ff0066')
+  const embed = new MessageEmbed().setColor('#ff0066')
 
   // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general') && message.author.id != meee.id)
