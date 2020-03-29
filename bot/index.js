@@ -87,6 +87,11 @@ bot.on('message', async message => {
   // Instantiate the embed that's sent to every command execution
   const embed = new MessageEmbed().setColor('#ff0066')
 
+  const willDelete = isNotBotChannel && !command.forceNoDelete
+  const generalDelete = { timeout: 5000 }
+  const successDelete = { timeout: 60000 }
+  const failDelete = { timeout: 15000 }
+
   // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general') && message.author.id != meee.id)
     return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
@@ -104,11 +109,6 @@ bot.on('message', async message => {
   // Check if the user has the permissions necessary to execute the command
   if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
     return message.channel.send('Only an admin can use this command, sorry!')
-
-  const willDelete = isNotBotChannel && !command.forceNoDelete
-  const generalDelete = { timeout: 5000 }
-  const successDelete = { timeout: 60000 }
-  const failDelete = { timeout: 15000 }
 
   try {
     // EXECUTE COMMAND
