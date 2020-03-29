@@ -61,7 +61,7 @@ bot.on('message', async message => {
   // If it's a DM
   if(message.channel.type === 'dm') {
     logEmbed
-      .setTitle(`DM from ${message.author}`)
+      .addField('DM from', message.author)
       .addField('Content:', `${message.content}`)
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .then().catch(console.error)
