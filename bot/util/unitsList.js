@@ -77,7 +77,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -198,7 +198,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -319,7 +319,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -440,7 +440,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -561,7 +561,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -682,7 +682,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -803,7 +803,7 @@ module.exports = {
     def: 0,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -931,7 +931,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1059,7 +1059,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1168,7 +1168,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1270,7 +1270,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1391,7 +1391,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1500,7 +1500,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1609,7 +1609,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1737,7 +1737,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1865,7 +1865,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -1974,7 +1974,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -2083,7 +2083,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -2192,7 +2192,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
@@ -2301,7 +2301,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
