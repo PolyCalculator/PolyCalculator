@@ -29,7 +29,7 @@ bot.on('ready', () => {
   console.log(`Logged in as ${bot.user.username}`);
 
   calcServer = bot.guilds.cache.get('581872879386492929')
-  meee = calcServer.members.fetch('217385992837922819')
+  meee = bot.users.cache.get('217385992837922819')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
   let toggle = true
@@ -63,7 +63,7 @@ bot.on('message', async message => {
     logEmbed
       .setTitle(`DM from ${message.author}`)
       .addField('Content:', `${message.content}`)
-    message.channel.send(`I do not (yet?) support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
+    message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .then().catch(console.error)
     logChannel.send(logEmbed).then()
     return logChannel.send(`${meee}`).then()
@@ -92,8 +92,8 @@ bot.on('message', async message => {
   if(message.channel.name.includes('general') && message.author.id != meee.id)
     return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
       .then(x => {
-        x.delete(5000).then().catch(console.error)
-        message.delete(5000).then().catch(console.error)
+        x.delete(generalDelete).then().catch(console.error)
+        message.delete(generalDelete).then().catch(console.error)
       }).catch(console.error).catch(console.error)
 
   // Check if command is allowed in that channel
@@ -107,6 +107,10 @@ bot.on('message', async message => {
     return message.channel.send('Only an admin can use this command, sorry!')
 
   const willDelete = isNotBotChannel && !command.forceNoDelete
+  const generalDelete = { timeout: 5000 }
+  const successDelete = { timeout: 60000 }
+  const failDelete = { timeout: 15000 }
+
   try {
     // EXECUTE COMMAND
     const reply = await command.execute(message, argsStr, embed, willDelete);
@@ -128,8 +132,8 @@ bot.on('message', async message => {
       message.channel.send(reply)
         .then(x => {
           if(willDelete) {
-            x.delete(60000).then().catch(console.error)
-            message.delete(60000).then().catch(console.error)
+            x.delete(successDelete).then().catch(console.error)
+            message.delete(successDelete).then().catch(console.error)
           }
         }).catch(console.error)
     return
@@ -138,8 +142,8 @@ bot.on('message', async message => {
     return message.channel.send(`${error}`)
       .then(x => {
         if(willDelete) {
-          x.delete(15000).then().catch(console.error)
-          message.delete(15000).then().catch(console.error)
+          x.delete(failDelete).then().catch(console.error)
+          message.delete(failDelete).then().catch(console.error)
         }
       }).catch(console.error)
   }

@@ -1,4 +1,6 @@
 /* eslint-disable no-empty-function */
+const successDelete = { timeout: 60000 }
+
 module.exports = {
   wa: {
     name: 'Warrior',
@@ -27,8 +29,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -37,8 +39,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -49,8 +51,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -58,8 +60,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -75,15 +77,15 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -148,8 +150,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -158,8 +160,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -170,8 +172,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -179,8 +181,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -196,15 +198,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -269,8 +271,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -279,8 +281,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -291,8 +293,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -300,8 +302,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -317,15 +319,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -390,8 +392,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -400,8 +402,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -412,8 +414,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -421,8 +423,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -438,15 +440,15 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -511,8 +513,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -521,8 +523,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -533,8 +535,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -542,8 +544,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -559,15 +561,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -632,8 +634,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -642,8 +644,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -654,8 +656,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -663,8 +665,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -680,15 +682,15 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -753,8 +755,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -763,8 +765,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -775,8 +777,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -784,8 +786,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -801,15 +803,15 @@ module.exports = {
     def: 0,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -881,8 +883,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -891,8 +893,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -903,8 +905,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -912,8 +914,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -929,15 +931,15 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1009,8 +1011,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1019,8 +1021,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1031,8 +1033,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1040,8 +1042,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1057,15 +1059,15 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1118,8 +1120,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1128,8 +1130,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1140,8 +1142,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1149,8 +1151,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1166,15 +1168,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1220,8 +1222,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1230,8 +1232,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1242,8 +1244,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1251,8 +1253,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1268,15 +1270,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1341,8 +1343,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1351,8 +1353,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1363,8 +1365,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1372,8 +1374,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1389,15 +1391,15 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1450,8 +1452,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1460,8 +1462,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1472,8 +1474,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1481,8 +1483,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1498,15 +1500,15 @@ module.exports = {
     def: 4,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1559,8 +1561,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1569,8 +1571,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1581,8 +1583,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1590,8 +1592,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1607,15 +1609,15 @@ module.exports = {
     def: 1,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1687,8 +1689,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1697,8 +1699,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1709,8 +1711,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1718,8 +1720,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1735,15 +1737,15 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1815,8 +1817,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1825,8 +1827,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1837,8 +1839,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1846,8 +1848,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1863,15 +1865,15 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -1924,8 +1926,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -1934,8 +1936,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -1946,8 +1948,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -1955,8 +1957,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -1972,15 +1974,15 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -2033,8 +2035,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -2043,8 +2045,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -2055,8 +2057,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -2064,8 +2066,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -2081,15 +2083,15 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -2142,8 +2144,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -2152,8 +2154,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -2164,8 +2166,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -2173,8 +2175,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -2190,15 +2192,15 @@ module.exports = {
     def: 2,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
@@ -2251,8 +2253,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         }
@@ -2261,8 +2263,8 @@ module.exports = {
           message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
             .then(x => {
               if(willDelete) {
-                x.delete(60000).then(() => {}).catch(console.error)
-                message.delete(60000).then(() => {}).catch(console.error)
+                x.delete(successDelete).then(() => {}).catch(console.error)
+                message.delete(successDelete).then(() => {}).catch(console.error)
               }
             }).catch(console.error)
         } else {
@@ -2273,8 +2275,8 @@ module.exports = {
             message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           } else {
@@ -2282,8 +2284,8 @@ module.exports = {
             message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
               .then(x => {
                 if(willDelete) {
-                  x.delete(60000).then(() => {}).catch(console.error)
-                  message.delete(60000).then(() => {}).catch(console.error)
+                  x.delete(successDelete).then(() => {}).catch(console.error)
+                  message.delete(successDelete).then(() => {}).catch(console.error)
                 }
               }).catch(console.error)
           }
@@ -2299,15 +2301,15 @@ module.exports = {
     def: 3,
     bonus: 1,
     addBonus(message, bonusArray, willDelete) {
-      let defenseBonus = bonusArray.filter(value => value === 'w' || value === 'd')
+      let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value === 'd')
       defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
       if(defenseBonus.length >= 2) {
         message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
           .then(x => {
             if(willDelete) {
-              x.delete(60000).then(() => {}).catch(console.error)
-              message.delete(60000).then(() => {}).catch(console.error)
+              x.delete(successDelete).then(() => {}).catch(console.error)
+              message.delete(successDelete).then(() => {}).catch(console.error)
             }
           }).catch(console.error)
         if(defenseBonus.some(x => x === 'w') && this.fort === true) {
