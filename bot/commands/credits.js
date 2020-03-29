@@ -18,7 +18,7 @@ module.exports = {
     embed.setColor('#FA8072')
       .setTitle('**PolyCalculator bot credits!**')
       .addField('Developer', 'jd (alphaSeahorse)')
-      .addField('Contributions', 'penile partay, WOPWOP, Shiny, LiNoKami, HelloIAmBush, Cake, James.')
+      .addField('Contributions', 'penile partay, WOPWOP, espark, Shiny, LiNoKami, HelloIAmBush, Cake, James.')
 
     this.addStats(message, this.name, willDelete)
       .then().catch(err => { throw err })
