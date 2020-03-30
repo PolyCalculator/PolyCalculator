@@ -65,7 +65,8 @@ bot.on('message', async message => {
       .addField('Content:', `${message.content}`)
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .then().catch(console.error)
-    logChannel.send(`${logEmbed}\n${meee}`).then().catch(console.error)
+    logChannel.send(logEmbed).then().catch(console.error)
+    return logChannel.send(meee).then().catch(console.error)
   }
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
