@@ -66,7 +66,7 @@ bot.on('message', async message => {
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .then().catch(console.error)
     logChannel.send(logEmbed).then().catch(console.error)
-    return logChannel.send(meee).then().catch(console.error)
+    return logChannel.send(`${meee}`).then().catch(console.error)
   }
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
@@ -192,18 +192,25 @@ bot.on('channelCreate', createdChannel => {
 //
 // --------------------------------------
 bot.on('guildCreate', guild => {
+  let botChannels = []
   const botChannelsMap = guild.channels.cache.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
-  const botChannels = botChannelsMap.keys()
+  if(botChannelsMap.size > 0)
+    botChannels = botChannelsMap.keys()
 
   dbServers.addNewServer(guild.id, guild.name, botChannels, meee)
     .then(logMsg => {
-      logChannel.send(`${logMsg}\n${meee}!`)
+      logChannel.send(logMsg)
+        .then().catch()
+      logChannel.send(`${meee}`)
         .then().catch()
     })
     .catch(errorMsg => {
-      errorChannel.send(`${errorMsg}\n${meee}!`)
+      errorChannel.send(errorMsg)
+        .then().catch()
+      errorChannel.send(`${meee}`)
         .then().catch()
     })
+  return
 })
 // --------------------------------------
 //
@@ -213,13 +220,18 @@ bot.on('guildCreate', guild => {
 bot.on('guildDelete', guild => {
   dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
-      logChannel.send(`${logMsg}\n${meee}!`)
+      logChannel.send(logMsg)
+        .then().catch()
+      logChannel.send(`${meee}`)
         .then().catch()
     })
     .catch(errorMsg => {
-      errorChannel.send(`${errorMsg}\n${meee}!`)
+      errorChannel.send(errorMsg)
+        .then().catch()
+      errorChannel.send(`${meee}`)
         .then().catch()
     })
+  return
 })
 
 // --------------------------------------
