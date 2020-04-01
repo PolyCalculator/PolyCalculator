@@ -8,7 +8,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -102,10 +102,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -129,7 +133,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -223,10 +227,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -250,7 +258,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -344,10 +352,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: true,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -371,7 +383,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -465,10 +477,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -492,7 +508,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -586,10 +602,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -613,7 +633,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -707,10 +727,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -734,7 +758,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -835,10 +859,14 @@ module.exports = {
       }
     },
     fort: false,
+    ranged: true,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -862,7 +890,7 @@ module.exports = {
     currenthp: 40,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -963,10 +991,14 @@ module.exports = {
       }
     },
     fort: false,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -990,7 +1022,7 @@ module.exports = {
     currenthp: 40,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1091,7 +1123,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: false,
+    retaliation: true,
+    retaliationOverride: ''
   },
   tr: {
     name: 'Tridention',
@@ -1099,7 +1133,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1193,7 +1227,9 @@ module.exports = {
       }
     },
     fort: true,
-    retaliation: true
+    ranged: true,
+    retaliation: true,
+    retaliationOverride: ''
   },
   po: {
     name: 'Polytaur',
@@ -1201,7 +1237,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1295,10 +1331,14 @@ module.exports = {
       }
     },
     fort: true,
+    ranged: false,
     retaliation: true,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -1322,7 +1362,7 @@ module.exports = {
     currenthp: 30,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1423,7 +1463,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: false,
+    retaliation: true,
+    retaliationOverride: ''
   },
   ga: {
     name: 'Gaami',
@@ -1431,7 +1473,7 @@ module.exports = {
     currenthp: 30,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1532,7 +1574,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: false,
+    retaliation: true,
+    retaliationOverride: ''
   },
   mb: {
     name: 'Mind Bender',
@@ -1540,7 +1584,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1641,10 +1685,14 @@ module.exports = {
       }
     },
     fort: false,
+    ranged: false,
     retaliation: false,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -1668,7 +1716,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1769,10 +1817,14 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true,
+    ranged: false,
+    retaliation: false,
+    retaliationOverride: '',
     onTheWater(navalArray) {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
@@ -1796,7 +1848,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -1897,7 +1949,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: false,
+    retaliation: true,
+    retaliationOverride: ''
   },
   dr: {
     name: 'Fire Dragon',
@@ -1905,7 +1959,7 @@ module.exports = {
     currenthp: 20,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -2006,7 +2060,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: true,
+    retaliation: true,
+    retaliationOverride: ''
   },
   mo: {
     name: 'Mooni',
@@ -2014,7 +2070,7 @@ module.exports = {
     currenthp: 10,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -2115,7 +2171,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: false
+    ranged: false,
+    retaliation: false,
+    retaliationOverride: ''
   },
   sl: {
     name: 'Battle Sled',
@@ -2123,7 +2181,7 @@ module.exports = {
     currenthp: 15,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -2224,7 +2282,9 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: false,
+    retaliation: true,
+    retaliationOverride: ''
   },
   ic: {
     name: 'Ice Fortress',
@@ -2232,7 +2292,7 @@ module.exports = {
     currenthp: 20,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-      const currentHP = currentHPArray[0]
+      const currentHP = Number(currentHPArray[0])
       const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
       if(currentHP < 1)
         throw 'One of the units is already dead. RIP.'
@@ -2333,6 +2393,8 @@ module.exports = {
       }
     },
     fort: false,
-    retaliation: true
+    ranged: true,
+    retaliation: true,
+    retaliationOverride: ''
   }
 }

@@ -1,4 +1,31 @@
+/* eslint-disable no-console */
 const deadText = require('./deadtexts')
+
+module.exports.multi = function(attackers, defender, embed) {
+  const spawn = require('child_process').spawn;
+  const pythonProcess = spawn('python', ['./bot/multiengine/main.py', JSON.stringify({ attackers, defender })]);
+  let remaininghp
+  const fieldArray = []
+
+  return new Promise((resolve) => {
+    pythonProcess.stdout.on('data', (data) => {
+      data = data.toString('utf8')
+      data = data.split(/ +/g)
+      remaininghp = parseInt(data.pop())
+      data.forEach(x => {
+        const description = `${attackers[x].currenthp}hp ${attackers[x].name}${attackers[x].description}`
+        fieldArray.push(description)
+      })
+      if(remaininghp > 0)
+        embed.addField('These attackers won\'t kill the defender:', `Remaining hp: ${remaininghp}`)
+
+      embed.setTitle('This is the order for best outcome')
+        .addField('Attacking order:', fieldArray)
+
+      resolve(embed)
+    });
+  })
+}
 
 module.exports.calc = function(attacker, defender, embed) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;

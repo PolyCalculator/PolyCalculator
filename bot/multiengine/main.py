@@ -97,7 +97,7 @@ def main():
     sol = branch_and_bound(seq)
     for i in sol._sequence:
         print(i, end=' ')
-    print(sol._defender[1])
+    print(int(sol._defender[1]))
     sys.stdout.flush()
 
 

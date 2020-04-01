@@ -9,10 +9,11 @@ class Sequence:
         Args:
           file_path: Path of the JSON file.
         """
-        with open(file_path, 'r') as f:
-            data = f.readline()
-        f.close()
-        data = json.loads(data)
+        # with open(file_path, 'r') as f:
+        #     data = f.readline()
+        # f.close()
+        # data = json.loads(data)
+        data = json.loads(file_path)
         self._attackers = []
         for i in data['attackers']:
             new_attacker = []
