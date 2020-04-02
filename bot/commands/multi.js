@@ -32,10 +32,12 @@ module.exports = {
     const attackers = []
 
     const defender = units.getUnitFromArray(defenderArray, message, willDelete)
+    defender.getOverride(defenderArray)
 
     unitsArray.forEach(x => {
       const attackerArray = x.split(/ +/).filter(y => y != '')
       const attacker = units.getUnitFromArray(attackerArray, message, willDelete)
+      attacker.getOverride(attackerArray)
       attackers.push(attacker)
     })
 

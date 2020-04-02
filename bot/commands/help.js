@@ -28,7 +28,7 @@ module.exports = {
 
     if (argsStr.length != 0 && !doesntHavePerms) {
       if (!command)
-        throw 'This command doesn\'t exist.\nYou can try `.help` to get the list of commands!'
+        throw `This command doesn't exist.\nGo get some \`${process.env.PREFIX}help\`!`
 
       embed.setTitle(`Help card for \`${process.env.PREFIX}${command.name}\``)
         .setDescription(`**Description:** ${command.description}`)

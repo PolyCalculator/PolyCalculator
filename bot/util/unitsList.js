@@ -125,6 +125,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   ri: {
@@ -250,6 +259,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   ar: {
@@ -375,6 +393,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   de: {
@@ -500,6 +527,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   kn: {
@@ -625,6 +661,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   sw: {
@@ -750,6 +795,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   ca: {
@@ -882,6 +936,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   gi: {
@@ -1014,6 +1077,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   cr: {
@@ -1125,7 +1197,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   tr: {
     name: 'Tridention',
@@ -1229,7 +1310,16 @@ module.exports = {
     fort: true,
     ranged: true,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   po: {
     name: 'Polytaur',
@@ -1354,6 +1444,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   na: {
@@ -1465,7 +1564,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   ga: {
     name: 'Gaami',
@@ -1576,7 +1684,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   mb: {
     name: 'Mind Bender',
@@ -1708,6 +1825,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   eg: {
@@ -1840,6 +1966,15 @@ module.exports = {
         this.att = 4
         this.def = 3
       }
+    },
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
     }
   },
   bd: {
@@ -1951,7 +2086,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   dr: {
     name: 'Fire Dragon',
@@ -2062,7 +2206,16 @@ module.exports = {
     fort: false,
     ranged: true,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   mo: {
     name: 'Mooni',
@@ -2173,7 +2326,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: false,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   sl: {
     name: 'Battle Sled',
@@ -2284,7 +2446,16 @@ module.exports = {
     fort: false,
     ranged: false,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   },
   ic: {
     name: 'Ice Fortress',
@@ -2395,6 +2566,15 @@ module.exports = {
     fort: false,
     ranged: true,
     retaliation: true,
-    retaliationOverride: ''
+    retaliationOverride: '',
+    getOverride: function(unitArray) {
+      const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+      if(overrides.length > 1)
+        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
+      else if (overrides.length === 0)
+        return
+      else
+        return this.retaliationOverride = overrides[0]
+    }
   }
 }

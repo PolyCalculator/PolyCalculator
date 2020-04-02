@@ -3,6 +3,7 @@ const deadText = require('./deadtexts')
 
 module.exports.multi = function(attackers, defender, embed) {
   const spawn = require('child_process').spawn;
+  // console.log('stringify:', JSON.stringify({ attackers, defender }))
   const pythonProcess = spawn('python', ['./bot/multiengine/main.py', JSON.stringify({ attackers, defender })]);
   let remaininghp
   const fieldArray = []
