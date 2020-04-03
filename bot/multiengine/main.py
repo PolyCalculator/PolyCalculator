@@ -5,7 +5,7 @@ import sys
 
 def better_solution(sol1, sol2):
     """Compares two solutions.
-    
+
     Args:
       sol1: A solution returned by Sequence.status().
       sol2: A solution returned by Sequence.status().
@@ -55,7 +55,7 @@ def branch_and_bound(sequence):
 
 def main():
     """Computes the optimal sequence of attackers.
-    
+
     This algorithm computes the optimal sequence of attacking
     units whose objectives are, in order, to:
     - Kill the defending unit,
@@ -87,7 +87,7 @@ def main():
       Power of defending unit, modifiers included.
       Current HP of defending unit.
       Maximum HP of defending unit.
-    
+
     Returns:
       Integers in range [0, N] indicating the optimal sequence
       of attacking units, according to the input order.
@@ -102,4 +102,5 @@ def main():
 
 
 # The fun starts here:
-main()
+if __name__ == '__main__':
+    main()
