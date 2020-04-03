@@ -13,9 +13,7 @@ class Sequence:
         data = -1
         if testing:
             with open(file_path, 'r') as f:
-                data = f.readline()
-            f.close()
-            data = json.loads(data)
+                data = json.load(f)
         else:
             data = json.loads(file_path)
 
