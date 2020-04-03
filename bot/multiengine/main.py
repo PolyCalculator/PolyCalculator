@@ -69,10 +69,10 @@ def main():
     - Include the option for retaliation/non-retaliation.
     - Allow for multiple defenders. But this might be fairly complicated to
       input. Maybe not all attacking units are in range of all defending units.
-      Or maybe a certain defending unit has to be killed first in order to allow
-      some attacking units to then gain range on some other defending unit. There
-      may be many such special situations. The output will only be as good as how
-      finely-grained the input is.
+      Or maybe a certain defending unit has to be killed first in order to
+      allow some attacking units to then gain range on some other defending
+      unit. There may be many such special situations. The output will only be
+      as good as how finely-grained the input is.
 
     Args:
       Power of attacking unit 0, modifiers included.

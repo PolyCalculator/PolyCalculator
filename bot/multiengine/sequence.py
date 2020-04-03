@@ -9,7 +9,7 @@ class Sequence:
         Args:
           file_path: Path of the JSON file.
         """
-        testing = False # True if I test with a local file
+        testing = False    # True if I test with a local file
         data = -1
         if testing:
             with open(file_path, 'r') as f:
@@ -19,10 +19,12 @@ class Sequence:
         else:
             data = json.loads(file_path)
 
-        self._defender = [data['defender']['def'] * data['defender']['bonus'], \
-                          data['defender']['currenthp'], \
-                          data['defender']['maxhp'], \
-                          data['defender']['ranged']]
+        self._defender = [
+            data['defender']['def'] * data['defender']['bonus'],
+            data['defender']['currenthp'],
+            data['defender']['maxhp'],
+            data['defender']['ranged']
+        ]
 
         self._attackers = []
         for i in data['attackers']:
@@ -52,21 +54,20 @@ class Sequence:
             # Use default basic logic
             else:
                 # Melee attacker
-                if i['ranged'] == False:
+                if not i['ranged']:
                     new_attacker.append(True)
                 # Ranged attacker
-                elif i['ranged'] == True:
+                elif i['ranged']:
                     # Melee defender
-                    if self._defender[3] == False:
+                    if not self._defender[3]:
                         new_attacker.append(False)
                     # Ranged defender
-                    elif self._defender[3] == True:
+                    elif self._defender[3]:
                         new_attacker.append(True)
             self._attackers.append(new_attacker)
 
         self._sequence = []
 
-        
     def fight(self, index):
         """Executes a new fight.
 
@@ -91,14 +92,16 @@ class Sequence:
         tot_dmg = atk_force + def_force
         atk_dmg_formula = (atk_force/tot_dmg)*atk_power*accelerator
         def_dmg_formula = (def_force/tot_dmg)*def_power*accelerator
-        atk_dmg = float(decimal.Decimal(atk_dmg_formula)\
-                        .quantize(0, decimal.ROUND_HALF_UP))
-        def_dmg = float(decimal.Decimal(def_dmg_formula)\
-                        .quantize(0, decimal.ROUND_HALF_UP))
+        atk_dmg = float(
+            decimal.Decimal(atk_dmg_formula).quantize(0, decimal.ROUND_HALF_UP)
+        )
+        def_dmg = float(
+            decimal.Decimal(def_dmg_formula).quantize(0, decimal.ROUND_HALF_UP)
+        )
 
         # Update unit stats
         defender[1] = max(0, defender[1]-atk_dmg)
-        if (defender[1] > 0) and (attacker[3] == True):
+        if (defender[1] > 0) and attacker[3]:
             attacker[1] -= def_dmg
         self._attackers[index] = attacker
         self._defender = defender
@@ -106,7 +109,6 @@ class Sequence:
         # Update sequence
         self._sequence.append(index)
 
-        
     def status(self):
         """Checks the status of the sequence.
 
@@ -115,14 +117,17 @@ class Sequence:
             (defender hp, attacker casualties, cumulative attacker hp),
           - None otherwise.
         """
-        if (self._defender[1] <= 0) or \
-           (len(self._sequence) == len(self._attackers)):
-            return (self._defender[1], \
-                    sum([1 for x in self._attackers if x[1] <= 0]), \
-                    sum([x[1] for x in self._attackers if x[1] >= 1]))        
+        if (
+                (self._defender[1] <= 0) or
+                (len(self._sequence) == len(self._attackers))
+                ):
+            return (
+                self._defender[1],
+                sum([1 for x in self._attackers if x[1] <= 0]),
+                sum([x[1] for x in self._attackers if x[1] >= 1])
+            )
         else:
             return None
-
 
     def unused_attackers(self):
         """Lists attackers which have not been used yet.
