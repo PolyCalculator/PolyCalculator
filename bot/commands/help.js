@@ -47,6 +47,7 @@ module.exports = {
       const categoriesMapped = {
         Main: {},
         Advanced: {},
+        // Paid: {},
         Settings: {},
         Other: {}
       }

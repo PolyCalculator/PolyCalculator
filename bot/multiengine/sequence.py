@@ -9,22 +9,61 @@ class Sequence:
         Args:
           file_path: Path of the JSON file.
         """
-        # with open(file_path, 'r') as f:
-        #     data = f.readline()
-        # f.close()
-        # data = json.loads(data)
-        data = json.loads(file_path)
+        testing = False # True if I test with a local file
+        data = -1
+        if testing:
+            with open(file_path, 'r') as f:
+                data = f.readline()
+            f.close()
+            data = json.loads(data)
+        else:
+            data = json.loads(file_path)
+
+        self._defender = [data['defender']['def'] * data['defender']['bonus'], \
+                          data['defender']['currenthp'], \
+                          data['defender']['maxhp'], \
+                          data['defender']['ranged']]
+
         self._attackers = []
         for i in data['attackers']:
             new_attacker = []
             new_attacker.append(i['att'])
             new_attacker.append(i['currenthp'])
             new_attacker.append(i['maxhp'])
-            new_attacker.append(i['retaliation'])
+            # Retaliation logic: attacker[3] == True means that the attacker
+            # takes damage, False means he does not take damage
+            # Basic logic:
+            #   - The defending unit always takes damage
+            #   - The attacking unit, if melee, always takes damage (sometimes
+            #     0 damage, e.g., Moonie)
+            #   - The attacking unit, if ranged == True:
+            #     - Does not take damage if the defending unit is melee
+            #     - Takes damage if the defending unit is ranged
+            # Overrides:
+            #   - 'r': Force the attacking unit to take damage
+            #   - 'nr': Prevent the attacking unit from taking damage
+            #   - '': Use the default basic logic
+            # Force damage
+            if i['retaliationOverride'] == 'r':
+                new_attacker.append(True)
+            # Prevent damage
+            elif i['retaliationOverride'] == 'nr':
+                new_attacker.append(False)
+            # Use default basic logic
+            else:
+                # Melee attacker
+                if i['ranged'] == False:
+                    new_attacker.append(True)
+                # Ranged attacker
+                elif i['ranged'] == True:
+                    # Melee defender
+                    if self._defender[3] == False:
+                        new_attacker.append(False)
+                    # Ranged defender
+                    elif self._defender[3] == True:
+                        new_attacker.append(True)
             self._attackers.append(new_attacker)
-        self._defender = [data['defender']['def'] * data['defender']['bonus'], \
-                          data['defender']['currenthp'], \
-                          data['defender']['maxhp']]        
+
         self._sequence = []
 
         

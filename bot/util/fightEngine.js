@@ -3,8 +3,8 @@ const deadText = require('./deadtexts')
 
 module.exports.multi = function(attackers, defender, embed) {
   const spawn = require('child_process').spawn;
-  // console.log('stringify:', JSON.stringify({ attackers, defender }))
   const pythonProcess = spawn('python', ['./bot/multiengine/main.py', JSON.stringify({ attackers, defender })]);
+
   let remaininghp
   const fieldArray = []
 
@@ -13,6 +13,7 @@ module.exports.multi = function(attackers, defender, embed) {
       data = data.toString('utf8')
       data = data.split(/ +/g)
       remaininghp = parseInt(data.pop())
+
       data.forEach(x => {
         const description = `${attackers[x].currenthp}hp ${attackers[x].name}${attackers[x].description}`
         fieldArray.push(description)

@@ -5,7 +5,7 @@ const calcCommand = require('./calc')
 
 module.exports = {
   name: 'multi',
-  description: 'returns the best order to use multiple attackers (up to 3) to kill one unit.',
+  description: 'returns the best order to use multiple attackers (up to 3) to kill one unit according to these priorities:\n\n - Kill the defending unit,\n - Maximize the damage dealt to the defending unit,\n - Minimize the number of attacker casualties,\n - Minimize the cumulative damage taken by the attackers left alive.',
   aliases: ['m'],
   // eslint-disable-next-line no-unused-vars
   shortUsage(prefix) {
@@ -16,6 +16,7 @@ module.exports = {
   },
   forceNoDelete: false,
   category: 'Advanced',
+  // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute: async function(message, argsStr, embed, willDelete) {
@@ -26,6 +27,8 @@ module.exports = {
 
     if(unitsArray.length === 2)
       return calcCommand.execute(message, argsStr, embed, willDelete)
+    if(unitsArray.length > 8)
+      throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 7 attackers is dangerous for my safety.'
 
     const defenderStr = unitsArray.pop()
     const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
@@ -47,22 +50,22 @@ module.exports = {
       throw error
     }
 
-    // this.addStats(message, this.name, attacker, defender, embed, willDelete)
-    //   .then().catch(err => { throw err })
+    this.addStats(message, this.name, attackers, defender, embed, willDelete)
+      .then().catch(err => { throw err })
     return embed
   },
 
 
   // Add to stats database
-  addStats(message, commandName, attacker, defender, embed, willDelete) {
+  addStats(message, commandName, attackers, defender, embed, willDelete) {
     const replyFields = []
 
     replyFields[0] = embed.fields[0].value
     if(embed.fields[1])
       replyFields[1] = embed.fields[1].value
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_attacker_vet, is_defender_vet, attacker_description, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attacker.name, defender.name, message.url, message.guild.id, attacker.vetNow, defender.vetNow, attacker.description, defender.description, willDelete, replyFields]
+      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_defender_vet, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'
+      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attackers.length, defender.name, message.url, message.guild.id, defender.vetNow, defender.description, willDelete, replyFields]
       dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`${commandName} stats: ${err.stack}\n${message.url}`)
