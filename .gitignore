@@ -11,6 +11,7 @@ firebase-debug.log*
 .env
 /client
 bot/test.js
+**/__pycache__/
 
 # Firebase cache
 .firebase/

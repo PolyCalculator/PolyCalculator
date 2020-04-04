@@ -4,7 +4,6 @@
   "description": "Discord bot, CLI calculator for Polytopia",
   "main": "index.js",
   "dependencies": {
-    "@newrelic/native-metrics": "5.0.0",
     "body-parser": "1.19.0",
     "cors": "2.8.5",
     "discord.js": "12.1.1",
@@ -15,7 +14,6 @@
     "heroku": "7.27.1",
     "kind-of": "6.0.3",
     "minimist": "1.2.5",
-    "newrelic": "6.5.0",
     "open": "7.0.3",
     "pg": "7.18.2"
   },
