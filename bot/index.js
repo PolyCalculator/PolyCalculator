@@ -155,10 +155,10 @@ bot.on('message', async message => {
 //
 // --------------------------------------
 bot.on('channelDelete', deletedChannel => {
-  dbServers.getBotChannels(deletedChannel.guild.id)
+  dbServers.getBotChannels(deletedChannel.guild.id, deletedChannel.guild.name, '(channelDelete)')
     .then(x => { // x = array of bot channels
       if(x.some(y => y === deletedChannel.id))
-        dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id)
+        dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
           .then().catch(errorMsg => {
             errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name}\n${meee}!`)
               .then()
@@ -179,7 +179,7 @@ bot.on('channelCreate', createdChannel => {
     return
 
   if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
-    dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id)
+    dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
       .then()
       .catch(errorMsg => {
         errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name}\n${meee}!`)
