@@ -41,8 +41,11 @@ module.exports = {
       const attackerArray = x.split(/ +/).filter(y => y != '')
       const attacker = units.getUnitFromArray(attackerArray, message, willDelete)
       attacker.getOverride(attackerArray)
-      attackers.push(attacker)
+      if (attacker.att !== 0)
+        attackers.push(attacker)
     })
+    if(attackers.length === 0)
+      throw 'You need to specify at least one unit with more than 0 attack.'
 
     try {
       await fight.multi(attackers, defender, embed)
