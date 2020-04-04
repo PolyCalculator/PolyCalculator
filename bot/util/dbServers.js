@@ -55,7 +55,7 @@ module.exports.removeServer = function(serverId, serverName, meee) {
   })
 }
 
-module.exports.getBotChannels = function(serverId) {
+module.exports.getBotChannels = function(serverId, serverName, source) {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
     const values = [serverId];
@@ -64,18 +64,19 @@ module.exports.getBotChannels = function(serverId) {
       if(err) {
         reject(`${err.message}. Ping an @**admin** if you need help!`)
       } else {
-        if(res.rows[0].bot_channels.length === 0)
-          reject(`You have no registered bot channels with me.\nYou can register them one by one using \`${process.env.PREFIX}addbotchannel\` with a channel ping!`)
-        else
+        if(res.rows[0].bot_channels.length === 0) {
+          console.log('getBotChannels source:', source)
+          reject(`You have no registered bot channels with me in **${serverName}**.\nYou can register them one by one using \`${process.env.PREFIX}addbotchannel\` with a channel ping!`)
+        } else
           resolve(res.rows[0].bot_channels)
       }
     })
   })
 }
 
-module.exports.removeABotChannel = function(serverId, channelId) {
+module.exports.removeABotChannel = function(serverId, channelId, serverName) {
   return new Promise((resolve, reject) => {
-    this.getBotChannels(serverId)
+    this.getBotChannels(serverId, serverName, `(dbServers.removeABotChannel; channelId: ${channelId})`)
       .then(arrayOfChannels => {
         if(arrayOfChannels.some(x => x === channelId)) {
           const newArray = arrayOfChannels.filter(x => x !== channelId)
@@ -97,9 +98,9 @@ module.exports.removeABotChannel = function(serverId, channelId) {
   })
 }
 
-module.exports.addABotChannel = function(serverId, channelId) {
+module.exports.addABotChannel = function(serverId, channelId, serverName) {
   return new Promise((resolve, reject) => {
-    this.getBotChannels(serverId)
+    this.getBotChannels(serverId, serverName, `(dbServers.addABotChannel; channelId: ${channelId})`)
       .then(arrayOfChannels => {
         if(!arrayOfChannels.some(x => x === channelId)) {
           arrayOfChannels.push(channelId)
@@ -181,7 +182,7 @@ module.exports.updateBotChannels = function(serverObj) {
 
     this.addNewServer(serverObj.id, serverObj.name, botChannels)
       .then(logMsg => {
-        this.getBotChannels(serverObj.id)
+        this.getBotChannels(serverObj.id, serverObj.name, '(updateBotChannels cmd)')
           .then(channelIds => {
             resolve(channelIds)
           })

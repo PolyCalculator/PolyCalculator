@@ -20,12 +20,12 @@ module.exports = {
 
     try {
       if(channelToRemove) {
-        const newBotChannelsArray = await dbServers.removeABotChannel(message.guild.id, channelToRemove.id)
+        const newBotChannelsArray = await dbServers.removeABotChannel(message.guild.id, channelToRemove.id, message.guild.name)
         const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
         // this.addStats(message, argsStr, this.name, success, willDelete)
         return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
       } else {
-        const botChannelsArray = await dbServers.getBotChannels(message.guild.id)
+        const botChannelsArray = await dbServers.getBotChannels(message.guild.id, message.guild.name, '(removebotchannel cmd, no args)')
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
         return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
       }
