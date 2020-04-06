@@ -15,8 +15,7 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute(message, argsStr, embed, willDelete) {
-    embed.setColor('#FA8072')
-      .setTitle('Links!')
+    embed.setTitle('Links!')
       .addField('Invite this bot to your server:', 'https://discordapp.com/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot')
       .addField('PolyCalculator\'s server link:', 'https://discord.gg/rtSTmd8')
       // .addField('Documentation (How-to use the bot):', 'https://docs.polycalculatorbot.com')
