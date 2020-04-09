@@ -9,27 +9,27 @@ class Sequence:
         Args:
           file_path: Path of the JSON file.
         """
-        testing = False # True if I test with a local file
+        testing = False    # True if I test with a local file
         data = -1
         if testing:
             with open(file_path, 'r') as f:
-                data = f.readline()
-            f.close()
-            data = json.loads(data)
+                data = json.load(f)
         else:
             data = json.loads(file_path)
 
-        self._defender = [data['defender']['def'] * data['defender']['bonus'], \
-                          data['defender']['currenthp'], \
-                          data['defender']['maxhp'], \
-                          data['defender']['ranged']]
+        self.defender = {
+            'defence': data['defender']['def'] * data['defender']['bonus'],
+            'hp': data['defender']['currenthp'],
+            'maxhp': data['defender']['maxhp'],
+            'ranged': data['defender']['ranged']
+        }
 
-        self._attackers = []
+        self.attackers = []
         for i in data['attackers']:
-            new_attacker = []
-            new_attacker.append(i['att'])
-            new_attacker.append(i['currenthp'])
-            new_attacker.append(i['maxhp'])
+            new_attacker = {}
+            new_attacker['attack'] = i['att']
+            new_attacker['hp'] = i['currenthp']
+            new_attacker['maxhp'] = i['maxhp']
             # Retaliation logic: attacker[3] == True means that the attacker
             # takes damage, False means he does not take damage
             # Basic logic:
@@ -45,28 +45,28 @@ class Sequence:
             #   - '': Use the default basic logic
             # Force damage
             if i['retaliationOverride'] == 'r':
-                new_attacker.append(True)
+                new_attacker['retaliation'] = True
             # Prevent damage
             elif i['retaliationOverride'] == 'nr':
-                new_attacker.append(False)
+                new_attacker['retaliation'] = False
             # Use default basic logic
             else:
                 # Melee attacker
-                if i['ranged'] == False:
-                    new_attacker.append(True)
+                if not i['ranged']:
+                    new_attacker['retaliation'] = True
                 # Ranged attacker
-                elif i['ranged'] == True:
+                else:
                     # Melee defender
-                    if self._defender[3] == False:
-                        new_attacker.append(False)
+                    if self.defender['ranged'] == False:
+                        new_attacker['retaliation'] = False
                     # Ranged defender
-                    elif self._defender[3] == True:
-                        new_attacker.append(True)
-            self._attackers.append(new_attacker)
+                    elif self.defender['ranged'] == True:
+                        new_attacker['retaliation'] = True
+            self.attackers.append(new_attacker)
 
-        self._sequence = []
+        self.sequence = []
 
-        
+
     def fight(self, index):
         """Executes a new fight.
 
@@ -77,36 +77,30 @@ class Sequence:
           index: The index of the attacking unit.
         """
         # Compute combat damage
-        attacker = self._attackers[index]
-        defender = self._defender
-        atk_power = attacker[0]
-        atk_hp = attacker[1]
-        atk_maxhp = attacker[2]
-        def_power = defender[0]
-        def_hp = defender[1]
-        def_maxhp = defender[2]
+        atk = self.attackers[index]
+        dfn = self.defender    # def is a reserved keyword
         accelerator = 4.5
-        atk_force = atk_power*(atk_hp/atk_maxhp)
-        def_force = def_power*(def_hp/def_maxhp)
+        atk_force = atk['attack'] * (atk['hp']/atk['maxhp'])
+        def_force = dfn['defence'] * (dfn['hp']/dfn['maxhp'])
         tot_dmg = atk_force + def_force
-        atk_dmg_formula = (atk_force/tot_dmg)*atk_power*accelerator
-        def_dmg_formula = (def_force/tot_dmg)*def_power*accelerator
-        atk_dmg = float(decimal.Decimal(atk_dmg_formula)\
-                        .quantize(0, decimal.ROUND_HALF_UP))
-        def_dmg = float(decimal.Decimal(def_dmg_formula)\
-                        .quantize(0, decimal.ROUND_HALF_UP))
+        atk_dmg_formula = (atk_force/tot_dmg) * atk['attack'] * accelerator
+        def_dmg_formula = (def_force/tot_dmg) * dfn['defence'] * accelerator
+        atk_dmg = float(
+            decimal.Decimal(atk_dmg_formula).quantize(0, decimal.ROUND_HALF_UP)
+        )
+        def_dmg = float(
+            decimal.Decimal(def_dmg_formula).quantize(0, decimal.ROUND_HALF_UP)
+        )
 
         # Update unit stats
-        defender[1] = max(0, defender[1]-atk_dmg)
-        if (defender[1] > 0) and (attacker[3] == True):
-            attacker[1] -= def_dmg
-        self._attackers[index] = attacker
-        self._defender = defender
+        dfn['hp'] = max(0, dfn['hp']-atk_dmg)
+        if dfn['hp'] > 0 and atk['retaliation']:
+            atk['hp'] -= def_dmg
 
         # Update sequence
-        self._sequence.append(index)
+        self.sequence.append(index)
 
-        
+
     def status(self):
         """Checks the status of the sequence.
 
@@ -115,13 +109,15 @@ class Sequence:
             (defender hp, attacker casualties, cumulative attacker hp),
           - None otherwise.
         """
-        if (self._defender[1] <= 0) or \
-           (len(self._sequence) == len(self._attackers)):
-            return (self._defender[1], \
-                    sum([1 for x in self._attackers if x[1] <= 0]), \
-                    sum([x[1] for x in self._attackers if x[1] >= 1]))        
-        else:
-            return None
+        if (
+                self.defender['hp'] <= 0
+                or len(self.sequence) == len(self.attackers)
+                ):
+            return {
+                'def_hp': self.defender['hp'],
+                'dead': sum(1 for x in self.attackers if x['hp'] <= 0),
+                'atk_hp': sum(x['hp'] for x in self.attackers if x['hp'] >= 1)
+            }
 
 
     def unused_attackers(self):
@@ -130,5 +126,4 @@ class Sequence:
         Returns:
           Set of the indices of the attackers which have not been used yet.
         """
-        return set([_ for _ in range(len(self._attackers))]).\
-            difference(set(self._sequence))
+        return set(range(len(self.attackers))).difference(set(self.sequence))

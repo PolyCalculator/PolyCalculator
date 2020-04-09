@@ -5,7 +5,7 @@ import sys
 
 def better_solution(sol1, sol2):
     """Compares two solutions.
-    
+
     Args:
       sol1: A solution returned by Sequence.status().
       sol2: A solution returned by Sequence.status().
@@ -13,13 +13,20 @@ def better_solution(sol1, sol2):
     Returns:
       True if sol2 is better than sol1, False otherwise.
     """
-    if (sol1[0] < sol2[0]):
+    if sol1['def_hp'] < sol2['def_hp']:
         return False
-    elif (sol1[1] < sol2[1]):
+    elif sol2['def_hp'] < sol1['def_hp']:
+        return True
+
+    if sol1['dead'] < sol2['dead']:
         return False
-    elif (sol1[2] > sol2[2]):
+    elif sol2['dead'] < sol1['dead']:
+        return True
+
+    if sol1['atk_hp'] > sol2['atk_hp']:
         return False
-    return True
+    elif sol2['atk_hp'] > sol1['atk_hp']:
+        return True
 
 
 def branch_and_bound(sequence):
@@ -35,16 +42,15 @@ def branch_and_bound(sequence):
       A solved Sequence object.
     """
     queue = [sequence]
-    best_score = (99, 99, -1)
+    best_score = {'def_hp': 99, 'dead': 99, 'atk_hp': -1}
     best_seq = None
-    while len(queue) > 0:
+    while queue:
         seq = queue.pop(0)
         status = seq.status()
-        if (status is not None) and (better_solution(best_score, status)):
+        if status and better_solution(best_score, status):
             best_score = status
             best_seq = seq
-            continue
-        else:
+        if not status:
             branches = seq.unused_attackers()
             for i in branches:
                 s = copy.deepcopy(seq)
@@ -55,7 +61,7 @@ def branch_and_bound(sequence):
 
 def main():
     """Computes the optimal sequence of attackers.
-    
+
     This algorithm computes the optimal sequence of attacking
     units whose objectives are, in order, to:
     - Kill the defending unit,
@@ -69,10 +75,10 @@ def main():
     - Include the option for retaliation/non-retaliation.
     - Allow for multiple defenders. But this might be fairly complicated to
       input. Maybe not all attacking units are in range of all defending units.
-      Or maybe a certain defending unit has to be killed first in order to allow
-      some attacking units to then gain range on some other defending unit. There
-      may be many such special situations. The output will only be as good as how
-      finely-grained the input is.
+      Or maybe a certain defending unit has to be killed first in order to
+      allow some attacking units to then gain range on some other defending
+      unit. There may be many such special situations. The output will only be
+      as good as how finely-grained the input is.
 
     Args:
       Power of attacking unit 0, modifiers included.
@@ -87,7 +93,7 @@ def main():
       Power of defending unit, modifiers included.
       Current HP of defending unit.
       Maximum HP of defending unit.
-    
+
     Returns:
       Integers in range [0, N] indicating the optimal sequence
       of attacking units, according to the input order.
@@ -95,11 +101,12 @@ def main():
     # Construct the list of units
     seq = sequence.Sequence(sys.argv[1])
     sol = branch_and_bound(seq)
-    for i in sol._sequence:
+    for i in sol.sequence:
         print(i, end=' ')
-    print(int(sol._defender[1]))
+    print(int(sol.defender['hp']))
     sys.stdout.flush()
 
 
 # The fun starts here:
-main()
+if __name__ == '__main__':
+    main()
