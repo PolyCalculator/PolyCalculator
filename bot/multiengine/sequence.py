@@ -9,7 +9,7 @@ class Sequence:
         Args:
           file_path: Path of the JSON file.
         """
-        testing = False # True if I test with a local file
+        testing = False    # True if I test with a local file
         data = -1
         if testing:
             with open(file_path, 'r') as f:
