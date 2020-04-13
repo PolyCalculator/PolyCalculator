@@ -95,9 +95,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -216,9 +217,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -337,9 +339,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -458,9 +461,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -579,9 +583,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -700,9 +705,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -826,8 +832,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -954,8 +959,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1082,8 +1086,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1186,9 +1189,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -1288,9 +1292,10 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
+        } else {
+          this.bonus = 1
         }
       }
     },
@@ -1414,8 +1419,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1523,8 +1527,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1632,8 +1635,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1760,8 +1762,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1888,8 +1889,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1997,8 +1997,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2106,8 +2105,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2215,8 +2213,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2324,8 +2321,7 @@ module.exports = {
       } else {
         if(bonusArray[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        }
-        if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
