@@ -24,7 +24,7 @@ const dbServers = require('./util/dbServers');
 //       EVENT ON LOGIN
 //
 // --------------------------------------
-bot.on('ready', () => {
+bot.once('ready', () => {
   // eslint-disable-next-line no-console
   console.log(`Logged in as ${bot.user.username}`);
 
