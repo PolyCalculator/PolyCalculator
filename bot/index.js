@@ -241,7 +241,7 @@ bot.on('guildDelete', guild => {
 // --------------------------------------
 bot.on('guildMemberAdd', newMember => {
   if(newMember.guild.id === '581872879386492929') {
-    newMember.addRole('654164652741099540')
+    newMember.roles.add('654164652741099540')
       .then(x => {
         // eslint-disable-next-line no-console
         console.log(`${x.user.tag} just got in PolyCalculator server!`)
