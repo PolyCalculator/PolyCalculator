@@ -65,7 +65,7 @@ module.exports = {
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
 
     if(unitCode.length === 0 && isNaval.length != 0)
-      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**`
+      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`${process.env.PREFIX}units\`.`
     if(unitCode.length === 0)
       throw 'We couldn\'t find one of the units.\n\nYou can get the list with `.units`'
 

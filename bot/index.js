@@ -3,6 +3,7 @@ const { Client, MessageEmbed, Collection } = require('discord.js');
 const bot = new Client();
 const fs = require('fs')
 const prefix = process.env.PREFIX
+const help = require('./commands/help')
 let calcServer = {}
 let meee = {}
 let logChannel = {}
@@ -92,6 +93,11 @@ bot.on('message', async message => {
   const generalDelete = { timeout: 5000 }
   const successDelete = { timeout: 60000 }
   const failDelete = { timeout: 15000 }
+
+  if(textStr.includes('help')) {
+    help.execute(message, command.name, embed, willDelete)
+    return message.channel.send(embed)
+  }
 
   // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general') && message.author.id != meee.id)
