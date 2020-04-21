@@ -94,9 +94,13 @@ bot.on('message', async message => {
   const successDelete = { timeout: 60000 }
   const failDelete = { timeout: 15000 }
 
-  if(textStr.includes('help')) {
+  if(argsStr.includes('help')) {
     help.execute(message, command.name, embed, willDelete)
     return message.channel.send(embed)
+      .then(x => {
+        x.delete(successDelete).then().catch(console.error)
+        message.delete(successDelete).then().catch(console.error)
+      }).catch(console.error).catch(console.error)
   }
 
   // Warning when channel name includes general and delete both messages
