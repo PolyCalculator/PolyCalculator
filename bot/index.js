@@ -3,6 +3,7 @@ const { Client, MessageEmbed, Collection } = require('discord.js');
 const bot = new Client();
 const fs = require('fs')
 const prefix = process.env.PREFIX
+const help = require('./commands/help')
 let calcServer = {}
 let meee = {}
 let logChannel = {}
@@ -24,7 +25,7 @@ const dbServers = require('./util/dbServers');
 //       EVENT ON LOGIN
 //
 // --------------------------------------
-bot.on('ready', () => {
+bot.once('ready', () => {
   // eslint-disable-next-line no-console
   console.log(`Logged in as ${bot.user.username}`);
 
@@ -92,6 +93,15 @@ bot.on('message', async message => {
   const generalDelete = { timeout: 5000 }
   const successDelete = { timeout: 60000 }
   const failDelete = { timeout: 15000 }
+
+  if(argsStr.includes('help')) {
+    help.execute(message, command.name, embed, willDelete)
+    return message.channel.send(embed)
+      .then(x => {
+        x.delete(successDelete).then().catch(console.error)
+        message.delete(successDelete).then().catch(console.error)
+      }).catch(console.error).catch(console.error)
+  }
 
   // Warning when channel name includes general and delete both messages
   if(message.channel.name.includes('general') && message.author.id != meee.id)
@@ -241,7 +251,7 @@ bot.on('guildDelete', guild => {
 // --------------------------------------
 bot.on('guildMemberAdd', newMember => {
   if(newMember.guild.id === '581872879386492929') {
-    newMember.addRole('654164652741099540')
+    newMember.roles.add('654164652741099540')
       .then(x => {
         // eslint-disable-next-line no-console
         console.log(`${x.user.tag} just got in PolyCalculator server!`)
