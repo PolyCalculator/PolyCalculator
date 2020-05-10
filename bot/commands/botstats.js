@@ -18,7 +18,7 @@ module.exports = {
     let i = 0;
     message.channel.send(`Total de serveurs: ${message.client.guilds.cache.size}`)
     message.client.guilds.cache.forEach((x) => {
-      embed.addField(`**${x.name}** (${x.id}):`, `${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.size}\n`)
+      embed.addField(`**${x.name}** (${x.id}):`, `${x.owner.user} ${x.owner.user.tag}\n-Number of members: ${x.memberCount}\n-Number of channels: ${x.channels.cache.size}\n`)
       i = i + 1;
     })
     return embed
