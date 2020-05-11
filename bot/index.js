@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 require('dotenv').config();
 const { Client, MessageEmbed, Collection } = require('discord.js');
 const bot = new Client();
