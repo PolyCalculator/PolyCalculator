@@ -49,7 +49,7 @@ module.exports.bulk = function(attacker, defender, embed) {
   if(attacker.att <= 0)
     throw `When will you ever be able to attack with a **${attacker.name}**...`
   if(defdiff < 1)
-    throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}**.`
+    throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**.`
 
   let hpdefender = defender.currenthp;
 
@@ -62,7 +62,7 @@ module.exports.bulk = function(attacker, defender, embed) {
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
-  embed.setDescription(`You'll need this many hits from the ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}:`)
+  embed.setDescription(`You'll need this many hits from the ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
     .addField(`**Number of ${attacker.name}${attacker.description}s**:`, `${i}`)
 
   return embed;
@@ -82,10 +82,10 @@ module.exports.provideDefHP = function(attacker, defender, embed) {
       break
   }
   if(attacker.currenthp > attacker.maxhp) {
-    embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}.`)
+    embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
   } else {
     embed
-      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description} is:`)
+      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`)
       .addField(`**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${attacker.currenthp}`)
   }
 
@@ -111,10 +111,10 @@ module.exports.provideAttHP = function(attacker, defender, embed) {
       break
   }
   if(defender.currenthp === 0) {
-    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}.`)
+    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
   } else {
     embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} will kill a defending:`)
-      .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}**:`, `Max: ${defender.currenthp}hp`)
+      .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `Max: ${defender.currenthp}hp`)
   }
 
   return embed;
