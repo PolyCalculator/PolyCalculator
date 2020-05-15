@@ -73,7 +73,7 @@ bot.on('message', async message => {
   // BOOLEAN for if the channel is registered as a bot channel in the bot
   let isNotBotChannel = true
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
-    .then(x => isNotBotChannel = !x)
+    .then(x => isNotBotChannel = !x).catch(console.error)
 
   const textStr = message.content.slice(prefix.length)
   const commandName = textStr.split(/ +/).shift().toLowerCase();
@@ -100,7 +100,7 @@ bot.on('message', async message => {
       .then(x => {
         x.delete(successDelete).then().catch(console.error)
         message.delete(successDelete).then().catch(console.error)
-      }).catch(console.error).catch(console.error)
+      }).catch(console.error)
   }
 
   // Warning when channel name includes general and delete both messages
@@ -109,7 +109,7 @@ bot.on('message', async message => {
       .then(x => {
         x.delete(generalDelete).then().catch(console.error)
         message.delete(generalDelete).then().catch(console.error)
-      }).catch(console.error).catch(console.error)
+      }).catch(console.error)
 
   // Check if command is allowed in that channel
   if(command.channelsAllowed) { // Certain commands can only be triggered in specific channels
@@ -136,7 +136,7 @@ bot.on('message', async message => {
               logEmbed.setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n~~${message.url}~~`)
               sent.edit(logEmbed)}, 60000)
           }
-        })
+        }).catch(console.error)
     }
     if(reply)
       message.channel.send(reply)
@@ -171,12 +171,11 @@ bot.on('channelDelete', deletedChannel => {
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
           .then().catch(errorMsg => {
             errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name}\n${meee}!`)
-              .then()
-              .catch()
+              .then().catch(console.error)
           })
     }).catch(errorMsg => {
       errorChannel.send(`${errorMsg}\n${meee}!`)
-        .then().catch()
+        .then().catch(console.error)
     })
 })
 // --------------------------------------
@@ -190,8 +189,7 @@ bot.on('channelCreate', createdChannel => {
 
   if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
-      .then()
-      .catch(errorMsg => {
+      .then().catch(errorMsg => {
         errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name}\n${meee}!`)
           .then().catch()
       })
@@ -210,15 +208,14 @@ bot.on('guildCreate', guild => {
   dbServers.addNewServer(guild.id, guild.name, botChannels, meee)
     .then(logMsg => {
       logChannel.send(logMsg)
-        .then().catch()
+        .then().catch(console.error)
       logChannel.send(`${meee}`)
-        .then().catch()
-    })
-    .catch(errorMsg => {
+        .then().catch(console.error)
+    }).catch(errorMsg => {
       errorChannel.send(errorMsg)
-        .then().catch()
+        .then().catch(console.error)
       errorChannel.send(`${meee}`)
-        .then().catch()
+        .then().catch(console.error)
     })
   return
 })
@@ -231,15 +228,14 @@ bot.on('guildDelete', guild => {
   dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
       logChannel.send(logMsg)
-        .then().catch()
+        .then().catch(console.error)
       logChannel.send(`${meee}`)
-        .then().catch()
-    })
-    .catch(errorMsg => {
+        .then().catch(console.error)
+    }).catch(errorMsg => {
       errorChannel.send(errorMsg)
-        .then().catch()
+        .then().catch(console.error)
       errorChannel.send(`${meee}`)
-        .then().catch()
+        .then().catch(console.error)
     })
   return
 })
@@ -255,8 +251,7 @@ bot.on('guildMemberAdd', newMember => {
       .then(x => {
         // eslint-disable-next-line no-console
         console.log(`${x.user.tag} just got in PolyCalculator server!`)
-      })
-      .catch(console.error)
+      }).catch(console.error)
   }
 })
 

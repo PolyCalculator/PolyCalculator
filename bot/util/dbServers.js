@@ -186,9 +186,8 @@ module.exports.updateBotChannels = function(serverObj) {
         this.getBotChannels(serverObj.id, serverObj.name, '(updateBotChannels cmd)')
           .then(channelIds => {
             resolve(channelIds)
-          })
-      })
-      .catch(errorMsg => {
+          }).catch(console.error)
+      }).catch(errorMsg => {
         reject(errorMsg)
       })
   })
