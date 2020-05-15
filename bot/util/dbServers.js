@@ -52,7 +52,7 @@ module.exports.removeServer = function(serverId, serverName, meee) {
   })
 }
 
-module.exports.getBotChannels = function(serverId, serverName, source) {
+module.exports.getBotChannels = function(serverId, serverName, source, isAdd) {
   return new Promise((resolve, reject) => {
     const sql = 'SELECT bot_channels FROM servers WHERE server_id = $1'
     const values = [serverId];
@@ -62,8 +62,12 @@ module.exports.getBotChannels = function(serverId, serverName, source) {
         reject(`${err.message}. Ping an @**admin** if you need help!`)
       } else {
         if(res.rows[0].bot_channels.length === 0) {
+          // eslint-disable-next-line no-console
           console.log('getBotChannels source:', source)
-          reject(`You have no registered bot channels with me in **${serverName}**.\nYou can register them one by one using \`${process.env.PREFIX}addbotchannel\` with a channel ping!`)
+          if(isAdd)
+            resolve([])
+          else
+            reject(`You have no registered bot channels with me in **${serverName}**.\nYou can register them one by one using \`${process.env.PREFIX}addbotchannel\` with a channel ping!`)
         } else
           resolve(res.rows[0].bot_channels)
       }
@@ -97,7 +101,7 @@ module.exports.removeABotChannel = function(serverId, channelId, serverName) {
 
 module.exports.addABotChannel = function(serverId, channelId, serverName) {
   return new Promise((resolve, reject) => {
-    this.getBotChannels(serverId, serverName, `(dbServers.addABotChannel; channelId: ${channelId})`)
+    this.getBotChannels(serverId, serverName, `(dbServers.addABotChannel; channelId: ${channelId})`, true)
       .then(arrayOfChannels => {
         if(!arrayOfChannels.some(x => x === channelId)) {
           arrayOfChannels.push(channelId)
@@ -115,7 +119,7 @@ module.exports.addABotChannel = function(serverId, channelId, serverName) {
         } else {
           reject('The channel you specified is already registered as a bot channel with me!')
         }
-      }).catch(err => { throw err })
+      }).catch(err => { reject(err) })
   })
 }
 
@@ -182,9 +186,8 @@ module.exports.updateBotChannels = function(serverObj) {
         this.getBotChannels(serverObj.id, serverObj.name, '(updateBotChannels cmd)')
           .then(channelIds => {
             resolve(channelIds)
-          })
-      })
-      .catch(errorMsg => {
+          }).catch(console.error)
+      }).catch(errorMsg => {
         reject(errorMsg)
       })
   })

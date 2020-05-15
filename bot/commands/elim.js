@@ -41,6 +41,7 @@ module.exports = {
         .then().catch(err => { throw err })
       return
     }
+
     if(unitsArray[0].includes('?')) {
       embed = fight.provideDefHP(attacker, defender, embed)
       this.addStats(message, this.name, attacker, defender, embed, willDelete)

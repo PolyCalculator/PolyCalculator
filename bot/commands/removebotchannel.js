@@ -21,9 +21,15 @@ module.exports = {
     try {
       if(channelToRemove) {
         const newBotChannelsArray = await dbServers.removeABotChannel(message.guild.id, channelToRemove.id, message.guild.name)
-        const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
-        // this.addStats(message, argsStr, this.name, success, willDelete)
-        return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
+        let returnedArray
+        if(newBotChannelsArray.length > 1) {
+          returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
+          // this.addStats(message, argsStr, this.name, success, willDelete)
+          return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
+        } else {
+          return `There is no more registered bot command on this server anymore.\nYou can add more with \`${process.env.PREFIX}addbotchannel #bot-channel\` with the pinged channel you want to add!`
+        }
+
       } else {
         const botChannelsArray = await dbServers.getBotChannels(message.guild.id, message.guild.name, '(removebotchannel cmd, no args)')
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
