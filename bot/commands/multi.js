@@ -48,35 +48,35 @@ module.exports = {
       throw 'You need to specify at least one unit with more than 0 attack.'
 
     try {
-      await fight.multi(attackers, defender, embed)
+      embed = await fight.multi(attackers, defender, embed)
     } catch (error) {
       throw error
     }
 
-    this.addStats(message, this.name, attackers, defender, embed, willDelete)
-      .then().catch(err => { throw err })
+    // this.addStats(message, this.name, attackers, defender, embed, willDelete)
+    //   .then().catch(err => { throw err })
     return embed
   },
 
 
   // Add to stats database
-  addStats(message, commandName, attackers, defender, embed, willDelete) {
-    const replyFields = []
+  // addStats(message, commandName, attackers, defender, embed, willDelete) {
+  //   const replyFields = []
 
-    replyFields[0] = embed.fields[0].value
-    if(embed.fields[1])
-      replyFields[1] = embed.fields[1].value
-    return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_defender_vet, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attackers.length, defender.name, message.url, message.guild.id, defender.vetNow, defender.description, willDelete, replyFields]
-      dbStats.query(sql, values, (err) => {
-        if(err) {
-          reject(`${commandName} stats: ${err.stack}\n${message.url}`)
-        } else {
-          resolve()
-        }
-      })
-    })
-  }
+  //   replyFields[0] = embed.fields[0].value
+  //   if(embed.fields[1])
+  //     replyFields[1] = embed.fields[1].value
+  //   return new Promise((resolve, reject) => {
+  //     const sql = 'INSERT INTO test_stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_defender_vet, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)'
+  //     const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attackers.length, defender.name, message.url, message.guild.id, defender.vetNow, defender.description, willDelete, replyFields]
+  //     dbStats.query(sql, values, (err) => {
+  //       if(err) {
+  //         reject(`${commandName} stats: ${err.stack}\n${message.url}`)
+  //       } else {
+  //         resolve()
+  //       }
+  //     })
+  //   })
+  // }
 };
 

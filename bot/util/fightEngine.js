@@ -1,32 +1,39 @@
-/* eslint-disable no-console */
 const deadText = require('./deadtexts')
+const { generateArraySequences, generateSequences, multicombat, evaluate } = require('./sequencer')
 
 module.exports.multi = function(attackers, defender, embed) {
-  const spawn = require('child_process').spawn;
-  const pythonProcess = spawn('python', ['./bot/multiengine/main.py', JSON.stringify({ attackers, defender })]);
+  const arrayNbAttackers = generateArraySequences(attackers.length)
+  const sequences = generateSequences(arrayNbAttackers)
+  const solutions = []
 
-  let remaininghp
-  const fieldArray = []
+  sequences.forEach(function(sequence) {
+    const attackersSorted = []
 
-  return new Promise((resolve) => {
-    pythonProcess.stdout.on('data', (data) => {
-      data = data.toString('utf8')
-      data = data.split(/ +/g)
-      remaininghp = parseInt(data.pop())
+    for (let j = 0; j < sequence.length; j++) {
+      attackersSorted.push(attackers[sequence[j] - 1]);
+    }
 
-      data.forEach(x => {
-        const description = `${attackers[x].currenthp}hp ${attackers[x].name}${attackers[x].description}`
-        fieldArray.push(description)
-      })
-      if(remaininghp > 0)
-        embed.addField('These attackers won\'t kill the defender:', `Remaining hp: ${remaininghp}`)
-
-      embed.setTitle('This is the order for best outcome')
-        .addField('Attacking order:', fieldArray)
-
-      resolve(embed)
-    });
+    solutions.push(multicombat(attackersSorted, defender, sequence))
   })
+  let bestSolution = solutions[0]
+
+  solutions.forEach((solution) => {
+    if(evaluate(bestSolution, solution))
+      bestSolution = solution
+  })
+
+  if(bestSolution.defenderHP > 0)
+    embed.addField(`These attackers won't kill the ${defender.name}`, `Remaining hp: **${bestSolution.defenderHP}**`)
+
+  const descriptionArray = []
+  bestSolution.finalSequence.forEach((seqIndex, order) => {
+    seqIndex--
+    descriptionArray.push(`${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (${bestSolution.hpLoss[order]}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
+  })
+
+  embed.setTitle('This is the order for best outcome')
+    .setDescription(descriptionArray)
+  return embed
 }
 
 module.exports.calc = function(attacker, defender, embed) {

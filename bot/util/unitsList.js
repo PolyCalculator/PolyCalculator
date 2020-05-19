@@ -13,6 +13,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -108,21 +109,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -146,6 +149,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -241,21 +245,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -279,6 +285,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
+    range: true,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -374,21 +381,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -412,6 +421,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -507,21 +517,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -545,6 +557,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -640,21 +653,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -678,6 +693,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -773,21 +789,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -811,6 +829,7 @@ module.exports = {
     def: 0,
     bonus: 1,
     fort: false,
+    range: true,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -911,21 +930,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -949,6 +970,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1049,21 +1071,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -1087,6 +1111,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1195,6 +1220,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1298,6 +1324,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1393,21 +1420,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -1431,6 +1460,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1539,6 +1569,7 @@ module.exports = {
     def: 4,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1647,6 +1678,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: false,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1747,21 +1779,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -1785,6 +1819,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -1885,21 +1920,23 @@ module.exports = {
       if(this.bonus === 4)
         throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-      this.ranged = true
       if(navalArray[0].toLowerCase().startsWith('bo')) {
         this.description = this.description + ' Boat'
         this.att = 1
         this.def = 1
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('sh')) {
         this.description = this.description + ' Ship'
         this.att = 2
         this.def = 2
+        this.range = true
       }
       if(navalArray[0].toLowerCase().startsWith('bs')) {
         this.description = this.description + ' Battleship'
         this.att = 4
         this.def = 3
+        this.range = true
       }
     },
     getOverride: function(unitArray) {
@@ -1923,6 +1960,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -2031,6 +2069,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -2139,6 +2178,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: false,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -2247,6 +2287,7 @@ module.exports = {
     def: 2,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
@@ -2355,6 +2396,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: false,
+    range: false,
     retaliation: true,
     setHP(message, hpArray, willDelete) {
       const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))

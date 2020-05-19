@@ -63,6 +63,7 @@ module.exports = {
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
+    const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
 
     if(unitCode.length === 0 && isNaval.length != 0)
       throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`${process.env.PREFIX}units\`.`
@@ -88,6 +89,11 @@ module.exports = {
       else
         throw `Are you really trying to put the **${unit.name}** in a naval unit...`
     }
+
+    if(rangeOverride[0] === 'r')
+      unit.range = false
+    if(rangeOverride[0] === 'nr')
+      unit.range = true
 
     return unit
   },
