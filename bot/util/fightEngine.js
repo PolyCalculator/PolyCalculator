@@ -22,13 +22,16 @@ module.exports.multi = function(attackers, defender, embed) {
       bestSolution = solution
   })
 
+  if(bestSolution.defenderHP === defender.currenthp)
+    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
+
   if(bestSolution.defenderHP > 0)
     embed.addField(`These attackers won't kill the ${defender.name}`, `Remaining hp: **${bestSolution.defenderHP}**`)
 
   const descriptionArray = []
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    descriptionArray.push(`${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (${bestSolution.hpLoss[order]}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
+    descriptionArray.push(`${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? 'DEAD' : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (${bestSolution.hpLoss[order] * -1}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
   })
 
   embed.setTitle('This is the order for best outcome')

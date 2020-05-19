@@ -55,27 +55,42 @@ module.exports.multicombat = function(attackers, defender, sequence) {
     finalSequence: []
   }
 
-  attackers.every((attacker, index) => {
-    if(solution.defenderHP <= 0) {
-      return false
-    }
-    solution = combat(attacker, defender, index, solution)
+  for (const attacker of attackers) {
+    const index = attackers.indexOf(attacker)
+    if(solution.defenderHP <= 0)
+      break
+
+    if(doesNoDamage(attacker, defender)) // returning -1 if the attacker does 0 dammage to the defender
+      continue
+
+    solution = combat(attacker, defender, solution)
     solution.finalSequence.push(sequence[index])
-    return true
-  })
+  }
 
   return solution
 }
 
-function combat(attacker, defender, index, solution) {
+function doesNoDamage(attacker, defender) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
+  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
   if(attacker.att <= 0)
-    return
+    return true
 
   const totaldam = aforce + dforce;
   const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+
+  if(defdiff < 1)
+    return true
+}
+
+function combat(attacker, defender, solution) {
+  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+  const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
+
+  const totaldam = aforce + dforce;
+  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+
   solution.defenderHP = solution.defenderHP - defdiff
 
   let attdiff = 0
@@ -95,7 +110,10 @@ function combat(attacker, defender, index, solution) {
     }
   }
 
-  solution.hpLoss.push(attdiff)
+  if(attacker.currenthp - attdiff < 1)
+    solution.hpLoss.push(attacker.currenthp)
+  else
+    solution.hpLoss.push(attdiff)
 
   solution.attackersHP = solution.attackersHP - attdiff
   return solution
