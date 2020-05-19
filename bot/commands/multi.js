@@ -27,8 +27,8 @@ module.exports = {
 
     if(unitsArray.length === 2)
       return calcCommand.execute(message, argsStr, embed, willDelete)
-    // if(unitsArray.length > 8)
-    //   throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 7 attackers is dangerous for my safety.'
+    if(unitsArray.length > 10)
+      throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 7 attackers is dangerous for my safety.'
 
     const defenderStr = unitsArray.pop()
     const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
