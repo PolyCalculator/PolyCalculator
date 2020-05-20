@@ -29,12 +29,12 @@ module.exports.multi = function(attackers, defender, embed) {
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
     // descriptionArray.push(`${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (${bestSolution.hpLoss[order] * -1}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} -> ${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}`)
   })
 
   embed.setTitle('This is the order for best outcome:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} -> ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP}`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP}`)
   return embed
 }
 
@@ -58,12 +58,12 @@ module.exports.calc = function(attackers, defender, embed) {
   const descriptionArray = []
   solution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} -> ${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])}`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])}`)
   })
 
   embed.setTitle('The outcome of the fight is:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} -> ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP}`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP}`)
   return embed
 
   // embed.setDescription('The outcome of the fight is:')
