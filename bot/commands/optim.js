@@ -9,10 +9,10 @@ module.exports = {
   aliases: ['o', 'op', 'opti'],
   // eslint-disable-next-line no-unused-vars
   shortUsage(prefix) {
-    return `\`${prefix}m wa bo, wa sh, wa bs, de d\``
+    return `\`${prefix}o wa bo, wa sh, wa bs, de d\``
   },
   longUsage(prefix) {
-    return `\`${prefix}multi wa bo, wa sh, wa bs, de d\``
+    return `\`${prefix}optim wa bo, wa sh, wa bs, de d\``
   },
   forceNoDelete: false,
   category: 'Advanced',
