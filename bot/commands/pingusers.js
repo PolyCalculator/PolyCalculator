@@ -3,7 +3,7 @@ const db = require('../../db/index')
 module.exports = {
   name: 'pingusers',
   description: 'ping every user with at least 100 uses.',
-  aliases: [],
+  aliases: ['pingall'],
   shortUsage() {
     return undefined
   },
@@ -20,7 +20,7 @@ module.exports = {
     if(!argsStr)
       throw 'You need to include a message...'
 
-    const sql = 'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = \'217385992837922819\' GROUP BY author_id HAVING COUNT(id) >= 50 ORDER BY COUNT(id) DESC'
+    const sql = 'SELECT COUNT(id) AS count, author_id FROM stats GROUP BY author_id'
 
     db.query(sql)
       .then(res => {
