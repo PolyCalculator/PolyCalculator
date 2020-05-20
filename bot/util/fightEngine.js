@@ -25,57 +25,57 @@ module.exports.multi = function(attackers, defender, embed) {
   if(bestSolution.defenderHP === defender.currenthp)
     throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
-  if(bestSolution.defenderHP > 0)
-    embed.addField(`These attackers won't kill the ${defender.name}`, `Remaining hp: **${bestSolution.defenderHP}**`)
-
   const descriptionArray = []
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    descriptionArray.push(`${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? 'DEAD' : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (${bestSolution.hpLoss[order] * -1}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
+    // descriptionArray.push(`${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (${bestSolution.hpLoss[order] * -1}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} -> ${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}`)
   })
 
-  embed.setTitle('This is the order for best outcome')
-    .setDescription(descriptionArray)
+  embed.setTitle('This is the order for best outcome:')
+    .addField('Attackers:', descriptionArray)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} -> ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP}`)
   return embed
 }
 
-module.exports.calc = function(attacker, defender, embed) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
-  const randomText = deadText[Math.floor(Math.random() * deadText.length)];
-
-  if(attacker.att <= 0)
-    throw `When will you ever be able to attack with a **${attacker.name}**...`
-
-  const totaldam = aforce + dforce;
-  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
-  let hpdefender = defender.currenthp - defdiff;
-  let attdiff = 0
-  let hpattacker
-  if(hpdefender <= 0) {
-    hpattacker = attacker.currenthp;
-    hpdefender = deadText[Math.floor(Math.random() * deadText.length)];
-  } else if(!defender.retaliation) {
-    hpattacker = attacker.currenthp
-  } else {
-    attdiff = Math.round(dforce / totaldam * defender.def * 4.5)
-    hpattacker = attacker.currenthp - attdiff;
+module.exports.calc = function(attackers, defender, embed) {
+  const sequence = []
+  for(let i = 1; i <= attackers.length; i++) {
+    sequence.push(i)
   }
 
-  if(hpattacker <= 0) {
-    hpattacker = randomText;
+  const attackersSorted = []
+
+  for (let j = 0; j < sequence.length; j++) {
+    attackersSorted.push(attackers[sequence[j] - 1]);
   }
 
-  embed.setDescription('The outcome of the fight is:')
-    .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Attacking ' : ''}${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${hpattacker} (${attdiff * -1})`)
-    .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Defending ' : ''}${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${hpdefender} (${defdiff * -1})`)
+  const solution = multicombat(attackersSorted, defender, sequence)
 
-  if(attacker.name === 'Fire Dragon') {
-    const halfdragondefdiff = Math.round(aforce / 2 / totaldam * attacker.att * 4.5);
-    embed.addField('**If splashed**:', halfdragondefdiff)
-  }
+  if(solution.defenderHP === defender.currenthp)
+    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
-  return embed;
+  const descriptionArray = []
+  solution.finalSequence.forEach((seqIndex, order) => {
+    seqIndex--
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} -> ${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])}`)
+  })
+
+  embed.setTitle('The outcome of the fight is:')
+    .addField('Attackers:', descriptionArray)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} -> ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP}`)
+  return embed
+
+  // embed.setDescription('The outcome of the fight is:')
+  //   .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Attacking ' : ''}${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${hpattacker} (${attdiff * -1})`)
+  //   .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Defending ' : ''}${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${hpdefender} (${defdiff * -1})`)
+
+  // if(attacker.name === 'Fire Dragon') {
+  //   const halfdragondefdiff = Math.round(aforce / 2 / totaldam * attacker.att * 4.5);
+  //   embed.addField('**If splashed**:', halfdragondefdiff)
+  // }
+
+  // return embed;
 }
 
 module.exports.bulk = function(attacker, defender, embed) {
