@@ -14,7 +14,7 @@ module.exports = {
     return `\`${prefix}calc warrior 7, rider 5\` or\n\`${prefix}calc warrior boat, warrior ship, warrior bship, defender d\``
   },
   forceNoDelete: false,
-  category: 'Advanced',
+  category: 'Main',
   // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
