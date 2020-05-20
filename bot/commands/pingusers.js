@@ -26,8 +26,9 @@ module.exports = {
       .then(res => {
         res.rows.forEach(userDb => {
           const user = message.client.users.cache.get(userDb.author_id)
-          user.send(argsStr + `\nThank you for your support and trust in this tool with the ${userDb.count} times you've used it!`)
-            .then(message.channel.send(`Message sent to ${user} (${user.tag})!`)).catch(console.error)
+          if(user)
+            user.send(argsStr + `\nThank you for your support and trust in this tool with the ${userDb.count} times you've used it!`)
+              .then(message.channel.send(`Message sent to ${user} (${user.tag})!`)).catch(console.error)
         })
       }).catch(console.error)
   }
