@@ -60,7 +60,7 @@ module.exports.multicombat = function(attackers, defender, sequence) {
     if(solution.defenderHP <= 0)
       break
 
-    if(doesNoDamage(attacker, defender)) // returning -1 if the attacker does 0 dammage to the defender
+    if(doesNoDamage(attacker, defender, solution)) // returning -1 if the attacker does 0 dammage to the defender
       continue
 
     solution = combat(attacker, defender, solution)
@@ -70,9 +70,9 @@ module.exports.multicombat = function(attackers, defender, sequence) {
   return solution
 }
 
-function doesNoDamage(attacker, defender) {
+function doesNoDamage(attacker, defender, solution) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
 
   if(attacker.att <= 0)
     return true
