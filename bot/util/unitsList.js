@@ -91,14 +91,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -227,14 +227,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -363,14 +363,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -499,14 +499,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -635,14 +635,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -771,14 +771,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -907,19 +907,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1048,19 +1043,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1189,19 +1179,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1298,14 +1283,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1402,14 +1387,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
         } else
           this.bonus = 1.5
       } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        if(defenseBonus[0].toLowerCase() === 'd') {
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1538,19 +1523,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1647,19 +1627,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1756,19 +1731,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -1897,19 +1867,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2038,19 +2003,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2147,19 +2107,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2256,19 +2211,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2365,19 +2315,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1
@@ -2474,19 +2419,14 @@ module.exports = {
               message.delete(successDelete).then().catch(console.error)
             }
           }).catch(console.error)
-        if(defenseBonus.some(x => x === 'w') && this.fort === true) {
+        if(defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true) {
           this.bonus = 4
-        } else {
-          if(defenseBonus.some(x => x === 'd')) {
-            this.bonus = 1.5
-          } else {
-            this.bonus = 1
-          }
-        }
-      } else {
-        if(bonusArray[0].toLowerCase() === 'd') {
+        } else
           this.bonus = 1.5
-        } else if(bonusArray[0].toLowerCase() === 'w' && this.fort === true) {
+      } else {
+        if(defenseBonus[0].toLowerCase() === 'd') {
+          this.bonus = 1.5
+        } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
           this.bonus = 4
         } else {
           this.bonus = 1

@@ -1,7 +1,6 @@
 const fight = require('../util/fightEngine')
 const units = require('./units')
 const dbStats = require('../../db/index')
-const calcCommand = require('./oldcalc')
 
 module.exports = {
   name: 'optim',
@@ -25,8 +24,6 @@ module.exports = {
 
     const unitsArray = units.getBothUnitArray(argsStr, message)
 
-    if(unitsArray.length === 2)
-      return calcCommand.execute(message, argsStr, embed, willDelete)
     if(unitsArray.length > 10)
       throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 9 attackers is dangerous for my safety.'
 
