@@ -36,14 +36,12 @@ module.exports = {
         .setDescription(descriptionArray)
     } else {
       embed.setTitle('All units by code')
+        .addField('Naval unit codes to add to land units:', 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`')
       for(const key in unitList) {
         if(embed.description === undefined)
-          embed.setDescription(`${unitList[key].name}: ${key}`)
+          embed.setDescription(`${unitList[key].name}: \`${key}\``)
         else {
-          if(unitList[key].name === 'Boat') {
-            embed.setDescription(`${embed.description}\n\n**Water units**:\n${unitList[key].name}: ${key}`)
-          } else
-            embed.setDescription(`${embed.description}\n${unitList[key].name}: ${key}`)
+          embed.setDescription(`${embed.description}\n${unitList[key].name}: \`${key}\``)
         }
       }
     }
