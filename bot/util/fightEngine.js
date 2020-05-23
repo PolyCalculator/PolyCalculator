@@ -16,6 +16,8 @@ module.exports.multi = function(attackers, defender, embed) {
 
     if(hasFinal && attackersSorted[sequence.length - 1].final)
       solutions.push(multicombat(attackersSorted, defender, sequence))
+    else if(!hasFinal)
+      solutions.push(multicombat(attackersSorted, defender, sequence))
   })
   let bestSolution = solutions[0]
 
