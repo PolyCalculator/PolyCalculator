@@ -88,7 +88,7 @@ module.exports = {
         throw `Are you really trying to put the **${unit.name}** in a naval unit...`
     }
 
-    const final = unitArray.filter(value => value === 'f')
+    const final = unitArray.filter(value => value.toLowerCase() === 'f')
     if(final.length > 0)
       unit.final = true
     else
