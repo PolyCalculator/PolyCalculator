@@ -6,6 +6,7 @@ module.exports.multi = function(attackers, defender, embed) {
   const sequences = generateSequences(arrayNbAttackers)
   const solutions = []
 
+  const hasFinal = attackers.some(attacker => attacker.final === true)
   sequences.forEach(function(sequence) {
     const attackersSorted = []
 
@@ -13,7 +14,8 @@ module.exports.multi = function(attackers, defender, embed) {
       attackersSorted.push(attackers[sequence[j] - 1]);
     }
 
-    solutions.push(multicombat(attackersSorted, defender, sequence))
+    if(hasFinal && attackersSorted[sequence.length - 1].final)
+      solutions.push(multicombat(attackersSorted, defender, sequence))
   })
   let bestSolution = solutions[0]
 

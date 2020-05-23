@@ -88,6 +88,12 @@ module.exports = {
         throw `Are you really trying to put the **${unit.name}** in a naval unit...`
     }
 
+    const final = unitArray.filter(value => value === 'f')
+    if(final.length > 0)
+      unit.final = true
+    else
+      unit.final = false
+
     if(rangeOverride[0] === 'r')
       unit.range = false
     if(rangeOverride[0] === 'nr')
