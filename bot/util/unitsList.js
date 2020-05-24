@@ -328,7 +328,7 @@ module.exports = {
     setHP: setHP,
     addBonus: addBonus
   },
-  ic: {
+  if: {
     name: 'Ice Fortress',
     description: '',
     currenthp: 20,
