@@ -1,5 +1,5 @@
 /* eslint-disable no-empty-function */
-const successDelete = { timeout: 60000 }
+const successDelete = { timeout: 180000 }
 
 module.exports = {
   wa: {
@@ -291,7 +291,7 @@ module.exports = {
     def: 3,
     bonus: 1,
     fort: false,
-    range: false,
+    range: true,
     retaliation: true,
     setHP: setHP,
     addBonus: addBonus
