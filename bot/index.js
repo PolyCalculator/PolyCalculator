@@ -91,7 +91,7 @@ bot.on('message', async message => {
 
   const willDelete = isNotBotChannel && !command.forceNoDelete
   const generalDelete = { timeout: 5000 }
-  const successDelete = { timeout: 60000 }
+  const successDelete = { timeout: 180000 }
   const failDelete = { timeout: 15000 }
 
   if(argsStr.includes('help')) {
@@ -263,5 +263,11 @@ bot.on('guildMemberAdd', newMember => {
 setInterval(function() {
 
 }, 3600000); // every 1h (3600000) 3h (10800000) 6h (21600000)
+
+process.on('unhandledRejection', (code) => {
+  // eslint-disable-next-line no-console
+  console.log(`unhandledRejection: ${code}`)
+  errorChannel.send(`unhandledRejection: ${code}`)
+})
 
 bot.login(process.env.TOKEN);
