@@ -38,9 +38,12 @@ module.exports = {
         .setFooter(`aliases: ${command.aliases.join(', ')}`)
       if(command.category === 'Main' || command.category === 'Advanced') {
         embed.addField('\u200b', '**Other features**')
-          .addField('**Naval units:**', 'You can add `bo`, `sh` or `bs` to make the units into their respective naval units')
-          .addField('**Veteran:**', 'You can just add a `v` to make the unit veteran. I will also recognize if you input hp higher than the normal and automatically make your unit veteran.')
-          .addField('**Defense bonus:**', 'Put `d` for the single bonus defense and `w` for the wall defense bonus.')
+          .addField('Naval unit codes to add to land units:', 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`')
+          .addField('Current hp:', 'Any number will be interpreted as current hp with a bunch of fail-safes')
+          .addField('Modifiers:', 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`')
+      }
+      if(command.name === 'optim') {
+        embed.addField('`.o` specific modifier:', 'Only combos with that/those unit(s) doing the final hit: `f`')
       }
       return embed
     } else {

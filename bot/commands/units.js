@@ -37,6 +37,7 @@ module.exports = {
     } else {
       embed.setTitle('All units by code')
         .addField('Naval unit codes to add to land units:', 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`')
+        .addField('Current hp:', 'Any number will be interpreted as current hp with a bunch of fail-safes')
         .addField('Modifiers:', 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`')
         .addField('`.o` specific modifier:', 'Only combos with that/those unit(s) doing the final hit: `f`')
       for(const key in unitList) {
