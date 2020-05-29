@@ -20,7 +20,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   execute: async function(message, argsStr, embed, willDelete) {
     if(argsStr.length === 0 || argsStr.includes('help'))
-      return message.channel.send('Try `.help o` for more information on how to use this command!')
+      return 'Try `.help o` for more information on how to use this command!'
 
     const unitsArray = units.getBothUnitArray(argsStr, message)
 
