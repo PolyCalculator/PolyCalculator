@@ -15,8 +15,17 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji) {
+  execute: async function(message, argsStr, embed, trashEmoji, data) {
     const channelToRemove = message.mentions.channels.first()
+
+    data.command = this.name
+    data.attacker = undefined
+    data.defender = undefined
+    data.is_attacker_vet = undefined
+    data.is_defender_vet = undefined
+    data.attacker_description = undefined
+    data.defender_description = undefined
+    data.reply_fields = undefined
 
     try {
       if(channelToRemove) {
@@ -24,7 +33,7 @@ module.exports = {
         let returnedArray
         if(newBotChannelsArray.length > 1) {
           returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
-          // this.addStats(message, argsStr, this.name, success, trashEmoji)
+
           return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
         } else {
           return `There is no more registered bot command on this server anymore.\nYou can add more with \`${process.env.PREFIX}addbotchannel #bot-channel\` with the pinged channel you want to add!`

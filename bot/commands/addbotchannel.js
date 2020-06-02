@@ -15,8 +15,17 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji) {
+  execute: async function(message, argsStr, embed, trashEmoji, data) {
     const channelToAdd = message.mentions.channels.first()
+
+    data.command = this.name
+    data.attacker = undefined
+    data.defender = undefined
+    data.is_attacker_vet = undefined
+    data.is_defender_vet = undefined
+    data.attacker_description = undefined
+    data.defender_description = undefined
+    data.reply_fields = undefined
 
     try {
       if(channelToAdd) {

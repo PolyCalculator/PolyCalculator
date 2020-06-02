@@ -17,7 +17,7 @@ module.exports = {
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, argsStr, embed, trashEmoji) {
+  execute: function(message, argsStr, embed, trashEmoji, data) {
     if(argsStr.length === 0 || argsStr.includes('help'))
       return 'Try `.help e` for more information on how to use this command!'
 
@@ -32,48 +32,30 @@ module.exports = {
     if(!argsStr.includes('?'))
       throw `\`${process.env.PREFIX}elim\` requires a \`?\`\nYou'll need to either use the \`${process.env.PREFIX}calc\` command or do \`${process.env.PREFIX}help elim\` for more information on how to use it!`
 
+    data.command = this.name
+    data.attacker = undefined
+    data.defender = undefined
+    data.is_attacker_vet = undefined
+    data.is_defender_vet = undefined
+    data.attacker_description = undefined
+    data.defender_description = undefined
+    data.reply_fields = undefined
+
     if(unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
       const attackerClone = { ...attacker }
       const defenderClone = { ...defender }
       message.channel.send(fight.provideDefHP(attacker, defender, embed))
       message.channel.send(fight.provideAttHP(attackerClone, defenderClone, embed))
-      this.addStats(message, this.name, attacker, defender, embed, trashEmoji, true)
-        .then().catch(err => { throw err })
       return
     }
 
     if(unitsArray[0].includes('?')) {
       embed = fight.provideDefHP(attacker, defender, embed)
-      this.addStats(message, this.name, attacker, defender, embed, trashEmoji)
-        .then().catch(err => { throw err })
       return embed
     }
     if(unitsArray[1].includes('?')) {
       embed = fight.provideAttHP(attacker, defender, embed)
-      this.addStats(message, this.name, attacker, defender, embed, trashEmoji)
-        .then().catch(err => { throw err })
       return embed
     }
-  },
-
-
-  // Add to stats database
-  addStats(message, commandName, attacker, defender, embed, trashEmoji, noEmbed) {
-    let replyFields = []
-
-    if(!noEmbed && embed.fields[0])
-      replyFields = [ embed.fields[0].name.replace(/\*\*/gi, ''), embed.fields[0].value]
-
-    return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, server_id, is_attacker_vet, is_defender_vet, attacker_description, defender_description, will_delete, reply_fields) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, attacker.name, defender.name, message.url, message.guild.id, attacker.vetNow, defender.vetNow, attacker.description, defender.description, trashEmoji, replyFields]
-      dbStats.query(sql, values, (err) => {
-        if(err) {
-          reject(`${commandName} stats: ${err.stack}\n${message.url}`)
-        } else {
-          resolve()
-        }
-      })
-    })
   }
 }

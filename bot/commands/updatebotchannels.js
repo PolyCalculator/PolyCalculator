@@ -16,7 +16,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji) {
+  execute: async function(message, argsStr, embed, trashEmoji, data) {
     if(!argsStr)
       throw 'You need to specify a server id'
     if(argsStr.length != 18) {
@@ -24,6 +24,15 @@ module.exports = {
     }
     if(!message.client.guilds.cache.get(argsStr))
       throw 'Doesn\'t look I\'m in that server (yet?)'
+
+    data.command = this.name
+    data.attacker = undefined
+    data.defender = undefined
+    data.is_attacker_vet = undefined
+    data.is_defender_vet = undefined
+    data.attacker_description = undefined
+    data.defender_description = undefined
+    data.reply_fields = undefined
 
     try {
       const guild = message.client.guilds.cache.get(argsStr)

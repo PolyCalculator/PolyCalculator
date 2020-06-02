@@ -122,8 +122,18 @@ bot.on('message', async message => {
     return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
+    // DATA FOR DATABASE
+    const data = {
+      content: message.cleanContent.slice(process.env.PREFIX.length),
+      author_id: message.author.id,
+      author_tag: message.author.tag,
+      server_id: message.guild.id,
+      arg: argsStr,
+      will_delete: trashEmoji
+    }
+
     // EXECUTE COMMAND
-    const reply = await command.execute(message, argsStr, embed, trashEmoji);
+    const reply = await command.execute(message, argsStr, embed, trashEmoji, data);
 
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
@@ -138,14 +148,18 @@ bot.on('message', async message => {
           }
         }).catch(console.error)
     }
-    if(reply)
-      message.channel.send(reply)
-        .then(x => {
-          if(trashEmoji) {
-            x.react('🗑️').then().catch(console.error)
-            message.delete().then().catch(console.error)
-          }
-        }).catch(console.error)
+    if(reply) {
+      const replyMessage = await message.channel.send(reply)
+      data.url = replyMessage.url
+      replyMessage.react('🗑️').then().catch(console.error)
+      message.delete().then().catch(console.error)
+    }
+
+    // INSERT INTO DB
+    const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, server_id, will_delete, is_attacker_vet, is_defender_vet, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)'
+    const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.server_id, data.trashEmoji, data.is_attacker_vet, data.is_defender_vet, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
+    await db.query(sql, values)
+
     return
   } catch (error) {
     // eslint-disable-next-line no-console

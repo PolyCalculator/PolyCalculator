@@ -14,7 +14,7 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, argsStr, embed, trashEmoji) {
+  execute: function(message, argsStr, embed, trashEmoji, data) {
     const { commands } = message.client;
     const argsArray = argsStr.split(/ +/)
     const command = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
@@ -25,6 +25,15 @@ module.exports = {
 
     if(doesntHavePerms)
       throw 'You don\'t have what it takes to use this :sunglasses:\nYou can try `.help` to get the list of commands!'
+
+    data.command = this.name
+    data.attacker = undefined
+    data.defender = undefined
+    data.is_attacker_vet = undefined
+    data.is_defender_vet = undefined
+    data.attacker_description = undefined
+    data.defender_description = undefined
+    data.reply_fields = undefined
 
     if (argsStr.length != 0 && !doesntHavePerms) {
       if (!command)
@@ -80,25 +89,8 @@ module.exports = {
         }
         embed.addField(`**${cat}:**`, field)
       }
-      this.addStats(message, argsStr, this.name, trashEmoji)
-        .then().catch(err => { throw err })
+
       return embed
     }
-  },
-
-
-  // Add to stats database
-  addStats(message, argsStr, commandName, trashEmoji) {
-    return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, arg, url, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, argsStr, message.url, message.guild.id, trashEmoji]
-      dbStats.query(sql, values, (err) => {
-        if(err) {
-          reject(`${commandName} stats: ${err.stack}\n${message.url}`)
-        } else {
-          resolve()
-        }
-      })
-    })
   }
 };
