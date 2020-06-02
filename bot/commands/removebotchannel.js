@@ -15,7 +15,7 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, willDelete) {
+  execute: async function(message, argsStr, embed, trashEmoji) {
     const channelToRemove = message.mentions.channels.first()
 
     try {
@@ -24,7 +24,7 @@ module.exports = {
         let returnedArray
         if(newBotChannelsArray.length > 1) {
           returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
-          // this.addStats(message, argsStr, this.name, success, willDelete)
+          // this.addStats(message, argsStr, this.name, success, trashEmoji)
           return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
         } else {
           return `There is no more registered bot command on this server anymore.\nYou can add more with \`${process.env.PREFIX}addbotchannel #bot-channel\` with the pinged channel you want to add!`

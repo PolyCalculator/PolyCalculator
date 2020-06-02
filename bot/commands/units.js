@@ -20,7 +20,7 @@ module.exports = {
     failure: 1000
   },
   // eslint-disable-next-line no-unused-vars
-  execute(message, argsStr, embed, willDelete) {
+  execute(message, argsStr, embed, trashEmoji) {
     if (argsStr.length != 0) {
       const argsArray = argsStr.split(/ +/)
       const unitCode = argsArray[0].slice(0, 2).toLowerCase()
@@ -48,7 +48,7 @@ module.exports = {
         }
       }
     }
-    this.addStats(message, argsStr, this.name, willDelete)
+    this.addStats(message, argsStr, this.name, trashEmoji)
       .then().catch(err => { throw err })
     return embed
   },
@@ -60,7 +60,7 @@ module.exports = {
 
     return { ...unitList[unitCode] }
   },
-  getUnitFromArray: function(unitArray, message, willDelete) {
+  getUnitFromArray: function(unitArray, message, trashEmoji) {
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
@@ -77,11 +77,11 @@ module.exports = {
     const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
 
     if(currentHPArray.length > 0)
-      unit.setHP(message, currentHPArray, willDelete)
+      unit.setHP(message, currentHPArray, trashEmoji)
 
     const defenseBonusArray = unitArray.filter(value => value === 'w' || value === 'd')
     if(defenseBonusArray.length > 0)
-      unit.addBonus(message, defenseBonusArray, willDelete)
+      unit.addBonus(message, defenseBonusArray, trashEmoji)
 
     const navalUnitArray = unitArray.filter(value => value.toLowerCase().startsWith('bs') || value.toLowerCase().startsWith('sh') || value.toLowerCase().startsWith('bo'))
     if(navalUnitArray.length > 0) {
@@ -116,10 +116,10 @@ module.exports = {
 
 
   // Add to stats database
-  addStats(message, argStr, commandName, willDelete) {
+  addStats(message, argStr, commandName, trashEmoji) {
     return new Promise((resolve, reject) => {
       const sql = 'INSERT INTO stats (content, author_id, author_tag, command, arg, url, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, argStr, message.url, message.guild.id, willDelete]
+      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, argStr, message.url, message.guild.id, trashEmoji]
       dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`${commandName} stats: ${err.stack}\n${message.url}`)

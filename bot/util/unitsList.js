@@ -346,7 +346,7 @@ module.exports = {
   }
 }
 
-function setHP(message, hpArray, willDelete) {
+function setHP(message, hpArray, trashEmoji) {
   const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
   const currentHP = Number(currentHPArray[0])
   const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
@@ -368,7 +368,7 @@ function setHP(message, hpArray, willDelete) {
         this.currenthp = currentHP
       message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
         .then(x => {
-          if(willDelete) {
+          if(trashEmoji) {
             x.delete(successDelete).then().catch(console.error)
             message.delete(successDelete).then().catch(console.error)
           }
@@ -378,7 +378,7 @@ function setHP(message, hpArray, willDelete) {
     if(!this.vet) {
       message.channel.send(`The ${this.name} can't become a veteran, so we'll proceed without it!`)
         .then(x => {
-          if(willDelete) {
+          if(trashEmoji) {
             x.delete(successDelete).then().catch(console.error)
             message.delete(successDelete).then().catch(console.error)
           }
@@ -390,7 +390,7 @@ function setHP(message, hpArray, willDelete) {
         this.currenthp = vetHP
         message.channel.send(`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`)
           .then(x => {
-            if(willDelete) {
+            if(trashEmoji) {
               x.delete(successDelete).then().catch(console.error)
               message.delete(successDelete).then().catch(console.error)
             }
@@ -399,7 +399,7 @@ function setHP(message, hpArray, willDelete) {
         this.currenthp = currentHP
         message.channel.send(`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`)
           .then(x => {
-            if(willDelete) {
+            if(trashEmoji) {
               x.delete(successDelete).then().catch(console.error)
               message.delete(successDelete).then().catch(console.error)
             }
@@ -411,14 +411,14 @@ function setHP(message, hpArray, willDelete) {
   }
 }
 
-function addBonus(message, bonusArray, willDelete) {
+function addBonus(message, bonusArray, trashEmoji) {
   let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
   defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
   if(defenseBonus.length >= 2) {
     message.channel.send('You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.')
       .then(x => {
-        if(willDelete) {
+        if(trashEmoji) {
           x.delete(successDelete).then().catch(console.error)
           message.delete(successDelete).then().catch(console.error)
         }

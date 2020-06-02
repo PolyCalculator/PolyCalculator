@@ -14,7 +14,7 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute(message, argsStr, embed, willDelete) {
+  execute(message, argsStr, embed, trashEmoji) {
     const { commands } = message.client;
     const argsArray = argsStr.split(/ +/)
     const command = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
@@ -80,7 +80,7 @@ module.exports = {
         }
         embed.addField(`**${cat}:**`, field)
       }
-      this.addStats(message, argsStr, this.name, willDelete)
+      this.addStats(message, argsStr, this.name, trashEmoji)
         .then().catch(err => { throw err })
       return embed
     }
@@ -88,10 +88,10 @@ module.exports = {
 
 
   // Add to stats database
-  addStats(message, argsStr, commandName, willDelete) {
+  addStats(message, argsStr, commandName, trashEmoji) {
     return new Promise((resolve, reject) => {
       const sql = 'INSERT INTO stats (content, author_id, author_tag, command, arg, url, server_id, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, argsStr, message.url, message.guild.id, willDelete]
+      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, argsStr, message.url, message.guild.id, trashEmoji]
       dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`${commandName} stats: ${err.stack}\n${message.url}`)

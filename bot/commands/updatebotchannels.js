@@ -16,7 +16,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, willDelete) {
+  execute: async function(message, argsStr, embed, trashEmoji) {
     if(!argsStr)
       throw 'You need to specify a server id'
     if(argsStr.length != 18) {

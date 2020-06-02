@@ -1,9 +1,10 @@
 require('dotenv').config();
 const { Client, MessageEmbed, Collection } = require('discord.js');
-const bot = new Client();
+const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
+const db = require('../db')
 let calcServer = {}
 let meee = {}
 let logChannel = {}
@@ -89,17 +90,16 @@ bot.on('message', async message => {
   // Instantiate the embed that's sent to every command execution
   const embed = new MessageEmbed().setColor('#ff0066')
 
-  const willDelete = isNotBotChannel && !command.forceNoDelete
+  const trashEmoji = isNotBotChannel && !command.forceNoDelete
   const generalDelete = { timeout: 5000 }
-  const successDelete = { timeout: 180000 }
   const failDelete = { timeout: 15000 }
 
   if(argsStr.includes('help')) {
-    help.execute(message, command.name, embed, willDelete)
+    help.execute(message, command.name, embed, trashEmoji)
     return message.channel.send(embed)
       .then(x => {
-        x.delete(successDelete).then().catch(console.error)
-        message.delete(successDelete).then().catch(console.error)
+        x.react('🗑️').then().catch(console.error)
+        message.delete().then().catch(console.error)
       }).catch(console.error)
   }
 
@@ -123,7 +123,7 @@ bot.on('message', async message => {
 
   try {
     // EXECUTE COMMAND
-    const reply = await command.execute(message, argsStr, embed, willDelete);
+    const reply = await command.execute(message, argsStr, embed, trashEmoji);
 
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
@@ -131,7 +131,7 @@ bot.on('message', async message => {
         .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
       logChannel.send(logEmbed)
         .then(sent => {
-          if(willDelete) {
+          if(trashEmoji) {
             setInterval(function() {
               logEmbed.setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n~~${message.url}~~`)
               sent.edit(logEmbed)}, 60000)
@@ -141,9 +141,9 @@ bot.on('message', async message => {
     if(reply)
       message.channel.send(reply)
         .then(x => {
-          if(willDelete) {
-            x.delete(successDelete).then().catch(console.error)
-            message.delete(successDelete).then().catch(console.error)
+          if(trashEmoji) {
+            x.react('🗑️').then().catch(console.error)
+            message.delete().then().catch(console.error)
           }
         }).catch(console.error)
     return
@@ -153,11 +153,29 @@ bot.on('message', async message => {
     errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
     return message.channel.send(`${error}`)
       .then(x => {
-        if(willDelete) {
+        if(trashEmoji) {
           x.delete(failDelete).then().catch(console.error)
           message.delete(failDelete).then().catch(console.error)
         }
       }).catch(console.error)
+  }
+})
+
+bot.on('messageReactionAdd', async (reaction, user) => {
+  if(reaction.message.partial) await reaction.message.fetch();
+
+  if(reaction.partial) await reaction.fetch();
+
+  if(user.id === bot.user.id)
+    return
+
+  const sql = 'SELECT author_id AS id FROM stats WHERE url = $1'
+  const values = [reaction.message.url]
+  const returned = await db.query(sql, values)
+
+  if(returned.rows[0].id === user.id) {
+    reaction.message.delete()
+      .then().catch(console.error)
   }
 })
 

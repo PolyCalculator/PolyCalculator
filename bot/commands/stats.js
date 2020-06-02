@@ -14,7 +14,7 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed, willDelete) {
+  execute: async function(message, argsStr, embed, trashEmoji) {
     const ping = message.mentions.users.first()
     const user = message.mentions.users.first() || message.author
 
@@ -31,7 +31,7 @@ module.exports = {
       embed.setDescription((ping) ? `These are ${user}'s stats for this bot in ${message.guild.name}` : `These are your stats for this bot in ${message.guild.name}`)
         .addField('Local count', (localUserStats.rows.length > 0) ? localUserStats.rows[0].count : 'Never here')
         .addField('Global count', (globalUserStats.rows.length > 0) ? globalUserStats.rows[0].count : 'Never used at all')
-      this.addStats(message, this.name, `${user.tag}, ${user.id}`, willDelete)
+      this.addStats(message, this.name, `${user.tag}, ${user.id}`, trashEmoji)
       return embed
     } catch(err) {
       throw err
@@ -40,10 +40,10 @@ module.exports = {
 
 
   // Add to stats database
-  addStats(message, commandName, arg, willDelete) {
+  addStats(message, commandName, arg, trashEmoji) {
     return new Promise((resolve, reject) => {
       const sql = 'INSERT INTO stats (content, author_id, author_tag, command, url, server_id, arg, will_delete) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)'
-      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, message.url, message.guild.id, arg, willDelete]
+      const values = [message.cleanContent.slice(process.env.PREFIX.length), message.author.id, message.author.tag, commandName, message.url, message.guild.id, arg, trashEmoji]
       dbStats.query(sql, values, (err) => {
         if(err) {
           reject(`${commandName} stats: ${err.stack}\n${message.url}`)
