@@ -1,5 +1,3 @@
-const dbStats = require('../../db/index')
-
 module.exports = {
   name: 'aliases',
   description: 'list all aliases to simplify your life.',
@@ -14,7 +12,7 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
+  execute: async function(message, argsStr, embed) {
     const categoriesMapped = {
       Main: {},
       Advanced: {},
@@ -43,15 +41,6 @@ module.exports = {
       }
       embed.addField(`**${cat}:**`, field)
     }
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     return embed
   }

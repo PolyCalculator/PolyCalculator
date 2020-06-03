@@ -76,7 +76,7 @@ bot.on('message', async message => {
   await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
     .then(x => isNotBotChannel = !x).catch(console.error)
 
-  const textStr = message.content.slice(prefix.length)
+  const textStr = message.cleanContent.slice(prefix.length)
   const commandName = textStr.split(/ +/).shift().toLowerCase();
   const argsStr = textStr.slice(commandName.length + 1)
 
@@ -124,12 +124,14 @@ bot.on('message', async message => {
   try {
     // DATA FOR DATABASE
     const data = {
+      command: command.name,
       content: message.cleanContent.slice(process.env.PREFIX.length),
       author_id: message.author.id,
       author_tag: message.author.tag,
       server_id: message.guild.id,
       arg: argsStr,
-      will_delete: trashEmoji
+      will_delete: trashEmoji,
+      message_id: message.id
     }
 
     // EXECUTE COMMAND
@@ -140,24 +142,18 @@ bot.on('message', async message => {
       logEmbed.setTitle(`**${message.cleanContent}**`)
         .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
       logChannel.send(logEmbed)
-        .then(sent => {
-          if(trashEmoji) {
-            setInterval(function() {
-              logEmbed.setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n~~${message.url}~~`)
-              sent.edit(logEmbed)}, 60000)
-          }
-        }).catch(console.error)
+        .then().catch(console.error)
     }
     if(reply) {
       const replyMessage = await message.channel.send(reply)
       data.url = replyMessage.url
-      replyMessage.react('🗑️').then().catch(console.error)
-      message.delete().then().catch(console.error)
+      if(trashEmoji)
+        replyMessage.react('🗑️').then().catch(console.error)
     }
 
     // INSERT INTO DB
-    const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, server_id, will_delete, is_attacker_vet, is_defender_vet, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)'
-    const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.server_id, data.trashEmoji, data.is_attacker_vet, data.is_defender_vet, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
+    const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)'
+    const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
     await db.query(sql, values)
 
     return
@@ -183,14 +179,18 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   if(user.id === bot.user.id)
     return
 
-  const sql = 'SELECT author_id AS id FROM stats WHERE url = $1'
+  const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
   const values = [reaction.message.url]
   const returned = await db.query(sql, values)
+  const triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
 
-  if(returned.rows[0].id === user.id) {
+  if(returned.rows[0].id === user.id || user.id === meee.id) {
     reaction.message.delete()
       .then().catch(console.error)
+    triggerMessage.delete()
+      .then().catch(console.error)
   }
+  triggerMessage
 })
 
 // --------------------------------------

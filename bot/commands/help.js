@@ -1,5 +1,3 @@
-const dbStats = require('../../db/index')
-
 module.exports = {
   name: 'help',
   description: 'display all the commands\' details.',
@@ -14,7 +12,7 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function(message, argsStr, embed, trashEmoji, data) {
+  execute: function(message, argsStr, embed) {
     const { commands } = message.client;
     const argsArray = argsStr.split(/ +/)
     const command = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
@@ -25,15 +23,6 @@ module.exports = {
 
     if(doesntHavePerms)
       throw 'You don\'t have what it takes to use this :sunglasses:\nYou can try `.help` to get the list of commands!'
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     if (argsStr.length != 0 && !doesntHavePerms) {
       if (!command)

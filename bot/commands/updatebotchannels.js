@@ -10,7 +10,7 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}updatebotchannels 581872879386492929`
   },
-  forceNoDelete: true,
+  forceNoDelete: false,
   category: 'hidden',
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
@@ -24,15 +24,6 @@ module.exports = {
     }
     if(!message.client.guilds.cache.get(argsStr))
       throw 'Doesn\'t look I\'m in that server (yet?)'
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     try {
       const guild = message.client.guilds.cache.get(argsStr)

@@ -10,22 +10,13 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}removebotcchannel #bot-commands`
   },
-  forceNoDelete: true,
+  forceNoDelete: false,
   category: 'Settings',
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
   execute: async function(message, argsStr, embed, trashEmoji, data) {
     const channelToRemove = message.mentions.channels.first()
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     try {
       if(channelToRemove) {

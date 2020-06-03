@@ -1,6 +1,5 @@
 const fight = require('../util/fightEngine')
 const units = require('./units')
-const dbStats = require('../../db/index')
 
 module.exports = {
   name: 'elim',
@@ -32,18 +31,14 @@ module.exports = {
     if(!argsStr.includes('?'))
       throw `\`${process.env.PREFIX}elim\` requires a \`?\`\nYou'll need to either use the \`${process.env.PREFIX}calc\` command or do \`${process.env.PREFIX}help elim\` for more information on how to use it!`
 
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
-
     if(unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
       const attackerClone = { ...attacker }
       const defenderClone = { ...defender }
+
+      data.attacker = attacker.name
+      data.defender = defender.name
+      data.reply_fields = [embed.fields[0].value]
+
       message.channel.send(fight.provideDefHP(attacker, defender, embed))
       message.channel.send(fight.provideAttHP(attackerClone, defenderClone, embed))
       return
@@ -51,10 +46,20 @@ module.exports = {
 
     if(unitsArray[0].includes('?')) {
       embed = fight.provideDefHP(attacker, defender, embed)
+
+      data.attacker = attacker.name
+      data.defender = defender.name
+      data.reply_fields = [embed.fields[0].value]
+
       return embed
     }
     if(unitsArray[1].includes('?')) {
       embed = fight.provideAttHP(attacker, defender, embed)
+
+      data.attacker = attacker.name
+      data.defender = defender.name
+      data.reply_fields = [embed.fields[0].value]
+
       return embed
     }
   }

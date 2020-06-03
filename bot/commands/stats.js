@@ -14,18 +14,9 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
+  execute: async function(message, argsStr, embed) {
     const ping = message.mentions.users.first()
     const user = message.mentions.users.first() || message.author
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     try {
       // const localsql = 'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 AND server_id = $2 GROUP BY author_id'

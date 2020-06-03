@@ -1,6 +1,5 @@
 const fight = require('../util/fightEngine')
 const units = require('./units')
-const dbStats = require('../../db/index')
 
 module.exports = {
   name: 'bulk',
@@ -29,14 +28,11 @@ module.exports = {
     const defender = units.getUnitFromArray(defenderArray, message, trashEmoji)
     fight.bulk(attacker, defender, embed)
 
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
+    data.attacker = attacker.name
+    data.defender = defender.name
+    data.attacker_description = attacker.description
+    data.defender_description = defender.description
+    data.reply_fields = [embed.fields[0].value]
 
     return embed
   }

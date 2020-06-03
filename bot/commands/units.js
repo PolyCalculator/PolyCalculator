@@ -1,5 +1,4 @@
 const unitList = require('../util/unitsList')
-const dbStats = require('../../db/index')
 
 module.exports = {
   name: 'units',
@@ -48,15 +47,6 @@ module.exports = {
         }
       }
     }
-
-    data.command = this.name
-    data.attacker = undefined
-    data.defender = undefined
-    data.is_attacker_vet = undefined
-    data.is_defender_vet = undefined
-    data.attacker_description = undefined
-    data.defender_description = undefined
-    data.reply_fields = undefined
 
     return embed
   },
