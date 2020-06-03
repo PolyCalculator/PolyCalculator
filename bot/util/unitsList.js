@@ -299,8 +299,8 @@ module.exports = {
   mo: {
     name: 'Mooni',
     description: '',
-    currenthp: 15,
-    maxhp: 15,
+    currenthp: 10,
+    maxhp: 10,
     vet: true,
     vetNow: false,
     att: 0,
