@@ -36,7 +36,7 @@ module.exports.multi = function(attackers, defender, embed) {
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ **${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}** (*-${bestSolution.hpLoss[order]}*)`)
   })
 
-  embed.setTitle('This is the order for best outcome:')
+  embed.setDescription('This is the order for best outcome:')
     .addField('Attackers:', descriptionArray)
     .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP}`)
   return embed
@@ -65,21 +65,10 @@ module.exports.calc = function(attackers, defender, embed) {
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ **${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])}** (*-${solution.hpLoss[order]}*)`)
   })
 
-  embed.setTitle('The outcome of the fight is:')
+  embed.setDescription('The outcome of the fight is:')
     .addField('Attackers:', descriptionArray)
     .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP}`)
   return embed
-
-  // embed.setDescription('The outcome of the fight is:')
-  //   .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Attacking ' : ''}${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${hpattacker} (${attdiff * -1})`)
-  //   .addField(`**${(attacker.name + attacker.description === defender.name + defender.description) ? 'Defending ' : ''}${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${hpdefender} (${defdiff * -1})`)
-
-  // if(attacker.name === 'Fire Dragon') {
-  //   const halfdragondefdiff = Math.round(aforce / 2 / totaldam * attacker.att * 4.5);
-  //   embed.addField('**If splashed**:', halfdragondefdiff)
-  // }
-
-  // return embed;
 }
 
 module.exports.bulk = function(attacker, defender, embed) {
@@ -105,13 +94,12 @@ module.exports.bulk = function(attacker, defender, embed) {
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
-  embed.setDescription(`You'll need this many hits from the ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
+  embed.setTitle(`You'll need this many hits from the ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
     .addField(`**Number of ${attacker.name}${attacker.description}s**:`, `${i}`)
 
   return embed;
 }
 
-// eslint-disable-next-line no-unused-vars
 module.exports.provideDefHP = function(attacker, defender, embed) {
   let aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
@@ -127,15 +115,13 @@ module.exports.provideDefHP = function(attacker, defender, embed) {
   if(attacker.currenthp > attacker.maxhp) {
     embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
   } else {
-    embed
-      .setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`)
+    embed.setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`)
       .addField(`**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${attacker.currenthp}`)
   }
 
   return embed;
 }
 
-// eslint-disable-next-line no-unused-vars
 module.exports.provideAttHP = function(attacker, defender, embed) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;

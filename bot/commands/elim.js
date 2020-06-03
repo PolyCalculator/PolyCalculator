@@ -5,9 +5,8 @@ module.exports = {
   name: 'elim',
   description: 'allow to display the most optimal hp to eliminate units by putting a `?` on either side (attacker or defender).',
   aliases: ['e'],
-  // eslint-disable-next-line no-unused-vars
   shortUsage(prefix) {
-    return 'This command is too complicated to show an example. Try `.help elim`'
+    return `This command is too complicated to show an example. Try \`${prefix}help elim\``
   },
   longUsage(prefix) {
     return `\`${prefix}e gi 32, de w ?\`\nThis returns the strongest defender the 32hp giant can kill.\n\n\`${prefix}e gi ?, de w 6\`\nThis returns the weakest giant needed to kill a walled defender with 6hp.`

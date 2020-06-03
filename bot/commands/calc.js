@@ -5,7 +5,6 @@ module.exports = {
   name: 'calc',
   description: 'calculate the outcome of a fight in the most simple format.',
   aliases: ['c'],
-  // eslint-disable-next-line no-unused-vars
   shortUsage(prefix) {
     return `\`${prefix}c wa 7, ri 5\` or\n\`${prefix}c wa bo, wa sh, wa bs, de d\``
   },
