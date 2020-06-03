@@ -176,7 +176,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 
   if(reaction.partial) await reaction.fetch();
 
-  if(user.id === bot.user.id)
+  if(user.id === bot.user.id || reaction.message.author.id !== bot.user.id)
     return
 
   const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
