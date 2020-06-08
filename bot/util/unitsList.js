@@ -348,7 +348,7 @@ module.exports = {
 
 function setHP(message, hpArray, trashEmoji) {
   const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-  const currentHP = Number(currentHPArray[0])
+  const currentHP = parseInt(currentHPArray[0])
   const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
   if(currentHP < 1)
     throw 'One of the units is already dead. RIP.'
