@@ -40,6 +40,9 @@ module.exports = {
         .addField('Modifiers:', 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`')
         .addField('`.o` specific modifier:', 'Only combos with that/those unit(s) doing the final hit: `f`')
       for(const key in unitList) {
+        if(key === 'nb')
+          continue
+
         if(embed.description === undefined)
           embed.setDescription(`${unitList[key].name}: \`${key}\``)
         else {

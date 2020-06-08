@@ -343,6 +343,22 @@ module.exports = {
     retaliation: true,
     setHP: setHP,
     addBonus: addBonus
+  },
+  nb: {
+    name: 'Nature Bunny',
+    description: '',
+    currenthp: 20,
+    maxhp: 20,
+    vet: false,
+    vetNow: false,
+    att: 5,
+    def: 1,
+    bonus: 1,
+    fort: false,
+    range: false,
+    retaliation: true,
+    setHP: setHP,
+    addBonus: addBonus
   }
 }
 
