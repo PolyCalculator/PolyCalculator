@@ -204,11 +204,11 @@ bot.on('channelDelete', deletedChannel => {
       if(x.some(y => y === deletedChannel.id))
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
           .then().catch(errorMsg => {
-            errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name}\n${meee}!`)
+            errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
               .then().catch(console.error)
           })
     }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}\n${meee}!`)
+      errorChannel.send(`${errorMsg}\n in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
         .then().catch(console.error)
     })
 })
@@ -224,7 +224,7 @@ bot.on('channelCreate', createdChannel => {
   if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
       .then().catch(errorMsg => {
-        errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name}\n${meee}!`)
+        errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name} (${createdChannel.guild.id})\n${meee}!`)
           .then().catch()
       })
 })
