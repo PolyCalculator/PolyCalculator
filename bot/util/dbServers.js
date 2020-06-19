@@ -18,7 +18,7 @@ module.exports.addNewServer = function(serverId, serverName, botChannels, meee) 
             if(err) {
               reject(`${err.message}. Ping an @**admin** if you need help!`)
             } else {
-              resolve(`**${serverName}** reinvited the bot and was updated!`)
+              resolve(`**${serverName}** (${serverId}) reinvited the bot and was updated!`)
             }
           })
         } else {
@@ -29,7 +29,7 @@ module.exports.addNewServer = function(serverId, serverName, botChannels, meee) 
             if(err) {
               reject(`${err.message}. Ping an @**admin** if you need help!`)
             } else {
-              resolve(`**PolyCalculator** was added to **${serverName}**, ${meee}!`)
+              resolve(`**PolyCalculator** was added to **${serverName}** (${serverId})!`)
             }
           })
         }
@@ -46,7 +46,7 @@ module.exports.removeServer = function(serverId, serverName, meee) {
       if(err) {
         reject(`${err.message}. Ping an @**admin** if you need help!`)
       } else {
-        resolve(`The bot was removed from __**${serverName}**__, ${meee}`)
+        resolve(`The bot was removed from __**${serverName}**__ (${serverId}) :frowning:...`)
       }
     })
   })
