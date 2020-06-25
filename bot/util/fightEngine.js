@@ -32,13 +32,12 @@ module.exports.multi = function(attackers, defender, embed) {
   const descriptionArray = []
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    // descriptionArray.push(`${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (${bestSolution.hpLoss[order] * -1}) **${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}**`)
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ **${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}** (*-${bestSolution.hpLoss[order]}*)`)
   })
 
   embed.setDescription('This is the order for best outcome:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP} (*-${defender.currenthp - bestSolution.defenderHP}*)`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP} (*-${bestSolution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + bestSolution.hpDealt.join(' ➔ ') + ']\n*For any comment on this new feature,\nDM <@217385992837922819>*||'}`)
 
   return embed
 }
@@ -68,7 +67,7 @@ module.exports.calc = function(attackers, defender, embed) {
 
   embed.setDescription('The outcome of the fight is:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP} (*-${defender.currenthp - solution.defenderHP}*)`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP} (*-${solution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + solution.hpDealt.join(' ➔ ') + ']\n*For any comment on this new feature,\nDM <@217385992837922819>*||'}`)
   return embed
 }
 

@@ -51,6 +51,7 @@ module.exports.multicombat = function(attackers, defender, sequence) {
     attackerCasualties: 0,
     attackersHP: totalAttackersHP,
     hpLoss: [],
+    hpDealt: [],
     sequence: sequence,
     finalSequence: []
   }
@@ -91,6 +92,7 @@ function combat(attacker, defender, solution) {
   const totaldam = aforce + dforce;
   const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
 
+  solution.hpDealt.push(defdiff)
   solution.defenderHP = solution.defenderHP - defdiff
 
   let attdiff = 0
