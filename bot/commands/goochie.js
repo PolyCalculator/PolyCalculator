@@ -5,10 +5,10 @@ module.exports = {
   description: 'show fax.',
   aliases: ['goochie', 'gooch'],
   shortUsage() {
-    return undefined
+    return `${process.env.PREFIX}Goochie`
   },
   longUsage() {
-    return undefined
+    return `${process.env.PREFIX}gooch`
   },
   forceNoDelete: false,
   category: 'hidden',
