@@ -63,13 +63,13 @@ module.exports = {
   },
   getUnitFromArray: function(unitArray, message, trashEmoji) {
     // Rebuilding aliases
-    if(unitArray.some(x => x.startsWith('gbs'))) {
-      unitArray = unitArray.filter(value => !value.startsWith('gbs'))
+    if(unitArray.some(x => x.toLowerCase().startsWith('gbs'))) {
+      unitArray = unitArray.filter(value => !value.toLowerCase().startsWith('gbs'))
       unitArray.push('gi')
       unitArray.push('bs')
     }
-    if(unitArray.some(x => x.startsWith('dbs'))) {
-      unitArray = unitArray.filter(value => !value.startsWith('dbs'))
+    if(unitArray.some(x => x.toLowerCase().startsWith('dbs'))) {
+      unitArray = unitArray.filter(value => !value.toLowerCase().startsWith('dbs'))
       unitArray.push('de')
       unitArray.push('bs')
     }
