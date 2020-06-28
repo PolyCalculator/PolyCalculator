@@ -62,6 +62,18 @@ module.exports = {
     return { ...unitList[unitCode] }
   },
   getUnitFromArray: function(unitArray, message, trashEmoji) {
+    // Rebuilding aliases
+    if(unitArray.some(x => x.startsWith('gbs'))) {
+      unitArray = unitArray.filter(value => !value.startsWith('gbs'))
+      unitArray.push('gi')
+      unitArray.push('bs')
+    }
+    if(unitArray.some(x => x.startsWith('dbs'))) {
+      unitArray = unitArray.filter(value => !value.startsWith('dbs'))
+      unitArray.push('de')
+      unitArray.push('bs')
+    }
+
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
