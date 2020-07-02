@@ -45,21 +45,17 @@ module.exports = {
 
     if(unitsArray[0].includes('?')) {
       embed = fight.provideDefHP(attacker, defender, embed)
-
-      data.attacker = attacker.name
-      data.defender = defender.name
-      data.reply_fields = [embed.fields[0].value]
-
-      return embed
     }
     if(unitsArray[1].includes('?')) {
       embed = fight.provideAttHP(attacker, defender, embed)
-
-      data.attacker = attacker.name
-      data.defender = defender.name
+    }
+    data.attacker = attacker.name
+    data.defender = defender.name
+    if(embed.fields.length < 1)
+      data.reply_fields = ['Can\'t kill']
+    else
       data.reply_fields = [embed.fields[0].value]
 
-      return embed
-    }
+    return embed
   }
 }

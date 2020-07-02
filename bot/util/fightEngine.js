@@ -112,6 +112,7 @@ module.exports.provideDefHP = function(attacker, defender, embed) {
     if(defender.currenthp - defdiff <= 0)
       break
   }
+
   if(attacker.currenthp > attacker.maxhp) {
     embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
   } else {
