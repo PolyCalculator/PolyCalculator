@@ -173,7 +173,7 @@ module.exports = {
     def: 1,
     bonus: 1,
     fort: true,
-    range: false,
+    range: true,
     retaliation: true,
     setHP: setHP,
     addBonus: addBonus
