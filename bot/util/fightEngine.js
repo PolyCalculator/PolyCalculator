@@ -37,7 +37,7 @@ module.exports.multi = function(attackers, defender, embed) {
 
   embed.setDescription('This is the order for best outcome:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP} (*-${bestSolution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + bestSolution.hpDealt.join(' ➔ ') + ']\n*For any comment on this new feature,\nDM <@217385992837922819>*||'}`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : bestSolution.defenderHP} (*-${bestSolution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + bestSolution.hpDealt.join(' ➔ ') + ']||'}`)
 
   return embed
 }
@@ -67,7 +67,7 @@ module.exports.calc = function(attackers, defender, embed) {
 
   embed.setDescription('The outcome of the fight is:')
     .addField('Attackers:', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP} (*-${solution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + solution.hpDealt.join(' ➔ ') + ']\n*For any comment on this new feature,\nDM <@217385992837922819>*||'}`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : solution.defenderHP} (*-${solution.hpDealt.reduce((a, b) => a + b, 0)}*)\n${'||HP dealt breakdown: [' + solution.hpDealt.join(' ➔ ') + ']||'}`)
   return embed
 }
 
