@@ -28,9 +28,9 @@ module.exports = {
     })
     serverMap.forEach((x) => {
       if(description.toString().length > 1900)
-        embed.addField(`**${x.name}** (${x.id})`, `${x.owner.user.tag} => ${x.memberCount}`)
+        embed.addField(`**${x.name}** (${x.id})`, `${x.owner.user} ${x.owner.user.tag} => ${x.memberCount}`)
       else
-        description.push(`**${x.name}** (${x.id}) ${x.owner.user.tag} => ${x.memberCount}`)
+        description.push(`**${x.name}** (${x.id}) ${x.owner.user} ${x.owner.user.tag} => ${x.memberCount}`)
     })
 
     embed.setDescription(description)
