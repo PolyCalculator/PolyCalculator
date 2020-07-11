@@ -37,8 +37,8 @@ module.exports = {
       embed.setTitle('All units by code')
         .addField('Naval unit codes to add to land units:', 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`')
         .addField('Current hp:', 'Any number will be interpreted as current hp with a bunch of fail-safes')
-        .addField('Modifiers:', 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`')
-        .addField('`.o` specific modifiers:', '1. Only combos with that/those unit(s) doing the final hit: `f`\n2. Add `r` to the attacker to force the defender\'s retaliation.\n3. Add `nr` to the attacker to force no retaliation on the  defender.')
+        .addField('Modifiers:', 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.')
+        .addField('`.o` specific modifiers:', '1. Only combos with that/those unit(s) doing the final hit: `f`.')
       for(const key in unitList) {
         if(key === 'nb')
           continue
