@@ -7,6 +7,7 @@ const help = require('./commands/help')
 const db = require('../db')
 let calcServer = {}
 let meee = {}
+let newsChannel = {}
 let logChannel = {}
 let errorChannel = {}
 
@@ -32,6 +33,7 @@ bot.once('ready', () => {
 
   calcServer = bot.guilds.cache.get('581872879386492929')
   meee = bot.users.cache.get('217385992837922819')
+  newsChannel = calcServer.channels.cache.get('654168953643466752')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
   let toggle = true
@@ -152,9 +154,21 @@ bot.on('message', async message => {
     }
 
     // INSERT INTO DB
-    const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
-    const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
-    await db.query(sql, values)
+    if(!message.channel.name.startsWith('bot-test')) {
+      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
+      const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
+      await db.query(sql, values)
+    }
+
+    let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
+
+    rows = rows[0]
+    rows.triggers = parseInt(rows.triggers)
+
+    if(rows.triggers % 5000 === 0) {
+      newsChannel.send(`<:yay:585534167274618997>:tada: We reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
+      meee.send(`<:yay:585534167274618997>:tada: We're at **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
+    }
 
     return
   } catch (error) {
