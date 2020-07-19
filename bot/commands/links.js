@@ -1,6 +1,6 @@
 module.exports = {
   name: 'links',
-  description: 'show the link to invite the bot, to the developer\'s server and to the statistic\'s webiste.',
+  description: 'show the link to invite the bot, to the developer\'s server and to the statistic\'s website.',
   aliases: ['link', 'inv', 'invite', 'server'],
   shortUsage(prefix) {
     return `${prefix}inv`
