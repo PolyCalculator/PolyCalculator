@@ -43,7 +43,7 @@ module.exports = {
       throw 'You need to specify at least one unit with more than 0 attack.'
 
     try {
-      embed = await fight.multi(attackers, defender, embed)
+      embed = await fight.optim(attackers, defender, embed)
     } catch (error) {
       throw error
     }

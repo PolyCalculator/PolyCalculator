@@ -1,7 +1,7 @@
 const deadText = require('./deadtexts')
 const { generateArraySequences, generateSequences, multicombat, evaluate } = require('./sequencer')
 
-module.exports.multi = function(attackers, defender, embed) {
+module.exports.optim = function(attackers, defender, embed) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
   const sequences = generateSequences(arrayNbAttackers)
   const solutions = []
