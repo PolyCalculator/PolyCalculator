@@ -1,10 +1,16 @@
 const deadText = require('./deadtexts')
+const isDragonSplash = require('./isDragonSplash')
 const { generateArraySequences, generateSequences, multicombat, evaluate } = require('./sequencer')
 
 module.exports.optim = function(attackers, defender, embed) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
   const sequences = generateSequences(arrayNbAttackers)
   const solutions = []
+
+  const dragonSplashArray = isDragonSplash(attackers, defender, embed) // [bool conditionsSplashed, embedMessage]
+
+  if(dragonSplashArray[0])
+    return dragonSplashArray[1]
 
   const hasFinal = attackers.some(attacker => attacker.final === true)
   sequences.forEach(function(sequence) {
@@ -32,7 +38,7 @@ module.exports.optim = function(attackers, defender, embed) {
   const descriptionArray = []
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ **${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])}** (*-${bestSolution.hpLoss[order]}*)`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (*-${bestSolution.hpLoss[order]}*)`)
   })
 
   embed.setDescription('This is the order for best outcome:')
@@ -43,6 +49,11 @@ module.exports.optim = function(attackers, defender, embed) {
 }
 
 module.exports.calc = function(attackers, defender, embed) {
+  const dragonSplashArray = isDragonSplash(attackers, defender, embed) // [bool conditionsSplashed, embedMessage]
+
+  if(dragonSplashArray[0])
+    return dragonSplashArray[1]
+
   const sequence = []
   for(let i = 1; i <= attackers.length; i++) {
     sequence.push(i)
@@ -62,7 +73,7 @@ module.exports.calc = function(attackers, defender, embed) {
   const descriptionArray = []
   solution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ **${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])}** (*-${solution.hpLoss[order]}*)`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attackers[seqIndex].currenthp - solution.hpLoss[order])} (*-${solution.hpLoss[order]}*)`)
   })
 
   embed.setDescription('The outcome of the fight is:')
