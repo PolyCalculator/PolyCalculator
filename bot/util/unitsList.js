@@ -428,7 +428,7 @@ function setHP(message, hpArray, trashEmoji) {
 }
 
 function addBonus(message, bonusArray, trashEmoji) {
-  let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
+  let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd' || value.toLowerCase() === 'p')
   defenseBonus = [ ...new Set(defenseBonus) ] // Deletes doubles
 
   if(defenseBonus.length >= 2) {
@@ -444,7 +444,7 @@ function addBonus(message, bonusArray, trashEmoji) {
     } else
       this.bonus = 1.5
   } else {
-    if(defenseBonus[0].toLowerCase() === 'd') {
+    if(defenseBonus[0].toLowerCase() === 'd' || defenseBonus[0].toLowerCase() === 'p') {
       this.bonus = 1.5
     } else if(defenseBonus[0].toLowerCase() === 'w' && this.fort === true) {
       this.bonus = 4

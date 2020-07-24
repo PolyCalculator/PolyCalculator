@@ -92,7 +92,7 @@ module.exports = {
     if(currentHPArray.length > 0)
       unit.setHP(message, currentHPArray, trashEmoji)
 
-    const defenseBonusArray = unitArray.filter(value => value === 'w' || value === 'd')
+    const defenseBonusArray = unitArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd' || value.toLowerCase() === 'p')
     if(defenseBonusArray.length > 0)
       unit.addBonus(message, defenseBonusArray, trashEmoji)
 
