@@ -24,11 +24,14 @@ module.exports = {
     const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
     const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
 
+    if(!argsStr.includes('?')) {
+      message.channel.send(`\`${process.env.PREFIX}elim\` requires a \`?\`\nI'll give you both sides.\nYou can do \`${process.env.PREFIX}help elim\` for more information on how to use it!`)
+      unitsArray[0] = unitsArray[0] + '?'
+      unitsArray[1] = unitsArray[1] + '?'
+    }
+
     const attacker = units.getUnitFromArray(attackerArray, message, trashEmoji)
     const defender = units.getUnitFromArray(defenderArray, message, trashEmoji)
-
-    if(!argsStr.includes('?'))
-      throw `\`${process.env.PREFIX}elim\` requires a \`?\`\nYou'll need to either use the \`${process.env.PREFIX}calc\` command or do \`${process.env.PREFIX}help elim\` for more information on how to use it!`
 
     if(unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
       const attackerClone = { ...attacker }
@@ -36,7 +39,8 @@ module.exports = {
 
       data.attacker = attacker.name
       data.defender = defender.name
-      data.reply_fields = [embed.fields[0].value]
+      if(embed.fields[0])
+        data.reply_fields = [embed.fields[0].value]
 
       message.channel.send(fight.provideDefHP(attacker, defender, embed))
       message.channel.send(fight.provideAttHP(attackerClone, defenderClone, embed))
@@ -53,8 +57,10 @@ module.exports = {
     data.defender = defender.name
     if(embed.fields.length < 1)
       data.reply_fields = ['Can\'t kill']
-    else
-      data.reply_fields = [embed.fields[0].value]
+    else {
+      if(embed.fields[0])
+        data.reply_fields = [embed.fields[0].value]
+    }
 
     return embed
   }
