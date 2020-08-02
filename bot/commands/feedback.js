@@ -1,9 +1,9 @@
 module.exports = {
   name: 'feedback',
   description: 'send feedback to the dev!',
-  aliases: ['feed'],
+  aliases: ['feed', 'comments', 'comment', 'suggestion'],
   shortUsage(prefix) {
-    return `${prefix}feed`
+    return `${prefix}feedback`
   },
   longUsage(prefix) {
     return `${prefix}feedback`
