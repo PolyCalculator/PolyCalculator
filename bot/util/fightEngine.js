@@ -41,7 +41,7 @@ module.exports.optim = function(attackers, defender, embed) {
   bestSolution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
     defHP = defHP - bestSolution.hpDealt[order]
-    descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - bestSolution.hpLoss[order] < 1 ? deathText : attackers[seqIndex].currenthp - bestSolution.hpLoss[order])} (**${(defHP < 1) ? deathText : defHP}**)`)
+    descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (**${defHP}**)`)
   })
 
   embed.setDescription('This is the order for best outcome:')
@@ -79,7 +79,7 @@ module.exports.calc = function(attackers, defender, embed) {
   solution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
     defHP = defHP - solution.hpDealt[order]
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${(attackers[seqIndex].currenthp - solution.hpLoss[order] < 1 ? deathText : attackers[seqIndex].currenthp - solution.hpLoss[order])} (**${(defHP < 1) ? deathText : defHP}**)`)
+    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
   })
 
   embed.setDescription('The outcome of the fight is:')
