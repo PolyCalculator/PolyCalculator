@@ -17,7 +17,10 @@ module.exports = {
     const calcServer = message.client.guilds.cache.get('581872879386492929')
     const feedbackChannel = calcServer.channels.cache.get('738926248700411994')
 
-    feedbackChannel.send(`${argsStr}, <@217385992837922819>\nFrom: ${message.author} (${message.author.tag})`)
+    embed.setTitle(argsStr)
+      .setDescription(`From: ${message.author} (${message.author.tag})\n${message.url}`)
+    feedbackChannel.send(embed)
+    feedbackChannel.send('<@217385992837922819>')
 
     return 'Feedback sent! :wave:'
   }
