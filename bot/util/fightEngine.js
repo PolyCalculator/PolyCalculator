@@ -45,8 +45,8 @@ module.exports.optim = function(attackers, defender, embed) {
   })
 
   embed.setDescription('This is the order for best outcome:')
-    .addField('Attacker: startHP ➔ endHP (defenderHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP} (*-${bestSolution.hpDealt.reduce((a, b) => a + b, 0)}*)\n||Use the new command:\n\`${process.env.PREFIX}feedback with your feedback!\`||`)
+    .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}\n||Use the new command:\n\`${process.env.PREFIX}feedback with your feedback!\`||`)
 
   return embed
 }
@@ -83,8 +83,8 @@ module.exports.calc = function(attackers, defender, embed) {
   })
 
   embed.setDescription('The outcome of the fight is:')
-    .addField('Attacker: startHP ➔ endHP (defenderHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP} (*-${solution.hpDealt.reduce((a, b) => a + b, 0)}*)\n||Use the new command:\n\`${process.env.PREFIX}feedback with your feedback!\`||`)
+    .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}\n||Use the new command:\n\`${process.env.PREFIX}feedback with your feedback!\`||`)
   return embed
 }
 
