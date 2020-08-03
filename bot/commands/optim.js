@@ -51,7 +51,8 @@ module.exports = {
     data.attacker = attackers.length
     data.defender = defender.name
     data.defender_description = defender.description
-    data.reply_fields = [embed.fields[0].value, embed.fields[1].value]
+    if(embed.fields !== undefined)
+      data.reply_fields = [embed.fields[0].value, embed.fields[1].value]
 
     return embed
   }
