@@ -46,7 +46,7 @@ module.exports.optim = function(attackers, defender, embed) {
 
   embed.setDescription('This is the order for best outcome:')
     .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}\n||Use the new command for feedback\`${process.env.PREFIX}help feedback\`||`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}\n||Use the new command for feedback: \`${process.env.PREFIX}help feedback\`||`)
 
   return embed
 }
@@ -84,7 +84,7 @@ module.exports.calc = function(attackers, defender, embed) {
 
   embed.setDescription('The outcome of the fight is:')
     .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}\n||Use the new command for feedback\`${process.env.PREFIX}help feedback\`||`)
+    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}\n||Use the new command for feedback: \`${process.env.PREFIX}help feedback\`||`)
   return embed
 }
 
