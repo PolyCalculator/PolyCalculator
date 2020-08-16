@@ -14,7 +14,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   execute: function(message, argsStr, embed) {
     embed.setTitle('Links!')
-      .addField('Invite this bot to your server:', 'https://discordapp.com/oauth2/authorize?client_id=593507058905645057&permissions=8&scope=bot')
+      .addField('Invite this bot to your server:', 'https://discord.com/oauth2/authorize?client_id=593507058905645057&scope=bot&permissions=93256')
       .addField('PolyCalculator\'s server link:', 'https://discord.gg/rtSTmd8')
       // .addField('Documentation (How-to use the bot):', 'https://docs.polycalculatorbot.com')
       .addField('Website (Stats):', 'http://polycalculatorbot.com')
