@@ -9,7 +9,7 @@ firebase-debug.log*
 /dist
 /client
 .env
-/csv
+*.csv
 **/test*
 **/__pycache__/
 
