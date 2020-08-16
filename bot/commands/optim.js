@@ -3,7 +3,7 @@ const units = require('./units')
 
 module.exports = {
   name: 'optim',
-  description: 'returns the best order to use multiple attackers to kill one unit according to these priorities:\n\n - Kill/inflict most damage to the defending unit,\n - Minimize the number of attacker casualties,\n - Minimize the cumulative damage taken by the attackers left alive.\n - Use the least nubmer of attackers',
+  description: 'returns the best order to use multiple attackers to kill one unit according to these priorities:\n\n - Kill/inflict most damage to the defending unit,\n - Minimize the number of attacker casualties,\n - Minimize the cumulative damage taken by the attackers left alive.\n - Use the least number of attackers',
   aliases: ['o', 'op', 'opti'],
   shortUsage(prefix) {
     return `\`${prefix}o wa bo, wa sh, wa bs, de d\``
