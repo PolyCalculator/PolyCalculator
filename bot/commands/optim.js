@@ -22,8 +22,8 @@ module.exports = {
 
     const unitsArray = units.getBothUnitArray(argsStr, message)
 
-    if(unitsArray.length > 10)
-      throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 9 attackers is dangerous for my safety.'
+    if(unitsArray.length > 9)
+      throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 8 attackers is dangerous for my safety.'
 
     const defenderStr = unitsArray.pop()
     const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
