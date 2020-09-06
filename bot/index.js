@@ -197,10 +197,12 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   const values = [reaction.message.url]
   const returned = await db.query(sql, values)
   let triggerMessage
+
   if(returned.rows[0])
     triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
+  else
+    return
 
-  errorChannel.send(`${JSON.stringify(returned.rows[0])}, ${meee}`)
   if(returned.rows[0].id === user.id || user.id === meee.id) {
     reaction.message.delete()
       .then().catch(console.error)
