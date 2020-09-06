@@ -120,7 +120,7 @@ bot.on('message', async message => {
   }
 
   // Check if the user has the permissions necessary to execute the command
-  if(!(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
+  if(!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
     return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
