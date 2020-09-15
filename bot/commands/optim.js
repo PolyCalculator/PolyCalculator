@@ -1,5 +1,6 @@
 const fight = require('../util/fightEngine')
 const units = require('./units')
+const db = require('../../db')
 
 module.exports = {
   name: 'optim',
@@ -21,6 +22,21 @@ module.exports = {
       return 'Try `.help o` for more information on how to use this command!'
 
     const unitsArray = units.getBothUnitArray(argsStr, message)
+
+    if(unitsArray.length > 4) {
+      const sql = 'SELECT user_id FROM premium WHERE user_id = $1'
+      const values = [message.author.id]
+
+      try {
+        const { rows } = await db.query(sql, values)
+        if(rows.length === 0)
+          return embed.setTitle('You need to be a premium member to be allows to use `.optim` with more than **3 attackers**.')
+            .setDescription('To become a premium member, you can DM the creator and pay any amount of `$`.')
+            .setFooter('The money is used to pay the monthly fee necessary to keep the 24/7 server on which the bot runs, rolling.')
+      } catch (error) {
+        console.error
+      }
+    }
 
     if(unitsArray.length > 9)
       throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 8 attackers is dangerous for my safety.'
