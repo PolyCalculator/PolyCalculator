@@ -4,6 +4,7 @@ const successDelete = { timeout: 180000 }
 module.exports = {
   wa: {
     name: 'Warrior',
+    plural: 'Warriors',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -22,6 +23,7 @@ module.exports = {
   },
   ri: {
     name: 'Rider',
+    plural: 'Riders',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -40,6 +42,7 @@ module.exports = {
   },
   ar: {
     name: 'Archer',
+    plural: 'Archers',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -58,6 +61,7 @@ module.exports = {
   },
   de: {
     name: 'Defender',
+    plural: 'Defenders',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -76,6 +80,7 @@ module.exports = {
   },
   kn: {
     name: 'Knight',
+    plural: 'Knights',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -94,6 +99,7 @@ module.exports = {
   },
   sw: {
     name: 'Swordsman',
+    plural: 'Swordsmen',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -112,6 +118,7 @@ module.exports = {
   },
   ca: {
     name: 'Catapult',
+    plural: 'Catapults',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -130,6 +137,7 @@ module.exports = {
   },
   gi: {
     name: 'Giant',
+    plural: 'Giants',
     description: '',
     currenthp: 40,
     maxhp: 40,
@@ -148,6 +156,7 @@ module.exports = {
   },
   cr: {
     name: 'Crab',
+    plural: 'Crabs',
     description: '',
     currenthp: 40,
     maxhp: 40,
@@ -164,6 +173,7 @@ module.exports = {
   },
   tr: {
     name: 'Tridention',
+    plural: 'Tridentions',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -180,6 +190,7 @@ module.exports = {
   },
   po: {
     name: 'Polytaur',
+    plural: 'Polytaurs',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -198,6 +209,7 @@ module.exports = {
   },
   na: {
     name: 'Navalon',
+    plural: 'Navalons',
     description: '',
     currenthp: 30,
     maxhp: 30,
@@ -214,6 +226,7 @@ module.exports = {
   },
   ga: {
     name: 'Gaami',
+    plural: 'Gaamis',
     description: '',
     currenthp: 30,
     maxhp: 30,
@@ -230,6 +243,7 @@ module.exports = {
   },
   mb: {
     name: 'Mind Bender',
+    plural: 'Mind Benders',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -248,6 +262,7 @@ module.exports = {
   },
   eg: {
     name: 'Dragon Egg',
+    plural: 'Dragon Eggs',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -266,6 +281,7 @@ module.exports = {
   },
   bd: {
     name: 'Baby Dragon',
+    plural: 'Baby Dragons',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -282,6 +298,7 @@ module.exports = {
   },
   dr: {
     name: 'Fire Dragon',
+    plural: 'Fire Dragons',
     description: '',
     currenthp: 20,
     maxhp: 20,
@@ -298,6 +315,7 @@ module.exports = {
   },
   mo: {
     name: 'Mooni',
+    plural: 'Moonies',
     description: '',
     currenthp: 10,
     maxhp: 10,
@@ -314,6 +332,7 @@ module.exports = {
   },
   sl: {
     name: 'Battle Sled',
+    plural: 'Battle Sleds',
     description: '',
     currenthp: 15,
     maxhp: 15,
@@ -330,6 +349,7 @@ module.exports = {
   },
   if: {
     name: 'Ice Fortress',
+    plural: 'Ice Fortresses',
     description: '',
     currenthp: 20,
     maxhp: 20,
@@ -346,6 +366,7 @@ module.exports = {
   },
   nb: {
     name: 'Nature Bunny',
+    plural: 'Nature Bunnies',
     description: '',
     currenthp: 20,
     maxhp: 20,

@@ -111,8 +111,8 @@ module.exports.bulk = function(attacker, defender, embed) {
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
-  embed.setTitle(`You'll need this many hits from the ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
-    .addField(`**Number of ${attacker.name}${attacker.description}s**:`, `${i}`)
+  embed.setTitle(`You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
+    .addField(`**Number of ${i > 1 && attacker.description === '' ? attacker.plural : attacker.name}${i > 1 && attacker.description !== '' ? attacker.description + 's' : attacker.description}**:`, `${i}`)
 
   return embed;
 }
