@@ -193,6 +193,9 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   if(user.id === bot.user.id || reaction.message.author.id !== bot.user.id)
     return
 
+  if(reaction.emoji.name !== '🗑️')
+    return
+
   const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
   const values = [reaction.message.url]
   const returned = await db.query(sql, values)
