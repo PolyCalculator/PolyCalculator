@@ -165,7 +165,7 @@ bot.on('message', async message => {
     rows = rows[0]
     rows.triggers = parseInt(rows.triggers)
 
-    if(rows.triggers % 5000 === 0) {
+    if(rows.triggers % 25000 === 0) {
       newsChannel.send(`<:yay:585534167274618997>:tada: We reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
       meee.send(`<:yay:585534167274618997>:tada: We're at **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
     }
