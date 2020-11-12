@@ -28,9 +28,6 @@ const dbServers = require('./util/dbServers');
 //
 // --------------------------------------
 bot.once('ready', () => {
-  // eslint-disable-next-line no-console
-  console.log(`Logged in as ${bot.user.username}, ${meee}`)
-
   calcServer = bot.guilds.cache.get('581872879386492929')
   meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
@@ -47,6 +44,9 @@ bot.once('ready', () => {
       toggle = true
     }
   }, 10000);
+
+  // eslint-disable-next-line no-console
+  console.log(`Logged in as ${bot.user.username}`)
 });
 
 // --------------------------------------
@@ -58,9 +58,9 @@ bot.on('message', async message => {
   if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
-  const logEmbed = []
   // If it's a DM
   if(message.channel.type === 'dm') {
+    const logEmbed = []
     logEmbed.push('Content:', `${message.content}`)
     logEmbed.push(`DM from ${message.author} (${message.author.username})`)
     logEmbed.push(`${meee}`)
@@ -136,6 +136,7 @@ bot.on('message', async message => {
     // EXECUTE COMMAND
     const reply = await command.execute(message, argsStr, embed, trashEmoji, data);
 
+    const logEmbed = new MessageEmbed().setColor('#ff0066')
     // Log the command
     if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
       logEmbed.setTitle(`**${message.cleanContent}**`)
