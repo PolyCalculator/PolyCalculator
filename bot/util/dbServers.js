@@ -6,7 +6,7 @@ const pool = new Pool({
   connectionString: connectionString
 })
 
-module.exports.addNewServer = function(serverId, serverName, botChannels, meee) {
+module.exports.addNewServer = function(serverId, serverName, botChannels) {
   return new Promise((resolve, reject) => {
     this.serverExists(serverId)
       .then(serverExists => {
@@ -37,7 +37,7 @@ module.exports.addNewServer = function(serverId, serverName, botChannels, meee) 
   })
 }
 
-module.exports.removeServer = function(serverId, serverName, meee) {
+module.exports.removeServer = function(serverId, serverName) {
   return new Promise((resolve, reject) => {
     const sql = 'UPDATE servers SET active = false WHERE server_id = $1'
     const values = [serverId];

@@ -28,9 +28,6 @@ const dbServers = require('./util/dbServers');
 //
 // --------------------------------------
 bot.once('ready', () => {
-  // eslint-disable-next-line no-console
-  console.log(`Logged in as ${bot.user.username}`);
-
   calcServer = bot.guilds.cache.get('581872879386492929')
   meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
@@ -61,16 +58,16 @@ bot.on('message', async message => {
   if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
-  const logEmbed = new MessageEmbed().setColor('#ff0066')
+  const logEmbed = []
   // If it's a DM
   if(message.channel.type === 'dm') {
-    logEmbed
-      .addField('DM from', message.author)
-      .addField('Content:', `${message.content}`)
+    logEmbed.push('Content:', `${message.content}`)
+    logEmbed.push(`DM from ${message.author} (${message.author.username})`)
+    logEmbed.push(`${meee}`)
+
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
-      .then().catch(console.error)
-    logChannel.send(logEmbed).then().catch(console.error)
-    return logChannel.send(`${meee}`).then().catch(console.error)
+      .catch(console.error)
+    return logChannel.send(logEmbed).catch(console.error)
   }
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
@@ -261,16 +258,12 @@ bot.on('guildCreate', guild => {
   if(botChannelsMap.size > 0)
     botChannels = botChannelsMap.keys()
 
-  dbServers.addNewServer(guild.id, guild.name, botChannels, meee)
+  dbServers.addNewServer(guild.id, guild.name, botChannels)
     .then(logMsg => {
-      logChannel.send(logMsg)
-        .then().catch(console.error)
-      logChannel.send(`${meee}`)
+      logChannel.send(`${logMsg}, ${meee}`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(errorMsg)
-        .then().catch(console.error)
-      errorChannel.send(`${meee}`)
+      errorChannel.send(`${errorMsg}, ${meee}`)
         .then().catch(console.error)
     })
   return
@@ -283,14 +276,10 @@ bot.on('guildCreate', guild => {
 bot.on('guildDelete', guild => {
   dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
-      logChannel.send(logMsg)
-        .then().catch(console.error)
-      logChannel.send(`${meee}`)
+      logChannel.send(`${logMsg}, ${meee}`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(errorMsg)
-        .then().catch(console.error)
-      errorChannel.send(`${meee}`)
+      errorChannel.send(`${errorMsg}, ${meee}`)
         .then().catch(console.error)
     })
   return
