@@ -28,6 +28,9 @@ const dbServers = require('./util/dbServers');
 //
 // --------------------------------------
 bot.once('ready', () => {
+  // eslint-disable-next-line no-console
+  console.log(`Logged in as ${bot.user.username}, ${meee}`)
+
   calcServer = bot.guilds.cache.get('581872879386492929')
   meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
@@ -44,9 +47,6 @@ bot.once('ready', () => {
       toggle = true
     }
   }, 10000);
-
-  if(bot.user.id != process.env.BETABOT_ID)
-    logChannel.send(`Logged in as ${bot.user.username}, ${meee}`)
 });
 
 // --------------------------------------
