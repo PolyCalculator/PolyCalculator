@@ -5,7 +5,7 @@ const { generateArraySequences, generateSequences, multicombat, evaluate } = req
 module.exports.optim = function(attackers, defender, embed) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
   const sequences = generateSequences(arrayNbAttackers)
-  const solutions = []
+  let solutions = []
 
   const dragonSplashArray = isDragonSplash(attackers, defender, embed) // [bool conditionsSplashed, embedMessage]
 
@@ -20,11 +20,15 @@ module.exports.optim = function(attackers, defender, embed) {
       attackersSorted.push(attackers[sequence[j] - 1]);
     }
 
-    if(hasFinal && attackersSorted[sequence.length - 1].final)
-      solutions.push(multicombat(attackersSorted, defender, sequence))
-    else if(!hasFinal)
-      solutions.push(multicombat(attackersSorted, defender, sequence))
+    const solution = multicombat(attackersSorted, defender, sequence)
+
+    solutions.push(solution)
   })
+
+  // console.log(solutions)
+  if(hasFinal)
+    solutions = solutions.filter(x => attackers[x.finalSequence[x.finalSequence.length - 1] - 1].final)
+
   let bestSolution = solutions[0]
 
   solutions.forEach((solution) => {
