@@ -42,8 +42,6 @@ module.exports = {
             return embed.setTitle('You need to be a **premium member** to be allows to use `.optim` with more than **3 attackers**.')
               .setDescription(`To become a premium member, you can DM the creator and pay any amount of \`$\`.\nYou can DM ${meee} (${meee.tag}) or wait for him to DM you the PayPal link!`)
               .setFooter('The money is used to pay the monthly fee necessary to keep the 24/7 server on which the bot runs, rolling.')
-          } else {
-            logChannel.send(`${message.author} (${message.author.tag}) used it successfully in **${message.guild.name}**, ${meee}\n${message.url}`)
           }
         }
       } catch (error) {
