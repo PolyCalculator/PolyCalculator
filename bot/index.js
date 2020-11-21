@@ -35,8 +35,8 @@ bot.once('ready', () => {
   errorChannel = calcServer.channels.cache.get('658125562455261185')
   let toggle = true
 
-  setInterval(function() {
-    if(toggle) {
+  setInterval(function () {
+    if (toggle) {
       bot.user.setActivity(`${prefix}links`, { type: 'PLAYING' })
       toggle = false
     } else {
@@ -55,11 +55,11 @@ bot.once('ready', () => {
 //
 // --------------------------------------
 bot.on('message', async message => {
-  if(message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
+  if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
   // If it's a DM
-  if(message.channel.type === 'dm') {
+  if (message.channel.type === 'dm') {
     const logEmbed = []
     logEmbed.push('Content:', `${message.content}`)
     logEmbed.push(`DM from ${message.author} (${message.author.username})`)
@@ -93,7 +93,7 @@ bot.on('message', async message => {
   const generalDelete = { timeout: 5000 }
   const failDelete = { timeout: 15000 }
 
-  if(argsStr.includes('help')) {
+  if (argsStr.includes('help')) {
     help.execute(message, command.name, embed, trashEmoji)
     return message.channel.send(embed)
       .then(x => {
@@ -103,7 +103,7 @@ bot.on('message', async message => {
   }
 
   // Warning when channel name includes general and delete both messages
-  if(message.channel.name.includes('general') && message.author.id != meee.id)
+  if (message.channel.name.includes('general') && message.author.id != meee.id)
     return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
       .then(x => {
         x.delete(generalDelete).then().catch(console.error)
@@ -111,13 +111,13 @@ bot.on('message', async message => {
       }).catch(console.error)
 
   // Check if command is allowed in that channel
-  if(command.channelsAllowed) { // Certain commands can only be triggered in specific channels
-    if(!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
+  if (command.channelsAllowed) { // Certain commands can only be triggered in specific channels
+    if (!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
       return
   }
 
   // Check if the user has the permissions necessary to execute the command
-  if(!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
+  if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
     return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
@@ -138,21 +138,21 @@ bot.on('message', async message => {
 
     const logEmbed = new MessageEmbed().setColor('#ff0066')
     // Log the command
-    if(message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
+    if (message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
       logEmbed.setTitle(`**${message.cleanContent}**`)
         .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
       logChannel.send(logEmbed)
         .then().catch(console.error)
     }
-    if(reply) {
+    if (reply) {
       const replyMessage = await message.channel.send(reply)
       data.url = replyMessage.url
-      if(trashEmoji)
+      if (trashEmoji)
         replyMessage.react('🗑️').then().catch(console.error)
     }
 
     // INSERT INTO DB
-    if(bot.user.id !== '600161946867597322' || !message.channel.name.startsWith('bot-test')) {
+    if (bot.user.id !== '600161946867597322' || !message.channel.name.startsWith('bot-test')) {
       const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
       const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
       await db.query(sql, values)
@@ -163,9 +163,9 @@ bot.on('message', async message => {
     rows = rows[0]
     rows.triggers = parseInt(rows.triggers)
 
-    if(rows.triggers % 25000 === 0) {
-      newsChannel.send(`<:yay:585534167274618997>:tada: We reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
-      meee.send(`<:yay:585534167274618997>:tada: We're at **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
+    if (rows.triggers % 50000 === 0) {
+      newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
+      meee.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
     }
 
     return
@@ -175,7 +175,7 @@ bot.on('message', async message => {
     errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
     return message.channel.send(`${error}`)
       .then(x => {
-        if(trashEmoji) {
+        if (trashEmoji) {
           x.delete(failDelete).then().catch(console.error)
           message.delete(failDelete).then().catch(console.error)
         }
@@ -184,14 +184,14 @@ bot.on('message', async message => {
 })
 
 bot.on('messageReactionAdd', async (reaction, user) => {
-  if(reaction.message.partial) await reaction.message.fetch();
+  if (reaction.message.partial) await reaction.message.fetch();
 
-  if(reaction.partial) await reaction.fetch();
+  if (reaction.partial) await reaction.fetch();
 
-  if(user.id === bot.user.id || reaction.message.author.id !== bot.user.id)
+  if (user.id === bot.user.id || reaction.message.author.id !== bot.user.id)
     return
 
-  if(reaction.emoji.name !== '🗑️')
+  if (reaction.emoji.name !== '🗑️')
     return
 
   const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
@@ -199,15 +199,15 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   const returned = await db.query(sql, values)
   let triggerMessage
 
-  if(returned.rows[0])
+  if (returned.rows[0])
     triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
   else
     return
 
-  if(returned.rows[0].id === user.id || user.id === meee.id) {
+  if (returned.rows[0].id === user.id || user.id === meee.id) {
     reaction.message.delete()
       .then().catch(console.error)
-    if(triggerMessage)
+    if (triggerMessage)
       triggerMessage.delete()
         .then().catch(console.error)
   }
@@ -221,7 +221,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 bot.on('channelDelete', deletedChannel => {
   dbServers.getBotChannels(deletedChannel.guild.id, deletedChannel.guild.name, '(channelDelete)')
     .then(x => { // x = array of bot channels
-      if(x.some(y => y === deletedChannel.id))
+      if (x.some(y => y === deletedChannel.id))
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
           .then().catch(errorMsg => {
             errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
@@ -238,10 +238,10 @@ bot.on('channelDelete', deletedChannel => {
 //
 // --------------------------------------
 bot.on('channelCreate', createdChannel => {
-  if(createdChannel.type != 'text')
+  if (createdChannel.type != 'text')
     return
 
-  if(createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
+  if (createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
       .then().catch(errorMsg => {
         errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name} (${createdChannel.guild.id})\n${meee}!`)
@@ -256,7 +256,7 @@ bot.on('channelCreate', createdChannel => {
 bot.on('guildCreate', guild => {
   let botChannels = []
   const botChannelsMap = guild.channels.cache.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
-  if(botChannelsMap.size > 0)
+  if (botChannelsMap.size > 0)
     botChannels = botChannelsMap.keys()
 
   dbServers.addNewServer(guild.id, guild.name, botChannels)
@@ -292,7 +292,7 @@ bot.on('guildDelete', guild => {
 //
 // --------------------------------------
 bot.on('guildMemberAdd', newMember => {
-  if(newMember.guild.id === '581872879386492929') {
+  if (newMember.guild.id === '581872879386492929') {
     newMember.roles.add('654164652741099540')
       .then(x => {
         // eslint-disable-next-line no-console
@@ -300,13 +300,6 @@ bot.on('guildMemberAdd', newMember => {
       }).catch(console.error)
   }
 })
-
-// --------------------------------------
-//        END/OTHER
-// --------------------------------------
-setInterval(function() {
-
-}, 3600000); // every 1h (3600000) 3h (10800000) 6h (21600000)
 
 process.on('unhandledRejection', (code) => {
   // eslint-disable-next-line no-console
