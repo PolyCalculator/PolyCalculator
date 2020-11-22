@@ -67,7 +67,7 @@ bot.on('message', async message => {
     if (reply)
       return message.channel.send(reply)
   } else {
-    return transferMessage(message, crawServer)
+    transferMessage(message, crawServer)
   }
 
   if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
