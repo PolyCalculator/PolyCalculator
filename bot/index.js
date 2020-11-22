@@ -4,12 +4,16 @@ const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
+const advisorCommand = require('./commands/advisor')
 const db = require('../db')
+const { transferMessage } = require('./util/announcements')
 let calcServer = {}
 let meee = {}
 let newsChannel = {}
 let logChannel = {}
 let errorChannel = {}
+let crawServer = {}
+let advisors = {}
 
 // bot.commands as a collection(Map) of commands from ./commands
 const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'));
@@ -29,10 +33,13 @@ const dbServers = require('./util/dbServers');
 // --------------------------------------
 bot.once('ready', () => {
   calcServer = bot.guilds.cache.get('581872879386492929')
+  crawServer = bot.guilds.cache.get('492753802450173987')
   meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
+  if (crawServer)
+    advisors = crawServer.roles.cache.get('780148610390163486')
   let toggle = true
 
   setInterval(function () {
@@ -55,6 +62,14 @@ bot.once('ready', () => {
 //
 // --------------------------------------
 bot.on('message', async message => {
+  if (message.mentions.roles.get(advisors.id)) {
+    const reply = await advisorCommand.execute(message, message.cleanContent)
+    if (reply)
+      return message.channel.send(reply)
+  } else {
+    return transferMessage(message, crawServer)
+  }
+
   if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
@@ -301,10 +316,19 @@ bot.on('guildMemberAdd', newMember => {
   }
 })
 
+// --------------------------------------
+//
+//  EVENT ON PICK-FAT-COUNT CHANGE
+//
+// --------------------------------------
+bot.on('messageUpdate', (oldMessage, newMessage) => {
+  transferMessage(newMessage, calcServer)
+})
+
 process.on('unhandledRejection', (code) => {
   // eslint-disable-next-line no-console
   console.log(`unhandledRejection: ${code.stack}`)
   errorChannel.send(`unhandledRejection: ${code.stack}`)
 })
 
-bot.login(process.env.TOKEN);
+bot.login(process.env.PRODTOKEN);
