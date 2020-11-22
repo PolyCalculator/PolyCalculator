@@ -331,4 +331,4 @@ process.on('unhandledRejection', (code) => {
   errorChannel.send(`unhandledRejection: ${code.stack}`)
 })
 
-bot.login(process.env.PRODTOKEN);
+bot.login(process.env.TOKEN);
