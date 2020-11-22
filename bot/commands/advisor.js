@@ -2,7 +2,7 @@ const db = require('../../db')
 
 module.exports = {
   name: 'advisor',
-  description: 'show the team!',
+  description: 'Ping game-specific advisors for Crawfish server!',
   aliases: ['advisors', 'ad'],
   shortUsage(prefix) {
     return `${prefix}advisor`
@@ -11,7 +11,7 @@ module.exports = {
     return `${prefix}ad`
   },
   forceNoDelete: true,
-  category: 'Other',
+  category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute: async function (message, argsStr) {
