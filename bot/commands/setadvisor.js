@@ -15,6 +15,9 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute: async function (message) {
+    if (message.guild.id !== '492753802450173987')
+      return
+
     const userIds = []
 
     message.mentions.users.forEach(ping => {

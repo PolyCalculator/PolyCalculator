@@ -62,7 +62,7 @@ bot.once('ready', () => {
 //
 // --------------------------------------
 bot.on('message', async message => {
-  if (message.mentions.roles.get(advisors.id)) {
+  if (message.mentions.roles.get(advisors.id) && message.guild.id === crawServer.id) {
     const reply = await advisorCommand.execute(message, message.cleanContent)
     if (reply)
       return message.channel.send(reply)
