@@ -1,4 +1,7 @@
 module.exports.transferMessage = function (message, crawServer) {
+  if (!crawServer)
+    return
+
   const channelA = crawServer.channels.cache.get(crawAnnouncements)
 
   if (announcementChannels.some(x => x === message.channel.id))
