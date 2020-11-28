@@ -26,7 +26,7 @@ router.get('/totalservers', async (req, res) => {
 router.get('/totalusers', async (req, res) => {
   const { rows } = await db.query('SELECT COUNT(DISTINCT author_id) AS uniqueusers FROM stats')
   rows[0].uniqueusers = Number(rows[0].uniqueusers)
-  res.send(rows.length.toString())
+  res.send(rows[0])
 })
 
 module.exports = router
