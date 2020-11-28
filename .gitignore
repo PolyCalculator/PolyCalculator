@@ -7,7 +7,6 @@ yarn-error.log*
 firebase-debug.log*
 /img
 /dist
-/client
 .env
 *.csv
 **/test*
