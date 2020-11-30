@@ -403,19 +403,23 @@ function setHP(hpArray, replyData) {
         this.currenthp = currentHP
 
       replyData.content.push([`The ${this.name} can't become a veteran, so we'll proceed without it!`, {}])
+      replyData.deleteContent = true
     }
   } else if (currentHP > this.maxhp) {
-    if (!this.vet)
+    if (!this.vet) {
       replyData.content.push([`The ${this.name} can't become a veteran, so we'll proceed without it!`, {}])
-    else {
+      replyData.deleteContent = true
+    } else {
       this.vetNow = true
       this.maxhp = vetHP
       if (currentHP > vetHP) {
         this.currenthp = vetHP
         replyData.content.push([`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`, {}])
+        replyData.deleteContent = true
       } else {
         this.currenthp = currentHP
         replyData.content.push([`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`, {}])
+        replyData.deleteContent = true
       }
     }
   } else {
@@ -429,6 +433,7 @@ function addBonus(bonusArray, replyData) {
 
   if (defenseBonus.length >= 2) {
     replyData.content.push(['You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.', {}])
+    replyData.deleteContent = true
     if (defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true)
       this.bonus = 4
     else

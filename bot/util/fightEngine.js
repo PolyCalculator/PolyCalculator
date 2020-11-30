@@ -49,6 +49,7 @@ module.exports.optim = function (attackers, defender, replyData) {
     descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (**${defHP}**)`)
   })
 
+  // console.log(descriptionArray)
   replyData.description = 'This is the order for best outcome:'
   replyData.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
   replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
