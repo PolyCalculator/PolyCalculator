@@ -5,11 +5,13 @@ const helmet = require('helmet')
 
 const app = express();
 const stats = express();
+const commands = express();
 
 const topServers = require('./api/topServers')
 const topUsers = require('./api/topUsers')
 const topCommands = require('./api/topCommands')
 const totalTriggers = require('./api/totalTriggers')
+const command = require('./api/command')
 
 // Middleware
 app.use(helmet())
@@ -17,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/api/stats', stats)
+app.use('/api', commands)
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {
@@ -47,6 +50,8 @@ stats.use('/', totalTriggers)
 stats.use('/', topCommands)
 
 stats.use('/', topServers)
+
+commands.use('/', command)
 
 const port = process.env.PORT || 3333
 
