@@ -26,6 +26,9 @@ module.exports.logUse = function (message, logChannel) {
   let content
   if (message.cleanContent.length > 256)
     content = message.cleanContent.slice(0, 255)
+  else
+    content = message.cleanContent
+
   const logData = {
     title: `**${content}**`,
     description: ` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`
