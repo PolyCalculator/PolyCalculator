@@ -71,7 +71,7 @@ bot.on('message', async message => {
   // If it's a DM
   if (message.channel.type === 'dm') {
     const logMsg = []
-    logMsg.push('Content:', `${message.content}`)
+    logMsg.push(`Content: ${message.content}`)
     logMsg.push(`DM from ${message.author} (${message.author.username})`)
     logMsg.push(`${meee}`)
 
