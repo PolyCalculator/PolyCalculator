@@ -15,7 +15,7 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: function(message, argsStr, embed, trashEmoji, data) {
+  execute: function (message, argsStr, replyData, dbData) {
     return whatIsGooch[Math.floor(Math.random() * whatIsGooch.length)]
   },
 };

@@ -14,17 +14,18 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message) {
+  execute: async function (message, argsStr, replyData/*, dbData*/) {
     if (message.guild.id !== '492753802450173987')
       return
+
+    if (argsStr.length < 1)
+      throw 'You need to ping to set advisor(s) for this game/channel'
 
     const userIds = []
 
     message.mentions.users.forEach(ping => {
       userIds.push(ping.id)
     })
-
-    userIds
 
     const eIndex = message.channel.name.search(/(e\d\d)\w+/g) + 1
     const eloNumber = Number(message.channel.name.substring(eIndex, eIndex + 5)) || 0
@@ -43,6 +44,8 @@ module.exports = {
       await db.query(sql, values)
     }
 
-    return `The ${message.mentions.users.size} players you specified were set as Advisors in this game/channel!`
+    replyData.content.push([`The ${message.mentions.users.size} players you specified were set as Advisors in this game/channel!`, {}])
+
+    return replyData
   }
 };

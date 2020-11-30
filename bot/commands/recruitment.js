@@ -15,7 +15,7 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819', '246540371847413760'],
   // eslint-disable-next-line no-unused-vars
-  execute: function(message, argsStr, embed) {
+  execute: function (message, argsStr, replyData, dbData) {
     const threeServers = message.client.guilds.cache.filter(x => x.id === '447883341463814144' || x.id === '492753802450173987' || x.id === '283436219780825088')
     threeServers.sort()
     // console.log('threeServers', threeServers)
@@ -50,12 +50,12 @@ module.exports = {
         const roles = 'roles' + y.name
         const joined = 'joined' + y.name
         const thisMember = y.member(x.user)
-        if(thisMember) {
+        if (thisMember) {
           member[joined] = thisMember.joinedAt.toDateString()
           member[roles] = []
-          if(thisMember.roles.cache.size > 0) {
+          if (thisMember.roles.cache.size > 0) {
             thisMember.roles.cache.forEach(z => {
-              if(z.name !== '@everyone')
+              if (z.name !== '@everyone')
                 member[roles].push(z.name)
             })
           }
@@ -74,7 +74,7 @@ module.exports = {
         console.log('...CSV made');
       });
 
-    message.channel.send('', { files: ['./csv/updated.csv'] })
-    return
+    replyData.content.push(['', { files: ['./csv/updated.csv'] }])
+    return replyData
   }
 };

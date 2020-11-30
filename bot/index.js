@@ -1,10 +1,10 @@
-require('dotenv').config();
-const { Client, MessageEmbed, Collection } = require('discord.js');
-const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+require('dotenv').config()
+const { Client, Collection } = require('discord.js')
+const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
-const advisorCommand = require('./commands/advisor')
+const { buildEmbed, saveStats, logUse, milestoneMsg, advisorPing } = require('./util/util')
 const db = require('../db')
 const { transferMessage } = require('./util/announcements')
 let calcServer = {}
@@ -16,15 +16,14 @@ let crawServer = {}
 let advisors = {}
 
 // bot.commands as a collection(Map) of commands from ./commands
-const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'));
-bot.commands = new Collection();
+const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'))
+bot.commands = new Collection()
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  bot.commands.set(command.name, command);
+  const command = require(`./commands/${file}`)
+  bot.commands.set(command.name, command)
 }
 
-const dbServers = require('./util/dbServers');
-// const unitList = require('./util/unitsList')
+const dbServers = require('./util/dbServers')
 
 // --------------------------------------
 //
@@ -44,7 +43,7 @@ bot.once('ready', () => {
 
   setInterval(function () {
     if (toggle) {
-      bot.user.setActivity(`${prefix}links`, { type: 'PLAYING' })
+      bot.user.setActivity(`${prefix}units`, { type: 'PLAYING' })
       toggle = false
     } else {
       bot.user.setActivity(`${prefix}help c`, { type: 'PLAYING' })
@@ -62,27 +61,23 @@ bot.once('ready', () => {
 //
 // --------------------------------------
 bot.on('message', async message => {
-  if (message.mentions.roles.get(advisors.id) && message.guild.id === crawServer.id) {
-    const reply = await advisorCommand.execute(message, message.cleanContent)
-    if (reply)
-      return message.channel.send(reply)
-  } else {
-    transferMessage(message, crawServer)
-  }
+  const continuing = advisorPing(message, crawServer, advisors)
+  if (!continuing)
+    return
 
   if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
   // If it's a DM
   if (message.channel.type === 'dm') {
-    const logEmbed = []
-    logEmbed.push('Content:', `${message.content}`)
-    logEmbed.push(`DM from ${message.author} (${message.author.username})`)
-    logEmbed.push(`${meee}`)
+    const logMsg = []
+    logMsg.push('Content:', `${message.content}`)
+    logMsg.push(`DM from ${message.author} (${message.author.username})`)
+    logMsg.push(`${meee}`)
 
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .catch(console.error)
-    return logChannel.send(logEmbed).catch(console.error)
+    return logChannel.send(logMsg).catch(console.error)
   }
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
@@ -101,16 +96,15 @@ bot.on('message', async message => {
   if (!command)
     return
 
-  // Instantiate the embed that's sent to every command execution
-  const embed = new MessageEmbed().setColor('#ff0066')
-
   const trashEmoji = isNotBotChannel && !command.forceNoDelete
   const generalDelete = { timeout: 5000 }
   const failDelete = { timeout: 15000 }
 
   if (argsStr.includes('help')) {
-    help.execute(message, command.name, embed, trashEmoji)
-    return message.channel.send(embed)
+    const replyData = help.execute(message, command.name)
+    const helpEmbed = buildEmbed(replyData)
+
+    return message.channel.send(helpEmbed)
       .then(x => {
         x.react('🗑️').then().catch(console.error)
         message.delete().then().catch(console.error)
@@ -137,7 +131,7 @@ bot.on('message', async message => {
 
   try {
     // DATA FOR DATABASE
-    const data = {
+    const dbData = {
       command: command.name,
       content: message.cleanContent.slice(process.env.PREFIX.length),
       author_id: message.author.id,
@@ -147,41 +141,44 @@ bot.on('message', async message => {
       will_delete: trashEmoji,
       message_id: message.id
     }
+    const replyData = {
+      content: [],
+      deleteContent: false,
+      title: undefined,
+      description: undefined,
+      fields: [],
+      footer: undefined
+    }
 
     // EXECUTE COMMAND
-    const reply = await command.execute(message, argsStr, embed, trashEmoji, data);
+    const replyObj = await command.execute(message, argsStr, replyData, dbData, trashEmoji);
 
-    const logEmbed = new MessageEmbed().setColor('#ff0066')
-    // Log the command
-    if (message.cleanContent.length <= 256 && message.cleanContent.length >= 0) {
-      logEmbed.setTitle(`**${message.cleanContent}**`)
-        .setDescription(` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`)
-      logChannel.send(logEmbed)
-        .then().catch(console.error)
-    }
-    if (reply) {
-      const replyMessage = await message.channel.send(reply)
-      data.url = replyMessage.url
-      if (trashEmoji)
-        replyMessage.react('🗑️').then().catch(console.error)
-    }
+    logUse(message, logChannel)
+
+    replyObj.content.forEach(async other => {
+      if (typeof other[0] === 'object')
+        other[0] = buildEmbed(other[0])
+      const warnings = await message.channel.send(other[0], other[1])
+      if (replyObj.deleteContent)
+        warnings.delete({ timeout: 15000 })
+    })
+
+    if (replyObj.description === undefined && replyObj.title === undefined && replyObj.fields.length === 0)
+      return
+
+    const msg = buildEmbed(replyObj)
+
+    const replyMessage = await message.channel.send(msg)
+    dbData.url = replyMessage.url
+    if (trashEmoji)
+      replyMessage.react('🗑️').then().catch(console.error)
 
     // INSERT INTO DB
     if (bot.user.id !== '600161946867597322' || !message.channel.name.startsWith('bot-test')) {
-      const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
-      const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]
-      await db.query(sql, values)
+      saveStats(dbData, db)
     }
 
-    let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
-
-    rows = rows[0]
-    rows.triggers = parseInt(rows.triggers)
-
-    if (rows.triggers % 50000 === 0) {
-      newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
-      meee.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
-    }
+    milestoneMsg(message, db, newsChannel, meee)
 
     return
   } catch (error) {

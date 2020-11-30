@@ -14,8 +14,8 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
-  execute: function(message, argsStr, embed, trashEmoji, data) {
-    if(!argsStr)
+  execute: function (message, argsStr, replyData, dbData) {
+    if (!argsStr)
       throw 'You need to include a message...'
 
     message.client.guilds.cache.forEach((x) => {

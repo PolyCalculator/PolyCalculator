@@ -1,13 +1,17 @@
 module.exports.transferMessage = function (message, crawServer) {
   if (!crawServer)
-    return
+    return false
 
   const channelA = crawServer.channels.cache.get(crawAnnouncements)
 
-  if (announcementChannels.some(x => x === message.channel.id))
+  if (announcementChannels.some(x => x === message.channel.id)) {
     channelA.send(`**${message.guild.name} #${message.channel.name}**\n\`\`\`${message.createdAt.toUTCString()}\`\`\`\n${message.cleanContent}`, { files: message.attachments.array(), disableMentions: 'none' })
-  else if (message.id === pickFatCount)
+    return false
+  } else if (message.id === pickFatCount) {
     channelA.send(`**${message.guild.name} #${message.channel.name}**\n\`\`\`${message.editedAt.toUTCString()}\`\`\`\n${message.cleanContent}`)
+    return false
+  } else
+    return true
 }
 
 const crawAnnouncements = '747198636495994910'

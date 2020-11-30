@@ -16,13 +16,13 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
-    if(!argsStr)
+  execute: async function (message, argsStr, replyData, dbData) {
+    if (!argsStr)
       throw 'You need to specify a server id'
-    if(argsStr.length != 18) {
+    if (argsStr.length != 18) {
       throw 'Looks like an invalid server id :thinking:...'
     }
-    if(!message.client.guilds.cache.get(argsStr))
+    if (!message.client.guilds.cache.get(argsStr))
       throw 'Doesn\'t look I\'m in that server (yet?)'
 
     try {

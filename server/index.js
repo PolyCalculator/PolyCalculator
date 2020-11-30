@@ -19,7 +19,7 @@ app.use(cors());
 app.use('/api/stats', stats)
 
 // Handle production
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   // Static folder
   app.use(express.static(__dirname + '/public'))
 
@@ -51,4 +51,4 @@ stats.use('/', topServers)
 const port = process.env.PORT || 3333
 
 // eslint-disable-next-line no-console
-app.listen(port, () => {return console.log(`Listening on http://localhost:${port}/api`)})
+app.listen(port, () => { return console.log(`Listening on http://localhost:${port}/api`) })

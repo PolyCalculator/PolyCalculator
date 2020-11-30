@@ -1,19 +1,20 @@
+/* eslint-disable no-unused-vars */
 const deadText = require('./deadtexts')
 const isDragonSplash = require('./isDragonSplash')
 const { generateArraySequences, generateSequences, multicombat, evaluate } = require('./sequencer')
 
-module.exports.optim = function(attackers, defender, embed) {
+module.exports.optim = function (attackers, defender, replyData) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
   const sequences = generateSequences(arrayNbAttackers)
   let solutions = []
 
-  const dragonSplashArray = isDragonSplash(attackers, defender, embed) // [bool conditionsSplashed, embedMessage]
+  const dragonSplashArray = isDragonSplash(attackers, defender, replyData) // [bool conditionsSplashed, embedMessage]
 
-  if(dragonSplashArray[0])
+  if (dragonSplashArray[0])
     return dragonSplashArray[1]
 
   const hasFinal = attackers.some(attacker => attacker.final === true)
-  sequences.forEach(function(sequence) {
+  sequences.forEach(function (sequence) {
     const attackersSorted = []
 
     for (let j = 0; j < sequence.length; j++) {
@@ -26,17 +27,17 @@ module.exports.optim = function(attackers, defender, embed) {
   })
 
   // console.log(solutions)
-  if(hasFinal)
+  if (hasFinal)
     solutions = solutions.filter(x => attackers[x.finalSequence[x.finalSequence.length - 1] - 1].final)
 
   let bestSolution = solutions[0]
 
   solutions.forEach((solution) => {
-    if(evaluate(bestSolution, solution))
+    if (evaluate(bestSolution, solution))
       bestSolution = solution
   })
 
-  if(bestSolution.defenderHP === defender.currenthp)
+  if (bestSolution.defenderHP === defender.currenthp)
     return `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
@@ -48,21 +49,21 @@ module.exports.optim = function(attackers, defender, embed) {
     descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (**${defHP}**)`)
   })
 
-  embed.setDescription('This is the order for best outcome:')
-    .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}`)
+  replyData.description = 'This is the order for best outcome:'
+  replyData.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
+  replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
 
-  return embed
+  return replyData
 }
 
-module.exports.calc = function(attackers, defender, embed) {
-  const dragonSplashArray = isDragonSplash(attackers, defender, embed) // [bool conditionsSplashed, embedMessage]
+module.exports.calc = function (attackers, defender, replyData) {
+  const dragonSplashArray = isDragonSplash(attackers, defender, replyData) // [bool conditionsSplashed, embedMessage]
 
-  if(dragonSplashArray[0])
+  if (dragonSplashArray[0])
     return dragonSplashArray[1]
 
   const sequence = []
-  for(let i = 1; i <= attackers.length; i++) {
+  for (let i = 1; i <= attackers.length; i++) {
     sequence.push(i)
   }
 
@@ -74,7 +75,7 @@ module.exports.calc = function(attackers, defender, embed) {
 
   const solution = multicombat(attackersSorted, defender, sequence)
 
-  if(solution.defenderHP === defender.currenthp)
+  if (solution.defenderHP === defender.currenthp)
     return `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
@@ -86,87 +87,88 @@ module.exports.calc = function(attackers, defender, embed) {
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
   })
 
-  embed.setDescription('The outcome of the fight is:')
-    .addField('Attacker: startHP ➔ endHP (enemyHP)', descriptionArray)
-    .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}`)
-  return embed
+  replyData.description = 'The outcome of the fight is:'
+  replyData.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
+  replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}` })
+
+  return replyData
 }
 
-module.exports.bulk = function(attacker, defender, embed) {
+module.exports.bulk = function (attacker, defender, replyData) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
   let totaldam = aforce + dforce;
   let defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
 
-  if(attacker.att <= 0)
+  if (attacker.att <= 0)
     throw `When will you ever be able to attack with a **${attacker.name}**...`
-  if(defdiff < 1)
+  if (defdiff < 1)
     throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**.`
 
   let hpdefender = defender.currenthp;
 
   let i = 0
 
-  for(; hpdefender > 0; i++) {
+  for (; hpdefender > 0; i++) {
     hpdefender = hpdefender - defdiff;
     dforce = defender.def * hpdefender / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
-  embed.setTitle(`You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`)
-    .addField(`**Number of ${i > 1 && attacker.description === '' ? attacker.plural : attacker.name}${i > 1 && attacker.description !== '' ? attacker.description + 's' : attacker.description}**:`, `${i}`)
+  replyData.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`
+  replyData.fields.push({ name: `**Number of ${i > 1 && attacker.description === '' ? attacker.plural : attacker.name}${i > 1 && attacker.description !== '' ? attacker.description + 's' : attacker.description}**:`, value: `${i}` })
 
-  return embed;
+  return replyData
 }
 
-module.exports.provideDefHP = function(attacker, defender, embed) {
+module.exports.provideDefHP = function (attacker, defender, replyData) {
   let aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
-  let totaldam;
+  let totaldam
 
-  for(attacker.currenthp = 0;attacker.currenthp <= attacker.maxhp;attacker.currenthp++) {
+  for (attacker.currenthp = 0; attacker.currenthp <= attacker.maxhp; attacker.currenthp++) {
     aforce = attacker.att * attacker.currenthp / attacker.maxhp;
     totaldam = aforce + dforce;
     const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
-    if(defender.currenthp - defdiff <= 0)
+    if (defender.currenthp - defdiff <= 0)
       break
   }
 
-  if(attacker.currenthp > attacker.maxhp) {
-    embed.setTitle(`A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
+  if (attacker.currenthp > attacker.maxhp) {
+    replyData.title = `A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
   } else {
-    embed.setTitle(`The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`)
-      .addField(`**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, `${attacker.currenthp}`)
+    replyData.title = `The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`
+    replyData.fields.push({ name: `**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, value: `${attacker.currenthp}` })
   }
 
-  return embed;
+  return replyData;
 }
 
-module.exports.provideAttHP = function(attacker, defender, embed) {
+module.exports.provideAttHP = function (attacker, defender, replyData) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   let totaldam;
 
-  if(attacker.att <= 0)
+  if (attacker.att <= 0)
     throw `When will you ever be able to attack with a **${attacker.name}**...`
 
   defender.currenthp = defender.maxhp
 
-  for(let defdiff = 0;defender.currenthp > 0;defender.currenthp--) {
+  for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
     dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
-    if(defender.currenthp - defdiff <= 0)
+    if (defender.currenthp - defdiff <= 0)
       break
   }
-  if(defender.currenthp === 0) {
-    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`)
+  if (defender.currenthp === 0) {
+    replyData.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
   } else {
-    embed.setTitle(`A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} will kill a defending:`)
-      .addField(`**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, `Max: ${defender.currenthp}hp`)
+    replyData.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} will kill a defending:`
+    replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `Max: ${defender.currenthp}hp` })
   }
 
-  return embed;
+  return replyData
 }

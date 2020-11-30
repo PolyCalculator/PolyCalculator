@@ -16,42 +16,42 @@ module.exports = {
   // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
-    if(argsStr.length === 0 || argsStr.includes('help'))
+  execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
+    if (argsStr.length === 0 || argsStr.includes('help'))
       return 'Try `.help c` for more information on how to use this command!'
 
-    const unitsArray = units.getBothUnitArray(argsStr, message)
+    const unitsArray = units.getBothUnitArray(argsStr)
 
     const defenderStr = unitsArray.pop()
     const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
     const attackers = []
 
-    const defender = units.getUnitFromArray(defenderArray, message, trashEmoji)
+    const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
     // defender.getOverride(defenderArray)
 
     unitsArray.forEach(x => {
       const attackerArray = x.split(/ +/).filter(y => y != '')
-      const attacker = units.getUnitFromArray(attackerArray, message, trashEmoji)
+      const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
       // attacker.getOverride(attackerArray)
       if (attacker.att !== 0)
         attackers.push(attacker)
     })
 
-    if(attackers.length === 0)
+    if (attackers.length === 0)
       throw 'You need to specify at least one unit with more than 0 attack.'
 
     try {
-      embed = await fight.calc(attackers, defender, embed)
+      replyData = await fight.calc(attackers, defender, replyData)
     } catch (error) {
       throw error
     }
 
-    data.attacker = attackers.length
-    data.defender = defender.name
-    data.defender_description = defender.description
-    if(embed.fields !== undefined)
-      data.reply_fields = [embed.fields[0].value, embed.fields[1].value]
+    dbData.attacker = attackers.length
+    dbData.defender = defender.name
+    dbData.defender_description = defender.description
+    if (replyData.fields !== undefined)
+      dbData.reply_fields = [replyData.fields[0].value, replyData.fields[1].value]
 
-    return embed
+    return replyData
   }
 };

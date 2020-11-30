@@ -15,14 +15,14 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
+  execute: async function (message, argsStr, replyData, dbData) {
     const channelToRemove = message.mentions.channels.first()
 
     try {
-      if(channelToRemove) {
+      if (channelToRemove) {
         const newBotChannelsArray = await dbServers.removeABotChannel(message.guild.id, channelToRemove.id, message.guild.name)
         let returnedArray
-        if(newBotChannelsArray.length > 1) {
+        if (newBotChannelsArray.length > 1) {
           returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
 
           return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
@@ -35,7 +35,7 @@ module.exports = {
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
         return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
       }
-    } catch(err) {
+    } catch (err) {
       throw err
     }
   }

@@ -12,11 +12,11 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function(message, argsStr, embed) {
-    embed.setTitle('**PolyCalculator bot credits!**')
-      .addField('Developer', 'jd (alphaSeahorse)')
-      .addField('Contributions', 'penile partay, WOPWOP, espark, Shiny, LiNoKami, HelloIAmBush, Cake, James.')
+  execute: function (message, argsStr, replyData/*, dbData*/) {
+    replyData.title = '**PolyCalculator bot credits!**'
+    replyData.fields.push({ name: 'Developer', value: 'jd (alphaSeahorse)' })
+    replyData.fields.push({ name: 'Contributions', value: 'penile partay, WOPWOP, espark, Shiny, LiNoKami, HelloIAmBush, Cake, James.' })
 
-    return embed
+    return replyData
   }
 };

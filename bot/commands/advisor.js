@@ -14,7 +14,7 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr) {
+  execute: async function (message, argsStr, replyData/*, dbData*/) {
     const sql = 'SELECT * FROM advisors WHERE channel_id = $1'
     const values = [message.channel.id]
     const { rows } = await db.query(sql, values)
@@ -33,6 +33,8 @@ module.exports = {
       pings.push(member)
     })
 
-    return [argsStr, pings.join(', ')]
+    replyData.content.push(argsStr)
+    replyData.content.push(pings.join(', '))
+    return replyData
   }
 };

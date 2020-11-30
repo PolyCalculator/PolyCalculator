@@ -15,11 +15,11 @@ module.exports = {
   permsAllowed: ['MANAGE_GUILD', 'ADMINISTRATOR'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: async function(message, argsStr, embed, trashEmoji, data) {
+  execute: async function (message, argsStr, replyData, dbData) {
     const channelToAdd = message.mentions.channels.first()
 
     try {
-      if(channelToAdd) {
+      if (channelToAdd) {
         const newBotChannelsArray = await dbServers.addABotChannel(message.guild.id, channelToAdd.id, message.guild.name)
         const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
         return `The channel ${channelToAdd} was added!\nHere's the new list of registered bot channels:\n` + returnedArray
@@ -28,7 +28,7 @@ module.exports = {
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
         return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
       }
-    } catch(err) {
+    } catch (err) {
       throw err
     }
   }

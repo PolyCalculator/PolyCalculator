@@ -12,7 +12,7 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed) {
+  execute: async function (message, argsStr, replyData/*, dbData*/) {
     const categoriesMapped = {
       Main: {},
       Advanced: {},
@@ -21,7 +21,7 @@ module.exports = {
     }
 
     message.client.commands.forEach(cmd => {
-      if(cmd.category === 'hidden')
+      if (cmd.category === 'hidden')
         return
 
       const category = categoriesMapped[cmd.category]
@@ -31,17 +31,17 @@ module.exports = {
       }
     })
 
-    embed.setTitle('All aliases')
-      .setDescription('To simplify your life!')
+    replyData.title = 'All aliases'
+    replyData.description = 'To simplify your life!'
 
     for (const [cat, commandsList] of Object.entries(categoriesMapped)) {
       const field = []
       for (const [name, details] of Object.entries(commandsList)) {
         field.push(`**${process.env.PREFIX}${name}**: \`${process.env.PREFIX}${details.aliases.join(`\`, \`${process.env.PREFIX}`)}\``)
       }
-      embed.addField(`**${cat}:**`, field)
+      replyData.ields.push({ name: `**${cat}:**`, value: field })
     }
 
-    return embed
+    return replyData
   }
 };

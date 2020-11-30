@@ -14,7 +14,7 @@ module.exports = {
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function(message, argsStr, embed) {
+  execute: async function (message, argsStr, replyData/*, dbData*/) {
     const ping = message.mentions.users.first()
     const user = message.mentions.users.first() || message.author
 
@@ -28,12 +28,12 @@ module.exports = {
       const globalvalues = [user.id]
       const globalUserStats = await dbStats.query(globalsql, globalvalues)
 
-      embed.setDescription((ping) ? `These are ${user}'s stats for this bot in ${message.guild.name}` : `These are your stats for this bot in ${message.guild.name}`)
-        .addField('Local count', (localUserStats.rows.length > 0) ? localUserStats.rows[0].count : 'Never here')
-        .addField('Global count', (globalUserStats.rows.length > 0) ? globalUserStats.rows[0].count : 'Never used at all')
+      replyData.description = `${(ping) ? `These are ${user}'s stats for this bot in ${message.guild.name}` : `These are your stats for this bot in ${message.guild.name}`}`
+      replyData.fields.push({ name: 'Local count', value: `${(localUserStats.rows.length > 0) ? localUserStats.rows[0].count : 'Never here'}` })
+      replyData.fields.push({ name: 'Global count', value: `${(globalUserStats.rows.length > 0) ? globalUserStats.rows[0].count : 'Never used at all'}` })
 
-      return embed
-    } catch(err) {
+      return replyData
+    } catch (err) {
       throw err
     }
   }

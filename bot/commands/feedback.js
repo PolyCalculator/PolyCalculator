@@ -1,3 +1,5 @@
+const { buildEmbed } = require('../util/util')
+
 module.exports = {
   name: 'feedback',
   description: 'send feedback to the dev!',
@@ -13,12 +15,17 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: function(message, argsStr, embed) {
+  execute: function (message, argsStr, replyData, dbData) {
+    if (argsStr.length < 1)
+      throw 'Input your feedback after the command'
+
     const calcServer = message.client.guilds.cache.get('581872879386492929')
     const feedbackChannel = calcServer.channels.cache.get('738926248700411994')
 
-    embed.setTitle(argsStr)
-      .setDescription(`From: ${message.author} (${message.author.tag})\n${message.url}`)
+    replyData.title = argsStr
+    replyData.description = `From: ${message.author} (${message.author.tag})\n${message.url}`
+    const embed = buildEmbed(replyData)
+
     feedbackChannel.send(embed)
     feedbackChannel.send('<@217385992837922819>')
 
