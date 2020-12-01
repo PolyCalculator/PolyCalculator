@@ -100,9 +100,29 @@ bot.on('message', async message => {
   const generalDelete = { timeout: 5000 }
   const failDelete = { timeout: 15000 }
 
+  // DATA FOR DATABASE
+  const dbData = {
+    command: command.name,
+    content: message.cleanContent.slice(process.env.PREFIX.length),
+    author_id: message.author.id,
+    author_tag: message.author.tag,
+    server_id: message.guild.id,
+    arg: argsStr,
+    will_delete: trashEmoji,
+    message_id: message.id
+  }
+  const replyData = {
+    content: [],
+    deleteContent: false,
+    title: undefined,
+    description: undefined,
+    fields: [],
+    footer: undefined
+  }
+
   if (argsStr.includes('help')) {
-    const replyData = help.execute(message, command.name)
-    const helpEmbed = buildEmbed(replyData)
+    const reply = help.execute(message, command.name, replyData, dbData, trashEmoji)
+    const helpEmbed = buildEmbed(reply)
 
     return message.channel.send(helpEmbed)
       .then(x => {
@@ -130,28 +150,8 @@ bot.on('message', async message => {
     return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
-    // DATA FOR DATABASE
-    const dbData = {
-      command: command.name,
-      content: message.cleanContent.slice(process.env.PREFIX.length),
-      author_id: message.author.id,
-      author_tag: message.author.tag,
-      server_id: message.guild.id,
-      arg: argsStr,
-      will_delete: trashEmoji,
-      message_id: message.id
-    }
-    const replyData = {
-      content: [],
-      deleteContent: false,
-      title: undefined,
-      description: undefined,
-      fields: [],
-      footer: undefined
-    }
-
     // EXECUTE COMMAND
-    const replyObj = await command.execute(message, argsStr, replyData, dbData, trashEmoji);
+    const replyObj = await command.execute(message, argsStr, replyData, dbData, trashEmoji)
 
     logUse(message, logChannel)
 
