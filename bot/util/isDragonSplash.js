@@ -13,13 +13,13 @@ module.exports = function (attackers, defender, replyData) {
 
 function combat(attacker, defender, replyData) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const aforceSplash = attacker.att / 2 * attacker.currenthp / attacker.maxhp;
+  const aforceSplash = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
   const totaldam = aforce + dforce;
   const totaldamSplash = aforceSplash + dforce;
 
-  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+  const defdiff = Math.floor(Math.round(aforce / totaldam * attacker.att * 4.5) / 2);
   const defdiffSplash = Math.round(aforceSplash / totaldamSplash * attacker.att / 2 * 4.5);
   defender.newhp = defender.currenthp - defdiff
   defender.newhpSplash = defender.currenthp - defdiffSplash
