@@ -100,7 +100,7 @@ function combat(attacker, defender, solution) {
   if (solution.defenderHP <= 0) {
     hpattacker = attacker.currenthp;
     solution.defenderHP = 0;
-  } else if (attacker.retaliation === false || !defender.retaliation || (attacker.range && !defender.range)) {
+  } else if (attacker.retaliation === false) {
     hpattacker = attacker.currenthp
   } else {
     attdiff = Math.round(dforce / totaldam * defender.def * 4.5)
