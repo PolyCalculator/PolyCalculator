@@ -46,6 +46,7 @@ module.exports.multicombat = function (attackers, defender, sequence) {
   attackers.forEach(attacker => {
     totalAttackersHP = totalAttackersHP + attacker.currenthp
   })
+
   let solution = {
     defenderHP: defender.currenthp,
     attackerCasualties: 0,
@@ -112,12 +113,14 @@ function combat(attacker, defender, solution) {
     }
   }
 
-  if (attacker.currenthp - attdiff < 1)
+  if (attacker.currenthp - attdiff < 1) {
+    solution.attackersHP = solution.attackersHP - attacker.currenthp
     solution.hpLoss.push(attacker.currenthp)
-  else
+  } else {
+    solution.attackersHP = solution.attackersHP - attdiff
     solution.hpLoss.push(attdiff)
+  }
 
-  solution.attackersHP = solution.attackersHP - attdiff
   return solution
 }
 
@@ -131,6 +134,7 @@ function combat(attacker, defender, solution) {
 // }
 
 module.exports.evaluate = function (bestSolution, newSolution) {
+
   if (newSolution.defenderHP < bestSolution.defenderHP)
     return true
   else {
