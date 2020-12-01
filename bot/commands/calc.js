@@ -49,8 +49,9 @@ module.exports = {
     dbData.attacker = attackers.length
     dbData.defender = defender.name
     dbData.defender_description = defender.description
+
     if (replyData.fields.length > 0)
-      dbData.reply_fields = [replyData.fields[0].value, replyData.fields[1].value]
+      dbData.reply_fields = [replyData.fields[0].value.toString(), replyData.fields[1].value]
 
     return replyData
   }

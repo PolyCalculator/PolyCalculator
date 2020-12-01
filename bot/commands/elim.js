@@ -46,7 +46,7 @@ module.exports = {
       dbData.reply_fields = ['Can\'t kill']
     else {
       if (replyData.fields[0])
-        dbData.reply_fields = [replyData.fields[0].value]
+        dbData.reply_fields = [replyData.fields[0].value.toString()]
     }
 
     return replyData

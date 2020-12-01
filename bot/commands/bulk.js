@@ -32,7 +32,7 @@ module.exports = {
     dbData.defender = defender.name
     dbData.attacker_description = attacker.description
     dbData.defender_description = defender.description
-    dbData.reply_fields = [replyData.fields[0].value]
+    dbData.reply_fields = [replyData.fields[0].value.toString()]
 
     return replyData
   }

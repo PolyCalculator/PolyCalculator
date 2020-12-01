@@ -43,7 +43,7 @@ router.get('/:commandName', async (req, res) => {
 
     const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)'
     const values = [dbData.content, dbData.author_id, dbData.author_tag, dbData.command, dbData.attacker, dbData.defender, dbData.attacker_description, dbData.defender_description, dbData.reply_fields, dbData.arg]
-    db.query(sql, values)
+    await db.query(sql, values)
 
     delete response.content
     delete response.deleteContent
