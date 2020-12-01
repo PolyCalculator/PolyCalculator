@@ -14,6 +14,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -33,6 +34,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -52,6 +54,7 @@ module.exports = {
     fort: true,
     range: true,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -71,6 +74,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -90,6 +94,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -109,6 +114,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -128,6 +134,7 @@ module.exports = {
     fort: false,
     range: true,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -147,6 +154,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -166,6 +174,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -183,6 +192,7 @@ module.exports = {
     fort: true,
     range: true,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -200,6 +210,7 @@ module.exports = {
     fort: true,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -219,6 +230,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -236,6 +248,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -253,6 +266,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: false,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -272,6 +286,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: false,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -291,6 +306,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -308,6 +324,7 @@ module.exports = {
     fort: false,
     range: true,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -325,6 +342,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: false,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -342,6 +360,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -359,6 +378,7 @@ module.exports = {
     fort: false,
     range: true,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   },
@@ -376,6 +396,7 @@ module.exports = {
     fort: false,
     range: false,
     retaliation: true,
+    forceRetaliation: undefined,
     setHP: setHP,
     addBonus: addBonus
   }
@@ -481,6 +502,11 @@ function getOverride(unitArray) {
     throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
   else if (overrides.length === 0)
     return
-  else
+  else {
+    if (overrides[0] === 'r')
+      this.forceRetaliation = true
+    if (overrides[0] === 'nr')
+      this.forceRetaliation = false
     return this.retaliationOverride = overrides[0]
+  }
 }
