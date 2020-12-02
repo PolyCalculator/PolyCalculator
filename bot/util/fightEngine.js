@@ -32,6 +32,8 @@ module.exports.optim = function (attackers, defender, replyData) {
 
   let bestSolution = solutions[0]
 
+  if (!bestSolution)
+    throw 'There is no order that can conform to your request.\nMaybe try without the `f`?'
   solutions.forEach((solution) => {
     if (evaluate(bestSolution, solution))
       bestSolution = solution
