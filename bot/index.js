@@ -174,9 +174,7 @@ bot.on('message', async message => {
       replyMessage.react('🗑️').then().catch(console.error)
 
     // INSERT INTO DB
-    if (bot.user.id !== '600161946867597322' || !message.channel.name.startsWith('bot-test')) {
-      saveStats(dbData, db)
-    }
+    saveStats(dbData, db)
 
     milestoneMsg(message, db, newsChannel, meee)
 
@@ -200,7 +198,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 
   if (reaction.partial) await reaction.fetch();
 
-  if (user.id === bot.user.id || reaction.message.author.id !== bot.user.id)
+  if (reaction.me/* || reaction.message.author.id !== bot.user.id*/)
     return
 
   if (reaction.emoji.name !== '🗑️')
@@ -210,13 +208,17 @@ bot.on('messageReactionAdd', async (reaction, user) => {
   const values = [reaction.message.url]
   const returned = await db.query(sql, values)
   let triggerMessage
+  let isUserRemoved = false
 
-  if (returned.rows[0])
+  if (returned.rows[0]) {
     triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
-  else
-    return
+    isUserRemoved = true && returned.rows[0].id === user.id
+  }
 
-  if (returned.rows[0].id === user.id || user.id === meee.id) {
+  const memberRemoving = reaction.message.guild.member(user.id)
+  const canDelete = memberRemoving.hasPermission('MANAGE_MESSAGES') && reaction.me
+
+  if (isUserRemoved || user.id === meee.id || canDelete) {
     reaction.message.delete()
       .then().catch(console.error)
     if (triggerMessage)
