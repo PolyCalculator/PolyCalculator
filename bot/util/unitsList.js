@@ -507,6 +507,5 @@ function getOverride(unitArray) {
       this.forceRetaliation = true
     if (overrides[0] === 'nr')
       this.forceRetaliation = false
-    return this.retaliationOverride = overrides[0]
   }
 }
