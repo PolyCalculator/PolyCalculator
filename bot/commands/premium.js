@@ -16,7 +16,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
-  execute: function (message, argsStr, replyData, dbData) {
+  execute: async function (message, argsStr, replyData, dbData) {
     if (!argsStr)
       throw 'You need to include information...'
 
@@ -35,10 +35,9 @@ module.exports = {
 
     const sql = 'INSERT INTO premium (user_id, amount, notes) VALUES ($1, $2, $3)'
     const values = [userId, amount, notes]
-    db.query(sql, values)
-      .then(() => {
-        replyData.content.push(['Successfully made premium!', {}])
-      })
-      .catch(err => { throw err })
+    await db.query(sql, values)
+    replyData.content.push(['Successfully made premium!', {}])
+
+    return replyData
   }
 };
