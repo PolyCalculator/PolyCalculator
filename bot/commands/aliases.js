@@ -39,7 +39,7 @@ module.exports = {
       for (const [name, details] of Object.entries(commandsList)) {
         field.push(`**${process.env.PREFIX}${name}**: \`${process.env.PREFIX}${details.aliases.join(`\`, \`${process.env.PREFIX}`)}\``)
       }
-      replyData.ields.push({ name: `**${cat}:**`, value: field })
+      replyData.fields.push({ name: `**${cat}:**`, value: field })
     }
 
     return replyData
