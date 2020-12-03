@@ -40,7 +40,7 @@ module.exports.optim = function (attackers, defender, replyData) {
   })
 
   if (bestSolution.defenderHP === defender.currenthp)
-    return `No unit can make a dent in this ${defender.name}${defender.description}...`
+    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
   let defHP = defender.currenthp
@@ -79,7 +79,7 @@ module.exports.calc = function (attackers, defender, replyData) {
   const solution = multicombat(attackersSorted, defender, sequence)
 
   if (solution.defenderHP === defender.currenthp)
-    return `No unit can make a dent in this ${defender.name}${defender.description}...`
+    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
   let defHP = defender.currenthp
