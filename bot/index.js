@@ -182,7 +182,9 @@ bot.on('message', async message => {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
-    errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
+    if (error.stack)
+      errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
+
     return message.channel.send(`${error}`)
       .then(x => {
         if (trashEmoji) {
