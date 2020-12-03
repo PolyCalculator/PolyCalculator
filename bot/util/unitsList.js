@@ -176,7 +176,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   tr: {
     name: 'Tridention',
@@ -194,7 +195,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   po: {
     name: 'Polytaur',
@@ -232,7 +234,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   ga: {
     name: 'Gaami',
@@ -250,7 +253,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   mb: {
     name: 'Mind Bender',
@@ -308,7 +312,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   dr: {
     name: 'Fire Dragon',
@@ -326,7 +331,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   mo: {
     name: 'Mooni',
@@ -344,7 +350,8 @@ module.exports = {
     retaliation: false,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   sl: {
     name: 'Battle Sled',
@@ -362,7 +369,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   if: {
     name: 'Ice Fortress',
@@ -380,7 +388,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   },
   nb: {
     name: 'Nature Bunny',
@@ -398,7 +407,8 @@ module.exports = {
     retaliation: true,
     forceRetaliation: undefined,
     setHP: setHP,
-    addBonus: addBonus
+    addBonus: addBonus,
+    getOverride: getOverride
   }
 }
 
