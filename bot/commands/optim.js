@@ -18,8 +18,10 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
-    if (argsStr.length === 0 || argsStr.includes('help'))
-      return 'Try `.help o` for more information on how to use this command!'
+    if (argsStr.length === 0 || argsStr.includes('help')) {
+      replyData.content.push('Try `.help o` for more information on how to use this command!')
+      return replyData
+    }
 
     const unitsArray = units.getBothUnitArray(argsStr)
 
