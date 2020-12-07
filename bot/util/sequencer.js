@@ -101,7 +101,7 @@ function combat(attacker, defender, solution) {
   if (solution.defenderHP <= 0) {
     hpattacker = attacker.currenthp;
     solution.defenderHP = 0;
-  } else if (attacker.forceRetaliation === false) {
+  } else if (attacker.forceRetaliation === false || defender.retaliation === false) {
     hpattacker = attacker.currenthp
   } else if (attacker.range === true && defender.range === false && attacker.forceRetaliation !== true) {
     hpattacker = attacker.currenthp
