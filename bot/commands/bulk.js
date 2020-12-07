@@ -17,7 +17,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   execute: function (message, argsStr, replyData, dbData, trashEmoji) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
-      replyData.content.push('Try `.help b` for more information on how to use this command!')
+      replyData.content.push(['Try `.help b` for more information on how to use this command!', {}])
       return replyData
     }
 
