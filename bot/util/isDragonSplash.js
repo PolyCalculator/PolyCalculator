@@ -19,8 +19,8 @@ function combat(attacker, defender, replyData) {
   const totaldam = aforce + dforce;
   const totaldamSplash = aforceSplash + dforce;
 
-  const defdiff = Math.floor(Math.round(aforce / totaldam * attacker.att * 4.5) / 2);
-  const defdiffSplash = Math.round(aforceSplash / totaldamSplash * attacker.att / 2 * 4.5);
+  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+  const defdiffSplash = Math.floor(Math.round(aforceSplash / totaldamSplash * attacker.att * 4.5) / 2);
   defender.newhp = defender.currenthp - defdiff
   defender.newhpSplash = defender.currenthp - defdiffSplash
 
