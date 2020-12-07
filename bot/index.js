@@ -190,7 +190,10 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 
   if (reaction.partial) await reaction.fetch();
 
-  if (reaction.me/* || reaction.message.author.id !== bot.user.id*/)
+  if (user.bot)
+    return
+
+  if (reaction.message.author.id !== bot.user.id)
     return
 
   if (reaction.emoji.name !== '🗑️')
