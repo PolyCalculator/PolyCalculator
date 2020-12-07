@@ -4,16 +4,13 @@ const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
-const { buildEmbed, saveStats, logUse, milestoneMsg, advisorPing } = require('./util/util')
+const { buildEmbed, saveStats, logUse, milestoneMsg } = require('./util/util')
 const db = require('../db')
-const { transferMessage } = require('./util/announcements')
 let calcServer = {}
 let meee = {}
 let newsChannel = {}
 let logChannel = {}
 let errorChannel = {}
-let crawServer = {}
-let advisors = {}
 
 // bot.commands as a collection(Map) of commands from ./commands
 const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'))
@@ -32,13 +29,10 @@ const dbServers = require('./util/dbServers')
 // --------------------------------------
 bot.once('ready', () => {
   calcServer = bot.guilds.cache.get('581872879386492929')
-  crawServer = bot.guilds.cache.get('492753802450173987')
   meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
-  if (crawServer)
-    advisors = crawServer.roles.cache.get('780148610390163486')
   let toggle = true
 
   setInterval(function () {
@@ -61,10 +55,6 @@ bot.once('ready', () => {
 //
 // --------------------------------------
 bot.on('message', async message => {
-  const continuing = advisorPing(message, crawServer, advisors)
-  if (!continuing)
-    return
-
   if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
@@ -315,15 +305,6 @@ bot.on('guildMemberAdd', newMember => {
         console.log(`${x.user.tag} just got in PolyCalculator server!`)
       }).catch(console.error)
   }
-})
-
-// --------------------------------------
-//
-//  EVENT ON PICK-FAT-COUNT CHANGE
-//
-// --------------------------------------
-bot.on('messageUpdate', (oldMessage, newMessage) => {
-  transferMessage(newMessage, calcServer)
 })
 
 process.on('unhandledRejection', (code) => {

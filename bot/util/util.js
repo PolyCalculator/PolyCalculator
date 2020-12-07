@@ -1,5 +1,3 @@
-const advisorCommand = require('../commands/advisor')
-const { transferMessage } = require('../util/announcements')
 const { MessageEmbed } = require('discord.js')
 
 module.exports.buildEmbed = function (data) {
@@ -46,24 +44,5 @@ module.exports.milestoneMsg = async function (message, db, newsChannel, meee) {
   if (rows.triggers % 50000 === 0) {
     newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
     meee.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
-  }
-}
-
-module.exports.advisorPing = async function (message, crawServer, advisors) {
-  const replyData = {
-    content: [],
-    title: undefined,
-    description: undefined,
-    fields: [],
-    footer: undefined
-  }
-  if (message.mentions.roles.get(advisors.id) && message.guild.id === crawServer.id) {
-    const reply = await advisorCommand.execute(message, message.cleanContent, replyData)
-    if (reply) {
-      message.channel.send(reply.content)
-      return false
-    }
-  } else {
-    return transferMessage(message, crawServer)
   }
 }
