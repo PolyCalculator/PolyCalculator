@@ -25,15 +25,18 @@ module.exports = {
         if (newBotChannelsArray.length > 1) {
           returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
 
-          return `The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray
+          replyData.content.push([`The channel ${channelToRemove} was removed!\nHere's the new list of registered bot channels:\n` + returnedArray, {}])
+          return replyData
         } else {
-          return `There is no more registered bot command on this server anymore.\nYou can add more with \`${process.env.PREFIX}addbotchannel #bot-channel\` with the pinged channel you want to add!`
+          replyData.content.push([`There is no more registered bot command on this server anymore.\nYou can add more with \`${process.env.PREFIX}addbotchannel #bot-channel\` with the pinged channel you want to add!`, {}])
+          return replyData
         }
 
       } else {
         const botChannelsArray = await dbServers.getBotChannels(message.guild.id, message.guild.name, '(removebotchannel cmd, no args)')
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
-        return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
+        replyData.content.push(['You need to ping a channel to register it.\nHere are the current registered bot channels that will auto-show the :wastebasket: emoji:\n' + returnedArray, {}])
+        return replyData
       }
     } catch (err) {
       throw err

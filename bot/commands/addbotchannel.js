@@ -22,11 +22,13 @@ module.exports = {
       if (channelToAdd) {
         const newBotChannelsArray = await dbServers.addABotChannel(message.guild.id, channelToAdd.id, message.guild.name)
         const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
-        return `The channel ${channelToAdd} was added!\nHere's the new list of registered bot channels:\n` + returnedArray
+        replyData.content.push([`The channel ${channelToAdd} was added!\nHere's the new list of registered bot channels:\n` + returnedArray, {}])
+        return replyData
       } else {
         const botChannelsArray = await dbServers.getBotChannels(message.guild.id, message.guild.name, '(addbotchannel cmd, no args)')
         const returnedArray = '<#' + botChannelsArray.join('>,\n<#') + '>'
-        return 'You need to ping a channel to register it.\nHere are the current registered bot channels that won\'t auto-delete the commands:\n' + returnedArray
+        replyData.content.push(['You need to ping a channel to register it.\nHere are the current registered bot channels that will auto-show the :wastebasket: emoji:\n' + returnedArray, {}])
+        return replyData
       }
     } catch (err) {
       throw err
