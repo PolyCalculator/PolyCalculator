@@ -10,6 +10,7 @@ firebase-debug.log*
 /client
 .vscode
 .env
+test.*
 *.csv
 **/test*
 **/__pycache__/
