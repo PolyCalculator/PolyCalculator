@@ -12,7 +12,6 @@
     "eslint": "6.8.0",
     "express": "4.17.1",
     "helmet": "3.21.3",
-    "heroku": "7.27.1",
     "kind-of": "6.0.3",
     "minimist": "1.2.5",
     "nodemon": "2.0.6",
@@ -24,17 +23,21 @@
     "@babel/cli": "7.8.4",
     "@babel/core": "7.8.4",
     "@babel/node": "7.8.4",
-    "@babel/preset-env": "7.8.4"
+    "@babel/preset-env": "7.8.4",
+    "ava": "3.14.0"
   },
   "scripts": {
     "start": "node server/index.js",
     "api": "nodemon server/index.js",
     "bot": "nodemon bot/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "log": "heroku logs -t -a=polycalculator -d=worker",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
+  "ava": {
+		"watch": true
+	},
   "keywords": [],
   "author": "jd (alphaSeahorse)",
   "license": "ISC"
