@@ -488,21 +488,18 @@ function onTheWater(navalArray) {
     this.att = 1
     this.def = 1
     this.range = true
-    this.retaliation = false
   }
   if (navalArray[0].toLowerCase().startsWith('sh')) {
     this.description = this.description + ' Ship'
     this.att = 2
     this.def = 2
     this.range = true
-    this.retaliation = false
   }
   if (navalArray[0].toLowerCase().startsWith('bs')) {
     this.description = this.description + ' Battleship'
     this.att = 4
     this.def = 3
     this.range = true
-    this.retaliation = false
   }
 }
 
