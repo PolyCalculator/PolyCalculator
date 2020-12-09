@@ -72,7 +72,7 @@ bot.on('message', async message => {
 
   // BOOLEAN for if the channel is registered as a bot channel in the bot
   let isNotBotChannel = true
-  await dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
+  dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
     .then(x => isNotBotChannel = !x).catch(console.error)
 
   const textStr = message.cleanContent.slice(prefix.length)
