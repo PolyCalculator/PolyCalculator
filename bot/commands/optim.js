@@ -23,15 +23,15 @@ module.exports = {
       return replyData
     }
 
-    const unitsArray = units.getBothUnitArray(argsStr)
+    try {
+      const unitsArray = units.getBothUnitArray(argsStr)
 
-    if (unitsArray.length > 4) {
-      const sql = 'SELECT user_id FROM premium WHERE user_id = $1'
-      const values = [message.author.id]
-      const sqlGuild = 'SELECT guild_id FROM premium WHERE guild_id = $1'
-      const valuesGuild = [message.guild.id]
+      if (unitsArray.length > 4) {
+        const sql = 'SELECT user_id FROM premium WHERE user_id = $1'
+        const values = [message.author.id]
+        const sqlGuild = 'SELECT guild_id FROM premium WHERE guild_id = $1'
+        const valuesGuild = [message.guild.id]
 
-      try {
         const guildPremium = await db.query(sqlGuild, valuesGuild)
         const meee = message.client.users.cache.get('217385992837922819')
         const calcServer = message.client.guilds.cache.get('581872879386492929')
@@ -47,44 +47,40 @@ module.exports = {
             return replyData
           }
         }
-      } catch (error) {
-        console.error
       }
-    }
 
-    if (unitsArray.length > 9)
-      throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 8 attackers is dangerous for my safety.'
+      if (unitsArray.length > 9)
+        throw 'You are a greedy (or trolly) little shmuck.\nEntering more than 8 attackers is dangerous for my safety.'
 
-    const defenderStr = unitsArray.pop()
-    const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
-    const attackers = []
+      const defenderStr = unitsArray.pop()
+      const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
+      const attackers = []
 
-    const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
-    defender.getOverride(defenderArray)
+      const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
+      defender.getOverride(defenderArray)
 
-    unitsArray.forEach(x => {
-      const attackerArray = x.split(/ +/).filter(y => y != '')
-      const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
-      attacker.getOverride(attackerArray)
-      if (attacker.att !== 0)
-        attackers.push(attacker)
-    })
-    if (attackers.length === 0)
-      throw 'You need to specify at least one unit with more than 0 attack.'
+      unitsArray.forEach(x => {
+        const attackerArray = x.split(/ +/).filter(y => y != '')
+        const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
+        attacker.getOverride(attackerArray)
+        if (attacker.att !== 0)
+          attackers.push(attacker)
+      })
+      if (attackers.length === 0)
+        throw 'You need to specify at least one unit with more than 0 attack.'
 
-    try {
       replyData = await fight.optim(attackers, defender, replyData)
+
+      dbData.attacker = attackers.length
+      dbData.defender = defender.name
+      dbData.defender_description = defender.description
+      if (replyData.fields.length > 1)
+        dbData.reply_fields = [replyData.fields[0].value.toString(), replyData.fields[1].value]
+
+      return replyData
     } catch (error) {
       throw error
     }
-
-    dbData.attacker = attackers.length
-    dbData.defender = defender.name
-    dbData.defender_description = defender.description
-    if (replyData.fields.length > 1)
-      dbData.reply_fields = [replyData.fields[0].value.toString(), replyData.fields[1].value]
-
-    return replyData
   }
 };
 
