@@ -15,7 +15,6 @@ module.exports = {
   channelsAllowed: ['595323493558517780'],
   // eslint-disable-next-line no-unused-vars
   execute: function (message, argsStr, replyData, dbData) {
-    const description = []
     replyData.content.push([`Total de serveurs: ${message.client.guilds.cache.size}`, {}])
     const serverMap = message.client.guilds.cache.array()
     serverMap.sort((a, b) => {
@@ -27,13 +26,9 @@ module.exports = {
       return 0
     })
     serverMap.forEach((x) => {
-      if (description.toString().length > 1900)
-        replyData.fields.push({ name: `**${x.name}** (${x.id})`, value: `${x.owner.user} ${x.owner.user.tag} => ${x.memberCount}` })
-      else
-        description.push(`**${x.name}** (${x.id}) ${x.owner.user} ${x.owner.user.tag} => ${x.memberCount}`)
+      replyData.content.push([`**${x.name}** (${x.id})\n${x.owner.user} (@${x.owner.user.tag}) => ${x.memberCount} members`, {}])
     })
 
-    replyData.description = description
     return replyData
   },
 };
