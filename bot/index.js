@@ -236,9 +236,9 @@ bot.on('channelDelete', deletedChannel => {
             errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
               .then().catch(console.error)
           })
-    }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}\n in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
-        .then().catch(console.error)
+    }).catch(err => {
+      // eslint-disable-next-line no-console
+      console.log(err.stack || err)
     })
 })
 // --------------------------------------
