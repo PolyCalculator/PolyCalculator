@@ -29,7 +29,8 @@ module.exports = {
       const guild = message.client.guilds.cache.get(argsStr)
       const newBotChannelsArray = await dbServers.updateBotChannels(guild)
       const returnedArray = '<#' + newBotChannelsArray.join('>,\n<#') + '>'
-      return `The channels for **${guild.name}** were reset to:\n` + returnedArray
+      replyData.content.push([`The channels for **${guild.name}** were reset to:\n` + returnedArray, {}])
+      return replyData
     } catch (err) {
       throw err
     }
