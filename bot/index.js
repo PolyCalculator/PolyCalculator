@@ -186,39 +186,50 @@ bot.on('message', async message => {
 })
 
 bot.on('messageReactionAdd', async (reaction, user) => {
-  if (reaction.message.partial) await reaction.message.fetch();
-
-  if (reaction.partial) await reaction.fetch();
-
-  if (user.bot)
-    return
-
-  if (reaction.message.author.id !== bot.user.id)
-    return
-
-  if (reaction.emoji.name !== '🗑️')
-    return
-
-  const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
-  const values = [reaction.message.url]
-  const returned = await db.query(sql, values)
   let triggerMessage
-  let isUserRemoved = false
+  try {
+    if (reaction.message.partial) await reaction.message.fetch();
 
-  if (returned.rows[0]) {
-    triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
-    isUserRemoved = true && returned.rows[0].id === user.id
-  }
+    if (reaction.partial) await reaction.fetch();
 
-  const memberRemoving = reaction.message.guild.member(user.id)
-  const canDelete = memberRemoving.hasPermission('MANAGE_MESSAGES') && reaction.me
+    if (user.bot)
+      return
 
-  if (isUserRemoved || user.id === meee.id || canDelete) {
-    reaction.message.delete()
-      .then().catch(console.error)
-    if (triggerMessage)
-      triggerMessage.delete()
+    if (reaction.message.author.id !== bot.user.id)
+      return
+
+    if (reaction.emoji.name !== '🗑️')
+      return
+
+    const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
+    const values = [reaction.message.url]
+    const returned = await db.query(sql, values)
+    let isUserRemoved = false
+
+    if (returned.rows[0]) {
+      triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
+      isUserRemoved = true && returned.rows[0].id === user.id
+    }
+
+    const memberRemoving = reaction.message.guild.member(user.id)
+    const canDelete = memberRemoving.hasPermission('MANAGE_MESSAGES') && reaction.me
+
+    if (isUserRemoved || user.id === meee.id || canDelete) {
+      reaction.message.delete()
         .then().catch(console.error)
+      if (triggerMessage)
+        triggerMessage.delete()
+          .then().catch(console.error)
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error)
+    if (error.stack && triggerMessage)
+      errorChannel.send(`**${triggerMessage.cleanContent}** by ${triggerMessage.author} (@${triggerMessage.author.tag})\n${error.stack}\n${triggerMessage.url}`)
+    else {
+      const pathArray = error.path.split('/')
+      errorChannel.send(`${error.message},\n<#${pathArray[2]}>`)
+    }
   }
 })
 
