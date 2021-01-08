@@ -81,3 +81,9 @@ aliasMap.set('wbo', ['wa', 'bo'])
 aliasMap.set('kbs', ['kn', 'bs'])
 aliasMap.set('ksh', ['kn', 'sh'])
 aliasMap.set('kbo', ['kn', 'bo'])
+
+aliasMap.set('dd', ['de', 'd'])
+aliasMap.set('dw', ['de', 'w'])
+
+aliasMap.set('wd', ['wa', 'd'])
+aliasMap.set('ww', ['wa', 'w'])
