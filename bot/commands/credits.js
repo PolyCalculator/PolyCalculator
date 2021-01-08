@@ -15,7 +15,7 @@ module.exports = {
   execute: function (message, argsStr, replyData/*, dbData*/) {
     replyData.title = '**PolyCalculator bot credits!**'
     replyData.fields.push({ name: 'Developer', value: 'jd (alphaSeahorse)' })
-    replyData.fields.push({ name: 'Contributions', value: 'penile partay, WOPWOP, espark, Shiny, LiNoKami, HelloIAmBush, Cake, James.' })
+    replyData.fields.push({ name: 'Contributions', value: 'penile partay, MYRIAD CARDS, espark, Shiny, LiNoKami, HelloIAmBush, Cake, James.' })
 
     return replyData
   }
