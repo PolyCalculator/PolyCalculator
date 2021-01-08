@@ -67,11 +67,17 @@ module.exports.handleAliases = function (array) {
 const aliasMap = new Collection()
 
 aliasMap.set('dbs', ['de', 'bs'])
-aliasMap.set('gbs', ['gi', 'bs'])
-aliasMap.set('wbs', ['wa', 'bs'])
 aliasMap.set('dsh', ['de', 'sh'])
-aliasMap.set('gsh', ['gi', 'sh'])
-aliasMap.set('wsh', ['wa', 'sh'])
 aliasMap.set('dbo', ['de', 'bo'])
+
+aliasMap.set('gbs', ['gi', 'bs'])
+aliasMap.set('gsh', ['gi', 'sh'])
 aliasMap.set('gbo', ['gi', 'bo'])
+
+aliasMap.set('wbs', ['wa', 'bs'])
+aliasMap.set('wsh', ['wa', 'sh'])
 aliasMap.set('wbo', ['wa', 'bo'])
+
+aliasMap.set('kbs', ['kn', 'bs'])
+aliasMap.set('ksh', ['kn', 'sh'])
+aliasMap.set('kbo', ['kn', 'bo'])
