@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed, Collection } = require('discord.js')
 
 module.exports.buildEmbed = function (data) {
   const embed = new MessageEmbed().setColor('#ff0066')
@@ -46,3 +46,32 @@ module.exports.milestoneMsg = async function (message, db, newsChannel, meee) {
     meee.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
   }
 }
+
+module.exports.handleAliases = function (array) {
+  const newArray = array
+
+  const aliases = aliasMap.keyArray()
+
+  if (aliases.some(alias => array.some(str => str.toLowerCase().startsWith(alias)))) {
+    const index = array.findIndex(el => aliases.some(alias => alias === el.substring(0, 3).toLowerCase()))
+    if (index === -1)
+      return
+
+    const openedAlias = aliasMap.get(array[index].substring(0, 3).toLowerCase())
+    newArray.splice(index, 1, openedAlias[0], openedAlias[1])
+  }
+
+  return newArray
+}
+
+const aliasMap = new Collection()
+
+aliasMap.set('dbs', ['de', 'bs'])
+aliasMap.set('gbs', ['gi', 'bs'])
+aliasMap.set('wbs', ['wa', 'bs'])
+aliasMap.set('dsh', ['de', 'sh'])
+aliasMap.set('gsh', ['gi', 'sh'])
+aliasMap.set('wsh', ['wa', 'sh'])
+aliasMap.set('dbo', ['de', 'bo'])
+aliasMap.set('gbo', ['gi', 'bo'])
+aliasMap.set('wbo', ['wa', 'bo'])

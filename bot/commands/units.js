@@ -1,4 +1,5 @@
 const unitList = require('../util/unitsList')
+const { handleAliases } = require('../util/util')
 
 module.exports = {
   name: 'units',
@@ -62,17 +63,7 @@ module.exports = {
     return { ...unitList[unitCode] }
   },
   getUnitFromArray: function (unitArray, replyData) {
-    // Rebuilding aliases
-    if (unitArray.some(x => x.toLowerCase().startsWith('gbs'))) {
-      unitArray = unitArray.filter(value => !value.toLowerCase().startsWith('gbs'))
-      unitArray.push('gi')
-      unitArray.push('bs')
-    }
-    if (unitArray.some(x => x.toLowerCase().startsWith('dbs'))) {
-      unitArray = unitArray.filter(value => !value.toLowerCase().startsWith('dbs'))
-      unitArray.push('de')
-      unitArray.push('bs')
-    }
+    unitArray = handleAliases(unitArray)
 
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
