@@ -160,3 +160,31 @@ module.exports.evaluate = function (bestSolution, newSolution) {
     } else return false
   }
 }
+
+module.exports.simpleCombat = function (attacker, defender) {
+  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+
+  const totaldam = aforce + dforce;
+  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+
+  let attdiff
+
+  if (defender.currenthp - defdiff <= 0) {
+    attdiff = 0
+  } else if (defender.forceRetaliation === false || defender.retaliation === false) {
+    attdiff = 0
+  } else if (attacker.range === true && defender.range === false && defender.forceRetaliation !== true) {
+    attdiff = 0
+  } else {
+    attdiff = Math.round(dforce / totaldam * defender.def * 4.5)
+
+    // if(attacker.currenthp - attdiff < 0)
+    //   attdiff = attacker.currenthp
+  }
+
+  return {
+    def: parseInt(defdiff),
+    att: parseInt(attdiff)
+  }
+}
