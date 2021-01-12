@@ -166,19 +166,19 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
 }
 
 module.exports.dragon = function (dragon, direct, splashed, replyData) {
+  const deathText = deadText[Math.floor(Math.random() * deadText.length)]
 
   const directDiff = simpleCombat(dragon, direct)
   replyData.fields.push({ name: 'Dragon: startHP ➔ endHP', value: `${dragon.currenthp} ➔ ${dragon.currenthp - directDiff.att <= 0 ? deathText : dragon.currenthp - directDiff.att}` })
   replyData.fields.push({ name: `**${direct.vetNow ? 'Veteran ' : ''}${direct.name}${direct.description}${direct.bonus === 1 ? '' : direct.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${direct.currenthp} ➔ ${(direct.currenthp - directDiff.def < 1) ? deathText : direct.currenthp - directDiff.def}` })
 
   splashed.forEach(splash => {
+    const deathText2 = deadText[Math.floor(Math.random() * deadText.length)]
     const splashDiff = simpleCombat(dragon, splash)
     const splashDamage = Math.floor(splashDiff.def / 2)
 
-    replyData.fields.push({ name: `**${splash.vetNow ? 'Veteran ' : ''}${splash.name}${splash.description}${splash.bonus === 1 ? ' (splashed)' : splash.bonus === 1.5 ? ' (protected, splashed)' : ' (walled, splashed)'}**:`, value: `${splash.currenthp} ➔ ${(splash.currenthp - splashDamage < 1) ? deathText : splash.currenthp - splashDamage}` })
+    replyData.fields.push({ name: `**${splash.vetNow ? 'Veteran ' : ''}${splash.name}${splash.description}${splash.bonus === 1 ? ' (splashed)' : splash.bonus === 1.5 ? ' (protected, splashed)' : ' (walled, splashed)'}**:`, value: `${splash.currenthp} ➔ ${(splash.currenthp - splashDamage < 1) ? deathText2 : splash.currenthp - splashDamage}` })
   })
-
-  const deathText = deadText[Math.floor(Math.random() * deadText.length)]
 
   replyData.title = 'The outcome of the fight is:'
 

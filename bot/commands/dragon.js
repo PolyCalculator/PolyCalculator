@@ -6,10 +6,10 @@ module.exports = {
   description: 'calculate the outcome of a direct hit and splash from a Fire Dragon.',
   aliases: ['fd', 'dr'],
   shortUsage(prefix) {
-    return `\`${prefix}dragon [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
+    return `\`${prefix}dr [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
   },
   longUsage(prefix) {
-    return `\`${prefix}dr [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
+    return `\`${prefix}dragon [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
   },
   forceNoDelete: false,
   category: 'Advanced',
@@ -18,7 +18,7 @@ module.exports = {
   usersAllowed: ['217385992837922819'],
   execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
-      replyData.content.push(['Try `.help c` for more information on how to use this command!', {}])
+      replyData.content.push(['Try `.help dr` for more information on how to use this command!', {}])
       return replyData
     }
 
@@ -46,14 +46,16 @@ module.exports = {
     const direct = units.getUnitFromArray(directArray, replyData, trashEmoji)
     direct.getOverride(directArray)
 
-    // SPLASHED[ARRAY] UNIT BUILDING
     const splashed = []
-    while (unitsArray.length > 0) {
-      const splashedStr = unitsArray.shift()
-      const splashedBits = splashedStr.split(/ +/).filter(x => x != '')
-      const defender = units.getUnitFromArray(splashedBits, replyData, trashEmoji)
-      defender.getOverride(splashedBits)
-      splashed.push(defender)
+    if (unitsArray.length > 0) {
+      // SPLASHED[ARRAY] UNIT BUILDING
+      while (unitsArray.length > 0) {
+        const splashedStr = unitsArray.shift()
+        const splashedBits = splashedStr.split(/ +/).filter(x => x != '')
+        const defender = units.getUnitFromArray(splashedBits, replyData, trashEmoji)
+        defender.getOverride(splashedBits)
+        splashed.push(defender)
+      }
     }
 
     try {
