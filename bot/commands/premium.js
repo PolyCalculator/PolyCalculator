@@ -23,9 +23,6 @@ module.exports = {
     const args = argsStr.split(/ +/).filter(x => x != '')
     const userId = args.shift()
 
-    if (userId.length < 18)
-      throw 'Looks like an invalid ID...'
-
     const amount = Number(args.shift())
 
     if (isNaN(amount))
