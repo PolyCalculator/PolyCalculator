@@ -28,9 +28,9 @@ module.exports = {
       const globalvalues = [user.id]
       const globalUserStats = await dbStats.query(globalsql, globalvalues)
 
-      replyData.description = `${(ping) ? `These are ${user}'s stats for this bot in ${message.guild.name}` : `These are your stats for this bot in ${message.guild.name}`}`
-      replyData.fields.push({ name: 'Local count', value: `${(localUserStats.rows.length > 0) ? localUserStats.rows[0].count : 'Never here'}` })
-      replyData.fields.push({ name: 'Global count', value: `${(globalUserStats.rows.length > 0) ? globalUserStats.rows[0].count : 'Never used at all'}` })
+      replyData.discord.description = `${(ping) ? `These are ${user}'s stats for this bot in ${message.guild.name}` : `These are your stats for this bot in ${message.guild.name}`}`
+      replyData.discord.fields.push({ name: 'Local count', value: `${(localUserStats.rows.length > 0) ? localUserStats.rows[0].count : 'Never here'}` })
+      replyData.discord.fields.push({ name: 'Global count', value: `${(globalUserStats.rows.length > 0) ? globalUserStats.rows[0].count : 'Never used at all'}` })
 
       return replyData
     } catch (err) {

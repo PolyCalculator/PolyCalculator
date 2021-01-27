@@ -28,20 +28,20 @@ module.exports = {
       if (!command)
         throw `This command doesn't exist.\nGo get some \`${process.env.PREFIX}help\`!`
 
-      replyData.title = `Help card for \`${process.env.PREFIX}${command.name}\``
-      replyData.description = `**Description:** ${command.description}`
+      replyData.discord.title = `Help card for \`${process.env.PREFIX}${command.name}\``
+      replyData.discord.description = `**Description:** ${command.description}`
       if (command.name !== 'elim')
-        replyData.fields.push({ name: '**Short usage:**', value: command.shortUsage(process.env.PREFIX) })
-      replyData.fields.push({ name: '**Long usage:**', value: command.longUsage(process.env.PREFIX) })
-      replyData.footer = `aliases: ${command.aliases.join(', ')}`
+        replyData.discord.fields.push({ name: '**Short usage:**', value: command.shortUsage(process.env.PREFIX) })
+      replyData.discord.fields.push({ name: '**Long usage:**', value: command.longUsage(process.env.PREFIX) })
+      replyData.discord.footer = `aliases: ${command.aliases.join(', ')}`
       if (command.category === 'Main' || command.category === 'Advanced') {
-        replyData.fields.push({ name: '\u200b', value: '**Other features**' })
-        replyData.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
-        replyData.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
-        replyData.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`' })
+        replyData.discord.fields.push({ name: '\u200b', value: '**Other features**' })
+        replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
+        replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
+        replyData.discord.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`' })
       }
       if (command.name === 'optim') {
-        replyData.fields.push({ name: '`.o` specific modifier:', value: 'Only combos with that/those unit(s) doing the final hit: `f`' })
+        replyData.discord.fields.push({ name: '`.o` specific modifier:', value: 'Only combos with that/those unit(s) doing the final hit: `f`' })
       }
       return replyData
     } else {
@@ -68,15 +68,15 @@ module.exports = {
         }
       })
 
-      replyData.title = ('Help card for all commands')
-      replyData.footer = (`For more help on a command: ${process.env.PREFIX}help {command}\nExample: ${process.env.PREFIX}help calc`)
+      replyData.discord.title = ('Help card for all commands')
+      replyData.discord.footer = (`For more help on a command: ${process.env.PREFIX}help {command}\nExample: ${process.env.PREFIX}help calc`)
 
       for (const [cat, commandsList] of Object.entries(categoriesMapped)) {
         const field = []
         for (const [name, details] of Object.entries(commandsList)) {
           field.push(`**${name}**: ${details.description}`)
         }
-        replyData.fields.push({ name: `**${cat}:**`, value: field })
+        replyData.discord.fields.push({ name: `**${cat}:**`, value: field })
       }
 
       return replyData

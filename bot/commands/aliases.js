@@ -31,15 +31,15 @@ module.exports = {
       }
     })
 
-    replyData.title = 'All aliases'
-    replyData.description = 'To simplify your life!'
+    replyData.discord.title = 'All aliases'
+    replyData.discord.description = 'To simplify your life!'
 
     for (const [cat, commandsList] of Object.entries(categoriesMapped)) {
       const field = []
       for (const [name, details] of Object.entries(commandsList)) {
         field.push(`**${process.env.PREFIX}${name}**: \`${process.env.PREFIX}${details.aliases.join(`\`, \`${process.env.PREFIX}`)}\``)
       }
-      replyData.fields.push({ name: `**${cat}:**`, value: field })
+      replyData.discord.fields.push({ name: `**${cat}:**`, value: field })
     }
 
     return replyData

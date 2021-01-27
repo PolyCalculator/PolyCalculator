@@ -2,14 +2,19 @@ const { MessageEmbed, Collection } = require('discord.js')
 
 module.exports.buildEmbed = function (data) {
   const embed = new MessageEmbed().setColor('#ff0066')
-  if (data.title)
-    embed.setTitle(data.title)
-  if (data.description)
-    embed.setDescription(data.description)
-  if (data.fields)
-    data.fields.forEach(el => {
-      embed.addField(el.name, el.value)
-    })
+
+  if (data.outcome) {
+    for (const attacker in data.outcome.attackers) {
+      if (data.discord.title)
+        embed.setTitle(data.discord.title)
+      if (data./*discord.*/description)
+        embed.setDescription(data.discord.description)
+      if (data./*discord.*/fields)
+        data./*discord.*/fields.forEach(el => {
+          embed.addField(el.name, el.value)
+        })
+    }
+  }
 
   return embed
 }
@@ -28,8 +33,10 @@ module.exports.logUse = function (message, logChannel) {
     content = message.cleanContent
 
   const logData = {
-    title: `**${content}**`,
-    description: ` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`
+    discord: {
+      title: `**${content}**`,
+      description: ` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`
+    }
   }
   const newEmbed = module.exports.buildEmbed(logData)
   logChannel.send(newEmbed)

@@ -13,11 +13,11 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   execute: function (message, argsStr, replyData/*, dbData*/) {
-    replyData.title = 'Links!'
-    replyData.fields.push({ name: 'Invite this bot to your server:', value: 'https://discord.com/oauth2/authorize?client_id=593507058905645057&scope=bot&permissions=93256' })
-    replyData.fields.push({ name: 'PolyCalculator\'s server link:', value: 'https://discord.gg/rtSTmd8' })
-    replyData.fields.push({ name: 'Documentation (How-to use the bot):', value: 'https://alphaSeahorse.gitbook.io/polycalculator' })
-    replyData.fields.push({ name: 'Website (Stats):', value: 'http://polycalculatorbot.com' })
+    replyData.discord.title = 'Links!'
+    replyData.discord.fields.push({ name: 'Invite this bot to your server:', value: 'https://discord.com/oauth2/authorize?client_id=593507058905645057&scope=bot&permissions=93256' })
+    replyData.discord.fields.push({ name: 'PolyCalculator\'s server link:', value: 'https://discord.gg/rtSTmd8' })
+    replyData.discord.fields.push({ name: 'Documentation (How-to use the bot):', value: 'https://alphaSeahorse.gitbook.io/polycalculator' })
+    replyData.discord.fields.push({ name: 'Website (Stats):', value: 'http://polycalculatorbot.com' })
 
     return replyData
   }

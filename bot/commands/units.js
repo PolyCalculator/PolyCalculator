@@ -32,22 +32,22 @@ module.exports = {
       descriptionArray.push(`vethp: ${unit.vet ? unit.maxhp + 5 : 'No'}`)
       descriptionArray.push(`attack: ${unit.att}`)
       descriptionArray.push(`defense: ${unit.def}`)
-      replyData.title = unit.name
-      replyData.description = descriptionArray
+      replyData.discord.title = unit.name
+      replyData.discord.description = descriptionArray
     } else {
-      replyData.title = 'All units by code'
-      replyData.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
-      replyData.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
-      replyData.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.' })
-      replyData.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`.' })
+      replyData.discord.title = 'All units by code'
+      replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
+      replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
+      replyData.discord.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.' })
+      replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`.' })
       for (const key in unitList) {
         if (key === 'nb')
           continue
 
-        if (replyData.description === undefined)
-          replyData.description = `${unitList[key].name}: \`${key}\``
+        if (replyData.discord.description === undefined)
+          replyData.discord.description = `${unitList[key].name}: \`${key}\``
         else {
-          replyData.description = `${replyData.description}\n${unitList[key].name}: \`${key}\``
+          replyData.discord.description = `${replyData.discord.description}\n${unitList[key].name}: \`${key}\``
         }
       }
     }
