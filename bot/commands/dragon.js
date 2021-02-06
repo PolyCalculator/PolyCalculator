@@ -6,10 +6,10 @@ module.exports = {
   description: 'calculate the outcome of a direct hit and splash from a Fire Dragon.',
   aliases: ['fd', 'dr'],
   shortUsage(prefix) {
-    return `\`${prefix}dr [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
+    return `\`${prefix}dr [15,] wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
   },
   longUsage(prefix) {
-    return `\`${prefix}dragon [15,] c wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
+    return `\`${prefix}dragon [15,] wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
   },
   forceNoDelete: false,
   category: 'Advanced',
