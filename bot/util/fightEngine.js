@@ -45,15 +45,23 @@ module.exports.optim = function (attackers, defender, replyData) {
     attackers[seqIndex].defHP = defHP
     replyData.outcome.attackers.push({
       name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}`,
-      currenthp: attackers[seqIndex].currenthp - bestSolution.hpLoss[order],
-      maxhp: 40,
+      beforehp: attackers[seqIndex].currenthp,
+      afterhp: attackers[seqIndex].currenthp - bestSolution.hpLoss[order],
+      maxhp: attackers[seqIndex].maxhp,
       hplost: bestSolution.hpLoss[order],
       hpdefender: defHP
     })
     descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (**${defHP}**)`)
   })
 
-  // console.log(descriptionArray)
+  replyData.outcome.defender = {
+    name: `${defender.name}${defender.description}`,
+    currenthp: defender.currenthp,
+    afterhp: defHP,
+    maxhp: defender.maxhp,
+    hplost: defender.currenthp - defHP,
+  }
+
   replyData.discord.description = 'This is the order for best outcome:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
   replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
@@ -84,8 +92,24 @@ module.exports.calc = function (attackers, defender, replyData) {
   solution.finalSequence.forEach((seqIndex, order) => {
     seqIndex--
     defHP = defHP - solution.hpDealt[order]
+    replyData.outcome.attackers.push({
+      name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}`,
+      beforehp: attackers[seqIndex].currenthp,
+      afterhp: attackers[seqIndex].currenthp - solution.hpLoss[order],
+      maxhp: attackers[seqIndex].maxhp,
+      hplost: solution.hpLoss[order],
+      hpdefender: defHP
+    })
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
   })
+
+  replyData.outcome.defender = {
+    name: `${defender.name}${defender.description}`,
+    currenthp: defender.currenthp,
+    afterhp: defHP,
+    maxhp: defender.maxhp,
+    hplost: defender.currenthp - defHP,
+  }
 
   replyData.discord.description = 'The outcome of the fight is:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
@@ -117,6 +141,20 @@ module.exports.bulk = function (attacker, defender, replyData) {
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
   }
 
+  replyData.outcome.attackers.push({
+    name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}`,
+    currenthp: attacker.currenthp,
+    maxhp: attacker.maxhp,
+  })
+
+  replyData.outcome.defender = {
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    currenthp: defender.currenthp,
+    maxhp: defender.maxhp,
+  }
+
+  replyData.outcome.response = i
+
   replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`
   replyData.discord.fields.push({ name: `**Number of ${i > 1 && attacker.description === '' ? attacker.plural : attacker.name}${i > 1 && attacker.description !== '' ? attacker.description + 's' : attacker.description}**:`, value: `${i}` })
 
@@ -135,6 +173,19 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
     if (defender.currenthp - defdiff <= 0)
       break
   }
+
+  replyData.outcome.attackers.push({
+    name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}`,
+    maxhp: attacker.maxhp,
+  })
+
+  replyData.outcome.defender = {
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    currenthp: defender.currenthp,
+    maxhp: defender.maxhp,
+  }
+
+  replyData.outcome.response = attacker.currenthp
 
   if (attacker.currenthp > attacker.maxhp) {
     replyData.discord.title = `A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
@@ -163,6 +214,19 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
     if (defender.currenthp - defdiff <= 0)
       break
   }
+  replyData.outcome.attackers.push({
+    name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}`,
+    maxhp: attacker.maxhp,
+  })
+
+  replyData.outcome.defender = {
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    currenthp: defender.currenthp,
+    maxhp: defender.maxhp,
+  }
+
+  replyData.outcome.response = defender.currenthp
+
   if (defender.currenthp === 0) {
     replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
   } else {

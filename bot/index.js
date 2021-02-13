@@ -121,7 +121,7 @@ bot.on('message', async message => {
       // }
       defender: {
         name: '',
-        beforehp: 0,
+        currenthp: 0,
         maxhp: 40,
         hplost: 0,
       }

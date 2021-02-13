@@ -3,19 +3,16 @@ const { MessageEmbed, Collection } = require('discord.js')
 module.exports.buildEmbed = function (data) {
   const embed = new MessageEmbed().setColor('#ff0066')
 
-  if (data.outcome) {
-    for (const attacker in data.outcome.attackers) {
-      if (data.discord.title)
-        embed.setTitle(data.discord.title)
-      if (data./*discord.*/description)
-        embed.setDescription(data.discord.description)
-      if (data./*discord.*/fields)
-        data./*discord.*/fields.forEach(el => {
-          embed.addField(el.name, el.value)
-        })
-    }
+  if (data.discord) {
+    if (data.discord.title)
+      embed.setTitle(data.discord.title)
+    if (data.discord.description)
+      embed.setDescription(data.discord.description)
+    if (data.discord.fields)
+      data.discord.fields.forEach(el => {
+        embed.addField(el.name, el.value)
+      })
   }
-
   return embed
 }
 

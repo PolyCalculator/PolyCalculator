@@ -23,15 +23,18 @@ module.exports = {
   execute: function (message, argsStr, replyData, dbData, trashEmoji) {
     if (argsStr.length != 0) {
       const argsArray = argsStr.split(/ +/)
-      const unitCode = argsArray[0].slice(0, 2).toLowerCase()
+      // const unitCode = argsArray[0].slice(0, 2).toLowerCase()
 
-      const unit = this.getUnit(unitCode)
+      const aliasedArray = handleAliases(argsArray)
+      const unit = this.getUnitFromArray(aliasedArray)
 
       const descriptionArray = [];
       descriptionArray.push(`maxhp: ${unit.maxhp}`)
       descriptionArray.push(`vethp: ${unit.vet ? unit.maxhp + 5 : 'No'}`)
       descriptionArray.push(`attack: ${unit.att}`)
       descriptionArray.push(`defense: ${unit.def}`)
+
+      replyData.outcome = unit
       replyData.discord.title = unit.name
       replyData.discord.description = descriptionArray
     } else {

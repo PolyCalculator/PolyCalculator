@@ -44,10 +44,10 @@ module.exports = {
     }
     dbData.attacker = attacker.name
     dbData.defender = defender.name
-    if (replyData.fields.length < 1)
+    if (replyData.discord.fields.length < 1)
       dbData.reply_fields = ['Can\'t kill']
     else {
-      if (replyData.fields[0])
+      if (replyData.discord.fields[0])
         dbData.reply_fields = [replyData.discord.fields[0].value.toString()]
     }
 

@@ -3,6 +3,7 @@ const calc = require('../../bot/commands/calc')
 const optim = require('../../bot/commands/optim')
 const bulk = require('../../bot/commands/bulk')
 const elim = require('../../bot/commands/elim')
+const unit = require('../../bot/commands/units')
 const db = require('../../db')
 
 const commands = new Map()
@@ -11,6 +12,7 @@ commands.set('calc', calc)
 commands.set('optim', optim)
 commands.set('bulk', bulk)
 commands.set('elim', elim)
+commands.set('unit', unit)
 
 const router = express.Router();
 
@@ -24,10 +26,23 @@ router.get('/:commandName', async (req, res) => {
   const replyData = {
     content: [],
     deleteContent: false,
-    title: undefined,
-    description: undefined,
-    fields: [],
-    footer: undefined
+    discord: {
+      title: undefined,
+      description: undefined,
+      fields: [],
+      footer: undefined
+    },
+    outcome: {
+      attackers: [],
+      // {
+      //    name
+      //    beforehp: 0,
+      //    maxhp: 40,
+      //    hplost: 0,
+      //    hpdefender: 0
+      // }
+      defender: {}
+    }
   }
 
   const dbData = {
@@ -45,9 +60,7 @@ router.get('/:commandName', async (req, res) => {
     const values = [dbData.content, dbData.author_id, dbData.author_tag, dbData.command, dbData.attacker, dbData.defender, dbData.attacker_description, dbData.defender_description, dbData.reply_fields, dbData.arg]
     await db.query(sql, values)
 
-    delete response.content
-    delete response.deleteContent
-    res.send(response)
+    res.send(response.outcome)
   } catch (err) {
     res.send({ error: err })
   }
