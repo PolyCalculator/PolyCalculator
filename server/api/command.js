@@ -4,9 +4,10 @@ const optim = require('../../bot/commands/optim')
 const bulk = require('../../bot/commands/bulk')
 const elim = require('../../bot/commands/elim')
 const unit = require('../../bot/commands/units')
+const { Collection } = require('discord.js')
 const db = require('../../db')
 
-const commands = new Map()
+const commands = new Collection()
 
 commands.set('calc', calc)
 commands.set('optim', optim)
