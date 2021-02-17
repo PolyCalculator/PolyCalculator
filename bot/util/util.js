@@ -16,6 +16,27 @@ module.exports.buildEmbed = function (data) {
   return embed
 }
 
+module.exports.poison = function (unit) {
+  unit.name = `Poisoned ${unit.name}`
+  unit.plural = `Poisoned ${unit.plural}`
+  unit.def = unit.def * 0.8
+  unit.bonus = 1
+}
+
+module.exports.boost = function (unit) {
+  unit.name = `Boosted ${unit.name}`
+  unit.plural = `Boosted ${unit.plural}`
+  unit.att = unit.att + 0.5
+  unit.def = unit.def * 1.5
+}
+
+module.exports.poisonandboost = function (unit) {
+  unit.name = `Poisoned & Boosted ${unit.name}`
+  unit.plural = `Poisoned & Boosted ${unit.plural}`
+  unit.att = unit.att + 0.5
+  unit.def = unit.def * 0.8
+}
+
 module.exports.saveStats = function (data, db) {
   const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)'
   const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg]

@@ -1,5 +1,5 @@
 const unitList = require('../util/unitsList')
-const { handleAliases } = require('../util/util')
+const { handleAliases, poison, boost, poisonandboost } = require('../util/util')
 
 module.exports = {
   name: 'units',
@@ -86,7 +86,7 @@ module.exports = {
     if (currentHPArray.length > 0)
       unit.setHP(currentHPArray, replyData)
 
-    const defenseBonusArray = unitArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd' || value.toLowerCase() === 'p')
+    const defenseBonusArray = unitArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd')
     if (defenseBonusArray.length > 0)
       unit.addBonus(defenseBonusArray, replyData)
 
@@ -108,6 +108,19 @@ module.exports = {
       unit.retaliation = true
     if (rangeOverride[0] === 'nr')
       unit.retaliation = false
+
+    const toPoison = unitArray.filter(value => value.toLowerCase() === 'p')
+    const toBoost = unitArray.filter(value => value.toLowerCase() === 'b')
+
+    if (toPoison.length > 0 && toBoost.length > 0)
+      poisonandboost(unit)
+    else {
+      if (toPoison.length > 0)
+        poison(unit)
+
+      if (toBoost.length > 0)
+        boost(unit)
+    }
 
     return unit
   },
