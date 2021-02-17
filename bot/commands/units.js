@@ -41,7 +41,7 @@ module.exports = {
       replyData.discord.title = 'All units by code'
       replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
       replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
-      replyData.discord.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.' })
+      replyData.discord.fields.push({ name: 'Modifiers:', value: 'Poison: `p`\nBoost: `b`\nVeteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.' })
       replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`.' })
       for (const key in unitList) {
         if (key === 'nb')
