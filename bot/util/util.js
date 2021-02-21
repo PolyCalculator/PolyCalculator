@@ -27,7 +27,6 @@ module.exports.boost = function (unit) {
   unit.name = `Boosted ${unit.name}`
   unit.plural = `Boosted ${unit.plural}`
   unit.att = unit.att + 0.5
-  unit.def = unit.def * 1.5
 }
 
 module.exports.poisonandboost = function (unit) {

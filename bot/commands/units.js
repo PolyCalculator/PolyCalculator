@@ -126,11 +126,9 @@ module.exports = {
   },
   // eslint-disable-next-line no-unused-vars
   getBothUnitArray: function (args) {
-    if (args.includes('/'))
-      return args.split('/')
-    else if (args.includes(','))
+    if (args.includes(','))
       return args.split(',')
     else
-      throw 'You need an attacker and a defender separated using `,` or `/`'
+      throw 'You need an attacker and a defender separated using `,`'
   }
 };
