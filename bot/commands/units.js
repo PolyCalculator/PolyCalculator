@@ -43,10 +43,13 @@ module.exports = {
       replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
       replyData.discord.fields.push({ name: 'Modifiers:', value: 'Poison: `p`\nBoost: `b`\nVeteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.' })
       replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`.' })
+
+      replyData.outcome = []
       for (const key in unitList) {
         if (key === 'nb')
           continue
 
+        replyData.outcome.push({ code: key, ...unitList[key] })
         if (replyData.discord.description === undefined)
           replyData.discord.description = `${unitList[key].name}: \`${key}\``
         else {
