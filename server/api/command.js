@@ -20,7 +20,10 @@ const router = express.Router();
 // Get stats
 router.get('/:commandName', async (req, res) => {
   const { commandName } = req.params
-  const { a } = req.query
+  let { a } = req.query
+
+  if (!a)
+    a = ''
 
   const command = commands.get(commandName) || commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
