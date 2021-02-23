@@ -19,8 +19,7 @@ module.exports.buildEmbed = function (data) {
 module.exports.poison = function (unit) {
   unit.name = `Poisoned ${unit.name}`
   unit.plural = `Poisoned ${unit.plural}`
-  unit.def = unit.def * 0.8
-  unit.bonus = 1
+  unit.bonus = 0.8
 }
 
 module.exports.boost = function (unit) {
@@ -33,7 +32,7 @@ module.exports.poisonandboost = function (unit) {
   unit.name = `Poisoned & Boosted ${unit.name}`
   unit.plural = `Poisoned & Boosted ${unit.plural}`
   unit.att = unit.att + 0.5
-  unit.def = unit.def * 0.8
+  unit.bonus = 0.8
 }
 
 module.exports.saveStats = function (data, db) {
