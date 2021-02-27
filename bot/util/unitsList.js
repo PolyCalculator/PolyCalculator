@@ -15,6 +15,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -35,6 +39,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -55,6 +63,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -75,6 +87,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -95,6 +111,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -115,6 +135,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -135,6 +159,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -155,6 +183,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -175,6 +207,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -194,6 +230,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -213,6 +253,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -233,6 +277,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -252,6 +300,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -271,6 +323,10 @@ module.exports = {
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -291,6 +347,10 @@ module.exports = {
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -311,6 +371,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -330,6 +394,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -349,6 +417,10 @@ module.exports = {
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -368,6 +440,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -387,6 +463,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -406,6 +486,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -425,6 +509,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -444,6 +532,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -463,6 +555,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: true,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -482,6 +578,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: true,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -501,6 +601,10 @@ module.exports = {
     range: true,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: true,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -520,6 +624,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: true,
+    canExplode: true,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -539,6 +647,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: true,
+    canExplode: true,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -558,6 +670,10 @@ module.exports = {
     range: false,
     retaliation: true,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -577,6 +693,10 @@ module.exports = {
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: true,
+    canExplode: true,
+    exploding: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -674,16 +794,22 @@ function onTheWater(navalArray) {
   }
 }
 
-function getOverride(unitArray) {
+// Get override and exploding
+function getOverride(unitArray, replyData) {
   const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
+  const exploding = unitArray.filter(x => x === 'x')
+
   if (overrides.length > 1)
     throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
-  else if (overrides.length === 0)
-    return
-  else {
+  else if (overrides.length === 1) {
     if (overrides[0] === 'r')
       this.forceRetaliation = true
     if (overrides[0] === 'nr')
       this.forceRetaliation = false
   }
+
+  if (exploding.length > 0 && this.canExplode)
+    this.exploding = true
+  if (exploding.length > 0 && !this.canExplode)
+    replyData.content.push([`${this.plural} can't explode, so I calculated it as a direct attack:`, {}])
 }

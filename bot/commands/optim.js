@@ -57,12 +57,12 @@ module.exports = {
       const attackers = []
 
       const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
-      defender.getOverride(defenderArray)
+      defender.getOverride(defenderArray, replyData)
 
       unitsArray.forEach(x => {
         const attackerArray = x.split(/ +/).filter(y => y != '')
         const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
-        attacker.getOverride(attackerArray)
+        attacker.getOverride(attackerArray, replyData)
         if (attacker.att !== 0)
           attackers.push(attacker)
       })

@@ -19,7 +19,7 @@ function combat(attacker, defender, replyData) {
   const totaldam = aforce + dforce;
   const totaldamSplash = aforceSplash + dforce;
 
-  const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+  const defdiff = Math.round(Math.round((aforce / totaldam * attacker.att * 4.5) * 10) / 10);
   const defdiffSplash = Math.floor(Math.round(aforceSplash / totaldamSplash * attacker.att * 4.5) / 2);
   defender.newhp = defender.currenthp - defdiff
   defender.newhpSplash = defender.currenthp - defdiffSplash
@@ -28,7 +28,7 @@ function combat(attacker, defender, replyData) {
   if (defender.newhp <= 0) {
     defender.newhp = 0;
   } else {
-    attdiff = Math.round(dforce / totaldam * defender.def * 4.5)
+    attdiff = Math.round(Math.round((dforce / totaldam * defender.def * 4.5) * 10) / 10)
     attacker.currenthp = attacker.currenthp - attdiff;
   }
 

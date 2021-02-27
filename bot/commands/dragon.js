@@ -38,13 +38,13 @@ module.exports = {
     const dragonStr = `dr ${dragonHP}`
     const dragonArray = dragonStr.split(/ +/).filter(x => x != '')
     const dragon = units.getUnitFromArray(dragonArray, replyData, trashEmoji)
-    dragon.getOverride(dragonArray)
+    dragon.getOverride(dragonArray, replyData)
 
     // DIRECT HIT UNIT BUILDING
     const directStr = unitsArray.shift()
     const directArray = directStr.split(/ +/).filter(x => x != '')
     const direct = units.getUnitFromArray(directArray, replyData, trashEmoji)
-    direct.getOverride(directArray)
+    direct.getOverride(directArray, replyData)
 
     const splashed = []
     if (unitsArray.length > 0) {
@@ -53,7 +53,7 @@ module.exports = {
         const splashedStr = unitsArray.shift()
         const splashedBits = splashedStr.split(/ +/).filter(x => x != '')
         const defender = units.getUnitFromArray(splashedBits, replyData, trashEmoji)
-        defender.getOverride(splashedBits)
+        defender.getOverride(splashedBits, replyData)
         splashed.push(defender)
       }
     }

@@ -136,7 +136,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
   let totaldam = aforce + dforce;
-  let defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+  let defdiff = Math.round(Math.round((aforce / totaldam * attacker.att * 4.5) * 10) / 10);
 
   const defenderBonus = ({
     0.8: ' (poisoned)',
@@ -158,7 +158,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
     hpdefender = hpdefender - defdiff;
     dforce = defender.def * hpdefender / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
-    defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+    defdiff = Math.round(Math.round((aforce / totaldam * attacker.att * 4.5) * 10) / 10);
 
     if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
       defender.bonus = 0.8
@@ -192,7 +192,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   for (attacker.currenthp = 0; attacker.currenthp <= attacker.maxhp; attacker.currenthp++) {
     aforce = attacker.att * attacker.currenthp / attacker.maxhp;
     totaldam = aforce + dforce;
-    const defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+    const defdiff = Math.round(Math.round((aforce / totaldam * attacker.att * 4.5) * 10) / 10);
     if (defender.currenthp - defdiff <= 0)
       break
   }
@@ -240,7 +240,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
     dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
-    defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+    defdiff = Math.round(Math.round((aforce / totaldam * attacker.att * 4.5) * 10) / 10);
     if (defender.currenthp - defdiff <= 0)
       break
   }
