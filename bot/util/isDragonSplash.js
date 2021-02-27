@@ -32,9 +32,16 @@ function combat(attacker, defender, replyData) {
     attacker.currenthp = attacker.currenthp - attdiff;
   }
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   replyData.description = 'This is the order for best outcome:'
   replyData.fields.push({ name: 'Attackers:', value: `**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}:** ${attacker.currenthp} ➔ **${(attacker.currenthp < 1 ? deadText[Math.floor(Math.random() * deadText.length)] : attacker.currenthp)}** (*-${attdiff}*)` })
-  replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(defender.newhp < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : defender.newhp} (*-${defdiff}*)\nIf splashed: ${defender.currenthp} ➔ ${(defender.newhpSplash < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : defender.newhpSplash} (*-${defdiffSplash}*)` })
+  replyData.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `${defender.currenthp} ➔ ${(defender.newhp < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : defender.newhp} (*-${defdiff}*)\nIf splashed: ${defender.currenthp} ➔ ${(defender.newhpSplash < 1) ? deadText[Math.floor(Math.random() * deadText.length)] : defender.newhpSplash} (*-${defdiffSplash}*)` })
 
   return replyData
 }

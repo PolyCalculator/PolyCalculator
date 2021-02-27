@@ -1,5 +1,5 @@
 const unitList = require('../util/unitsList')
-const { handleAliases, poison, boost, poisonandboost } = require('../util/util')
+const { handleAliases, poison, boost } = require('../util/util')
 
 module.exports = {
   name: 'units',
@@ -115,9 +115,10 @@ module.exports = {
     const toPoison = unitArray.filter(value => value.toLowerCase() === 'p')
     const toBoost = unitArray.filter(value => value.toLowerCase() === 'b')
 
-    if (toPoison.length > 0 && toBoost.length > 0)
-      poisonandboost(unit)
-    else {
+    if (toPoison.length > 0 && toBoost.length > 0) {
+      poison(unit)
+      boost(unit)
+    } else {
       if (toPoison.length > 0)
         poison(unit)
 

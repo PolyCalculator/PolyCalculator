@@ -62,9 +62,15 @@ module.exports.optim = function (attackers, defender, replyData) {
     hplost: defender.currenthp - defHP,
   }
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
   replyData.discord.description = 'This is the order for best outcome:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
-  replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
+  replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
 
   return replyData
 }
@@ -111,9 +117,16 @@ module.exports.calc = function (attackers, defender, replyData) {
     hplost: defender.currenthp - defHP,
   }
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   replyData.discord.description = 'The outcome of the fight is:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
-  replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}` })
+  replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `${defender.currenthp} ➔ ${(solution.defenderHP < 1) ? deathText : solution.defenderHP}` })
 
   return replyData
 }
@@ -125,10 +138,17 @@ module.exports.bulk = function (attacker, defender, replyData) {
   let totaldam = aforce + dforce;
   let defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   if (attacker.att <= 0)
     throw `When will you ever be able to attack with a **${attacker.name}**...`
   if (defdiff < 1)
-    throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**.`
+    throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonus}**.`
 
   let hpdefender = defender.currenthp;
 
@@ -139,6 +159,9 @@ module.exports.bulk = function (attacker, defender, replyData) {
     dforce = defender.def * hpdefender / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
     defdiff = Math.round(aforce / totaldam * attacker.att * 4.5);
+
+    if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
+      defender.bonus = 0.8
   }
 
   replyData.outcome.attackers.push({
@@ -155,7 +178,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
 
   replyData.outcome.response = i
 
-  replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}:`
+  replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonus}:`
   replyData.discord.fields.push({ name: `**Number of ${i > 1 && attacker.description === '' ? attacker.plural : attacker.name}${i > 1 && attacker.description !== '' ? attacker.description + 's' : attacker.description}**:`, value: `${i}` })
 
   return replyData
@@ -187,10 +210,17 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
 
   replyData.outcome.response = attacker.currenthp
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   if (attacker.currenthp > attacker.maxhp) {
-    replyData.discord.title = `A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
+    replyData.discord.title = `A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}.`
   } else {
-    replyData.discord.title = `The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'} is:`
+    replyData.discord.title = `The minimum attacker hp required to kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus} is:`
     replyData.discord.fields.push({ name: `**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}**:`, value: `${attacker.currenthp}` })
   }
 
@@ -227,11 +257,18 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
 
   replyData.outcome.response = defender.currenthp
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   if (defender.currenthp === 0) {
-    replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}.`
+    replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}.`
   } else {
     replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} will kill a defending:`
-    replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defender.bonus === 1 ? '' : defender.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `Max: ${defender.currenthp}hp` })
+    replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `Max: ${defender.currenthp}hp` })
   }
 
   return replyData
@@ -240,9 +277,16 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
 module.exports.dragon = function (dragon, direct, splashed, replyData) {
   const deathText = deadText[Math.floor(Math.random() * deadText.length)]
 
+  const directBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[direct.bonus]
+
   const directDiff = simpleCombat(dragon, direct)
   replyData.discord.fields.push({ name: 'Dragon: startHP ➔ endHP', value: `${dragon.currenthp} ➔ ${dragon.currenthp - directDiff.att <= 0 ? deathText : dragon.currenthp - directDiff.att}` })
-  replyData.discord.fields.push({ name: `**${direct.vetNow ? 'Veteran ' : ''}${direct.name}${direct.description}${direct.bonus === 1 ? '' : direct.bonus === 1.5 ? ' (protected)' : ' (walled)'}**:`, value: `${direct.currenthp} ➔ ${(direct.currenthp - directDiff.def < 1) ? deathText : direct.currenthp - directDiff.def}` })
+  replyData.discord.fields.push({ name: `**${direct.vetNow ? 'Veteran ' : ''}${direct.name}${direct.description}${directBonus}**:`, value: `${direct.currenthp} ➔ ${(direct.currenthp - directDiff.def < 1) ? deathText : direct.currenthp - directDiff.def}` })
 
   splashed.forEach(splash => {
     const deathText2 = deadText[Math.floor(Math.random() * deadText.length)]
