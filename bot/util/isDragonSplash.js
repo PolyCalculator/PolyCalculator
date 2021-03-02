@@ -1,4 +1,5 @@
 const deadText = require('./deadtexts')
+const { attackerCalc, defenderCalc } = require('./util')
 
 module.exports = function (attackers, defender, replyData) {
   if (attackers.length > 1)
@@ -19,8 +20,8 @@ function combat(attacker, defender, replyData) {
   const totaldam = aforce + dforce;
   const totaldamSplash = aforceSplash + dforce;
 
-  const defdiff = Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10))
-  const defdiffSplash = Math.floor(Math.round(parseFloat(parseFloat((aforce / totaldamSplash * attacker.att * 4.5).toPrecision(3)), 10)) / 2)
+  const defdiff = attackerCalc(aforce, totaldam, attacker);
+  const defdiffSplash = Math.floor(attackerCalc(aforce, totaldamSplash, attacker) / 2)
 
   defender.newhp = defender.currenthp - defdiff
   defender.newhpSplash = defender.currenthp - defdiffSplash
@@ -29,7 +30,7 @@ function combat(attacker, defender, replyData) {
   if (defender.newhp <= 0) {
     defender.newhp = 0;
   } else {
-    attdiff = Math.round(parseFloat(parseFloat((dforce / totaldam * defender.att * 4.5).toPrecision(3)), 10))
+    attdiff = defenderCalc(dforce, totaldam, defender)
     attacker.currenthp = attacker.currenthp - attdiff;
   }
 

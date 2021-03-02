@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const deadText = require('./deadtexts')
+const { attackerCalc, defenderCalc } = require('./util')
 const { generateArraySequences, generateSequences, multicombat, evaluate, simpleCombat } = require('./sequencer')
 
 module.exports.optim = function (attackers, defender, replyData) {
@@ -136,8 +137,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
   let totaldam = aforce + dforce;
-  let defdiff = Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10))
-    ;
+  let defdiff = attackerCalc(aforce, totaldam, attacker);
 
   const defenderBonus = ({
     0.8: ' (poisoned)',
@@ -159,7 +159,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
     hpdefender = hpdefender - defdiff;
     dforce = defender.def * hpdefender / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
-    defdiff = Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10));
+    defdiff = attackerCalc(aforce, totaldam, attacker);
 
     if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
       defender.bonus = 0.8
@@ -193,8 +193,8 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   for (attacker.currenthp = 0; attacker.currenthp <= attacker.maxhp; attacker.currenthp++) {
     aforce = attacker.att * attacker.currenthp / attacker.maxhp;
     totaldam = aforce + dforce;
-    const defdiff = Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10))
-      ;
+    const defdiff = attackerCalc(aforce, totaldam, attacker);
+
     if (defender.currenthp - defdiff <= 0)
       break
   }
@@ -242,7 +242,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
     dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
     totaldam = aforce + dforce;
-    defdiff = Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10));
+    defdiff = attackerCalc(aforce, totaldam, attacker);
 
     if (defender.currenthp - defdiff <= 0)
       break

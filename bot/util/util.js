@@ -1,5 +1,25 @@
 const { MessageEmbed, Collection } = require('discord.js')
 
+module.exports.attackerCalc = function (aforce, totaldam, attacker) {
+  const step1 = aforce * attacker.att
+  const step3 = step1 * 4.5
+  const step5 = step3 / totaldam
+  const step7 = Math.round(step5)
+  return step7
+
+  // return Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10))
+}
+
+module.exports.defenderCalc = function (aforce, totaldam, defender) {
+  const step1 = aforce * defender.def
+  const step3 = step1 * 4.5
+  const step5 = step3 / totaldam
+  const step7 = Math.round(step5)
+  return step7
+
+  // return Math.round(parseFloat(parseFloat((aforce / totaldam * attacker.att * 4.5).toPrecision(3)), 10))
+}
+
 module.exports.buildEmbed = function (data) {
   const embed = new MessageEmbed().setColor('#ff0066')
 
