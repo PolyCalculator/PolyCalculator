@@ -14,7 +14,7 @@ firebase-debug.log*
 test.*
 *.csv
 *.cpp
-*/test*
+test/**
 **/__pycache__/
 
 # Firebase cache
