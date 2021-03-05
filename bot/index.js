@@ -88,7 +88,6 @@ bot.on('message', async message => {
 
   const trashEmoji = isNotBotChannel && !command.forceNoDelete
   const generalDelete = { timeout: 5000 }
-  const failDelete = { timeout: 15000 }
 
   // DATA FOR DATABASE
   const dbData = {
@@ -135,7 +134,6 @@ bot.on('message', async message => {
     return message.channel.send(helpEmbed)
       .then(x => {
         x.react('🗑️').then().catch(console.error)
-        message.delete().then().catch(console.error)
       }).catch(console.error)
   }
 
@@ -194,12 +192,7 @@ bot.on('message', async message => {
       errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
 
     return message.channel.send(`${error}`)
-      .then(x => {
-        if (trashEmoji) {
-          x.delete(failDelete).then().catch(console.error)
-          message.delete(failDelete).then().catch(console.error)
-        }
-      }).catch(console.error)
+      .then().catch(console.error)
   }
 })
 
