@@ -206,6 +206,13 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
       break
   }
 
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   replyData.outcome.attackers.push({
     name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}`,
     maxhp: attacker.maxhp,
@@ -218,13 +225,6 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   }
 
   replyData.outcome.response = attacker.currenthp
-
-  const defenderBonus = ({
-    0.8: ' (poisoned)',
-    1: '',
-    1.5: ' (protected)',
-    4: ' (walled)'
-  })[defender.bonus]
 
   if (attacker.currenthp > attacker.maxhp) {
     replyData.discord.title = `A full hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot kill a ${defender.currenthp}hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}.`
@@ -254,6 +254,14 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
     if (defender.currenthp - defdiff <= 0)
       break
   }
+
+  const defenderBonus = ({
+    0.8: ' (poisoned)',
+    1: '',
+    1.5: ' (protected)',
+    4: ' (walled)'
+  })[defender.bonus]
+
   replyData.outcome.attackers.push({
     name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description}`,
     maxhp: attacker.maxhp,
@@ -266,13 +274,6 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   }
 
   replyData.outcome.response = defender.currenthp
-
-  const defenderBonus = ({
-    0.8: ' (poisoned)',
-    1: '',
-    1.5: ' (protected)',
-    4: ' (walled)'
-  })[defender.bonus]
 
   if (defender.currenthp === 0) {
     replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} cannot even kill a 1hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}.`
