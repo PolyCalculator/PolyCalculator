@@ -57,7 +57,8 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     hpLoss: [],
     hpDealt: [],
     sequence: sequence,
-    finalSequence: []
+    finalSequence: [],
+    wasPoisoned: false
   }
 
   const initialBonus = defender.bonus
@@ -73,8 +74,10 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     solution = combat(attacker, defender, solution)
     solution.finalSequence.push(sequence[index])
 
-    if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
+    if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding)) {
       poison(defender)
+      solution.wasPoisoned = true
+    }
   }
 
   defender.bonus = initialBonus
@@ -136,15 +139,6 @@ function combat(attacker, defender, solution) {
   return solution
 }
 
-// solution {
-//   defenderHP: 15,
-//   attackerCasualties: 0,
-//   attackersHP: 30,
-//   sequence: [1, 2, 3, 4],
-//   finalSequence: [1, 2, 3]
-//   hploss: [-3, -4, -5]
-// }
-
 module.exports.evaluate = function (bestSolution, newSolution) {
 
   if (newSolution.defenderHP < bestSolution.defenderHP)
@@ -189,9 +183,6 @@ module.exports.simpleCombat = function (attacker, defender) {
     attdiff = 0
   } else {
     attdiff = defenderCalc(dforce, totaldam, defender)
-
-    // if(attacker.currenthp - attdiff < 0)
-    //   attdiff = attacker.currenthp
   }
 
   return {

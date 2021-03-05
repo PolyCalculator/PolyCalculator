@@ -813,6 +813,7 @@ function getOverride(unitArray, replyData) {
     this.plural = `${this.plural} 💥`
     this.exploding = true
   }
+
   if (exploding.length > 0 && !this.canExplode)
     replyData.content.push([`${this.plural} can't explode, so I calculated it as a direct attack:`, {}])
 }

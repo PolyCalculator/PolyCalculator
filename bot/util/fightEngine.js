@@ -34,6 +34,9 @@ module.exports.optim = function (attackers, defender, replyData) {
       bestSolution = solution
   })
 
+  if (bestSolution.wasPoisoned)
+    defender.bonus = 0.8
+
   if (bestSolution.defenderHP === defender.currenthp)
     throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
@@ -55,20 +58,21 @@ module.exports.optim = function (attackers, defender, replyData) {
     descriptionArray.push(`${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}: ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - bestSolution.hpLoss[order]} (**${defHP}**)`)
   })
 
-  replyData.outcome.defender = {
-    name: `${defender.name}${defender.description}`,
-    currenthp: defender.currenthp,
-    afterhp: defHP,
-    maxhp: defender.maxhp,
-    hplost: defender.currenthp - defHP,
-  }
-
   const defenderBonus = ({
     0.8: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
   })[defender.bonus]
+
+  replyData.outcome.defender = {
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}`,
+    currenthp: defender.currenthp,
+    afterhp: defHP,
+    maxhp: defender.maxhp,
+    hplost: defender.currenthp - defHP,
+  }
+
   replyData.discord.description = 'This is the order for best outcome:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
   replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `${defender.currenthp} ➔ ${(bestSolution.defenderHP < 1) ? deathText : bestSolution.defenderHP}` })
@@ -90,6 +94,9 @@ module.exports.calc = function (attackers, defender, replyData) {
 
   const solution = multicombat(attackersSorted, defender, sequence)
 
+  if (solution.wasPoisoned)
+    defender.bonus = 0.8
+
   if (solution.defenderHP === defender.currenthp)
     throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
@@ -110,20 +117,20 @@ module.exports.calc = function (attackers, defender, replyData) {
     descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
   })
 
-  replyData.outcome.defender = {
-    name: `${defender.name}${defender.description}`,
-    currenthp: defender.currenthp,
-    afterhp: defHP,
-    maxhp: defender.maxhp,
-    hplost: defender.currenthp - defHP,
-  }
-
   const defenderBonus = ({
     0.8: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
   })[defender.bonus]
+
+  replyData.outcome.defender = {
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}`,
+    currenthp: defender.currenthp,
+    afterhp: defHP,
+    maxhp: defender.maxhp,
+    hplost: defender.currenthp - defHP,
+  }
 
   replyData.discord.description = 'The outcome of the fight is:'
   replyData.discord.fields.push({ name: 'Attacker: startHP ➔ endHP (enemyHP)', value: descriptionArray })
@@ -172,7 +179,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
   })
 
   replyData.outcome.defender = {
-    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}`,
     currenthp: defender.currenthp,
     maxhp: defender.maxhp,
   }
@@ -205,7 +212,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   })
 
   replyData.outcome.defender = {
-    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}`,
     currenthp: defender.currenthp,
     maxhp: defender.maxhp,
   }
@@ -253,7 +260,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   })
 
   replyData.outcome.defender = {
-    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}`,
+    name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}`,
     currenthp: defender.currenthp,
     maxhp: defender.maxhp,
   }
