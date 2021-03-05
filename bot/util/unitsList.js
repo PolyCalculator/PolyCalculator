@@ -681,6 +681,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   se: {
