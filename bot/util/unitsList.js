@@ -515,6 +515,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   he: {
@@ -538,6 +539,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   ki: {
@@ -561,6 +563,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   ph: {
@@ -607,6 +610,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   ra: {
@@ -653,6 +657,7 @@ module.exports = {
     exploding: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   ce: {
