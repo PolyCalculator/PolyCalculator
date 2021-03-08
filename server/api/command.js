@@ -9,11 +9,23 @@ const db = require('../../db')
 
 const commands = new Collection()
 
+const units = {
+  name: 'units',
+  // eslint-disable-next-line no-unused-vars
+  execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
+    const sql = 'SELECT * FROM units WHERE is_naval_unit = false'
+    const { rows } = await db.query(sql)
+
+    return { outcome: rows }
+  }
+}
+
 commands.set('calc', calc)
 commands.set('optim', optim)
 commands.set('bulk', bulk)
 commands.set('elim', elim)
 commands.set('unit', unit)
+commands.set('units', units)
 
 const router = express.Router();
 
@@ -38,13 +50,6 @@ router.get('/:commandName', async (req, res) => {
     },
     outcome: {
       attackers: [],
-      // {
-      //    name
-      //    beforehp: 0,
-      //    maxhp: 40,
-      //    hplost: 0,
-      //    hpdefender: 0
-      // }
       defender: {}
     }
   }
