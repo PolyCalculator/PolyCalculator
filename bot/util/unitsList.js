@@ -699,7 +699,7 @@ module.exports = {
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
-    poisonattack: false,
+    poisonattack: true,
     poisonexplosion: true,
     canExplode: true,
     exploding: false,
