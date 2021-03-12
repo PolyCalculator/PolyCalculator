@@ -118,6 +118,8 @@ function combat(attacker, defender, solution) {
     hpattacker = attacker.currenthp
   } else if (attacker.range === true && defender.range === false && attacker.forceRetaliation !== true) {
     hpattacker = attacker.currenthp
+  } else if (attacker.exploding || attacker.name === 'Segment') {
+    attdiff = attacker.currenthp
   } else {
     attdiff = defenderCalc(dforce, totaldam, defender)
     attacker.attdiff = attdiff
