@@ -13,7 +13,7 @@ const units = {
   name: 'units',
   // eslint-disable-next-line no-unused-vars
   execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
-    const sql = 'SELECT * FROM units WHERE is_naval_unit = false'
+    const sql = 'SELECT * FROM units'// WHERE is_naval_unit = false'
     const { rows } = await db.query(sql)
 
     return { outcome: rows }
