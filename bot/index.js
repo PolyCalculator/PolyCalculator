@@ -7,7 +7,6 @@ const help = require('./commands/help')
 const { buildEmbed, saveStats, logUse, milestoneMsg } = require('./util/util')
 const db = require('../db')
 let calcServer = {}
-let meee = {}
 let newsChannel = {}
 let logChannel = {}
 let errorChannel = {}
@@ -29,7 +28,6 @@ const dbServers = require('./util/dbServers')
 // --------------------------------------
 bot.once('ready', () => {
   calcServer = bot.guilds.cache.get('581872879386492929')
-  meee = bot.users.cache.get('217385992837922819')
   newsChannel = calcServer.channels.cache.get('654168953643466752')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
@@ -63,7 +61,7 @@ bot.on('message', async message => {
     const logMsg = []
     logMsg.push(`Content: ${message.content}`)
     logMsg.push(`DM from ${message.author} (${message.author.username})`)
-    logMsg.push(`${meee}`)
+    logMsg.push('<@217385992837922819>')
 
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
       .catch(console.error)
@@ -138,7 +136,7 @@ bot.on('message', async message => {
   }
 
   // Warning when channel name includes general and delete both messages
-  if (message.channel.name.includes('general') && message.author.id != meee.id)
+  if (message.channel.name.includes('general') && message.author.id != '217385992837922819')
     return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
       .then(x => {
         x.delete(generalDelete).then().catch(console.error)
@@ -182,7 +180,7 @@ bot.on('message', async message => {
     // INSERT INTO DB
     saveStats(dbData, db)
 
-    milestoneMsg(message, db, newsChannel, meee)
+    milestoneMsg(message, db, newsChannel)
 
     return
   } catch (error) {
@@ -225,7 +223,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     const memberRemoving = reaction.message.guild.member(user.id)
     const canDelete = memberRemoving.hasPermission('MANAGE_MESSAGES') && reaction.me
 
-    if (isUserRemoved || user.id === meee.id || canDelete) {
+    if (isUserRemoved || user.id === '217385992837922819' || canDelete) {
       reaction.message.delete()
         .then().catch(console.error)
       if (triggerMessage)
@@ -255,7 +253,7 @@ bot.on('channelDelete', deletedChannel => {
       if (x.some(y => y === deletedChannel.id))
         dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
           .then().catch(errorMsg => {
-            errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n${meee}!`)
+            errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n<@217385992837922819>!`)
               .then().catch(console.error)
           })
     }).catch(err => {
@@ -275,7 +273,7 @@ bot.on('channelCreate', createdChannel => {
   if (createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
     dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
       .then().catch(errorMsg => {
-        errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name} (${createdChannel.guild.id})\n${meee}!`)
+        errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name} (${createdChannel.guild.id})\n<@217385992837922819>!`)
           .then().catch()
       })
 })
@@ -292,10 +290,10 @@ bot.on('guildCreate', guild => {
 
   dbServers.addNewServer(guild.id, guild.name, botChannels)
     .then(logMsg => {
-      logChannel.send(`${logMsg}, ${meee}`)
+      logChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}, ${meee}`)
+      errorChannel.send(`${errorMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     })
   return
@@ -308,10 +306,10 @@ bot.on('guildCreate', guild => {
 bot.on('guildDelete', guild => {
   dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
-      logChannel.send(`${logMsg}, ${meee}`)
+      logChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}, ${meee}`)
+      errorChannel.send(`${errorMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     })
   return

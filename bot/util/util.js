@@ -66,16 +66,14 @@ module.exports.logUse = function (message, logChannel) {
   logChannel.send(newEmbed)
 }
 
-module.exports.milestoneMsg = async function (message, db, newsChannel, meee) {
+module.exports.milestoneMsg = async function (message, db, newsChannel) {
   let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
 
   rows = rows[0]
   rows.triggers = parseInt(rows.triggers)
 
-  if (rows.triggers % 50000 === 0) {
+  if (rows.triggers % 50000 === 0)
     newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
-    meee.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached **${rows.triggers}** uses! :tada:<:yay:585534167274618997>`)
-  }
 }
 
 module.exports.handleAliases = function (array) {
