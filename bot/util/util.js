@@ -81,14 +81,15 @@ module.exports.handleAliases = function (array) {
 
   const aliases = aliasMap.keyArray()
 
-  if (aliases.some(alias => array.some(str => str.toLowerCase().startsWith(alias)))) {
-    const index = array.findIndex(el => aliases.some(alias => alias === el.substring(0, 3).toLowerCase()))
-    if (index === -1)
-      return
-
-    const openedAlias = aliasMap.get(array[index].substring(0, 3).toLowerCase())
-    newArray.splice(index, 1, openedAlias[0], openedAlias[1])
-  }
+  array.forEach(newArrayEl => {
+    if (aliases.some(alias => newArrayEl.substring(0, 3) === alias)) {//array.some(str => str.toLowerCase().startsWith(alias)))) {
+      const index = array.findIndex(el => aliases.some(alias => alias === el.substring(0, 3).toLowerCase()))
+      if (index !== -1) {
+        const openedAlias = aliasMap.get(array[index].substring(0, 3).toLowerCase())
+        newArray.splice(index, 1, openedAlias[0], openedAlias[1])
+      }
+    }
+  })
 
   return newArray
 }

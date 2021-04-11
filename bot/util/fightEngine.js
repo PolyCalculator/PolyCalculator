@@ -37,8 +37,8 @@ module.exports.optim = function (attackers, defender, replyData) {
   if (bestSolution.wasPoisoned)
     defender.bonus = 0.8
 
-  if (bestSolution.defenderHP === defender.currenthp)
-    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
+  // if (bestSolution.defenderHP === defender.currenthp)
+  //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
   let defHP = defender.currenthp
@@ -97,8 +97,8 @@ module.exports.calc = function (attackers, defender, replyData) {
   if (solution.wasPoisoned)
     defender.bonus = 0.8
 
-  if (solution.defenderHP === defender.currenthp)
-    throw `No unit can make a dent in this ${defender.name}${defender.description}...`
+  // if (solution.defenderHP === defender.currenthp)
+  //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
   const descriptionArray = []
   let defHP = defender.currenthp

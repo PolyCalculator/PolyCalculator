@@ -68,8 +68,8 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     if (solution.defenderHP <= 0)
       break
 
-    if (doesNoDamage(attacker, defender, solution)) // returning -1 if the attacker does 0 dammage to the defender
-      continue
+    // if (doesNoDamage(attacker, defender, solution)) // returning -1 if the attacker does 0 dammage to the defender
+    //   continue
 
     solution = combat(attacker, defender, solution)
     solution.finalSequence.push(sequence[index])
@@ -85,19 +85,19 @@ module.exports.multicombat = function (attackers, defender, sequence) {
   return solution
 }
 
-function doesNoDamage(attacker, defender, solution) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
+// function doesNoDamage(attacker, defender, solution) {
+//   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+//   const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
 
-  if (attacker.att <= 0)
-    return true
+//   if (attacker.att <= 0)
+//     return true
 
-  const totaldam = aforce + dforce;
-  const defdiff = attackerCalc(aforce, totaldam, attacker)
+//   const totaldam = aforce + dforce;
+//   const defdiff = attackerCalc(aforce, totaldam, attacker)
 
-  if (defdiff < 1)
-    return true
-}
+//   if (defdiff < 1)
+//     return true
+// }
 
 function combat(attacker, defender, solution) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
