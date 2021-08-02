@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Client, Collection } = require('discord.js')
-const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
+const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS'] })
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
@@ -52,7 +52,7 @@ bot.once('ready', () => {
 //      EVENT ON MESSAGE
 //
 // --------------------------------------
-bot.on('message', async message => {
+bot.on('messageCreate', async message => {
   if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
     return
 
@@ -150,7 +150,7 @@ bot.on('message', async message => {
   }
 
   // Check if the user has the permissions necessary to execute the command
-  if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id)))
+  if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.permissions.has(x)) || command.usersAllowed.some(x => x === message.author.id)))
     return message.channel.send('Only an admin can use this command, sorry!')
 
   try {
@@ -220,8 +220,8 @@ bot.on('messageReactionAdd', async (reaction, user) => {
       isUserRemoved = true && returned.rows[0].id === user.id
     }
 
-    const memberRemoving = reaction.message.guild.member(user.id)
-    const canDelete = memberRemoving.hasPermission('MANAGE_MESSAGES') && reaction.me
+    const memberRemoving = await reaction.message.guild.members.fetch(user.id)
+    const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES') && reaction.me
 
     if (isUserRemoved || user.id === '217385992837922819' || canDelete) {
       reaction.message.delete()

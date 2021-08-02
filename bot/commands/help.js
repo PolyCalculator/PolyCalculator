@@ -12,14 +12,14 @@ module.exports = {
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function (message, argsStr, replyData/*, dbData*/) {
+  execute: function(message, argsStr, replyData/*, dbData*/) {
     const { commands } = message.client;
     const argsArray = argsStr.split(/ +/)
     const command = commands.get(argsArray[0]) || commands.find(alias => alias.aliases && alias.aliases.includes(argsArray[0]))
     let doesntHavePerms
 
     if (command && command.permsAllowed)
-      doesntHavePerms = !(command.permsAllowed.some(x => message.member.hasPermission(x)) || command.usersAllowed.some(x => x === message.author.id))
+      doesntHavePerms = !(command.permsAllowed.some(x => message.member.permissions.has(x)) || command.usersAllowed.some(x => x === message.author.id))
 
     if (doesntHavePerms)
       throw 'You don\'t have what it takes to use this :sunglasses:\nYou can try `.help` to get the list of commands!'
