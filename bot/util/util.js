@@ -27,7 +27,7 @@ module.exports.buildEmbed = function(data) {
       embed.setDescription(data.discord.description)
     if (data.discord.fields)
       data.discord.fields.forEach(el => {
-        embed.addField(el.name, el.value)
+        embed.addField(el.name, el.value.join('\n'))
       })
   }
   return embed
