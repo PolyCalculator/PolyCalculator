@@ -33,7 +33,7 @@ bot.once('ready', () => {
   errorChannel = calcServer.channels.cache.get('658125562455261185')
   let toggle = true
 
-  setInterval(function () {
+  setInterval(function() {
     if (toggle) {
       bot.user.setActivity(`${prefix}units`, { type: 'PLAYING' })
       toggle = false
@@ -129,7 +129,7 @@ bot.on('message', async message => {
     const reply = help.execute(message, command.name, replyData, dbData, trashEmoji)
     const helpEmbed = buildEmbed(reply)
 
-    return message.channel.send(helpEmbed)
+    return message.channel.send({ embeds: [helpEmbed] })
       .then(x => {
         x.react('🗑️').then().catch(console.error)
       }).catch(console.error)
@@ -162,7 +162,7 @@ bot.on('message', async message => {
     replyObj.content.forEach(async other => {
       if (typeof other[0] === 'object')
         other[0] = buildEmbed(other[0])
-      const warnings = await message.channel.send(other[0], other[1])
+      const warnings = await message.channel.send({ embeds: [other[0], other[1]] })
       if (replyObj.deleteContent)
         warnings.delete({ timeout: 15000 })
     })
@@ -172,7 +172,7 @@ bot.on('message', async message => {
 
     const msg = buildEmbed(replyObj)
 
-    const replyMessage = await message.channel.send(msg)
+    const replyMessage = await message.channel.send({ embeds: [msg] })
     dbData.url = replyMessage.url
     if (trashEmoji)
       replyMessage.react('🗑️').then().catch(console.error)

@@ -63,7 +63,7 @@ module.exports.logUse = function(message, logChannel) {
     }
   }
   const newEmbed = module.exports.buildEmbed(logData)
-  logChannel.send(newEmbed)
+  logChannel.send({ embeds: [newEmbed] })
 }
 
 module.exports.milestoneMsg = async function(message, db, newsChannel) {

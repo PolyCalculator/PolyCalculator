@@ -15,7 +15,7 @@ module.exports = {
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: function (message, argsStr, replyData, dbData) {
+  execute: function(message, argsStr, replyData, dbData) {
     if (argsStr.length < 1)
       throw 'Input your feedback after the command'
 
@@ -27,7 +27,7 @@ module.exports = {
     feedbackData.description = `From: ${message.author} (${message.author.tag})\n${message.url}`
     const embed = buildEmbed(feedbackData)
 
-    feedbackChannel.send(embed)
+    feedbackChannel.send({ embeds: [embed] })
     feedbackChannel.send('<@217385992837922819>')
 
     replyData.content.push(['Feedback sent! :wave:', {}])
