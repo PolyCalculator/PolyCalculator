@@ -16,6 +16,6 @@ module.exports = ['HUGH\'S YOUR DADDY!?',
   'BIG OOF',
   'SCHOOLED',
   'SHELLED',
-  'SMOKED'
+  'SMOKED',
   'NOOTED',
 ]
