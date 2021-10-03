@@ -27,7 +27,10 @@ module.exports.buildEmbed = function(data) {
       embed.setDescription(data.discord.description)
     if (data.discord.fields)
       data.discord.fields.forEach(el => {
-        embed.addField(el.name, el.value.join('\n'))
+        if (Array.isArray(el.value))
+          embed.addField(el.name, el.value.join('\n'))
+        else
+          embed.addField(el.name, el.value)
       })
   }
   return embed
@@ -79,7 +82,7 @@ module.exports.milestoneMsg = async function(message, db, newsChannel) {
 module.exports.handleAliases = function(array) {
   const newArray = array
 
-  const aliases = aliasMap.keyArray()
+  const aliases = [...aliasMap.keys()]
 
   array.forEach(newArrayEl => {
     if (aliases.some(alias => newArrayEl.substring(0, 3) === alias)) {//array.some(str => str.toLowerCase().startsWith(alias)))) {
