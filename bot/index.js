@@ -160,9 +160,8 @@ bot.on('messageCreate', async message => {
     logUse(message, logChannel)
 
     replyObj.content.forEach(async other => {
-      if (typeof other[0] === 'object')
-        other[0] = buildEmbed(other[0])
-      const warnings = await message.channel.send({ embeds: [other[0], other[1]] })
+      const warnings = await message.channel.send(other[0])
+
       if (replyObj.deleteContent)
         warnings.delete({ timeout: 15000 })
     })
