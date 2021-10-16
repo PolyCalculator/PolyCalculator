@@ -34,7 +34,7 @@ module.exports = {
       replyData.discord.fields.push({ name: '**Long usage:**', value: command.longUsage(process.env.PREFIX) })
       replyData.discord.footer = `aliases: ${command.aliases.join(', ')}`
       if (command.category === 'Main' || command.category === 'Advanced') {
-        replyData.discord.fields.push({ name: '\u200b', value: '**Other features**' })
+        // replyData.discord.fields.push({ name: '\u200b', value: '**Other features**' })
         replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
         replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
         replyData.discord.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`' })
@@ -48,7 +48,6 @@ module.exports = {
         Main: {},
         Advanced: {},
         // Paid: {},
-        Settings: {},
         Other: {}
       }
 
