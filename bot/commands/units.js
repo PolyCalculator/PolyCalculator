@@ -11,7 +11,6 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}units`
   },
-  forceNoDelete: false,
   category: 'Main',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
@@ -20,7 +19,7 @@ module.exports = {
     failure: 1000
   },
   // eslint-disable-next-line no-unused-vars
-  execute: function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: function(message, argsStr, replyData, dbData) {
     if (argsStr.length != 0) {
       const argsArray = argsStr.split(/ +/)
       // const unitCode = argsArray[0].slice(0, 2).toLowerCase()
@@ -60,7 +59,7 @@ module.exports = {
 
     return replyData
   },
-  getUnit: function (unitCode) {
+  getUnit: function(unitCode) {
     if (unitCode.length < 2)
       throw 'You need a minimum of two characters to return the stats for a specific unit!'
     if (!unitList[unitCode])
@@ -68,7 +67,7 @@ module.exports = {
 
     return { ...unitList[unitCode] }
   },
-  getUnitFromArray: function (unitArray, replyData) {
+  getUnitFromArray: function(unitArray, replyData) {
     unitArray = handleAliases(unitArray)
 
     const unitKeys = Object.keys(unitList);
@@ -129,7 +128,7 @@ module.exports = {
     return unit
   },
   // eslint-disable-next-line no-unused-vars
-  getBothUnitArray: function (args) {
+  getBothUnitArray: function(args) {
     if (args.includes(','))
       return args.split(',')
     else

@@ -11,11 +11,10 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}bulk warrior, defender d`
   },
-  forceNoDelete: false,
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: function(message, argsStr, replyData, dbData) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
       replyData.content.push(['Try `.help b` for more information on how to use this command!', {}])
       return replyData
@@ -26,8 +25,8 @@ module.exports = {
     const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
     const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
 
-    const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
-    const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
+    const attacker = units.getUnitFromArray(attackerArray, replyData)
+    const defender = units.getUnitFromArray(defenderArray, replyData)
     replyData = fight.bulk(attacker, defender, replyData)
 
     dbData.attacker = attacker.name

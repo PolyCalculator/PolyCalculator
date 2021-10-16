@@ -8,11 +8,10 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}formula`
   },
-  forceNoDelete: true,
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function (message, argsStr, replyData) {
+  execute: function(message, argsStr, replyData) {
     replyData.discord.title = 'Formula!'
     replyData.discord.description = 'Last block here is an arithmetic version.\nThe first blocks is in text format.'
 

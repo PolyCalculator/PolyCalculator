@@ -12,7 +12,7 @@ const commands = new Collection()
 const units = {
   name: 'units',
   // eslint-disable-next-line no-unused-vars
-  execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: async function(message, argsStr, replyData, dbData) {
     const sql = 'SELECT * FROM units'// WHERE is_naval_unit = false'
     const { rows } = await db.query(sql)
 

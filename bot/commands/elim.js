@@ -11,11 +11,10 @@ module.exports = {
   longUsage(prefix) {
     return `\`${prefix}e gi 32, de w ?\`\nThis returns the strongest defender the 32hp giant can kill.\n\n\`${prefix}e gi ?, de w 6\`\nThis returns the weakest giant needed to kill a walled defender with 6hp.`
   },
-  forceNoDelete: false,
   category: 'Advanced',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: function(message, argsStr, replyData, dbData) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
       replyData.content.push(['Try `.help e` for more information on how to use this command!', {}])
       return replyData
@@ -32,8 +31,8 @@ module.exports = {
       unitsArray[1] = unitsArray[1] + '?'
     }
 
-    const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
-    const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
+    const attacker = units.getUnitFromArray(attackerArray, replyData)
+    const defender = units.getUnitFromArray(defenderArray, replyData)
 
     if (unitsArray[0].includes('?') && unitsArray[1].includes('?')) {
       throw 'I do not support elim with `?` on each side anymore.\nPlease add it either the attacker or the defender.'

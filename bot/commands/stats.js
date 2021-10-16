@@ -10,11 +10,10 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}stats [@ping]`
   },
-  forceNoDelete: false,
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr, replyData/*, dbData*/) {
+  execute: async function(message, argsStr, replyData/*, dbData*/) {
     const ping = message.mentions.users.first()
     const user = message.mentions.users.first() || message.author
 

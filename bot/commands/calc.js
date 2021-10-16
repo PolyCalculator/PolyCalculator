@@ -11,12 +11,11 @@ module.exports = {
   longUsage(prefix) {
     return `\`${prefix}calc warrior 7, rider 5\` or\n\`${prefix}calc warrior boat, warrior ship, warrior bship, defender d\``
   },
-  forceNoDelete: false,
   category: 'Main',
   // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: async function(message, argsStr, replyData, dbData) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
       replyData.content.push(['Try `.help c` for more information on how to use this command!', {}])
       return replyData
@@ -28,12 +27,12 @@ module.exports = {
     const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
     const attackers = []
 
-    const defender = units.getUnitFromArray(defenderArray, replyData, trashEmoji)
+    const defender = units.getUnitFromArray(defenderArray, replyData)
     defender.getOverride(defenderArray, replyData)
 
     unitsArray.forEach(x => {
       const attackerArray = x.split(/ +/).filter(y => y != '')
-      const attacker = units.getUnitFromArray(attackerArray, replyData, trashEmoji)
+      const attacker = units.getUnitFromArray(attackerArray, replyData)
       attacker.getOverride(attackerArray, replyData)
       if (attacker.att !== 0)
         attackers.push(attacker)

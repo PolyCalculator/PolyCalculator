@@ -11,12 +11,11 @@ module.exports = {
   longUsage(prefix) {
     return `\`${prefix}dragon [15,] wa 7, ri 5\`\n[dragon HP], direct hit, splashed unit, splashed unit\n[] means optional`
   },
-  forceNoDelete: false,
   category: 'Advanced',
   // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr, replyData, dbData, trashEmoji) {
+  execute: async function(message, argsStr, replyData, dbData) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
       replyData.content.push(['Try `.help dr` for more information on how to use this command!', {}])
       return replyData
@@ -37,13 +36,13 @@ module.exports = {
     // DRAGON UNIT BUILDING
     const dragonStr = `dr ${dragonHP}`
     const dragonArray = dragonStr.split(/ +/).filter(x => x != '')
-    const dragon = units.getUnitFromArray(dragonArray, replyData, trashEmoji)
+    const dragon = units.getUnitFromArray(dragonArray, replyData)
     dragon.getOverride(dragonArray, replyData)
 
     // DIRECT HIT UNIT BUILDING
     const directStr = unitsArray.shift()
     const directArray = directStr.split(/ +/).filter(x => x != '')
-    const direct = units.getUnitFromArray(directArray, replyData, trashEmoji)
+    const direct = units.getUnitFromArray(directArray, replyData)
     direct.getOverride(directArray, replyData)
 
     const splashed = []
@@ -52,7 +51,7 @@ module.exports = {
       while (unitsArray.length > 0) {
         const splashedStr = unitsArray.shift()
         const splashedBits = splashedStr.split(/ +/).filter(x => x != '')
-        const defender = units.getUnitFromArray(splashedBits, replyData, trashEmoji)
+        const defender = units.getUnitFromArray(splashedBits, replyData)
         defender.getOverride(splashedBits, replyData)
         splashed.push(defender)
       }

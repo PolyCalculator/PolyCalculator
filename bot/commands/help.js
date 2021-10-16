@@ -8,7 +8,6 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}h {command}`
   },
-  forceNoDelete: false,
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],

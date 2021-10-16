@@ -10,12 +10,11 @@ module.exports = {
   longUsage() {
     return `${process.env.PREFIX}gooch`
   },
-  forceNoDelete: false,
   category: 'hidden',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
   // eslint-disable-next-line no-unused-vars
-  execute: function (message, argsStr, replyData, dbData) {
+  execute: function(message, argsStr, replyData, dbData) {
     replyData.content.push([whatIsGooch[Math.floor(Math.random() * whatIsGooch.length)], {}])
 
     return replyData

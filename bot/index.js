@@ -68,11 +68,6 @@ bot.on('messageCreate', async message => {
     return logChannel.send(logMsg).catch(console.error)
   }
 
-  // BOOLEAN for if the channel is registered as a bot channel in the bot
-  let isNotBotChannel = true
-  dbServers.isRegisteredChannel(message.guild.id, message.channel.id)
-    .then(x => isNotBotChannel = !x).catch(console.error)
-
   const textStr = message.cleanContent.slice(prefix.length)
   const commandName = textStr.split(/ +/).shift().toLowerCase();
   const argsStr = textStr.slice(commandName.length + 1)
@@ -84,7 +79,6 @@ bot.on('messageCreate', async message => {
   if (!command)
     return
 
-  const trashEmoji = isNotBotChannel && !command.forceNoDelete
   const generalDelete = { timeout: 5000 }
 
   // DATA FOR DATABASE
@@ -95,7 +89,7 @@ bot.on('messageCreate', async message => {
     author_tag: message.author.tag,
     server_id: message.guild.id,
     arg: argsStr,
-    will_delete: trashEmoji,
+    will_delete: true,
     message_id: message.id
   }
   const replyData = {
@@ -126,7 +120,7 @@ bot.on('messageCreate', async message => {
   }
 
   if (argsStr.includes('help')) {
-    const reply = help.execute(message, command.name, replyData, dbData, trashEmoji)
+    const reply = help.execute(message, command.name, replyData, dbData)
     const helpEmbed = buildEmbed(reply)
 
     return message.channel.send({ embeds: [helpEmbed] })
@@ -155,7 +149,7 @@ bot.on('messageCreate', async message => {
 
   try {
     // EXECUTE COMMAND
-    const replyObj = await command.execute(message, argsStr, replyData, dbData, trashEmoji)
+    const replyObj = await command.execute(message, argsStr, replyData, dbData)
 
     logUse(message, logChannel)
 
@@ -173,8 +167,8 @@ bot.on('messageCreate', async message => {
 
     const replyMessage = await message.channel.send({ embeds: [msg] })
     dbData.url = replyMessage.url
-    if (trashEmoji)
-      replyMessage.react('🗑️').then().catch(console.error)
+
+    replyMessage.react('🗑️').then().catch(console.error)
 
     // INSERT INTO DB
     saveStats(dbData, db)
@@ -240,54 +234,13 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     }
   }
 })
-
-// --------------------------------------
-//
-//    EVENT ON CHANNEL DELETE
-//
-// --------------------------------------
-bot.on('channelDelete', deletedChannel => {
-  dbServers.getBotChannels(deletedChannel.guild.id, deletedChannel.guild.name, '(channelDelete)')
-    .then(x => { // x = array of bot channels
-      if (x.some(y => y === deletedChannel.id))
-        dbServers.removeABotChannel(deletedChannel.guild.id, deletedChannel.id, deletedChannel.guild.name)
-          .then().catch(errorMsg => {
-            errorChannel.send(`${errorMsg}\n${deletedChannel.channel.name} in ${deletedChannel.guild.name} (${deletedChannel.guild.id})\n<@217385992837922819>!`)
-              .then().catch(console.error)
-          })
-    }).catch(err => {
-      // eslint-disable-next-line no-console
-      console.log(err.stack || err)
-    })
-})
-// --------------------------------------
-//
-//    EVENT ON CHANNEL CREATE
-//
-// --------------------------------------
-bot.on('channelCreate', createdChannel => {
-  if (createdChannel.type != 'text')
-    return
-
-  if (createdChannel.name.includes('bot') || createdChannel.name.includes('command'))
-    dbServers.addABotChannel(createdChannel.guild.id, createdChannel.id, createdChannel.guild.name)
-      .then().catch(errorMsg => {
-        errorChannel.send(`${errorMsg}\n${createdChannel.channel.name} in ${createdChannel.guild.name} (${createdChannel.guild.id})\n<@217385992837922819>!`)
-          .then().catch()
-      })
-})
 // --------------------------------------
 //
 //     EVENT ON NEW GUILD JOIN
 //
 // --------------------------------------
 bot.on('guildCreate', guild => {
-  let botChannels = []
-  const botChannelsMap = guild.channels.cache.filter(x => (x.name.includes('bot') || x.name.includes('command')) && x.type === 'text')
-  if (botChannelsMap.size > 0)
-    botChannels = botChannelsMap.keys()
-
-  dbServers.addNewServer(guild.id, guild.name, botChannels)
+  dbServers.addNewServer(guild.id, guild.name)
     .then(logMsg => {
       logChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
@@ -297,6 +250,7 @@ bot.on('guildCreate', guild => {
     })
   return
 })
+
 // --------------------------------------
 //
 //      EVENT ON REMOVE GUILD JOIN

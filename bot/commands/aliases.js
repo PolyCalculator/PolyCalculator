@@ -8,11 +8,10 @@ module.exports = {
   longUsage(prefix) {
     return `${prefix}alias`
   },
-  forceNoDelete: false,
   category: 'Other',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr, replyData/*, dbData*/) {
+  execute: async function(message, argsStr, replyData/*, dbData*/) {
     const categoriesMapped = {
       Main: {},
       Advanced: {},
