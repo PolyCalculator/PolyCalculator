@@ -51,3 +51,21 @@ module.exports.removeServer = function(serverId, serverName) {
     })
   })
 }
+
+module.exports.serverExists = function(serverId) {
+  return new Promise((resolve, reject) => {
+    const sql = 'SELECT server_name FROM servers WHERE server_id = $1'
+    const values = [serverId]
+
+    pool.query(sql, values, (err, res) => {
+      if (err) {
+        reject(`${err.message}. Ping an @**admin** if you need help!`)
+      } else {
+        if (res.rows[0] === undefined)
+          resolve(false)
+        else
+          resolve(true)
+      }
+    })
+  })
+}
