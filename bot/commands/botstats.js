@@ -15,7 +15,7 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   execute: function(message, argsStr, replyData, dbData) {
     replyData.content.push([`Total de serveurs: ${message.client.guilds.cache.size}`, {}])
-    const serverMap = message.client.guilds.cache.array()
+    const serverMap = message.client.guilds.cache.map(x => x)
     serverMap.sort((a, b) => {
       if (a.me.joinedTimestamp < b.me.joinedTimestamp)
         return -1
@@ -25,7 +25,7 @@ module.exports = {
       return 0
     })
     serverMap.forEach((x) => {
-      replyData.content.push([`**${x.name}** (${x.id})\n${x.owner.user} (@${x.owner.user.tag}) => ${x.memberCount} members`, {}])
+      replyData.content.push([`**${x.name}** (${x.id})\n${x.ownerId} (<@${x.ownerId}>) => ${x.memberCount} members`, {}])
     })
 
     return replyData

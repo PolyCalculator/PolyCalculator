@@ -11,12 +11,20 @@ let newsChannel = {}
 let logChannel = {}
 let errorChannel = {}
 
-// bot.commands as a collection(Map) of commands from ./commands
-const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'))
 bot.commands = new Collection()
+const commandFiles = fs.readdirSync('./bot/commands').filter(file => file.endsWith('.js'))
+
+bot.interactions = new Collection();
+const interactionFiles = fs.readdirSync('./bot/interactions').filter(file => file.endsWith('.js') && !file.endsWith('index.js'));
+
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`)
   bot.commands.set(command.name, command)
+}
+
+for (const file of interactionFiles) {
+  const interaction = require(`./interactions/${file}`);
+  bot.interactions.set(interaction.data.name, interaction);
 }
 
 const dbServers = require('./util/dbServers')
@@ -45,6 +53,26 @@ bot.once('ready', () => {
 
   // eslint-disable-next-line no-console
   console.log(`Logged in as ${bot.user.username}`)
+});
+
+// --------------------------------------
+//
+//      EVENT ON SLASH
+//
+// --------------------------------------
+bot.on('interactionCreate', async interaction => {
+  if (!interaction.isCommand()) return;
+
+  const command = bot.interactions.get(interaction.commandName);
+
+  if (!command) return;
+
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({ content: 'There was an error while executing this command!'/*, ephemeral: true */ });
+  }
 });
 
 // --------------------------------------
