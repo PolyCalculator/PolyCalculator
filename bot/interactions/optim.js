@@ -1,12 +1,12 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const calc = require('../commands/calc')
+const optim = require('../commands/optim')
 const { pushIfValue } = require('../util/util')
 
 module.exports = {
   dev: false,
   data: new SlashCommandBuilder()
-    .setName('calc')
-    .setDescription('Sequential calculation of attacks on one defender!')
+    .setName('optim')
+    .setDescription('Optimal calculation of attacks on one defender!')
     .addStringOption(option => option.setName('attacker1').setDescription('Enter an attacker').setRequired(true))
     .addStringOption(option => option.setName('defender').setDescription('Enter an defender').setRequired(true))
     .addStringOption(option => option.setName('attacker2').setDescription('Enter an attacker'))
@@ -19,9 +19,6 @@ module.exports = {
     .addStringOption(option => option.setName('attacker9').setDescription('Enter an attacker'))
     .addStringOption(option => option.setName('attacker10').setDescription('Enter an attacker')),
   async execute(interaction, replyData, dbData) {
-    // const attackers = interaction.options.data.filter(x => x.name.startsWith('attacker'))
-    // const defender = interaction.options.data.filter(x => x.name === 'defender')[0]
-
     const array = []
     pushIfValue(array, interaction.options.get('attacker1'))
     pushIfValue(array, interaction.options.get('attacker2'))
@@ -40,7 +37,7 @@ module.exports = {
     dbData.arg = input
     dbData.content = `${interaction.commandName} ${input}`
 
-    return await calc.execute({}, input, replyData, dbData)
+    return await optim.execute(interaction, input, replyData, dbData)
   },
 };
 

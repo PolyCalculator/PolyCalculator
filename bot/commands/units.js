@@ -35,7 +35,7 @@ module.exports = {
 
       replyData.outcome = unit
       replyData.discord.title = unit.name
-      replyData.discord.description = descriptionArray
+      replyData.discord.description = descriptionArray.join('\n')
     } else {
       replyData.discord.title = 'All units by code'
       replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })

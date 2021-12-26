@@ -17,6 +17,11 @@ module.exports.defenderCalc = function(aforce, totaldam, defender) {
   return step7
 }
 
+module.exports.pushIfValue = function(array, option) {
+  if (option !== null)
+    array.push(option.value)
+}
+
 module.exports.buildEmbed = function(data) {
   const embed = new MessageEmbed().setColor('#ff0066')
 
@@ -25,6 +30,8 @@ module.exports.buildEmbed = function(data) {
       embed.setTitle(data.discord.title)
     if (data.discord.description)
       embed.setDescription(data.discord.description)
+    else
+      embed.setDescription('')
     if (data.discord.fields)
       data.discord.fields.forEach(el => {
         if (Array.isArray(el.value))

@@ -27,7 +27,7 @@ module.exports = {
 
       if (unitsArray.length > 4) {
         const sql = 'SELECT user_id FROM premium WHERE user_id = $1'
-        const values = [message.author.id]
+        const values = [message.author ? message.author.id : message.user.id]
         const sqlGuild = 'SELECT guild_id FROM premium WHERE guild_id = $1'
         const valuesGuild = [message.guild.id]
 
@@ -38,7 +38,7 @@ module.exports = {
         if (guildPremium.rows.length === 0) {
           const userPremium = await db.query(sql, values)
           if (userPremium.rows.length === 0) {
-            logChannel.send(`${message.author} (${message.author.tag}) exceeded the max number of optim in **${message.guild.name}**, <@217385992837922819>\n${message.url}`)
+            logChannel.send(`${message.author} (${message.author ? message.author.tag : message.user.tag}) exceeded the max number of optim in **${message.guild.name}**, <@217385992837922819>\n${message.url}`)
             replyData.discord.title = 'You need to be a **premium member** to be allows to use `.optim` with more than **3 attackers**.'
             replyData.discord.description = 'To become a premium member, you can DM the creator and pay any amount of `$`.\nYou can DM <@217385992837922819> (jd#0001) or wait for him to DM you the PayPal link!'
             replyData.discord.footer = 'The money is used to pay the monthly fee necessary to keep the 24/7 server on which the bot runs, rolling.'

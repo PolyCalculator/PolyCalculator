@@ -63,15 +63,60 @@ bot.once('ready', () => {
 bot.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
-  const command = bot.interactions.get(interaction.commandName);
+  const commandInteraction = bot.interactions.get(interaction.commandName);
 
-  if (!command) return;
+  if (!commandInteraction) return;
+
+  // DATA FOR DATABASE
+  const dbData = {
+    command: commandInteraction.name,
+    author_id: interaction.user.id,
+    author_tag: interaction.user.tag,
+    server_id: interaction.guild.id,
+    will_delete: true,
+    message_id: interaction.id,
+    isInteraction: true
+  }
+  let replyData = {
+    content: [],
+    deleteContent: false,
+    discord: {
+      title: undefined,
+      description: undefined,
+      fields: [],
+      footer: undefined
+    },
+    outcome: {
+      attackers: [],
+      // {
+      //    name
+      //    beforehp: 0,
+      //    maxhp: 40,
+      //    hplost: 0,
+      //    hpdefender: 0
+      // }
+      defender: {
+        // name: '',
+        // currenthp: 0,
+        // maxhp: 40,
+        // hplost: 0,
+      }
+    }
+  }
 
   try {
-    await command.execute(interaction);
+    replyData = await commandInteraction.execute(interaction, replyData, dbData);
+
+    const embed = buildEmbed(replyData)
+
+    await interaction.reply({ embeds: [embed] });
+
+    saveStats(dbData, db)
+
+    milestoneMsg(interaction, db, newsChannel)
   } catch (error) {
     console.error(error);
-    await interaction.reply({ content: 'There was an error while executing this command!'/*, ephemeral: true */ });
+    await interaction.reply(`${error.message ? `${error.message}: ${error.name}` : error}`)//{ content: 'There was an error while executing this command!'/*, ephemeral: true */ });
   }
 });
 
@@ -88,7 +133,7 @@ bot.on('messageCreate', async message => {
   if (message.channel.type === 'dm') {
     const logMsg = []
     logMsg.push(`Content: ${message.content}`)
-    logMsg.push(`DM from ${message.author} (${message.author.username})`)
+    logMsg.push(`DM from ${message.author}(${message.author.username})`)
     logMsg.push('<@217385992837922819>')
 
     message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
