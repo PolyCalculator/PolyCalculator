@@ -97,6 +97,8 @@ module.exports.handleAliases = function(array) {
       if (index !== -1) {
         const openedAlias = aliasMap.get(array[index].substring(0, 3).toLowerCase())
         newArray.splice(index, 1, openedAlias[0], openedAlias[1])
+        if (!openedAlias[1])
+          newArray.pop()
       }
     }
   })
