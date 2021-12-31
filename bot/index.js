@@ -69,13 +69,13 @@ bot.on('interactionCreate', async interaction => {
 
   // DATA FOR DATABASE
   const dbData = {
-    command: commandInteraction.name,
+    command: interaction.commandName,
     author_id: interaction.user.id,
     author_tag: interaction.user.tag,
     server_id: interaction.guild.id,
     will_delete: true,
     message_id: interaction.id,
-    isInteraction: true
+    isSlash: true,
   }
   let replyData = {
     content: [],
@@ -120,6 +120,7 @@ bot.on('interactionCreate', async interaction => {
     const interactionResponse = await interaction.reply(options);
     // const interactionResponse = await interaction.reply({ embeds: [embed], fetchReply: true });
 
+    dbData.url = interactionResponse.url
     interactionResponse.react('🗑️').then().catch(console.error)
     // interactionResponse.edit({ embeds: [embed] })
 
@@ -177,7 +178,8 @@ bot.on('messageCreate', async message => {
     server_id: message.guild.id,
     arg: argsStr,
     will_delete: true,
-    message_id: message.id
+    message_id: message.id,
+    isSlash: false
   }
   const replyData = {
     content: [],
