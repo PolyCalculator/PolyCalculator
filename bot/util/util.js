@@ -17,11 +17,6 @@ module.exports.defenderCalc = function(aforce, totaldam, defender) {
   return step7
 }
 
-module.exports.pushIfValue = function(array, option) {
-  if (option !== null)
-    array.push(option.value)
-}
-
 module.exports.buildEmbed = function(data) {
   const embed = new MessageEmbed().setColor('#ff0066')
 
@@ -86,16 +81,23 @@ module.exports.milestoneMsg = async function(message, db, newsChannel) {
     newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
 }
 
+module.exports.makeSlashAlt = function(command, argsStr) {
+  const argsArray = argsStr.split(/ *, */)
+  const defender = argsArray.pop()
+
+  return `/${command.name} attackers:${argsArray.join(', ')} defender:${defender.toString()}_ _`
+}
+
 module.exports.handleAliases = function(array) {
   const newArray = array
 
   const aliases = [...aliasMap.keys()]
 
   array.forEach(newArrayEl => {
-    if (aliases.some(alias => newArrayEl.substring(0, 3) === alias)) {//array.some(str => str.toLowerCase().startsWith(alias)))) {
-      const index = array.findIndex(el => aliases.some(alias => alias === el.substring(0, 3).toLowerCase()))
+    if (aliases.some(alias => newArrayEl === alias)) {
+      const index = array.findIndex(el => aliases.some(alias => alias === el.toLowerCase()))
       if (index !== -1) {
-        const openedAlias = aliasMap.get(array[index].substring(0, 3).toLowerCase())
+        const openedAlias = aliasMap.get(array[index].toLowerCase())
         newArray.splice(index, 1, openedAlias[0], openedAlias[1])
         if (!openedAlias[1])
           newArray.pop()
@@ -132,6 +134,7 @@ aliasMap.set('ww', ['wa', 'w'])
 
 aliasMap.set('smh', ['sm', 'sh'])
 aliasMap.set('am', ['ri'])
+aliasMap.set('shaman', ['sm'])
 
 aliasMap.set('?d', ['?', 'd'])
 aliasMap.set('d?', ['d', '?'])

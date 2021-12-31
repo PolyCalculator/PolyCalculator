@@ -2,7 +2,7 @@
 require('dotenv').config();
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { CLIENTID, TOKEN, GUILDID } = process.env
+const { CLIENTID, TOKEN, GUILDID, PRODCLIENTID, PRODTOKEN } = process.env
 const fs = require('fs');
 
 const commands = []
@@ -16,27 +16,26 @@ for (const file of commandFiles) {
   // commands.push(command.data.toJson())
 }
 
-const rest = new REST({ version: '9' }).setToken(TOKEN);
-
 if (process.env.NODE_ENV === 'prod') {
   console.log('[PROD] Started refreshing application (/) commands.');
-  // (async () => {
-  //   try {
-  //     console.log(commands)
-  //     await rest.put(
-  //       Routes.applicationGuildCommands(CLIENTID, GUILDID),
-  //       { body: commands },
-  //     );
+  const rest = new REST({ version: '9' }).setToken(PRODTOKEN);
+  (async () => {
+    try {
+      console.log(commands)
+      await rest.put(
+        Routes.applicationCommands(PRODCLIENTID),
+        { body: commands },
+      );
 
-  //     console.log('Successfully reloaded application (/) commands.');
-  //   } catch (error) {
-  //     console.error(error)
-  //     console.error(error.rawError.errors[0]);
-  //   }
-  // })();
+      console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+      console.error(error)
+      console.error(error.rawError.errors[0]);
+    }
+  })();
 } else {
   console.log('[DEV] Started refreshing application (/) commands.');
-
+  const rest = new REST({ version: '9' }).setToken(TOKEN);
   (async () => {
     try {
       await rest.put(

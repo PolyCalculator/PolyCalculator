@@ -4,7 +4,7 @@ const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: 
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
-const { buildEmbed, saveStats, logUse, milestoneMsg } = require('./util/util')
+const { buildEmbed, saveStats, logUse, milestoneMsg, makeSlashAlt } = require('./util/util')
 const db = require('../db')
 let calcServer = {}
 let newsChannel = {}
@@ -43,10 +43,10 @@ bot.once('ready', () => {
 
   setInterval(function() {
     if (toggle) {
-      bot.user.setActivity(`${prefix}units`, { type: 'PLAYING' })
+      bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
     } else {
-      bot.user.setActivity(`${prefix}help c`, { type: 'PLAYING' })
+      bot.user.setActivity('/help calc', { type: 'PLAYING' })
       toggle = true
     }
   }, 10000);
@@ -109,7 +109,21 @@ bot.on('interactionCreate', async interaction => {
 
     const embed = buildEmbed(replyData)
 
-    await interaction.reply({ embeds: [embed] });
+    const options = {
+      embeds: [embed],
+      fetchReply: true
+    }
+
+    if (replyData.content.length !== 0)
+      options.content = replyData.content.join('\n')
+
+    const interactionResponse = await interaction.reply(options);
+    // const interactionResponse = await interaction.reply({ embeds: [embed], fetchReply: true });
+
+    interactionResponse.react('🗑️').then().catch(console.error)
+    // interactionResponse.edit({ embeds: [embed] })
+
+    logChannel.send(`${replyData.discord.title}`)
 
     saveStats(dbData, db)
 
@@ -136,7 +150,7 @@ bot.on('messageCreate', async message => {
     logMsg.push(`DM from ${message.author}(${message.author.username})`)
     logMsg.push('<@217385992837922819>')
 
-    message.channel.send(`I do not support DM commands.\nYou can go into any server I'm in and do \`${prefix}help c\` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with \`${prefix}links\` in any of those servers!`)
+    message.channel.send('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
       .catch(console.error)
     return logChannel.send(logMsg).catch(console.error)
   }
@@ -242,6 +256,10 @@ bot.on('messageCreate', async message => {
     dbData.url = replyMessage.url
 
     replyMessage.react('🗑️').then().catch(console.error)
+
+    const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
+    await message.channel.send(makeSlashAlt(command, argsStr))
+    setTimeout(function() { slashMessage.delete() }, 120000)
 
     // INSERT INTO DB
     saveStats(dbData, db)
