@@ -71,6 +71,19 @@ module.exports.logUse = function(message, logChannel) {
   logChannel.send({ embeds: [newEmbed] })
 }
 
+module.exports.logInteraction = function(interaction, logChannel, interactionResponse) {
+  const content = `/${interaction.commandName} ${interaction.options.data.map(x => x.value).join(', ')}`
+
+  const logData = {
+    discord: {
+      title: `**${content}**`,
+      description: ` in **${interaction.guild.name.toUpperCase()}**\nin ${interaction.channel} (#${interaction.channel.name})\nby ${interaction.user} (${interaction.user.tag})\n${interactionResponse.url}`
+    }
+  }
+  const newEmbed = module.exports.buildEmbed(logData)
+  logChannel.send({ embeds: [newEmbed] })
+}
+
 module.exports.milestoneMsg = async function(message, db, newsChannel) {
   let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
 

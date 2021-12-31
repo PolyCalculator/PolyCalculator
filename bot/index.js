@@ -4,7 +4,7 @@ const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: 
 const fs = require('fs')
 const prefix = process.env.PREFIX
 const help = require('./commands/help')
-const { buildEmbed, saveStats, logUse, milestoneMsg, makeSlashAlt } = require('./util/util')
+const { buildEmbed, saveStats, logUse, logInteraction, milestoneMsg, makeSlashAlt } = require('./util/util')
 const db = require('../db')
 let calcServer = {}
 let newsChannel = {}
@@ -123,7 +123,7 @@ bot.on('interactionCreate', async interaction => {
     interactionResponse.react('🗑️').then().catch(console.error)
     // interactionResponse.edit({ embeds: [embed] })
 
-    logChannel.send(`${replyData.discord.title}`)
+    logInteraction(interaction, logChannel, interactionResponse)
 
     saveStats(dbData, db)
 
