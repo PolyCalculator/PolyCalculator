@@ -283,7 +283,6 @@ bot.on('messageCreate', async message => {
 })
 
 bot.on('messageReactionAdd', async (reaction, user) => {
-  let triggerMessage
   try {
     if (reaction.message.partial) await reaction.message.fetch();
 
@@ -303,30 +302,25 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     const returned = await db.query(sql, values)
     let isUserRemoved = false
 
-    if (returned.rows[0]) {
-      triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
-      isUserRemoved = true && returned.rows[0].id === user.id
-    }
+    if (!returned.rows[0])
+      return
+
+    const triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
+    isUserRemoved = true && returned.rows[0].id === user.id
 
     const memberRemoving = await reaction.message.guild.members.fetch(user.id)
-    const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES') && reaction.me
+    const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES') || reaction.me
 
     if (isUserRemoved || user.id === '217385992837922819' || canDelete) {
-      reaction.message.delete()
-        .then().catch(console.error)
+      await reaction.message.delete()
       if (triggerMessage)
-        triggerMessage.delete()
-          .then().catch(console.error)
+        await triggerMessage.delete()
     }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
-    if (error.stack && triggerMessage)
-      errorChannel.send(`**${triggerMessage.cleanContent}** by ${triggerMessage.author} (@${triggerMessage.author.tag})\n${error.stack}\n${triggerMessage.url}`)
-    else {
-      const pathArray = error.path.split('/')
-      errorChannel.send(`${error.message},\n<#${pathArray[2]}>`)
-    }
+    // const pathArray = error.path.split('/')
+    errorChannel.send(`${error.message}\n${error.stack}`)
   }
 })
 // --------------------------------------
