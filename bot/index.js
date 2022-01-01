@@ -259,9 +259,11 @@ bot.on('messageCreate', async message => {
 
     replyMessage.react('🗑️').then().catch(console.error)
 
-    const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
-    await message.channel.send(makeSlashAlt(command, argsStr))
-    setTimeout(function() { slashMessage.delete() }, 120000)
+    if (command.name === 'calc' || command.name === 'optim') {
+      const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
+      await message.channel.send(makeSlashAlt(command, argsStr))
+      setTimeout(function() { slashMessage.delete() }, 120000)
+    }
 
     // INSERT INTO DB
     saveStats(dbData, db)

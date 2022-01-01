@@ -98,7 +98,7 @@ module.exports.makeSlashAlt = function(command, argsStr) {
   const argsArray = argsStr.split(/ *, */)
   const defender = argsArray.pop()
 
-  return `/${command.name} attackers:${argsArray.join(', ')} defender:${defender.toString()}_ _`
+  return `/${command.name} attackers:${argsArray.join(', ')} defender:${defender.toString()}`
 }
 
 module.exports.handleAliases = function(array) {
