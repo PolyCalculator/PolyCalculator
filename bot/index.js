@@ -297,7 +297,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.emoji.name !== '🗑️')
       return
 
-    const sql = 'SELECT author_id AS id, message_id FROM stats WHERE url = $1'
+    const sql = 'SELECT author_id, message_id, is_slash FROM stats WHERE url = $1'
     const values = [reaction.message.url]
     const returned = await db.query(sql, values)
     let isUserRemoved = false
@@ -305,17 +305,20 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     if (!returned.rows[0])
       return
 
-    const triggerMessage = await reaction.message.channel.messages.fetch(returned.rows[0].message_id)
-    isUserRemoved = true && returned.rows[0].id === user.id
+    const { author_id: userId, message_id: initialMessageId, is_slash: isSlash } = returned.rows[0]
+
+    if (!isSlash) {
+      const triggerMessage = await reaction.message.channel.messages.fetch(initialMessageId)
+      if (triggerMessage)
+        triggerMessage.delete()
+    }
+    isUserRemoved = true && userId === user.id
 
     const memberRemoving = await reaction.message.guild.members.fetch(user.id)
     const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES') || reaction.me
 
-    if (isUserRemoved || user.id === '217385992837922819' || canDelete) {
+    if (isUserRemoved || user.id === '217385992837922819' || canDelete)
       await reaction.message.delete()
-      if (triggerMessage)
-        await triggerMessage.delete()
-    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
