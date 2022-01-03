@@ -115,7 +115,7 @@ bot.on('interactionCreate', async interaction => {
     }
 
     if (replyData.content.length !== 0)
-      options.content = replyData.content.join('\n')
+      options.content = replyData.content.map(x => x[0]).join('\n')
 
     const interactionResponse = await interaction.reply(options);
     // const interactionResponse = await interaction.reply({ embeds: [embed], fetchReply: true });
