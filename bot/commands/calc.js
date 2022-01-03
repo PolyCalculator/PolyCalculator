@@ -21,10 +21,10 @@ module.exports = {
       return replyData
     }
 
-    const unitsArray = units.getBothUnitArray(argsStr)
+    const unitsArray = units.getBothUnitArray(argsStr).filter(x => x != '')
 
     const defenderStr = unitsArray.pop()
-    const defenderArray = defenderStr.split(/ +/).filter(x => x != '')
+    const defenderArray = defenderStr.split(/ +/)
     const attackers = []
 
     const defender = units.getUnitFromArray(defenderArray, replyData)
