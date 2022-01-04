@@ -141,102 +141,102 @@ bot.on('interactionCreate', async interaction => {
 //
 // --------------------------------------
 bot.on('messageCreate', async message => {
-  if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
-    return
+  try {
+    if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
+      return
 
-  // If it's a DM
-  if (message.channel.type === 'dm') {
-    const logMsg = []
-    logMsg.push(`Content: ${message.content}`)
-    logMsg.push(`DM from ${message.author}(${message.author.username})`)
-    logMsg.push('<@217385992837922819>')
+    // If it's a DM
+    if (message.channel.type === 'dm') {
+      const logMsg = []
+      logMsg.push(`Content: ${message.content}`)
+      logMsg.push(`DM from ${message.author}(${message.author.username})`)
+      logMsg.push('<@217385992837922819>')
 
-    message.channel.send('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
-      .catch(console.error)
-    return logChannel.send(logMsg).catch(console.error)
-  }
+      message.channel.send('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
+        .catch(console.error)
+      return logChannel.send(logMsg).catch(console.error)
+    }
 
-  const textStr = message.cleanContent.slice(prefix.length)
-  const commandName = textStr.split(/ +/).shift().toLowerCase();
-  const argsStr = textStr.slice(commandName.length + 1)
+    const textStr = message.cleanContent.slice(prefix.length)
+    const commandName = textStr.split(/ +/).shift().toLowerCase();
+    const argsStr = textStr.slice(commandName.length + 1)
 
-  // Map all the commands
-  const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+    // Map all the commands
+    const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-  // Return if the command doesn't exist
-  if (!command)
-    return
+    // Return if the command doesn't exist
+    if (!command)
+      return
 
-  const generalDelete = { timeout: 5000 }
+    const generalDelete = { timeout: 5000 }
 
-  // DATA FOR DATABASE
-  const dbData = {
-    command: command.name,
-    content: message.cleanContent.slice(process.env.PREFIX.length),
-    author_id: message.author.id,
-    author_tag: message.author.tag,
-    server_id: message.guild.id,
-    arg: argsStr,
-    will_delete: true,
-    message_id: message.id,
-    isSlash: false
-  }
-  const replyData = {
-    content: [],
-    deleteContent: false,
-    discord: {
-      title: undefined,
-      description: undefined,
-      fields: [],
-      footer: undefined
-    },
-    outcome: {
-      attackers: [],
-      // {
-      //    name
-      //    beforehp: 0,
-      //    maxhp: 40,
-      //    hplost: 0,
-      //    hpdefender: 0
-      // }
-      defender: {
-        // name: '',
-        // currenthp: 0,
-        // maxhp: 40,
-        // hplost: 0,
+    // DATA FOR DATABASE
+    const dbData = {
+      command: command.name,
+      content: message.cleanContent.slice(process.env.PREFIX.length),
+      author_id: message.author.id,
+      author_tag: message.author.tag,
+      server_id: message.guild.id,
+      arg: argsStr,
+      will_delete: true,
+      message_id: message.id,
+      isSlash: false
+    }
+    const replyData = {
+      content: [],
+      deleteContent: false,
+      discord: {
+        title: undefined,
+        description: undefined,
+        fields: [],
+        footer: undefined
+      },
+      outcome: {
+        attackers: [],
+        // {
+        //    name
+        //    beforehp: 0,
+        //    maxhp: 40,
+        //    hplost: 0,
+        //    hpdefender: 0
+        // }
+        defender: {
+          // name: '',
+          // currenthp: 0,
+          // maxhp: 40,
+          // hplost: 0,
+        }
       }
     }
-  }
 
-  if (argsStr.includes('help')) {
-    const reply = help.execute(message, command.name, replyData, dbData)
-    const helpEmbed = buildEmbed(reply)
+    if (argsStr.includes('help')) {
+      const reply = help.execute(message, command.name, replyData, dbData)
+      const helpEmbed = buildEmbed(reply)
 
-    return message.channel.send({ embeds: [helpEmbed] })
-      .then(x => {
-        x.react('🗑️').then().catch(console.error)
-      }).catch(console.error)
-  }
+      return message.channel.send({ embeds: [helpEmbed] })
+        .then(x => {
+          x.react('🗑️').then().catch(console.error)
+        }).catch(console.error)
+    }
 
-  // Warning when channel name includes general and delete both messages
-  if (message.channel.name.includes('general') && message.author.id != '217385992837922819')
-    return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
-      .then(x => {
-        x.delete(generalDelete).then().catch(console.error)
-        message.delete(generalDelete).then().catch(console.error)
-      }).catch(console.error)
+    // Warning when channel name includes general and delete both messages
+    if (message.channel.name.includes('general') && message.author.id != '217385992837922819')
+      return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
+        .then(x => {
+          x.delete(generalDelete).then().catch(console.error)
+          message.delete(generalDelete).then().catch(console.error)
+        }).catch(console.error)
 
-  // Check if command is allowed in that channel
-  if (command.channelsAllowed) { // Certain commands can only be triggered in specific channels
-    if (!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
-      return
-  }
+    // Check if command is allowed in that channel
+    if (command.channelsAllowed) { // Certain commands can only be triggered in specific channels
+      if (!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
+        return
+    }
 
-  // Check if the user has the permissions necessary to execute the command
-  if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.permissions.has(x)) || command.usersAllowed.some(x => x === message.author.id)))
-    return message.channel.send('Only an admin can use this command, sorry!')
+    // Check if the user has the permissions necessary to execute the command
+    if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.permissions.has(x)) || command.usersAllowed.some(x => x === message.author.id)))
+      return message.channel.send('Only an admin can use this command, sorry!')
 
-  try {
     // EXECUTE COMMAND
     const replyObj = await command.execute(message, argsStr, replyData, dbData)
 
