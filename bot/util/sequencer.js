@@ -1,7 +1,7 @@
 const { poison } = require('./util')
 const { attackerCalc, defenderCalc } = require('./util')
 
-module.exports.generateArraySequences = function (length) {
+module.exports.generateArraySequences = function(length) {
   const array = []
   for (let i = 0; i < length; i++) {
     array.push(i + 1)
@@ -9,7 +9,7 @@ module.exports.generateArraySequences = function (length) {
   return array
 }
 
-module.exports.generateSequences = function (xs) {
+module.exports.generateSequences = function(xs) {
   const ret = [];
 
   for (let i = 0; i < xs.length; i = i + 1) {
@@ -43,7 +43,7 @@ function generateSubsequences(xs) {
   return ret;
 }
 
-module.exports.multicombat = function (attackers, defender, sequence) {
+module.exports.multicombat = function(attackers, defender, sequence) {
   let totalAttackersHP = 0
 
   attackers.forEach(attacker => {
@@ -104,7 +104,11 @@ function combat(attacker, defender, solution) {
   const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
 
   const totaldam = aforce + dforce;
-  const defdiff = attackerCalc(aforce, totaldam, attacker)
+  let defdiff = attackerCalc(aforce, totaldam, attacker)
+  if (attacker.splash) {
+    defdiff = Math.floor(defdiff / 2)
+    defender.description = `${defender.description} (splashed)`
+  }
 
   solution.hpDealt.push(defdiff)
   solution.defenderHP = solution.defenderHP - defdiff
@@ -141,7 +145,7 @@ function combat(attacker, defender, solution) {
   return solution
 }
 
-module.exports.evaluate = function (bestSolution, newSolution) {
+module.exports.evaluate = function(bestSolution, newSolution) {
 
   if (newSolution.defenderHP < bestSolution.defenderHP)
     return true
@@ -167,7 +171,7 @@ module.exports.evaluate = function (bestSolution, newSolution) {
   }
 }
 
-module.exports.simpleCombat = function (attacker, defender) {
+module.exports.simpleCombat = function(attacker, defender) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
