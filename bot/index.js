@@ -63,6 +63,16 @@ bot.once('ready', () => {
 bot.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
+  if (interaction.channel.type === 'dm') {
+    const logMsg = []
+    logMsg.push(`DM from ${interaction.user}(${interaction.user.username})`)
+    logMsg.push('<@217385992837922819>')
+
+    interaction.reply('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
+      .catch(console.error)
+    return logChannel.send(logMsg).catch(console.error)
+  }
+
   const commandInteraction = bot.interactions.get(interaction.commandName);
 
   if (!commandInteraction) return;
