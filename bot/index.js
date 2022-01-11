@@ -178,7 +178,7 @@ bot.on('messageCreate', async message => {
     if (!command)
       return
 
-    const generalDelete = { timeout: 5000 }
+    const generalDelete = 5000
 
     // DATA FOR DATABASE
     const dbData = {
@@ -230,11 +230,11 @@ bot.on('messageCreate', async message => {
     }
 
     // Warning when channel name includes general and delete both messages
-    if (message.channel.name.includes('general') && message.author.id != '217385992837922819')
+    if (message.channel.name.includes('general')/* && message.author.id != '217385992837922819'*/)
       return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
         .then(x => {
-          x.delete(generalDelete).then().catch(console.error)
-          message.delete(generalDelete).then().catch(console.error)
+          setTimeout(() => x.delete(), generalDelete)
+          setTimeout(() => message.delete(), generalDelete)
         }).catch(console.error)
 
     // Check if command is allowed in that channel
@@ -256,7 +256,7 @@ bot.on('messageCreate', async message => {
       const warnings = await message.channel.send(other[0])
 
       if (replyObj.deleteContent)
-        warnings.delete({ timeout: 15000 })
+        setTimeout(() => warnings.delete(), 15000)
     })
 
     if (replyObj.discord.description === undefined && replyObj.discord.title === undefined && replyObj.discord.fields.length === 0)
