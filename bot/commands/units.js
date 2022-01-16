@@ -14,10 +14,6 @@ module.exports = {
   category: 'Main',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  deleteTime: {
-    success: 6000,
-    failure: 1000
-  },
   // eslint-disable-next-line no-unused-vars
   execute: function(message, argsStr, replyData, dbData) {
     if (argsStr.length != 0) {
