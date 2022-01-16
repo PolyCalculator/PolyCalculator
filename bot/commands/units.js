@@ -119,7 +119,7 @@ module.exports = {
       unit.splash = true
     else if (toSplash) {
       if (!replyData.content.toString().includes('To ensure the splash works'))
-        replyData.content.push(['To ensure the splash works, add the `s` to dragon unit details\nE.g. `/calc attackers:dr 17 s, defender:wa`', {}])
+        replyData.content.push(['To ensure the splash works, add the `s` to dragon unit details\nE.g. `/c attackers:dr 17 s, defender:wa`', {}])
     }
 
     if (toPoison.length > 0 && toBoost.length > 0) {
