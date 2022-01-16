@@ -4,8 +4,8 @@ const optim = require('../commands/optim')
 module.exports = {
   dev: false,
   data: new SlashCommandBuilder()
-    .setName('optim')
-    .setDescription('Optimal calculation of attacks on one defender!')
+    .setName('o')
+    .setDescription('Optim: Optimal calculation of attacks on one defender!')
     .addStringOption(option => option.setName('attackers').setDescription('Enter attackers separated by comma').setRequired(true))
     .addStringOption(option => option.setName('defender').setDescription('Enter an defender').setRequired(true)),
   async execute(interaction, replyData, dbData) {

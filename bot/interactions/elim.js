@@ -4,8 +4,8 @@ const elim = require('../commands/elim')
 module.exports = {
   dev: false,
   data: new SlashCommandBuilder()
-    .setName('elim')
-    .setDescription('Use ? on either the attacker or the defender when you don\'t know the hp!')
+    .setName('e')
+    .setDescription('Elim: Use ? on either the attacker or the defender when you don\'t know the hp!')
     .addStringOption(option => option.setName('attacker').setDescription('Enter an attacker').setRequired(true))
     .addStringOption(option => option.setName('defender').setDescription('Enter an defender').setRequired(true)),
   async execute(interaction, replyData, dbData) {

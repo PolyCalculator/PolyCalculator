@@ -4,8 +4,8 @@ const bulk = require('../commands/bulk')
 module.exports = {
   dev: false,
   data: new SlashCommandBuilder()
-    .setName('bulk')
-    .setDescription('How many of one attacker is needed to kill a defender!')
+    .setName('b')
+    .setDescription('Bulk: How many of one attacker is needed to kill a defender!')
     .addStringOption(option => option.setName('attacker').setDescription('Enter the attacker').setRequired(true))
     .addStringOption(option => option.setName('defender').setDescription('Enter the defender').setRequired(true)),
   async execute(interaction, replyData, dbData) {

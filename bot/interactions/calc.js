@@ -4,8 +4,8 @@ const calc = require('../commands/calc')
 module.exports = {
   dev: false,
   data: new SlashCommandBuilder()
-    .setName('calc')
-    .setDescription('Sequential calculation of attacks on one defender!')
+    .setName('c')
+    .setDescription('Calc: Sequential calculation of attacks on one defender!')
     .addStringOption(option => option.setName('attackers').setDescription('Enter attackers separated by comma').setRequired(true))
     .addStringOption(option => option.setName('defender').setDescription('Enter a defender').setRequired(true)),
   async execute(interaction, replyData, dbData) {
