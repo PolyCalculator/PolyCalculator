@@ -343,7 +343,7 @@ module.exports = {
     att: 0,
     def: 2,
     bonus: 1,
-    fort: false,
+    fort: true,
     range: false,
     retaliation: false,
     forceRetaliation: undefined,
