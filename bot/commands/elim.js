@@ -25,12 +25,6 @@ module.exports = {
     const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
     const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
 
-    if (!argsStr.includes('?')) {
-      replyData.content.push([`\`${process.env.PREFIX}elim\` requires a \`?\`\nI'll give you both sides.\nYou can do \`${process.env.PREFIX}help elim\` for more information on how to use it!`, {}])
-      unitsArray[0] = unitsArray[0] + '?'
-      unitsArray[1] = unitsArray[1] + '?'
-    }
-
     const attacker = units.getUnitFromArray(attackerArray, replyData)
     const defender = units.getUnitFromArray(defenderArray, replyData)
 
@@ -40,6 +34,8 @@ module.exports = {
       replyData = fight.provideDefHP(attacker, defender, replyData)
     } else if (unitsArray[1].includes('?')) {
       replyData = fight.provideAttHP(attacker, defender, replyData)
+    } else {
+      throw 'You need a `?` on one of the side to use `/e`\n You can try `/help e` to understand more of it'
     }
     dbData.attacker = attacker.name
     dbData.defender = defender.name
