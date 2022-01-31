@@ -388,7 +388,6 @@ bot.on('guildMemberAdd', newMember => {
 process.on('unhandledRejection', (code) => {
   // eslint-disable-next-line no-console
   console.log(`unhandledRejection: ${code.stack}`)
-  errorChannel.send(`unhandledRejection: ${code.stack}`)
 })
 
 bot.login(process.env.TOKEN);
