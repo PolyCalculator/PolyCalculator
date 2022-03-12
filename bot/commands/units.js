@@ -61,7 +61,7 @@ module.exports = {
     if (unitCode.length < 2)
       throw 'You need a minimum of two characters to return the stats for a specific unit!'
     if (!unitList[unitCode])
-      throw `The unit you are looking for doesn't exist or is under a different code.\nTry \`${process.env.PREFIX}units\` to get the list of all units codes!`
+      throw 'The unit you are looking for doesn\'t exist or is under a different code.\nTry `/units` to get the list of all units codes!'
 
     return { ...unitList[unitCode] }
   },
@@ -74,9 +74,9 @@ module.exports = {
     const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
 
     if (unitCode.length === 0 && isNaval.length != 0)
-      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`${process.env.PREFIX}units\`.`
+      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`/units\`.`
     if (unitCode.length === 0)
-      throw 'We couldn\'t find one of the units.\n\nYou can get the list with `.units`'
+      throw 'We couldn\'t find one of the units.\n\nYou can get the list with `/units`'
 
     unitCode = unitCode.toString().substring(0, 2).toLowerCase()
     const unit = this.getUnit(unitCode)
