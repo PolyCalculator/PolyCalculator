@@ -325,7 +325,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     isUserRemoved = true && userId === user.id
 
     const memberRemoving = await reaction.message.guild.members.fetch(user.id)
-    const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES') || reaction.me
+    const canDelete = memberRemoving.permissions.has('MANAGE_MESSAGES')
 
     if (isUserRemoved || user.id === '217385992837922819' || canDelete)
       await reaction.message.delete()
