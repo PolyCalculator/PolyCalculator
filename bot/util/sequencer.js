@@ -1,7 +1,7 @@
-const { poison } = require('./util')
+const { poison, freeze } = require('./util')
 const { attackerCalc, defenderCalc } = require('./util')
 
-module.exports.generateArraySequences = function(length) {
+module.exports.generateArraySequences = function (length) {
   const array = []
   for (let i = 0; i < length; i++) {
     array.push(i + 1)
@@ -9,7 +9,7 @@ module.exports.generateArraySequences = function(length) {
   return array
 }
 
-module.exports.generateSequences = function(xs) {
+module.exports.generateSequences = function (xs) {
   const ret = [];
 
   for (let i = 0; i < xs.length; i = i + 1) {
@@ -43,7 +43,7 @@ function generateSubsequences(xs) {
   return ret;
 }
 
-module.exports.multicombat = function(attackers, defender, sequence) {
+module.exports.multicombat = function (attackers, defender, sequence) {
   let totalAttackersHP = 0
 
   attackers.forEach(attacker => {
@@ -78,6 +78,9 @@ module.exports.multicombat = function(attackers, defender, sequence) {
       poison(defender)
       solution.wasPoisoned = true
     }
+
+    if (attacker.freeze)
+      freeze(defender)
   }
 
   defender.bonus = initialBonus
@@ -145,7 +148,7 @@ function combat(attacker, defender, solution) {
   return solution
 }
 
-module.exports.evaluate = function(bestSolution, newSolution) {
+module.exports.evaluate = function (bestSolution, newSolution) {
 
   if (newSolution.defenderHP < bestSolution.defenderHP)
     return true
@@ -171,7 +174,7 @@ module.exports.evaluate = function(bestSolution, newSolution) {
   }
 }
 
-module.exports.simpleCombat = function(attacker, defender) {
+module.exports.simpleCombat = function (attacker, defender) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
