@@ -19,7 +19,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -43,7 +44,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -67,7 +69,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -91,7 +94,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -115,7 +119,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -139,7 +144,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -163,7 +169,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -187,7 +194,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -211,7 +219,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -235,7 +244,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -258,7 +268,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -281,7 +292,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -305,7 +317,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -328,7 +341,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -351,7 +365,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -375,7 +390,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -399,7 +415,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -422,7 +439,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -445,7 +463,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -468,7 +487,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -491,7 +511,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -539,7 +560,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -562,7 +584,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -586,7 +609,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -610,7 +634,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -634,7 +659,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -657,7 +683,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -681,7 +708,8 @@ module.exports = {
     poisonexplosion: true,
     canExplode: true,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
   },
@@ -704,7 +732,8 @@ module.exports = {
     poisonexplosion: true,
     canExplode: true,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
@@ -728,7 +757,8 @@ module.exports = {
     poisonexplosion: false,
     canExplode: false,
     exploding: false,
-    freeze: false, setHP: setHP,
+    freeze: false,
+    setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
     getOverride: getOverride
