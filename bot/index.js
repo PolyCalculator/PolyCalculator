@@ -8,6 +8,7 @@ const { buildEmbed, saveStats, logUse, logInteraction, milestoneMsg, makeSlashAl
 const db = require('../db')
 let calcServer = {}
 let newsChannel = {}
+let feedbackChannel = {}
 let logChannel = {}
 let errorChannel = {}
 
@@ -39,9 +40,10 @@ bot.once('ready', () => {
   newsChannel = calcServer.channels.cache.get('654168953643466752')
   logChannel = calcServer.channels.cache.get('648688924155314176')
   errorChannel = calcServer.channels.cache.get('658125562455261185')
+  feedbackChannel = calcServer.channels.cache.get('738926248700411994')
   let toggle = true
 
-  setInterval(function() {
+  setInterval(function () {
     if (toggle) {
       bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
@@ -164,7 +166,7 @@ bot.on('messageCreate', async message => {
 
       message.channel.send('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
         .catch(console.error)
-      return logChannel.send(logMsg).catch(console.error)
+      return feedbackChannel.send(logMsg).catch(console.error)
     }
 
     const textStr = message.cleanContent.slice(prefix.length)
@@ -272,7 +274,7 @@ bot.on('messageCreate', async message => {
     if (command.name === 'calc' || command.name === 'optim') {
       const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
       await message.channel.send(makeSlashAlt(command, argsStr))
-      setTimeout(function() { slashMessage.delete() }, 120000)
+      setTimeout(function () { slashMessage.delete() }, 120000)
     }
 
     // INSERT INTO DB
@@ -344,7 +346,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
 bot.on('guildCreate', guild => {
   dbServers.addNewServer(guild.id, guild.name)
     .then(logMsg => {
-      logChannel.send(`${logMsg}, <@217385992837922819>`)
+      feedbackChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
       errorChannel.send(`${errorMsg}, <@217385992837922819>`)
@@ -361,7 +363,7 @@ bot.on('guildCreate', guild => {
 bot.on('guildDelete', guild => {
   dbServers.removeServer(guild.id, guild.name)
     .then(logMsg => {
-      logChannel.send(`${logMsg}, <@217385992837922819>`)
+      feedbackChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
       errorChannel.send(`${errorMsg}, <@217385992837922819>`)
