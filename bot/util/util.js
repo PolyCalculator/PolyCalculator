@@ -152,8 +152,8 @@ aliasMap.set('wd', ['wa', 'd'])
 aliasMap.set('ww', ['wa', 'w'])
 
 aliasMap.set('smh', ['sm', 'sh'])
-aliasMap.set('am', ['ri'])
-aliasMap.set('shaman', ['sm'])
+aliasMap.set('am', ['ri', ''])
+aliasMap.set('shaman', ['sm', ''])
 
 aliasMap.set('?d', ['?', 'd'])
 aliasMap.set('d?', ['d', '?'])
