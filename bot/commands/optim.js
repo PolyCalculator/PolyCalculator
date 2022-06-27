@@ -16,7 +16,7 @@ module.exports = {
   // category: 'Paid',
   permsAllowed: ['VIEW_CHANNEL'],
   usersAllowed: ['217385992837922819'],
-  execute: async function (message, argsStr, replyData, dbData) {
+  execute: async function(message, argsStr, replyData, dbData) {
     if (argsStr.length === 0 || argsStr.includes('help')) {
       replyData.content.push(['Try `.help o` for more information on how to use this command!', {}])
       return replyData
@@ -38,8 +38,7 @@ module.exports = {
         if (guildPremium.rows.length === 0) {
           const userPremium = await db.query(sql, values)
           if (userPremium.rows.length === 0) {
-            feedbackChannel.send(`${message.author} (${message.author ? message.author.tag : message.user.tag}) exceeded the max number of optim in **${message.guild.name}**, <@217385992837922819>\n${message.url}`)
-            feedbackChannel.send(JSON.stringify(message))
+            feedbackChannel.send(`${message.author ? message.author : message.user} (${message.author ? message.author.tag : message.user.tag}) exceeded the max number of optim in **${message.guild.name}**, <@217385992837922819>${message.url ? `\n${message.url}` : ''}`)
 
             replyData.discord.title = 'You need to be a **premium member** to be allows to use `.optim` with more than **3 attackers**.'
             replyData.discord.description = 'To become a premium member, you can DM the creator and pay any amount of `$`.\nYou can DM <@217385992837922819> (jd#0001) or wait for him to DM you the PayPal link!'
