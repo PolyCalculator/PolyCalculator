@@ -1,6 +1,6 @@
 const { MessageEmbed, Collection } = require('discord.js')
 
-module.exports.attackerCalc = function (aforce, totaldam, attacker) {
+module.exports.attackerCalc = function(aforce, totaldam, attacker) {
   const step1 = aforce * attacker.att
   const step3 = step1 * 4.5
   const step5 = step3 / totaldam
@@ -9,7 +9,7 @@ module.exports.attackerCalc = function (aforce, totaldam, attacker) {
   return step7
 }
 
-module.exports.defenderCalc = function (aforce, totaldam, defender) {
+module.exports.defenderCalc = function(aforce, totaldam, defender) {
   const step1 = aforce * defender.def
   const step3 = step1 * 4.5
   const step5 = step3 / totaldam
@@ -17,7 +17,7 @@ module.exports.defenderCalc = function (aforce, totaldam, defender) {
   return step7
 }
 
-module.exports.buildEmbed = function (data) {
+module.exports.buildEmbed = function(data) {
   const embed = new MessageEmbed().setColor('#ff0066')
 
   if (data.discord) {
@@ -38,29 +38,29 @@ module.exports.buildEmbed = function (data) {
   return embed
 }
 
-module.exports.poison = function (unit) {
+module.exports.poison = function(unit) {
   unit.bonus = 0.8
 }
 
-module.exports.freeze = function (unit) {
+module.exports.freeze = function(unit) {
   unit.description = `${unit.description} (frozen)`
   unit.retaliation = false
 }
 
-module.exports.boost = function (unit) {
+module.exports.boost = function(unit) {
   unit.name = `Boosted ${unit.name}`
   unit.plural = `Boosted ${unit.plural}`
   unit.att = unit.att + 0.5
 }
 
-module.exports.saveStats = function (data, db) {
+module.exports.saveStats = function(data, db) {
   const date = new Date
   const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg, is_slash, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)'
   const values = [data.content, data.author_id, data.author_tag, data.command, data.attacker, data.defender, data.url, data.message_id, data.server_id, data.will_delete, data.attacker_description, data.defender_description, data.reply_fields, data.arg, data.isSlash, date.toISOString()]
   db.query(sql, values)
 }
 
-module.exports.logUse = function (message, logChannel) {
+module.exports.logUse = function(message, logChannel) {
   let content
   if (message.cleanContent.length > 256)
     content = message.cleanContent.slice(0, 255)
@@ -77,7 +77,7 @@ module.exports.logUse = function (message, logChannel) {
   logChannel.send({ embeds: [newEmbed] })
 }
 
-module.exports.logInteraction = function (interaction, logChannel, interactionResponse) {
+module.exports.logInteraction = function(interaction, logChannel, interactionResponse) {
   const content = `/${interaction.commandName} ${interaction.options.data.map(x => x.value).join(', ')}`
 
   const logData = {
@@ -90,7 +90,7 @@ module.exports.logInteraction = function (interaction, logChannel, interactionRe
   logChannel.send({ embeds: [newEmbed] })
 }
 
-module.exports.milestoneMsg = async function (message, db, newsChannel) {
+module.exports.milestoneMsg = async function(message, db, newsChannel) {
   let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
 
   rows = rows[0]
@@ -100,14 +100,14 @@ module.exports.milestoneMsg = async function (message, db, newsChannel) {
     newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
 }
 
-module.exports.makeSlashAlt = function (command, argsStr) {
+module.exports.makeSlashAlt = function(command, argsStr) {
   const argsArray = argsStr.split(/ *, */)
   const defender = argsArray.pop()
 
   return `/${command.name[0]} attackers:${argsArray.join(', ')} defender:${defender.toString()}`
 }
 
-module.exports.handleAliases = function (array) {
+module.exports.handleAliases = function(array) {
   const newArray = array
 
   const aliases = [...aliasMap.keys()]
@@ -152,8 +152,8 @@ aliasMap.set('wd', ['wa', 'd'])
 aliasMap.set('ww', ['wa', 'w'])
 
 aliasMap.set('smh', ['sm', 'sh'])
-aliasMap.set('am', ['ri'])
-aliasMap.set('shaman', ['sm'])
+aliasMap.set('am', ['ri', ''])
+aliasMap.set('shaman', ['sm', ''])
 
 aliasMap.set('?d', ['?', 'd'])
 aliasMap.set('d?', ['d', '?'])
