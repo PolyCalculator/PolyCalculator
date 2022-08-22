@@ -35,7 +35,7 @@ module.exports.optim = function (attackers, defender, replyData) {
   })
 
   if (bestSolution.wasPoisoned)
-    defender.bonus = 0.8
+    defender.bonus = 0.7
 
   // if (bestSolution.defenderHP === defender.currenthp)
   //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -59,7 +59,7 @@ module.exports.optim = function (attackers, defender, replyData) {
   })
 
   const defenderBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
@@ -95,7 +95,7 @@ module.exports.calc = function (attackers, defender, replyData) {
   const solution = multicombat(attackersSorted, defender, sequence)
 
   if (solution.wasPoisoned)
-    defender.bonus = 0.8
+    defender.bonus = 0.7
 
   // if (solution.defenderHP === defender.currenthp)
   //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -118,7 +118,7 @@ module.exports.calc = function (attackers, defender, replyData) {
   })
 
   const defenderBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
@@ -147,7 +147,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
   let defdiff = attackerCalc(aforce, totaldam, attacker);
 
   const defenderBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
@@ -169,7 +169,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
     defdiff = attackerCalc(aforce, totaldam, attacker);
 
     if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
-      defender.bonus = 0.8
+      defender.bonus = 0.7
   }
 
   replyData.outcome.attackers.push({
@@ -207,7 +207,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   }
 
   const defenderBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
@@ -256,7 +256,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   }
 
   const defenderBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
@@ -289,7 +289,7 @@ module.exports.dragon = function (dragon, direct, splashed, replyData) {
   const deathText = deadText[Math.floor(Math.random() * deadText.length)]
 
   const directBonus = ({
-    0.8: ' (poisoned)',
+    0.7: ' (poisoned)',
     1: '',
     1.5: ' (protected)',
     4: ' (walled)'
