@@ -48,7 +48,7 @@ bot.once('ready', () => {
       bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
     } else {
-      bot.user.setActivity('/help calc', { type: 'PLAYING' })
+      bot.user.setActivity('/help c', { type: 'PLAYING' })
       toggle = true
     }
   }, 10000);
