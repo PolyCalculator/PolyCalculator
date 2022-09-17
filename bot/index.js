@@ -43,12 +43,12 @@ bot.once('ready', () => {
   feedbackChannel = calcServer.channels.cache.get('738926248700411994')
   let toggle = true
 
-  setInterval(function () {
+  setInterval(function() {
     if (toggle) {
       bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
     } else {
-      bot.user.setActivity('/help calc', { type: 'PLAYING' })
+      bot.user.setActivity('/help c', { type: 'PLAYING' })
       toggle = true
     }
   }, 10000);
@@ -274,7 +274,7 @@ bot.on('messageCreate', async message => {
     if (command.name === 'calc' || command.name === 'optim') {
       const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
       await message.channel.send(makeSlashAlt(command, argsStr))
-      setTimeout(function () { slashMessage.delete() }, 120000)
+      setTimeout(function() { slashMessage.delete() }, 120000)
     }
 
     // INSERT INTO DB
