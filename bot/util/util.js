@@ -60,23 +60,6 @@ module.exports.saveStats = function (data, db) {
   db.query(sql, values)
 }
 
-module.exports.logUse = function (message, logChannel) {
-  let content
-  if (message.cleanContent.length > 256)
-    content = message.cleanContent.slice(0, 255)
-  else
-    content = message.cleanContent
-
-  const logData = {
-    discord: {
-      title: `**${content}**`,
-      description: ` in **${message.guild.name.toUpperCase()}**\nin ${message.channel} (#${message.channel.name})\nby ${message.author} (${message.author.tag})\n${message.url}`
-    }
-  }
-  const newEmbed = module.exports.buildEmbed(logData)
-  logChannel.send({ embeds: [newEmbed] })
-}
-
 module.exports.logInteraction = function (interaction, logChannel, interactionResponse) {
   const content = `/${interaction.commandName} ${interaction.options.data.map(x => x.value).join(', ')}`
 
@@ -98,13 +81,6 @@ module.exports.milestoneMsg = async function (message, db, newsChannel) {
 
   if (rows.triggers % 50000 === 0)
     newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
-}
-
-module.exports.makeSlashAlt = function (command, argsStr) {
-  const argsArray = argsStr.split(/ *, */)
-  const defender = argsArray.pop()
-
-  return `/${command.name[0]} attackers:${argsArray.join(', ')} defender:${defender.toString()}`
 }
 
 module.exports.handleAliases = function (array) {

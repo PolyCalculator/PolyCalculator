@@ -32,17 +32,14 @@ module.exports = {
         const valuesGuild = [message.guild.id]
 
         const guildPremium = await db.query(sqlGuild, valuesGuild)
-        const calcServer = message.client.guilds.cache.get('581872879386492929')
-        const feedbackChannel = calcServer.channels.cache.get('738926248700411994')
 
         if (guildPremium.rows.length === 0) {
           const userPremium = await db.query(sql, values)
           if (userPremium.rows.length === 0) {
-            feedbackChannel.send(`${message.author ? message.author : message.user} (${message.author ? message.author.tag : message.user.tag}) exceeded the max number of optim in **${message.guild.name}**, <@217385992837922819>${message.url ? `\n${message.url}` : ''}`)
-
             replyData.discord.title = 'You need to be a **premium member** to be allows to use `.optim` with more than **3 attackers**.'
             replyData.discord.description = 'To become a premium member, you can DM the creator and pay any amount of `$`.\nYou can DM <@217385992837922819> (jd#0001) or wait for him to DM you the PayPal link!'
             replyData.discord.footer = 'The money is used to pay the monthly fee necessary to keep the 24/7 server on which the bot runs, rolling.'
+            replyData.notPremium = true
             return replyData
           }
         }

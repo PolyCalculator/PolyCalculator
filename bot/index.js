@@ -2,9 +2,7 @@ require('dotenv').config()
 const { Client, Collection } = require('discord.js')
 const bot = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS'] })
 const fs = require('fs')
-const prefix = process.env.PREFIX
-const help = require('./commands/help')
-const { buildEmbed, saveStats, logUse, logInteraction, milestoneMsg, makeSlashAlt } = require('./util/util')
+const { buildEmbed, saveStats, logInteraction, milestoneMsg } = require('./util/util')
 const db = require('../db')
 let calcServer = {}
 let newsChannel = {}
@@ -43,7 +41,7 @@ bot.once('ready', () => {
   feedbackChannel = calcServer.channels.cache.get('738926248700411994')
   let toggle = true
 
-  setInterval(function () {
+  setInterval(function() {
     if (toggle) {
       bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
@@ -130,7 +128,9 @@ bot.on('interactionCreate', async interaction => {
       options.content = replyData.content.map(x => x[0]).join('\n')
 
     const interactionResponse = await interaction.reply(options);
-    // const interactionResponse = await interaction.reply({ embeds: [embed], fetchReply: true });
+
+    if (replyData.notPremium)
+      feedbackChannel.send(`${interaction.author ? interaction.author : interaction.user} (${interaction.author ? interaction.author.tag : interaction.user.tag}) exceeded the max number of optim in **${interaction.guild.name}**, <@217385992837922819>\n${interactionResponse.url}`)
 
     dbData.url = interactionResponse.url
     interactionResponse.react('🗑️').then().catch(console.error)
@@ -146,153 +146,6 @@ bot.on('interactionCreate', async interaction => {
     await interaction.reply(`${error.message ? `${error.message}: ${error.name}` : error}`)//{ content: 'There was an error while executing this command!'/*, ephemeral: true */ });
   }
 });
-
-// --------------------------------------
-//
-//      EVENT ON MESSAGE
-//
-// --------------------------------------
-bot.on('messageCreate', async message => {
-  try {
-    if (message.author.bot || !message.content.startsWith(prefix) || message.content === prefix)
-      return
-
-    // If it's a DM
-    if (message.channel.type === 'dm') {
-      const logMsg = []
-      logMsg.push(`Content: ${message.content}`)
-      logMsg.push(`DM from ${message.author}(${message.author.username})`)
-      logMsg.push('<@217385992837922819>')
-
-      message.channel.send('I do not support DM commands.\nYou can go into any server I\'m in and do `/help c` for help with my most common command.\nFor more meta discussions, you can find the PolyCalculator server with `/links` in any of those servers!')
-        .catch(console.error)
-      return feedbackChannel.send(logMsg).catch(console.error)
-    }
-
-    const textStr = message.cleanContent.slice(prefix.length)
-    const commandName = textStr.split(/ +/).shift().toLowerCase();
-    const argsStr = textStr.slice(commandName.length + 1)
-
-    // Map all the commands
-    const command = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-
-    // Return if the command doesn't exist
-    if (!command)
-      return
-
-    const generalDelete = 5000
-
-    // DATA FOR DATABASE
-    const dbData = {
-      command: command.name,
-      content: message.cleanContent.slice(process.env.PREFIX.length),
-      author_id: message.author.id,
-      author_tag: message.author.tag,
-      server_id: message.guild.id,
-      arg: argsStr,
-      will_delete: true,
-      message_id: message.id,
-      isSlash: false
-    }
-    const replyData = {
-      content: [],
-      deleteContent: false,
-      discord: {
-        title: undefined,
-        description: undefined,
-        fields: [],
-        footer: undefined
-      },
-      outcome: {
-        attackers: [],
-        // {
-        //    name
-        //    beforehp: 0,
-        //    maxhp: 40,
-        //    hplost: 0,
-        //    hpdefender: 0
-        // }
-        defender: {
-          // name: '',
-          // currenthp: 0,
-          // maxhp: 40,
-          // hplost: 0,
-        }
-      }
-    }
-
-    if (argsStr.includes('help')) {
-      const reply = help.execute(message, command.name, replyData, dbData)
-      const helpEmbed = buildEmbed(reply)
-
-      return message.channel.send({ embeds: [helpEmbed] })
-        .then(x => {
-          x.react('🗑️').then().catch(console.error)
-        }).catch(console.error)
-    }
-
-    // Warning when channel name includes general and delete both messages
-    if (message.channel.name.includes('general')/* && message.author.id != '217385992837922819'*/)
-      return message.channel.send(`Come on! Not in #**${message.channel.name}**`)
-        .then(x => {
-          setTimeout(() => x.delete(), generalDelete)
-          setTimeout(() => message.delete(), generalDelete)
-        }).catch(console.error)
-
-    // Check if command is allowed in that channel
-    if (command.channelsAllowed) { // Certain commands can only be triggered in specific channels
-      if (!(command.channelsAllowed && command.channelsAllowed.some(x => x === message.channel.id)))
-        return
-    }
-
-    // Check if the user has the permissions necessary to execute the command
-    if (!(command.permsAllowed !== 'VIEW_CHANNEL' || command.permsAllowed.some(x => message.member.permissions.has(x)) || command.usersAllowed.some(x => x === message.author.id)))
-      return message.channel.send('Only an admin can use this command, sorry!')
-
-    // EXECUTE COMMAND
-    const replyObj = await command.execute(message, argsStr, replyData, dbData)
-
-    logUse(message, logChannel)
-
-    replyObj.content.forEach(async other => {
-      const warnings = await message.channel.send(other[0])
-
-      if (replyObj.deleteContent)
-        setTimeout(() => warnings.delete(), 15000)
-    })
-
-    if (replyObj.discord.description === undefined && replyObj.discord.title === undefined && replyObj.discord.fields.length === 0)
-      return
-
-    const msg = buildEmbed(replyObj)
-
-    const replyMessage = await message.channel.send({ embeds: [msg] })
-    dbData.url = replyMessage.url
-
-    replyMessage.react('🗑️').then().catch(console.error)
-
-    if (command.name === 'calc' || command.name === 'optim') {
-      const slashMessage = await message.channel.send(':mega::mega::mega: ```\nSoon, I will only support /slash commands. Here\'s what your command would look like in /slash commands, just copy and paste it again\n(if it doesn\'t work on the first try, paste again and add a space before you hit enter)\n```:mega::mega::mega:')
-      await message.channel.send(makeSlashAlt(command, argsStr))
-      setTimeout(function () { slashMessage.delete() }, 120000)
-    }
-
-    // INSERT INTO DB
-    saveStats(dbData, db)
-
-    milestoneMsg(message, db, newsChannel)
-
-    return
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error)
-    if (error.stack)
-      errorChannel.send(`**${message.cleanContent}** by ${message.author} (@${message.author.tag})\n${error}\n${message.url}`)
-
-    return message.channel.send(`${error}`)
-      .then().catch(console.error)
-  }
-})
 
 bot.on('messageReactionAdd', async (reaction, user) => {
   try {
