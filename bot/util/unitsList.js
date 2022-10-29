@@ -834,6 +834,7 @@ module.exports = {
     freeze: false,
     setHP: setHP,
     addBonus: addBonus,
+    onTheWater: onTheWater,
     getOverride: getOverride
   },
   cl: {

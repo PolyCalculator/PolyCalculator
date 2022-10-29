@@ -19,7 +19,7 @@ module.exports = {
     replyData.discord.fields.push({ name: 'Calculate the defender\'s **force**', value: 'Multiply the defender\'s defense stat with its current HP, divide it by its max HP and multiply it by the defense bonus (1, 1.5 or 4)' })
     replyData.discord.fields.push({ name: 'Calculate the total damage', value: 'Add the attacker\'s force with the defender\'s force' })
     replyData.discord.fields.push({ name: 'The defender\'s HP lost', value: 'Divide the attacker\'s force by the total damage, timed by the attacker\'s attack stat and by 4.5\nResult rounded up' })
-    replyData.discord.fields.push({ name: 'The attacker\'s HP lost', value: 'Divide the defender\'s force by the total damage, timed by the defender\'s attack stat and by 4.5\nResult rounded down' })
+    replyData.discord.fields.push({ name: 'The attacker\'s HP lost', value: 'Divide the defender\'s force by the total damage, timed by the defender\'s defense stat and by 4.5\nResult rounded down' })
 
     const shortFormula = []
     shortFormula.push('\nattacker.force = attacker.attackStats x attacker.currentHP / attacker.maxHP\n')
