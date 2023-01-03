@@ -53,6 +53,13 @@ module.exports.boost = function (unit) {
   unit.att = unit.att + 0.5
 }
 
+module.exports.convert = function (unit) {
+  unit.description = `${unit.description} (converted)`
+  unit.currenthp = 'Converted'
+  unit.retaliation = false
+  unit.converted = true
+}
+
 module.exports.saveStats = function (data, db) {
   const date = new Date
   const sql = 'INSERT INTO stats (content, author_id, author_tag, command, attacker, defender, url, message_id, server_id, will_delete, attacker_description, defender_description, reply_fields, arg, is_slash, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)'
