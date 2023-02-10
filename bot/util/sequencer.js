@@ -1,4 +1,4 @@
-const { poison, freeze } = require('./util')
+const { poison, freeze, convert } = require('./util')
 const { attackerCalc, defenderCalc } = require('./util')
 
 module.exports.generateArraySequences = function (length) {
@@ -64,12 +64,15 @@ module.exports.multicombat = function (attackers, defender, sequence) {
   const initialBonus = defender.bonus
 
   for (const attacker of attackers) {
+    if(attacker.convert)
+      convert(defender)
+
     const index = attackers.indexOf(attacker)
     if (solution.defenderHP <= 0)
       break
 
-    // if (doesNoDamage(attacker, defender, solution)) // returning -1 if the attacker does 0 dammage to the defender
-    //   continue
+    if (defender.converted == true)
+      continue
 
     solution = combat(attacker, defender, solution)
     solution.finalSequence.push(sequence[index])
@@ -108,9 +111,12 @@ function combat(attacker, defender, solution) {
 
   const totaldam = aforce + dforce;
   let defdiff = attackerCalc(aforce, totaldam, attacker)
-  if (attacker.splash) {
+  if (attacker.splash || attacker.exploding) {
     defdiff = Math.floor(defdiff / 2)
-    defender.description = `${defender.description} (splashed)`
+    // if ((attacker.poisonattack && !attacker.exploding) || (attacker.poisonexplosion && attacker.exploding))
+    //   defender.description = `${defender.description} (poisoned)`
+    // if (attacker.splash)
+    //   defender.description = `${defender.description} (splashed)`
   }
 
   solution.hpDealt.push(defdiff)

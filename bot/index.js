@@ -41,7 +41,7 @@ bot.once('ready', () => {
   feedbackChannel = calcServer.channels.cache.get('738926248700411994')
   let toggle = true
 
-  setInterval(function() {
+  setInterval(function () {
     if (toggle) {
       bot.user.setActivity('/units', { type: 'PLAYING' })
       toggle = false
