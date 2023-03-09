@@ -129,9 +129,6 @@ bot.on('interactionCreate', async interaction => {
 
     const interactionResponse = await interaction.reply(options);
 
-    if (replyData.notPremium)
-      feedbackChannel.send(`${interaction.author ? interaction.author : interaction.user} (${interaction.author ? interaction.author.tag : interaction.user.tag}) exceeded the max number of optim in **${interaction.guild.name}**, <@217385992837922819>\n${interactionResponse.url}`)
-
     dbData.url = interactionResponse.url
     interactionResponse.react('🗑️').then().catch(console.error)
     // interactionResponse.edit({ embeds: [embed] })
