@@ -14,28 +14,14 @@
     "dotenv": "8.0.0",
     "eslint": "6.8.0",
     "express": "4.17.3",
-    "express-generator": "4.2.0",
     "helmet": "3.21.3",
     "nodemon": "^2.0.20",
     "pg": "8.5.1"
   },
-  "devDependencies": {
-    "@babel/cli": "7.14.8",
-    "@babel/core": "7.8.4",
-    "@babel/node": "7.8.4",
-    "@babel/preset-env": "7.8.4",
-    "ava": "4.3.3"
-  },
   "scripts": {
     "start": "node server/index.js",
     "api": "nodemon server/index.js",
-    "bot": "nodemon bot/index.js",
-    "test": "ava",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
-  },
-  "ava": {
-    "watch": true
+    "bot": "nodemon bot/index.js"
   },
   "keywords": [],
   "author": "jd (alphaSeahorse)",
