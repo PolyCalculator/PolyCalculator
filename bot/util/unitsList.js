@@ -611,7 +611,7 @@ module.exports = {
     addBonus: addBonus,
     getOverride: getOverride
   },
-  sm: {
+  sh: {
     name: 'Shaman',
     plural: 'Shamans',
     description: '',
@@ -930,6 +930,58 @@ module.exports = {
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
+  },
+  ju: {
+    name: 'Juggernaut',
+    plural: 'Juggernauts',
+    description: '',
+    currenthp: 40,
+    maxhp: 40,
+    vet: false,
+    vetNow: false,
+    att: 4,
+    def: 4,
+    bonus: 1,
+    fort: false,
+    range: false,
+    retaliation: false,
+    forceRetaliation: undefined,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: true,
+    exploding: false,
+    freeze: false,
+    convert: false,
+    converted: false,
+    setHP: setHP,
+    addBonus: addBonus,
+    getOverride: getOverride
+  },
+  pi: {
+    name: 'Pirate',
+    plural: 'Pirates',
+    description: '',
+    currenthp: 10,
+    maxhp: 10,
+    vet: false,
+    vetNow: false,
+    att: 2,
+    def: 2,
+    bonus: 1,
+    fort: false,
+    range: false,
+    retaliation: true,
+    forceRetaliation: false,
+    poisonattack: false,
+    poisonexplosion: false,
+    canExplode: false,
+    exploding: false,
+    freeze: false,
+    convert: false,
+    converted: false,
+    setHP: setHP,
+    addBonus: addBonus,
+    getOverride: getOverride
   }
 }
 
@@ -1000,28 +1052,65 @@ function addBonus(bonusArray, replyData) {
   }
 }
 
+// Raft a:0 d:1
+// Bomber a:4 d:2
+// Rammer a:3 d:3
+// Scout a:2 d:1
+// Juggernaut a:4 d:4
+
 function onTheWater(navalArray) {
   if (this.bonus === 4)
     throw 'Are you saying a naval unit can be in a city :thinking:...'
 
-  if (navalArray[0].toLowerCase().startsWith('bo')) {
-    this.description = this.description + ' Boat'
-    this.att = 1
+  if (navalArray[0].toLowerCase().startsWith('rf')) {
+    this.description = this.description + ' Raft'
+    this.att = 0
+    this.def = 1
+  }
+  if (navalArray[0].toLowerCase().startsWith('sc')) {
+    this.description = this.description + ' Scout'
+    this.att = 2
     this.def = 1
     this.range = true
   }
-  if (navalArray[0].toLowerCase().startsWith('sh')) {
-    this.description = this.description + ' Ship'
-    this.att = 2
-    this.def = 2
-    this.range = true
+  if (navalArray[0].toLowerCase().startsWith('rm')) {
+    this.description = this.description + ' Rammer'
+    this.att = 3
+    this.def = 3
+    this.range = false
   }
   if (navalArray[0].toLowerCase().startsWith('bs')) {
-    this.description = this.description + ' Battleship'
+    this.description = this.description + ' Bomber'
     this.att = 4
-    this.def = 3
+    this.def = 2
+    this.retaliation = false
     this.range = true
   }
+  if (navalArray[0].toLowerCase().startsWith('bo')) {
+    this.description = this.description + ' Bomber'
+    this.att = 4
+    this.def = 2
+    this.retaliation = false
+    this.range = true
+  }
+  // if (navalArray[0].toLowerCase().startsWith('bo')) {
+  //   this.description = this.description + ' Boat'
+  //   this.att = 1
+  //   this.def = 1
+  //   this.range = true
+  // }
+  // if (navalArray[0].toLowerCase().startsWith('sh')) {
+  //   this.description = this.description + ' Ship'
+  //   this.att = 2
+  //   this.def = 2
+  //   this.range = true
+  // }
+  // if (navalArray[0].toLowerCase().startsWith('bs')) {
+  //   this.description = this.description + ' Battleship'
+  //   this.att = 4
+  //   this.def = 3
+  //   this.range = true
+  // }
 }
 
 // Get override and exploding

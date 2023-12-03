@@ -6,10 +6,10 @@ module.exports = {
   description: 'returns the best order to use multiple attackers to kill one unit according to these priorities:\n\n - Kill/inflict most damage to the defending unit,\n - Minimize the number of attacker casualties,\n - Minimize the cumulative damage taken by the attackers left alive.\n - Use the least number of attackers',
   aliases: ['o', 'op', 'opti'],
   shortUsage(prefix) {
-    return `\`${prefix}o wa bo, wa sh, wa bs, de d\``
+    return `\`${prefix}o wa sc, wa bo, wa rm, de d\``
   },
   longUsage(prefix) {
-    return `\`${prefix}optim wa bo, wa sh, wa bs, de d\``
+    return `\`${prefix}optim wa sc, wa bo, wa rm, de d\``
   },
   category: 'Advanced',
   // category: 'Paid',

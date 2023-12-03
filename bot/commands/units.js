@@ -34,7 +34,7 @@ module.exports = {
       replyData.discord.description = descriptionArray.join('\n')
     } else {
       replyData.discord.title = 'All units by code'
-      replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Boat: `bo`\nShip: `sh`\nBattleship: `bs`' })
+      replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Raft: `rf`\nScout: `sc`\nRammer: `rm`\nBomber: `bo`' })
       replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
       replyData.discord.fields.push({
         name: 'Modifiers:', value: 'Poison: `p`\nBoost: `b`\nExploding: `x`\nVeteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.\nAdd `s` to a dragon to calculate it\'s splash damage instead of direct hit.'
@@ -70,7 +70,7 @@ module.exports = {
 
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
-    const isNaval = unitArray.filter(value => value.includes('bo') || value.includes('sh') || value.includes('bs'))
+    const isNaval = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('bs') || value.includes('rm'))
     const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
 
     if (unitCode.length === 0 && isNaval.length != 0)
@@ -90,7 +90,7 @@ module.exports = {
     if (defenseBonusArray.length > 0)
       unit.addBonus(defenseBonusArray, replyData)
 
-    const navalUnitArray = unitArray.filter(value => value.toLowerCase().startsWith('bs') || value.toLowerCase().startsWith('sh') || value.toLowerCase().startsWith('bo'))
+    const navalUnitArray = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('bs') || value.includes('rm'))
     if (navalUnitArray.length > 0) {
       if (unit.onTheWater)
         unit.onTheWater(navalUnitArray)

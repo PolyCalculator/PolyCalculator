@@ -6,10 +6,10 @@ module.exports = {
   description: 'calculate the outcome of a fight in the most simple format.',
   aliases: ['c'],
   shortUsage(prefix) {
-    return `\`${prefix}c wa 7, ri 5\` or\n\`${prefix}c wa bo, wa sh, wa bs, de d\``
+    return `\`${prefix}c wa 7, ri 5\` or\n\`${prefix}c wa sc, wa bo, wa rm, de d\``
   },
   longUsage(prefix) {
-    return `\`${prefix}calc warrior 7, rider 5\` or\n\`${prefix}calc warrior boat, warrior ship, warrior bship, defender d\``
+    return `\`${prefix}calc warrior 7, rider 5\` or\n\`${prefix}calc warrior scout, warrior bomber, warrior rmmer, defender d\``
   },
   category: 'Main',
   // category: 'Paid',

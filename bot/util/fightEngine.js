@@ -3,13 +3,13 @@ const deadText = require('./deadtexts')
 const { attackerCalc, defenderCalc } = require('./util')
 const { generateArraySequences, generateSequences, multicombat, evaluate, simpleCombat } = require('./sequencer')
 
-module.exports.optim = function (attackers, defender, replyData) {
+module.exports.optim = function(attackers, defender, replyData) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
   const sequences = generateSequences(arrayNbAttackers)
   let solutions = []
 
   const hasFinal = attackers.some(attacker => attacker.final === true)
-  sequences.forEach(function (sequence) {
+  sequences.forEach(function(sequence) {
     const attackersSorted = []
 
     for (let j = 0; j < sequence.length; j++) {
@@ -80,7 +80,7 @@ module.exports.optim = function (attackers, defender, replyData) {
   return replyData
 }
 
-module.exports.calc = function (attackers, defender, replyData) {
+module.exports.calc = function(attackers, defender, replyData) {
   const sequence = []
   for (let i = 1; i <= attackers.length; i++) {
     sequence.push(i)
@@ -139,7 +139,7 @@ module.exports.calc = function (attackers, defender, replyData) {
   return replyData
 }
 
-module.exports.bulk = function (attacker, defender, replyData) {
+module.exports.bulk = function(attacker, defender, replyData) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
 
@@ -192,7 +192,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
   return replyData
 }
 
-module.exports.provideDefHP = function (attacker, defender, replyData) {
+module.exports.provideDefHP = function(attacker, defender, replyData) {
   let aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   let totaldam
@@ -236,7 +236,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
   return replyData;
 }
 
-module.exports.provideAttHP = function (attacker, defender, replyData) {
+module.exports.provideAttHP = function(attacker, defender, replyData) {
   const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
   let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
   let totaldam;
@@ -285,7 +285,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
   return replyData
 }
 
-module.exports.dragon = function (dragon, direct, splashed, replyData) {
+module.exports.dragon = function(dragon, direct, splashed, replyData) {
   const deathText = deadText[Math.floor(Math.random() * deadText.length)]
 
   const directBonus = ({

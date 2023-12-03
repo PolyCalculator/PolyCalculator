@@ -112,31 +112,24 @@ module.exports.handleAliases = function (array) {
 
 const aliasMap = new Collection()
 
-aliasMap.set('dbs', ['de', 'bs'])
-aliasMap.set('dsh', ['de', 'sh'])
+aliasMap.set('dsh', ['de', 'sc'])
+aliasMap.set('dsc', ['de', 'sc'])
+aliasMap.set('dbs', ['de', 'bo'])
 aliasMap.set('dbo', ['de', 'bo'])
+aliasMap.set('drm', ['de', 'rm'])
 
-aliasMap.set('gbs', ['gi', 'bs'])
-aliasMap.set('gsh', ['gi', 'sh'])
-aliasMap.set('gbo', ['gi', 'bo'])
-
-aliasMap.set('wbs', ['wa', 'bs'])
-aliasMap.set('wsh', ['wa', 'sh'])
+aliasMap.set('wsh', ['wa', 'sc'])
+aliasMap.set('wsc', ['wa', 'sc'])
 aliasMap.set('wbo', ['wa', 'bo'])
+aliasMap.set('wbs', ['wa', 'bo'])
+aliasMap.set('wrm', ['wa', 'rm'])
 
-aliasMap.set('kbs', ['kn', 'bs'])
-aliasMap.set('ksh', ['kn', 'sh'])
-aliasMap.set('kbo', ['kn', 'bo'])
+aliasMap.set('gbs', ['ju', ''])
 
 aliasMap.set('dd', ['de', 'd'])
 aliasMap.set('dw', ['de', 'w'])
 
-aliasMap.set('wd', ['wa', 'd'])
-aliasMap.set('ww', ['wa', 'w'])
-
-aliasMap.set('smh', ['sm', 'sh'])
 aliasMap.set('am', ['ri', ''])
-aliasMap.set('shaman', ['sm', ''])
 
 aliasMap.set('?d', ['?', 'd'])
 aliasMap.set('d?', ['d', '?'])
