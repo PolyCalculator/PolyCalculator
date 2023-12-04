@@ -1093,24 +1093,24 @@ function onTheWater(navalArray) {
     this.retaliation = false
     this.range = true
   }
-  // if (navalArray[0].toLowerCase().startsWith('bo')) {
-  //   this.description = this.description + ' Boat'
-  //   this.att = 1
-  //   this.def = 1
-  //   this.range = true
-  // }
-  // if (navalArray[0].toLowerCase().startsWith('sh')) {
-  //   this.description = this.description + ' Ship'
-  //   this.att = 2
-  //   this.def = 2
-  //   this.range = true
-  // }
-  // if (navalArray[0].toLowerCase().startsWith('bs')) {
-  //   this.description = this.description + ' Battleship'
-  //   this.att = 4
-  //   this.def = 3
-  //   this.range = true
-  // }
+  if (navalArray[0].toLowerCase().startsWith('ob')) {
+    this.description = this.description + ' (Old) Boat'
+    this.att = 1
+    this.def = 1
+    this.range = true
+  }
+  if (navalArray[0].toLowerCase().startsWith('oh')) {
+    this.description = this.description + ' (Old) Ship'
+    this.att = 2
+    this.def = 2
+    this.range = true
+  }
+  if (navalArray[0].toLowerCase().startsWith('os')) {
+    this.description = this.description + ' (Old) Battleship'
+    this.att = 4
+    this.def = 3
+    this.range = true
+  }
 }
 
 // Get override and exploding

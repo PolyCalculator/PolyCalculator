@@ -35,7 +35,7 @@ module.exports = {
       replyData.discord.footer = `aliases: ${command.aliases.join(', ')}`
       if (command.category === 'Main' || command.category === 'Advanced') {
         // replyData.discord.fields.push({ name: '\u200b', value: '**Other features**' })
-        replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Raft: `rf`\nScout: `sc`\nRammer: `rm`\nBomber: `bo`' })
+        replyData.discord.fields.push({ name: 'Naval unit codes to add to land units:', value: 'Raft: `rf`\nScout: `sc`\nRammer: `rm`\nBomber: `bo`\nAlso old naval units for now:\nBoat: `ob`\nShip: `oh`\nBattleship: `os`' })
         replyData.discord.fields.push({ name: 'Current hp:', value: 'Any number will be interpreted as current hp with a bunch of fail-safes' })
         replyData.discord.fields.push({ name: 'Modifiers:', value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`' })
       }
