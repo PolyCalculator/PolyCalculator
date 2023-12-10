@@ -129,7 +129,7 @@ module.exports = {
       if (toPoison.length > 0)
         poison(unit)
 
-      if (toBoost.length > 0)
+      if (toBoost.length > 0 && unit.att !== 0)
         boost(unit)
     }
 
