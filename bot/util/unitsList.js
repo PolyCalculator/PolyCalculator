@@ -506,7 +506,7 @@ module.exports = {
     addBonus: addBonus,
     getOverride: getOverride
   },
-  sl: {
+  bs: {
     name: 'Battle Sled',
     plural: 'Battle Sleds',
     description: '',
@@ -1079,13 +1079,6 @@ function onTheWater(navalArray) {
     this.att = 3
     this.def = 3
     this.range = false
-  }
-  if (navalArray[0].toLowerCase().startsWith('bs')) {
-    this.description = this.description + ' Bomber'
-    this.att = 4
-    this.def = 2
-    this.retaliation = false
-    this.range = true
   }
   if (navalArray[0].toLowerCase().startsWith('bo')) {
     this.description = this.description + ' Bomber'
