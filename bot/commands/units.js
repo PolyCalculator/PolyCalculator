@@ -112,14 +112,13 @@ module.exports = {
     const toPoison = unitArray.filter(value => value.toLowerCase() === 'p')
     const toBoost = unitArray.filter(value => value.toLowerCase() === 'b')
     const toSplash = unitArray.some(value => value.toLowerCase() === 's')
-    const isDragon = unitArray.some(value => value.toLowerCase() === 'dr')
+    // const isDragon = unitArray.some(value => value.toLowerCase() === 'dr')
+    // const isJuggernaut = unitArray.some(value => value.toLowerCase() === 'ju')
 
-    unit.splash = false
-    if (toSplash && isDragon)
+    if (toSplash && unit.splash !== false)
       unit.splash = true
     else if (toSplash) {
-      if (!replyData.content.toString().includes('To ensure the splash works'))
-        replyData.content.push(['To ensure the splash works, add the `s` to dragon unit details\nE.g. `/c attackers:dr 17 s, defender:wa`', {}])
+      throw `${unit.description ? unit.name + unit.description + "s" : unit.plural} can't splash\nRemove the \`s\` to proceed`
     }
 
     if (toPoison.length > 0 && toBoost.length > 0) {

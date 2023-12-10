@@ -22,6 +22,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -49,6 +50,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -76,6 +78,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -103,6 +106,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -130,6 +134,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -157,6 +162,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -184,6 +190,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -211,6 +218,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -238,6 +246,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -265,6 +274,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -291,6 +301,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -317,6 +328,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -344,6 +356,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -370,6 +383,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -396,6 +410,7 @@ module.exports = {
     freeze: false,
     convert: true,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -423,6 +438,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -450,6 +466,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -476,6 +493,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: undefined,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -502,6 +520,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -528,6 +547,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -554,6 +574,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -580,6 +601,7 @@ module.exports = {
     freeze: true,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -607,6 +629,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -633,6 +656,7 @@ module.exports = {
     freeze: false,
     convert: true,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -660,6 +684,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -687,6 +712,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -714,6 +740,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -741,6 +768,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -767,6 +795,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -794,6 +823,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -820,6 +850,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -847,6 +878,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -874,6 +906,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -900,6 +933,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     onTheWater: onTheWater,
@@ -927,6 +961,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -953,6 +988,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: undefined,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -979,6 +1015,7 @@ module.exports = {
     freeze: false,
     convert: false,
     converted: false,
+    splash: false,
     setHP: setHP,
     addBonus: addBonus,
     getOverride: getOverride
@@ -1086,6 +1123,7 @@ function onTheWater(navalArray) {
     this.def = 2
     this.retaliation = false
     this.range = true
+    this.splash = undefined
   }
   if (navalArray[0].toLowerCase().startsWith('ob')) {
     this.description = this.description + ' (Old) Boat'

@@ -115,8 +115,10 @@ function combat(attacker, defender, solution) {
     defdiff = Math.floor(defdiff / 2)
     // if ((attacker.poisonattack && !attacker.exploding) || (attacker.poisonexplosion && attacker.exploding))
     //   defender.description = `${defender.description} (poisoned)`
-    // if (attacker.splash)
-    //   defender.description = `${defender.description} (splashed)`
+    if (attacker.splash) {
+      attacker.name = `${attacker.name} 💦`
+      attacker.plural = `${attacker.plural} 💦`
+  }
   }
 
   solution.hpDealt.push(defdiff)
