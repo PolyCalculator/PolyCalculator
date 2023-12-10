@@ -81,13 +81,13 @@ module.exports.logInteraction = function (interaction, logChannel, interactionRe
 }
 
 module.exports.milestoneMsg = async function (message, db, newsChannel) {
-  let { rows } = await db.query('SELECT COUNT(st.id) AS "triggers" FROM stats st JOIN servers se ON se.server_id = st.server_id')
+  let { rows } = await db.query('SELECT COUNT(id) AS "triggers" FROM stats')
 
   rows = rows[0]
   rows.triggers = parseInt(rows.triggers)
 
-  if (rows.triggers % 50000 === 0)
-    newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.author} (${message.author.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
+  if (rows.triggers % 25000 === 0)
+    newsChannel.send(`<:yay:585534167274618997>:tada: Thanks to ${message.user} (${message.user.username}), we reached ${rows.triggers} uses! :tada:<:yay:585534167274618997>`)
 }
 
 module.exports.handleAliases = function (array) {
