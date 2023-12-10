@@ -71,8 +71,8 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     if (solution.defenderHP <= 0)
       break
 
-    if (defender.converted == true)
-      continue
+    // if (defender.converted == true)
+    //   continue
 
     solution = combat(attacker, defender, solution)
     solution.finalSequence.push(sequence[index])
