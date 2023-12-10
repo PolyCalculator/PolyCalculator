@@ -1066,6 +1066,7 @@ function onTheWater(navalArray) {
     this.description = this.description + ' Raft'
     this.att = 0
     this.def = 1
+    this.retaliation = false
   }
   if (navalArray[0].toLowerCase().startsWith('sc')) {
     this.description = this.description + ' Scout'
