@@ -301,7 +301,7 @@ module.exports = {
     description: '',
     currenthp: 15,
     maxhp: 15,
-    vet: true,
+    vet: false,
     vetNow: false,
     att: 3,
     def: 1,
