@@ -70,7 +70,7 @@ module.exports = {
 
     const unitKeys = Object.keys(unitList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
-    const isNaval = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('bs') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
+    const isNaval = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
     const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
 
     if (unitCode.length === 0 && isNaval.length != 0)
@@ -90,7 +90,7 @@ module.exports = {
     if (defenseBonusArray.length > 0)
       unit.addBonus(defenseBonusArray, replyData)
 
-    const navalUnitArray = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('bs') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
+    const navalUnitArray = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
     if (navalUnitArray.length > 0) {
       if (unit.onTheWater)
         unit.onTheWater(navalUnitArray)
