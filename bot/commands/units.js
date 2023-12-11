@@ -77,8 +77,8 @@ module.exports = {
 
     if (unitCode.length === 0 && isNaval.length != 0 && currentHPArray.length !== 0)
       throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`/units\`.`
-    if(currentHPArray.length == 0)
-      unitCode = ['wa']
+    // if(currentHPArray.length == 0)
+    //   unitCode = ['wa']
     if (unitCode.length === 0)
       throw 'We couldn\'t find one of the units.\n\nYou can get the list with `/units`'
 
