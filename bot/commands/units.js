@@ -73,15 +73,17 @@ module.exports = {
     const isNaval = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
     const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
 
-    if (unitCode.length === 0 && isNaval.length != 0)
+    const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
+
+    if (unitCode.length === 0 && isNaval.length != 0 && currentHPArray.length !== 0)
       throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`/units\`.`
+    if(currentHPArray.length == 0)
+      unitCode = ['wa']
     if (unitCode.length === 0)
       throw 'We couldn\'t find one of the units.\n\nYou can get the list with `/units`'
 
     unitCode = unitCode.toString().substring(0, 2).toLowerCase()
     const unit = this.getUnit(unitCode)
-
-    const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
 
     if (currentHPArray.length > 0)
       unit.setHP(currentHPArray, replyData)
