@@ -114,7 +114,10 @@ module.exports.calc = function(attackers, defender, replyData) {
       hplost: solution.hpLoss[order],
       hpdefender: defHP
     })
-    descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
+    if(descriptionArray.toString().length < 1000)
+      descriptionArray.push(`**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${attackers[seqIndex].name}${attackers[seqIndex].description}:** ${attackers[seqIndex].currenthp} ➔ ${attackers[seqIndex].currenthp - solution.hpLoss[order]} (**${defHP}**)`)
+    else if(!descriptionArray.toString().endsWith("..."))
+      descriptionArray.push("...")
   })
 
   const defenderBonus = ({
