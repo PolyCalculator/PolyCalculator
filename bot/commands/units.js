@@ -39,7 +39,7 @@ module.exports = {
       replyData.discord.fields.push({
         name: 'Modifiers:', value: 'Poison: `p`\nBoost: `b`\nExploding: `x`\nVeteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender\'s retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.\nAdd `s` to a dragon to calculate it\'s splash damage instead of direct hit.'
       })
-      replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`.' })
+      replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`' })
 
       replyData.outcome = []
       for (const key in unitList) {
