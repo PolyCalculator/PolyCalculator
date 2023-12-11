@@ -75,10 +75,15 @@ module.exports = {
 
     const currentHPArray = unitArray.filter(x => !isNaN(parseInt(x)) || x === 'v');
 
-    if (unitCode.length === 0 && isNaval.length != 0 && currentHPArray.length !== 0)
-      throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`/units\`.`
-    // if(currentHPArray.length == 0)
-    //   unitCode = ['wa']
+    if (unitCode.length === 0 && isNaval.length != 0) {
+      if(currentHPArray.length !== 0)
+        throw `You need to provide a unit inside the **\`${isNaval[0]}\`**\nYou can see the full unit list with\`/units\`.`
+      else {
+        unitCode = ['wa']
+        replyData.content.push(['You didn\'t provide the hp of your naval unit, so we made it a Warrior\nFull hp naval units do the same damage regardless of their max hp', {}])
+      }
+    }
+
     if (unitCode.length === 0)
       throw 'We couldn\'t find one of the units.\n\nYou can get the list with `/units`'
 
