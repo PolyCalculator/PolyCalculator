@@ -1,0 +1,12801 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wa b 1, ca p 1 1`] = `
+{
+  "_cmd": "wa b 1, ca p 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 1, ca p 2 1`] = `
+{
+  "_cmd": "wa b 1, ca p 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 1, ca p 3 1`] = `
+{
+  "_cmd": "wa b 1, ca p 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 1, ca p 4 1`] = `
+{
+  "_cmd": "wa b 1, ca p 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 1, ca p 5 1`] = `
+{
+  "_cmd": "wa b 1, ca p 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 1, ca p 6 1`] = `
+{
+  "_cmd": "wa b 1, ca p 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 1, ca p 7 1`] = `
+{
+  "_cmd": "wa b 1, ca p 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 1, ca p 8 1`] = `
+{
+  "_cmd": "wa b 1, ca p 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 1, ca p 9 1`] = `
+{
+  "_cmd": "wa b 1, ca p 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 1, ca p 10 1`] = `
+{
+  "_cmd": "wa b 1, ca p 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 1, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 1, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 1, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 1, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 1, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 1, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 1, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 1, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 1, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 1, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 1, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 11",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 1, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 12",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 1, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 13",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 1, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 14",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 1, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 1, ca p v 15",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 1, ca v 1 1`] = `
+{
+  "_cmd": "wa b 1, ca v 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 1, ca v 2 1`] = `
+{
+  "_cmd": "wa b 1, ca v 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 1, ca v 3 1`] = `
+{
+  "_cmd": "wa b 1, ca v 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 1, ca v 4 1`] = `
+{
+  "_cmd": "wa b 1, ca v 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 1, ca v 5 1`] = `
+{
+  "_cmd": "wa b 1, ca v 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 1, ca v 6 1`] = `
+{
+  "_cmd": "wa b 1, ca v 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 1, ca v 7 1`] = `
+{
+  "_cmd": "wa b 1, ca v 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 1, ca v 8 1`] = `
+{
+  "_cmd": "wa b 1, ca v 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 1, ca v 9 1`] = `
+{
+  "_cmd": "wa b 1, ca v 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 1, ca v 10 1`] = `
+{
+  "_cmd": "wa b 1, ca v 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 1, ca v 11 1`] = `
+{
+  "_cmd": "wa b 1, ca v 11",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 1, ca v 12 1`] = `
+{
+  "_cmd": "wa b 1, ca v 12",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 1, ca v 13 1`] = `
+{
+  "_cmd": "wa b 1, ca v 13",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 1, ca v 14 1`] = `
+{
+  "_cmd": "wa b 1, ca v 14",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 1, ca v 15 1`] = `
+{
+  "_cmd": "wa b 1, ca v 15",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 2, ca p 1 1`] = `
+{
+  "_cmd": "wa b 2, ca p 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 2, ca p 2 1`] = `
+{
+  "_cmd": "wa b 2, ca p 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 2, ca p 3 1`] = `
+{
+  "_cmd": "wa b 2, ca p 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 2, ca p 4 1`] = `
+{
+  "_cmd": "wa b 2, ca p 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 2, ca p 5 1`] = `
+{
+  "_cmd": "wa b 2, ca p 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 2, ca p 6 1`] = `
+{
+  "_cmd": "wa b 2, ca p 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 2, ca p 7 1`] = `
+{
+  "_cmd": "wa b 2, ca p 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 2, ca p 8 1`] = `
+{
+  "_cmd": "wa b 2, ca p 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 2, ca p 9 1`] = `
+{
+  "_cmd": "wa b 2, ca p 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 2, ca p 10 1`] = `
+{
+  "_cmd": "wa b 2, ca p 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 2, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 2, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 2, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 2, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 2, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 2, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 2, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 2, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 2, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 2, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 2, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 11",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 2, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 12",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 2, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 13",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 2, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 14",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 2, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 2, ca p v 15",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 2, ca v 1 1`] = `
+{
+  "_cmd": "wa b 2, ca v 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 2, ca v 2 1`] = `
+{
+  "_cmd": "wa b 2, ca v 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 2, ca v 3 1`] = `
+{
+  "_cmd": "wa b 2, ca v 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 2, ca v 4 1`] = `
+{
+  "_cmd": "wa b 2, ca v 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 2, ca v 5 1`] = `
+{
+  "_cmd": "wa b 2, ca v 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 2, ca v 6 1`] = `
+{
+  "_cmd": "wa b 2, ca v 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 2, ca v 7 1`] = `
+{
+  "_cmd": "wa b 2, ca v 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 2, ca v 8 1`] = `
+{
+  "_cmd": "wa b 2, ca v 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 2, ca v 9 1`] = `
+{
+  "_cmd": "wa b 2, ca v 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 2, ca v 10 1`] = `
+{
+  "_cmd": "wa b 2, ca v 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 2, ca v 11 1`] = `
+{
+  "_cmd": "wa b 2, ca v 11",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 2, ca v 12 1`] = `
+{
+  "_cmd": "wa b 2, ca v 12",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 2, ca v 13 1`] = `
+{
+  "_cmd": "wa b 2, ca v 13",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 2, ca v 14 1`] = `
+{
+  "_cmd": "wa b 2, ca v 14",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 2, ca v 15 1`] = `
+{
+  "_cmd": "wa b 2, ca v 15",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 3, ca p 1 1`] = `
+{
+  "_cmd": "wa b 3, ca p 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 3, ca p 2 1`] = `
+{
+  "_cmd": "wa b 3, ca p 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 3, ca p 3 1`] = `
+{
+  "_cmd": "wa b 3, ca p 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 3, ca p 4 1`] = `
+{
+  "_cmd": "wa b 3, ca p 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 3, ca p 5 1`] = `
+{
+  "_cmd": "wa b 3, ca p 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 3, ca p 6 1`] = `
+{
+  "_cmd": "wa b 3, ca p 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 3, ca p 7 1`] = `
+{
+  "_cmd": "wa b 3, ca p 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 3, ca p 8 1`] = `
+{
+  "_cmd": "wa b 3, ca p 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 3, ca p 9 1`] = `
+{
+  "_cmd": "wa b 3, ca p 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 3, ca p 10 1`] = `
+{
+  "_cmd": "wa b 3, ca p 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 3, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 3, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 3, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 3, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 3, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 3, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 3, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 3, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 3, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 3, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 3, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 11",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 3, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 12",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 3, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 13",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 3, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 14",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 3, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 3, ca p v 15",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 3, ca v 1 1`] = `
+{
+  "_cmd": "wa b 3, ca v 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 3, ca v 2 1`] = `
+{
+  "_cmd": "wa b 3, ca v 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 3, ca v 3 1`] = `
+{
+  "_cmd": "wa b 3, ca v 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 3, ca v 4 1`] = `
+{
+  "_cmd": "wa b 3, ca v 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 3, ca v 5 1`] = `
+{
+  "_cmd": "wa b 3, ca v 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 3, ca v 6 1`] = `
+{
+  "_cmd": "wa b 3, ca v 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 3, ca v 7 1`] = `
+{
+  "_cmd": "wa b 3, ca v 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 3, ca v 8 1`] = `
+{
+  "_cmd": "wa b 3, ca v 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 3, ca v 9 1`] = `
+{
+  "_cmd": "wa b 3, ca v 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 3, ca v 10 1`] = `
+{
+  "_cmd": "wa b 3, ca v 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 3, ca v 11 1`] = `
+{
+  "_cmd": "wa b 3, ca v 11",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 3, ca v 12 1`] = `
+{
+  "_cmd": "wa b 3, ca v 12",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 3, ca v 13 1`] = `
+{
+  "_cmd": "wa b 3, ca v 13",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 3, ca v 14 1`] = `
+{
+  "_cmd": "wa b 3, ca v 14",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 3, ca v 15 1`] = `
+{
+  "_cmd": "wa b 3, ca v 15",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 4, ca p 1 1`] = `
+{
+  "_cmd": "wa b 4, ca p 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 4, ca p 2 1`] = `
+{
+  "_cmd": "wa b 4, ca p 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 4, ca p 3 1`] = `
+{
+  "_cmd": "wa b 4, ca p 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 4, ca p 4 1`] = `
+{
+  "_cmd": "wa b 4, ca p 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 4, ca p 5 1`] = `
+{
+  "_cmd": "wa b 4, ca p 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 4, ca p 6 1`] = `
+{
+  "_cmd": "wa b 4, ca p 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 4, ca p 7 1`] = `
+{
+  "_cmd": "wa b 4, ca p 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 4, ca p 8 1`] = `
+{
+  "_cmd": "wa b 4, ca p 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 4, ca p 9 1`] = `
+{
+  "_cmd": "wa b 4, ca p 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 4, ca p 10 1`] = `
+{
+  "_cmd": "wa b 4, ca p 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 4, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 4, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 4, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 4, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 4, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 4, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 4, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 4, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 4, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 4, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 4, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 11",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 4, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 12",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 4, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 13",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 4, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 14",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 4, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 4, ca p v 15",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 4, ca v 1 1`] = `
+{
+  "_cmd": "wa b 4, ca v 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 4, ca v 2 1`] = `
+{
+  "_cmd": "wa b 4, ca v 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 4, ca v 3 1`] = `
+{
+  "_cmd": "wa b 4, ca v 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 4, ca v 4 1`] = `
+{
+  "_cmd": "wa b 4, ca v 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 4, ca v 5 1`] = `
+{
+  "_cmd": "wa b 4, ca v 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 4, ca v 6 1`] = `
+{
+  "_cmd": "wa b 4, ca v 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 4, ca v 7 1`] = `
+{
+  "_cmd": "wa b 4, ca v 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 4, ca v 8 1`] = `
+{
+  "_cmd": "wa b 4, ca v 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 4, ca v 9 1`] = `
+{
+  "_cmd": "wa b 4, ca v 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 4, ca v 10 1`] = `
+{
+  "_cmd": "wa b 4, ca v 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 4, ca v 11 1`] = `
+{
+  "_cmd": "wa b 4, ca v 11",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 4, ca v 12 1`] = `
+{
+  "_cmd": "wa b 4, ca v 12",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 4, ca v 13 1`] = `
+{
+  "_cmd": "wa b 4, ca v 13",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 4, ca v 14 1`] = `
+{
+  "_cmd": "wa b 4, ca v 14",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 4, ca v 15 1`] = `
+{
+  "_cmd": "wa b 4, ca v 15",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 5, ca p 1 1`] = `
+{
+  "_cmd": "wa b 5, ca p 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 5, ca p 2 1`] = `
+{
+  "_cmd": "wa b 5, ca p 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 5, ca p 3 1`] = `
+{
+  "_cmd": "wa b 5, ca p 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 5, ca p 4 1`] = `
+{
+  "_cmd": "wa b 5, ca p 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 5, ca p 5 1`] = `
+{
+  "_cmd": "wa b 5, ca p 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 5, ca p 6 1`] = `
+{
+  "_cmd": "wa b 5, ca p 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 5, ca p 7 1`] = `
+{
+  "_cmd": "wa b 5, ca p 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 5, ca p 8 1`] = `
+{
+  "_cmd": "wa b 5, ca p 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 5, ca p 9 1`] = `
+{
+  "_cmd": "wa b 5, ca p 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 5, ca p 10 1`] = `
+{
+  "_cmd": "wa b 5, ca p 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 5, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 5, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 5, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 5, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 5, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 5, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 5, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 5, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 5, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 5, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 5, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 11",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 5, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 12",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 5, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 13",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 5, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 14",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 5, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 5, ca p v 15",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 5, ca v 1 1`] = `
+{
+  "_cmd": "wa b 5, ca v 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 5, ca v 2 1`] = `
+{
+  "_cmd": "wa b 5, ca v 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 5, ca v 3 1`] = `
+{
+  "_cmd": "wa b 5, ca v 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 5, ca v 4 1`] = `
+{
+  "_cmd": "wa b 5, ca v 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 5, ca v 5 1`] = `
+{
+  "_cmd": "wa b 5, ca v 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 5, ca v 6 1`] = `
+{
+  "_cmd": "wa b 5, ca v 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 5, ca v 7 1`] = `
+{
+  "_cmd": "wa b 5, ca v 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 5, ca v 8 1`] = `
+{
+  "_cmd": "wa b 5, ca v 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 5, ca v 9 1`] = `
+{
+  "_cmd": "wa b 5, ca v 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 5, ca v 10 1`] = `
+{
+  "_cmd": "wa b 5, ca v 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 5, ca v 11 1`] = `
+{
+  "_cmd": "wa b 5, ca v 11",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 5, ca v 12 1`] = `
+{
+  "_cmd": "wa b 5, ca v 12",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 5, ca v 13 1`] = `
+{
+  "_cmd": "wa b 5, ca v 13",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 5, ca v 14 1`] = `
+{
+  "_cmd": "wa b 5, ca v 14",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 5, ca v 15 1`] = `
+{
+  "_cmd": "wa b 5, ca v 15",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 6, ca p 1 1`] = `
+{
+  "_cmd": "wa b 6, ca p 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 6, ca p 2 1`] = `
+{
+  "_cmd": "wa b 6, ca p 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 6, ca p 3 1`] = `
+{
+  "_cmd": "wa b 6, ca p 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 6, ca p 4 1`] = `
+{
+  "_cmd": "wa b 6, ca p 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 6, ca p 5 1`] = `
+{
+  "_cmd": "wa b 6, ca p 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 6, ca p 6 1`] = `
+{
+  "_cmd": "wa b 6, ca p 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 6, ca p 7 1`] = `
+{
+  "_cmd": "wa b 6, ca p 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 6, ca p 8 1`] = `
+{
+  "_cmd": "wa b 6, ca p 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 6, ca p 9 1`] = `
+{
+  "_cmd": "wa b 6, ca p 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 6, ca p 10 1`] = `
+{
+  "_cmd": "wa b 6, ca p 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 6, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 6, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 6, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 6, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 6, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 6, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 6, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 6, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 6, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 6, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 6, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 11",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 6, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 12",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 6, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 13",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 6, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 14",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 6, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 6, ca p v 15",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 6, ca v 1 1`] = `
+{
+  "_cmd": "wa b 6, ca v 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 6, ca v 2 1`] = `
+{
+  "_cmd": "wa b 6, ca v 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 6, ca v 3 1`] = `
+{
+  "_cmd": "wa b 6, ca v 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 6, ca v 4 1`] = `
+{
+  "_cmd": "wa b 6, ca v 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 6, ca v 5 1`] = `
+{
+  "_cmd": "wa b 6, ca v 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 6, ca v 6 1`] = `
+{
+  "_cmd": "wa b 6, ca v 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 6, ca v 7 1`] = `
+{
+  "_cmd": "wa b 6, ca v 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 6, ca v 8 1`] = `
+{
+  "_cmd": "wa b 6, ca v 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 6, ca v 9 1`] = `
+{
+  "_cmd": "wa b 6, ca v 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 6, ca v 10 1`] = `
+{
+  "_cmd": "wa b 6, ca v 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 6, ca v 11 1`] = `
+{
+  "_cmd": "wa b 6, ca v 11",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 6, ca v 12 1`] = `
+{
+  "_cmd": "wa b 6, ca v 12",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 6, ca v 13 1`] = `
+{
+  "_cmd": "wa b 6, ca v 13",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 6, ca v 14 1`] = `
+{
+  "_cmd": "wa b 6, ca v 14",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 6, ca v 15 1`] = `
+{
+  "_cmd": "wa b 6, ca v 15",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 7, ca p 1 1`] = `
+{
+  "_cmd": "wa b 7, ca p 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 7, ca p 2 1`] = `
+{
+  "_cmd": "wa b 7, ca p 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 7, ca p 3 1`] = `
+{
+  "_cmd": "wa b 7, ca p 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 7, ca p 4 1`] = `
+{
+  "_cmd": "wa b 7, ca p 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 7, ca p 5 1`] = `
+{
+  "_cmd": "wa b 7, ca p 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 7, ca p 6 1`] = `
+{
+  "_cmd": "wa b 7, ca p 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 7, ca p 7 1`] = `
+{
+  "_cmd": "wa b 7, ca p 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 7, ca p 8 1`] = `
+{
+  "_cmd": "wa b 7, ca p 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 7, ca p 9 1`] = `
+{
+  "_cmd": "wa b 7, ca p 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 7, ca p 10 1`] = `
+{
+  "_cmd": "wa b 7, ca p 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 7, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 7, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 7, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 7, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 7, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 7, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 7, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 7, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 7, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 7, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 7, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 11",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 7, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 12",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 7, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 13",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 7, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 14",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 7, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 7, ca p v 15",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 7, ca v 1 1`] = `
+{
+  "_cmd": "wa b 7, ca v 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 7, ca v 2 1`] = `
+{
+  "_cmd": "wa b 7, ca v 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 7, ca v 3 1`] = `
+{
+  "_cmd": "wa b 7, ca v 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 7, ca v 4 1`] = `
+{
+  "_cmd": "wa b 7, ca v 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 7, ca v 5 1`] = `
+{
+  "_cmd": "wa b 7, ca v 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 7, ca v 6 1`] = `
+{
+  "_cmd": "wa b 7, ca v 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 7, ca v 7 1`] = `
+{
+  "_cmd": "wa b 7, ca v 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 7, ca v 8 1`] = `
+{
+  "_cmd": "wa b 7, ca v 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 7, ca v 9 1`] = `
+{
+  "_cmd": "wa b 7, ca v 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 7, ca v 10 1`] = `
+{
+  "_cmd": "wa b 7, ca v 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 7, ca v 11 1`] = `
+{
+  "_cmd": "wa b 7, ca v 11",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 7, ca v 12 1`] = `
+{
+  "_cmd": "wa b 7, ca v 12",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 7, ca v 13 1`] = `
+{
+  "_cmd": "wa b 7, ca v 13",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 7, ca v 14 1`] = `
+{
+  "_cmd": "wa b 7, ca v 14",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 7, ca v 15 1`] = `
+{
+  "_cmd": "wa b 7, ca v 15",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 8, ca p 1 1`] = `
+{
+  "_cmd": "wa b 8, ca p 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 8, ca p 2 1`] = `
+{
+  "_cmd": "wa b 8, ca p 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 8, ca p 3 1`] = `
+{
+  "_cmd": "wa b 8, ca p 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 8, ca p 4 1`] = `
+{
+  "_cmd": "wa b 8, ca p 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 8, ca p 5 1`] = `
+{
+  "_cmd": "wa b 8, ca p 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 8, ca p 6 1`] = `
+{
+  "_cmd": "wa b 8, ca p 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 8, ca p 7 1`] = `
+{
+  "_cmd": "wa b 8, ca p 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 8, ca p 8 1`] = `
+{
+  "_cmd": "wa b 8, ca p 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 8, ca p 9 1`] = `
+{
+  "_cmd": "wa b 8, ca p 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 8, ca p 10 1`] = `
+{
+  "_cmd": "wa b 8, ca p 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 8, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 8, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 8, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 8, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 8, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 8, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 8, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 8, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 8, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 8, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 8, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 11",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 8, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 12",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 8, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 13",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 8, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 14",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 8, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 8, ca p v 15",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 8, ca v 1 1`] = `
+{
+  "_cmd": "wa b 8, ca v 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 8, ca v 2 1`] = `
+{
+  "_cmd": "wa b 8, ca v 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 8, ca v 3 1`] = `
+{
+  "_cmd": "wa b 8, ca v 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 8, ca v 4 1`] = `
+{
+  "_cmd": "wa b 8, ca v 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 8, ca v 5 1`] = `
+{
+  "_cmd": "wa b 8, ca v 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 8, ca v 6 1`] = `
+{
+  "_cmd": "wa b 8, ca v 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 8, ca v 7 1`] = `
+{
+  "_cmd": "wa b 8, ca v 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 8, ca v 8 1`] = `
+{
+  "_cmd": "wa b 8, ca v 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 8, ca v 9 1`] = `
+{
+  "_cmd": "wa b 8, ca v 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 8, ca v 10 1`] = `
+{
+  "_cmd": "wa b 8, ca v 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 8, ca v 11 1`] = `
+{
+  "_cmd": "wa b 8, ca v 11",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 8, ca v 12 1`] = `
+{
+  "_cmd": "wa b 8, ca v 12",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 8, ca v 13 1`] = `
+{
+  "_cmd": "wa b 8, ca v 13",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 8, ca v 14 1`] = `
+{
+  "_cmd": "wa b 8, ca v 14",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 8, ca v 15 1`] = `
+{
+  "_cmd": "wa b 8, ca v 15",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 9, ca p 1 1`] = `
+{
+  "_cmd": "wa b 9, ca p 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 9, ca p 2 1`] = `
+{
+  "_cmd": "wa b 9, ca p 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 9, ca p 3 1`] = `
+{
+  "_cmd": "wa b 9, ca p 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 9, ca p 4 1`] = `
+{
+  "_cmd": "wa b 9, ca p 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 9, ca p 5 1`] = `
+{
+  "_cmd": "wa b 9, ca p 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 9, ca p 6 1`] = `
+{
+  "_cmd": "wa b 9, ca p 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 9, ca p 7 1`] = `
+{
+  "_cmd": "wa b 9, ca p 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 9, ca p 8 1`] = `
+{
+  "_cmd": "wa b 9, ca p 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 9, ca p 9 1`] = `
+{
+  "_cmd": "wa b 9, ca p 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 9, ca p 10 1`] = `
+{
+  "_cmd": "wa b 9, ca p 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 9, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 9, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 9, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 9, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 9, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 9, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 9, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 9, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 9, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 9, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 9, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 11",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 9, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 12",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 9, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 13",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 9, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 14",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 9, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 9, ca p v 15",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 9, ca v 1 1`] = `
+{
+  "_cmd": "wa b 9, ca v 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 9, ca v 2 1`] = `
+{
+  "_cmd": "wa b 9, ca v 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 9, ca v 3 1`] = `
+{
+  "_cmd": "wa b 9, ca v 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 9, ca v 4 1`] = `
+{
+  "_cmd": "wa b 9, ca v 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 9, ca v 5 1`] = `
+{
+  "_cmd": "wa b 9, ca v 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 9, ca v 6 1`] = `
+{
+  "_cmd": "wa b 9, ca v 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 9, ca v 7 1`] = `
+{
+  "_cmd": "wa b 9, ca v 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 9, ca v 8 1`] = `
+{
+  "_cmd": "wa b 9, ca v 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 9, ca v 9 1`] = `
+{
+  "_cmd": "wa b 9, ca v 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 9, ca v 10 1`] = `
+{
+  "_cmd": "wa b 9, ca v 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 9, ca v 11 1`] = `
+{
+  "_cmd": "wa b 9, ca v 11",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 9, ca v 12 1`] = `
+{
+  "_cmd": "wa b 9, ca v 12",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 9, ca v 13 1`] = `
+{
+  "_cmd": "wa b 9, ca v 13",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 9, ca v 14 1`] = `
+{
+  "_cmd": "wa b 9, ca v 14",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 9, ca v 15 1`] = `
+{
+  "_cmd": "wa b 9, ca v 15",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 10, ca p 1 1`] = `
+{
+  "_cmd": "wa b 10, ca p 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 10, ca p 2 1`] = `
+{
+  "_cmd": "wa b 10, ca p 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 10, ca p 3 1`] = `
+{
+  "_cmd": "wa b 10, ca p 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 10, ca p 4 1`] = `
+{
+  "_cmd": "wa b 10, ca p 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 10, ca p 5 1`] = `
+{
+  "_cmd": "wa b 10, ca p 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 10, ca p 6 1`] = `
+{
+  "_cmd": "wa b 10, ca p 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 10, ca p 7 1`] = `
+{
+  "_cmd": "wa b 10, ca p 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 10, ca p 8 1`] = `
+{
+  "_cmd": "wa b 10, ca p 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 10, ca p 9 1`] = `
+{
+  "_cmd": "wa b 10, ca p 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 10, ca p 10 1`] = `
+{
+  "_cmd": "wa b 10, ca p 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 10, ca p v 1 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 10, ca p v 2 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 10, ca p v 3 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 10, ca p v 4 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 10, ca p v 5 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 10, ca p v 6 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 10, ca p v 7 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 10, ca p v 8 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 10, ca p v 9 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 10, ca p v 10 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 10, ca p v 11 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 11",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 10, ca p v 12 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 12",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 10, ca p v 13 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 13",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 10, ca p v 14 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 14",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 10, ca p v 15 1`] = `
+{
+  "_cmd": "wa b 10, ca p v 15",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa b 10, ca v 1 1`] = `
+{
+  "_cmd": "wa b 10, ca v 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b 10, ca v 2 1`] = `
+{
+  "_cmd": "wa b 10, ca v 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b 10, ca v 3 1`] = `
+{
+  "_cmd": "wa b 10, ca v 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b 10, ca v 4 1`] = `
+{
+  "_cmd": "wa b 10, ca v 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b 10, ca v 5 1`] = `
+{
+  "_cmd": "wa b 10, ca v 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b 10, ca v 6 1`] = `
+{
+  "_cmd": "wa b 10, ca v 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b 10, ca v 7 1`] = `
+{
+  "_cmd": "wa b 10, ca v 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b 10, ca v 8 1`] = `
+{
+  "_cmd": "wa b 10, ca v 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b 10, ca v 9 1`] = `
+{
+  "_cmd": "wa b 10, ca v 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b 10, ca v 10 1`] = `
+{
+  "_cmd": "wa b 10, ca v 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b 10, ca v 11 1`] = `
+{
+  "_cmd": "wa b 10, ca v 11",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa b 10, ca v 12 1`] = `
+{
+  "_cmd": "wa b 10, ca v 12",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa b 10, ca v 13 1`] = `
+{
+  "_cmd": "wa b 10, ca v 13",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa b 10, ca v 14 1`] = `
+{
+  "_cmd": "wa b 10, ca v 14",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa b 10, ca v 15 1`] = `
+{
+  "_cmd": "wa b 10, ca v 15",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 1, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 1, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 1, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 1, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 1, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 1, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 1, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 1, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 1, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 1, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 1, ca p 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 1, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 1, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 1, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 1, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 1, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 1, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 1, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 1, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 1, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 1, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 1, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 11",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 1, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 12",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 1, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 13",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 1, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 14",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 1, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 1, ca p v 15",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 1, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 1",
+  "attacker": 1,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 1, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 2",
+  "attacker": 1,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 1, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 3",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 1, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 4",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 1, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 5",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 1, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 6",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 1, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 7",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 1, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 8",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 1, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 9",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 1, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 10",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 1, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 11",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 1, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 12",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 1, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 13",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 1, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 14",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 1, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 1, ca v 15",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 2, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 2, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 2, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 2, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 2, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 2, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 2, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 2, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 2, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 2, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 2, ca p 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 2, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 2, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 2, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 2, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 2, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 2, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 2, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 2, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 2, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 2, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 2, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 11",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 2, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 12",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 2, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 13",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 2, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 14",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 2, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 2, ca p v 15",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 2, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 1",
+  "attacker": 2,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 2, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 2",
+  "attacker": 2,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 2, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 3",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 2, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 4",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 2, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 5",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 2, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 6",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 2, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 7",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 2, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 8",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 2, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 9",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 2, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 10",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 2, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 11",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 2, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 12",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 2, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 13",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 2, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 14",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 2, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 2, ca v 15",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 3, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 3, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 3, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 3, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 3, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 3, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 3, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 3, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 3, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 3, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 3, ca p 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 3, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 3, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 3, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 3, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 3, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 3, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 3, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 3, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 3, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 3, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 3, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 11",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 3, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 12",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 3, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 13",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 3, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 14",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 3, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 3, ca p v 15",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 3, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 1",
+  "attacker": 3,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 3, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 2",
+  "attacker": 3,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 3, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 3",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 3, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 4",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 3, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 5",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 3, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 6",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 3, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 7",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 3, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 8",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 3, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 9",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 3, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 10",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 3, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 11",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 3, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 12",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 3, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 13",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 3, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 14",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 3, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 3, ca v 15",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 4, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 4, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 4, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 4, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 4, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 4, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 4, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 4, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 4, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 4, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 4, ca p 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 4, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 4, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 4, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 4, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 4, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 4, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 4, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 4, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 4, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 4, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 4, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 11",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 4, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 12",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 4, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 13",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 4, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 14",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 4, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 4, ca p v 15",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 4, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 1",
+  "attacker": 4,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 4, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 2",
+  "attacker": 4,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 4, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 3",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 4, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 4",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 4, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 5",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 4, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 6",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 4, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 7",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 4, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 8",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 4, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 9",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 4, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 10",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 4, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 11",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 4, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 12",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 4, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 13",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 4, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 14",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 4, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 4, ca v 15",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 5, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 5, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 5, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 5, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 5, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 5, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 5, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 5, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 5, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 5, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 5, ca p 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 5, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 5, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 5, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 5, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 5, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 5, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 5, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 5, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 5, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 5, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 5, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 11",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 5, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 12",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 5, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 13",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 5, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 14",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 5, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 5, ca p v 15",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 5, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 1",
+  "attacker": 5,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 5, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 2",
+  "attacker": 5,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 5, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 3",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 5, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 4",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 5, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 5",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 5, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 6",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 5, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 7",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 5, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 8",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 5, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 9",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 5, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 10",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 5, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 11",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 5, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 12",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 5, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 13",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 5, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 14",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 5, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 5, ca v 15",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 6, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 6, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 6, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 6, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 6, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 6, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 6, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 6, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 6, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 6, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 6, ca p 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 6, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 6, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 6, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 6, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 6, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 6, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 6, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 6, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 6, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 6, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 6, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 11",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 6, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 12",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 6, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 13",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 6, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 14",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 6, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 6, ca p v 15",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 6, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 1",
+  "attacker": 6,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 6, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 2",
+  "attacker": 6,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 6, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 3",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 6, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 4",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 6, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 5",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 6, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 6",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 6, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 7",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 6, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 8",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 6, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 9",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 6, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 10",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 6, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 11",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 6, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 12",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 6, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 13",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 6, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 14",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 6, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 6, ca v 15",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 7, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 7, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 7, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 7, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 7, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 7, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 7, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 7, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 7, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 7, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 7, ca p 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 7, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 7, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 7, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 7, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 7, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 7, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 7, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 7, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 7, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 7, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 7, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 11",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 7, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 12",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 7, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 13",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 7, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 14",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 7, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 7, ca p v 15",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 7, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 1",
+  "attacker": 7,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 7, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 2",
+  "attacker": 7,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 7, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 3",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 7, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 4",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 7, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 5",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 7, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 6",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 7, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 7",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 7, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 8",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 7, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 9",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 7, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 10",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 7, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 11",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 7, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 12",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 7, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 13",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 7, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 14",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 7, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 7, ca v 15",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 8, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 8, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 8, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 8, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 8, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 8, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 8, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 8, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 8, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 8, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 8, ca p 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 8, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 8, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 8, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 8, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 8, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 8, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 8, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 8, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 8, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 8, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 8, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 11",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 8, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 12",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 8, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 13",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 8, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 14",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 8, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 8, ca p v 15",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 8, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 1",
+  "attacker": 8,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 8, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 2",
+  "attacker": 8,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 8, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 3",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 8, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 4",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 8, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 5",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 8, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 6",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 8, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 7",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 8, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 8",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 8, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 9",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 8, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 10",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 8, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 11",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 8, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 12",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 8, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 13",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 8, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 14",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 8, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 8, ca v 15",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 9, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 9, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 9, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 9, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 9, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 9, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 9, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 9, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 9, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 9, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 9, ca p 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 9, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 9, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 9, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 9, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 9, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 9, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 9, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 9, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 9, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 9, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 9, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 11",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 9, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 12",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 9, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 13",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 9, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 14",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 9, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 9, ca p v 15",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 9, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 1",
+  "attacker": 9,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 9, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 2",
+  "attacker": 9,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 9, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 3",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 9, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 4",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 9, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 5",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 9, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 6",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 9, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 7",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 9, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 8",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 9, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 9",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 9, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 10",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 9, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 11",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 9, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 12",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 9, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 13",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 9, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 14",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 9, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 9, ca v 15",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 10, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 10, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 10, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 10, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 10, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 10, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 10, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 10, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 10, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 10, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 10, ca p 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 10, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 10, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 10, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 10, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 10, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 10, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 10, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 10, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 10, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 10, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 10, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 11",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 10, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 12",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 10, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 13",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 10, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 14",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 10, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 10, ca p v 15",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 10, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 1",
+  "attacker": 10,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 10, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 2",
+  "attacker": 10,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 10, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 3",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 10, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 4",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 10, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 5",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 10, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 6",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 10, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 7",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 10, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 8",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 10, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 9",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 10, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 10",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 10, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 11",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 10, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 12",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 10, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 13",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 10, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 14",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 10, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 10, ca v 15",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 11, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 1",
+  "attacker": 11,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 11, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 2",
+  "attacker": 11,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 11, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 3",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 11, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 4",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 11, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 5",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 11, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 6",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 11, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 7",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 11, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 8",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 11, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 9",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 11, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 11, ca p 10",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 11, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 1",
+  "attacker": 11,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 11, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 2",
+  "attacker": 11,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 11, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 3",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 11, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 4",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 11, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 5",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 11, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 6",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 11, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 7",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 11, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 8",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 11, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 9",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 11, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 10",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 11, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 11",
+  "attacker": 11,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 11, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 12",
+  "attacker": 11,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 11, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 13",
+  "attacker": 11,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 11, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 14",
+  "attacker": 11,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 11, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 11, ca p v 15",
+  "attacker": 11,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 11, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 1",
+  "attacker": 11,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 11, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 2",
+  "attacker": 11,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 11, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 3",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 11, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 4",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 11, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 5",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 11, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 6",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 11, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 7",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 11, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 8",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 11, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 9",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 11, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 10",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 11, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 11",
+  "attacker": 11,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 11, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 12",
+  "attacker": 11,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 11, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 13",
+  "attacker": 11,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 11, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 14",
+  "attacker": 11,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 11, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 11, ca v 15",
+  "attacker": 11,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 12, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 1",
+  "attacker": 12,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 12, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 2",
+  "attacker": 12,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 12, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 3",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 12, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 4",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 12, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 5",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 12, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 6",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 12, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 7",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 12, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 8",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 12, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 9",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 12, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 12, ca p 10",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 12, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 1",
+  "attacker": 12,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 12, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 2",
+  "attacker": 12,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 12, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 3",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 12, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 4",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 12, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 5",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 12, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 6",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 12, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 7",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 12, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 8",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 12, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 9",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 12, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 10",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 12, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 11",
+  "attacker": 12,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 12, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 12",
+  "attacker": 12,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 12, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 13",
+  "attacker": 12,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 12, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 14",
+  "attacker": 12,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 12, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 12, ca p v 15",
+  "attacker": 12,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 12, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 1",
+  "attacker": 12,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 12, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 2",
+  "attacker": 12,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 12, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 3",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 12, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 4",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 12, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 5",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 12, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 6",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 12, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 7",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 12, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 8",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 12, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 9",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 12, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 10",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 12, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 11",
+  "attacker": 12,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 12, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 12",
+  "attacker": 12,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 12, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 13",
+  "attacker": 12,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 12, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 14",
+  "attacker": 12,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 12, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 12, ca v 15",
+  "attacker": 12,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 13, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 1",
+  "attacker": 13,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 13, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 2",
+  "attacker": 13,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 13, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 3",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 13, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 4",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 13, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 5",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 13, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 6",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 13, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 7",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 13, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 8",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 13, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 9",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 13, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 13, ca p 10",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 13, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 1",
+  "attacker": 13,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 13, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 2",
+  "attacker": 13,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 13, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 3",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 13, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 4",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 13, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 5",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 13, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 6",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 13, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 7",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 13, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 8",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 13, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 9",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 13, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 10",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 13, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 11",
+  "attacker": 13,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 13, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 12",
+  "attacker": 13,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 13, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 13",
+  "attacker": 13,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 13, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 14",
+  "attacker": 13,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 13, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 13, ca p v 15",
+  "attacker": 13,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 13, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 1",
+  "attacker": 13,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 13, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 2",
+  "attacker": 13,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 13, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 3",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 13, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 4",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 13, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 5",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 13, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 6",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 13, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 7",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 13, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 8",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 13, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 9",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 13, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 10",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 13, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 11",
+  "attacker": 13,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 13, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 12",
+  "attacker": 13,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 13, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 13",
+  "attacker": 13,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 13, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 14",
+  "attacker": 13,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 13, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 13, ca v 15",
+  "attacker": 13,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 14, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 1",
+  "attacker": 14,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 14, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 2",
+  "attacker": 14,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 14, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 3",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 14, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 4",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 14, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 5",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 14, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 6",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 14, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 7",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 14, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 8",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 14, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 9",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 14, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 14, ca p 10",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 14, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 1",
+  "attacker": 14,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 14, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 2",
+  "attacker": 14,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 14, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 3",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 14, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 4",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 14, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 5",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 14, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 6",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 14, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 7",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 14, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 8",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 14, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 9",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 14, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 10",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 14, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 11",
+  "attacker": 14,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 14, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 12",
+  "attacker": 14,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 14, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 13",
+  "attacker": 14,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 14, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 14",
+  "attacker": 14,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 14, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 14, ca p v 15",
+  "attacker": 14,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 14, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 1",
+  "attacker": 14,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 14, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 2",
+  "attacker": 14,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 14, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 3",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 14, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 4",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 14, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 5",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 14, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 6",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 14, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 7",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 14, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 8",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 14, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 9",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 14, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 10",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 14, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 11",
+  "attacker": 14,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 14, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 12",
+  "attacker": 14,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 14, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 13",
+  "attacker": 14,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 14, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 14",
+  "attacker": 14,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 14, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 14, ca v 15",
+  "attacker": 14,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 15, ca p 1 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 1",
+  "attacker": 15,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 15, ca p 2 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 2",
+  "attacker": 15,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 15, ca p 3 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 3",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 15, ca p 4 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 4",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 15, ca p 5 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 5",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 15, ca p 6 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 6",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 15, ca p 7 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 7",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 15, ca p 8 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 8",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 15, ca p 9 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 9",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 15, ca p 10 1`] = `
+{
+  "_cmd": "wa b v 15, ca p 10",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 15, ca p v 1 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 1",
+  "attacker": 15,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 15, ca p v 2 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 2",
+  "attacker": 15,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 15, ca p v 3 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 3",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 15, ca p v 4 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 4",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 15, ca p v 5 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 5",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 15, ca p v 6 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 6",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 15, ca p v 7 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 7",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 15, ca p v 8 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 8",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 15, ca p v 9 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 9",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 15, ca p v 10 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 10",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 15, ca p v 11 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 11",
+  "attacker": 15,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 15, ca p v 12 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 12",
+  "attacker": 15,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 15, ca p v 13 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 13",
+  "attacker": 15,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 15, ca p v 14 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 14",
+  "attacker": 15,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 15, ca p v 15 1`] = `
+{
+  "_cmd": "wa b v 15, ca p v 15",
+  "attacker": 15,
+  "defender": 4,
+}
+`;
+
+exports[`wa b v 15, ca v 1 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 1",
+  "attacker": 15,
+  "defender": -10,
+}
+`;
+
+exports[`wa b v 15, ca v 2 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 2",
+  "attacker": 15,
+  "defender": -9,
+}
+`;
+
+exports[`wa b v 15, ca v 3 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 3",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa b v 15, ca v 4 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 4",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa b v 15, ca v 5 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 5",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa b v 15, ca v 6 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 6",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa b v 15, ca v 7 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 7",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa b v 15, ca v 8 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 8",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa b v 15, ca v 9 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 9",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa b v 15, ca v 10 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 10",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa b v 15, ca v 11 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 11",
+  "attacker": 15,
+  "defender": 0,
+}
+`;
+
+exports[`wa b v 15, ca v 12 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 12",
+  "attacker": 15,
+  "defender": 1,
+}
+`;
+
+exports[`wa b v 15, ca v 13 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 13",
+  "attacker": 15,
+  "defender": 2,
+}
+`;
+
+exports[`wa b v 15, ca v 14 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 14",
+  "attacker": 15,
+  "defender": 3,
+}
+`;
+
+exports[`wa b v 15, ca v 15 1`] = `
+{
+  "_cmd": "wa b v 15, ca v 15",
+  "attacker": 15,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 1, ca p 1 1`] = `
+{
+  "_cmd": "wa v 1, ca p 1",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 1, ca p 2 1`] = `
+{
+  "_cmd": "wa v 1, ca p 2",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 1, ca p 3 1`] = `
+{
+  "_cmd": "wa v 1, ca p 3",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 1, ca p 4 1`] = `
+{
+  "_cmd": "wa v 1, ca p 4",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 1, ca p 5 1`] = `
+{
+  "_cmd": "wa v 1, ca p 5",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 1, ca p 6 1`] = `
+{
+  "_cmd": "wa v 1, ca p 6",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 1, ca p 7 1`] = `
+{
+  "_cmd": "wa v 1, ca p 7",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 1, ca p 8 1`] = `
+{
+  "_cmd": "wa v 1, ca p 8",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 1, ca p 9 1`] = `
+{
+  "_cmd": "wa v 1, ca p 9",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 1, ca p 10 1`] = `
+{
+  "_cmd": "wa v 1, ca p 10",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 1, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 1",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 1, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 2",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 1, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 3",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 1, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 4",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 1, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 5",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 1, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 6",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 1, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 7",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 1, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 8",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 1, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 9",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 1, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 10",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 1, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 11",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 1, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 12",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 1, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 13",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 1, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 14",
+  "attacker": 1,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 1, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 1, ca p v 15",
+  "attacker": 1,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 1, ca v 1 1`] = `
+{
+  "_cmd": "wa v 1, ca v 1",
+  "attacker": 1,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 1, ca v 2 1`] = `
+{
+  "_cmd": "wa v 1, ca v 2",
+  "attacker": 1,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 1, ca v 3 1`] = `
+{
+  "_cmd": "wa v 1, ca v 3",
+  "attacker": 1,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 1, ca v 4 1`] = `
+{
+  "_cmd": "wa v 1, ca v 4",
+  "attacker": 1,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 1, ca v 5 1`] = `
+{
+  "_cmd": "wa v 1, ca v 5",
+  "attacker": 1,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 1, ca v 6 1`] = `
+{
+  "_cmd": "wa v 1, ca v 6",
+  "attacker": 1,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 1, ca v 7 1`] = `
+{
+  "_cmd": "wa v 1, ca v 7",
+  "attacker": 1,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 1, ca v 8 1`] = `
+{
+  "_cmd": "wa v 1, ca v 8",
+  "attacker": 1,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 1, ca v 9 1`] = `
+{
+  "_cmd": "wa v 1, ca v 9",
+  "attacker": 1,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 1, ca v 10 1`] = `
+{
+  "_cmd": "wa v 1, ca v 10",
+  "attacker": 1,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 1, ca v 11 1`] = `
+{
+  "_cmd": "wa v 1, ca v 11",
+  "attacker": 1,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 1, ca v 12 1`] = `
+{
+  "_cmd": "wa v 1, ca v 12",
+  "attacker": 1,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 1, ca v 13 1`] = `
+{
+  "_cmd": "wa v 1, ca v 13",
+  "attacker": 1,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 1, ca v 14 1`] = `
+{
+  "_cmd": "wa v 1, ca v 14",
+  "attacker": 1,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 1, ca v 15 1`] = `
+{
+  "_cmd": "wa v 1, ca v 15",
+  "attacker": 1,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 2, ca p 1 1`] = `
+{
+  "_cmd": "wa v 2, ca p 1",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 2, ca p 2 1`] = `
+{
+  "_cmd": "wa v 2, ca p 2",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 2, ca p 3 1`] = `
+{
+  "_cmd": "wa v 2, ca p 3",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 2, ca p 4 1`] = `
+{
+  "_cmd": "wa v 2, ca p 4",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 2, ca p 5 1`] = `
+{
+  "_cmd": "wa v 2, ca p 5",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 2, ca p 6 1`] = `
+{
+  "_cmd": "wa v 2, ca p 6",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 2, ca p 7 1`] = `
+{
+  "_cmd": "wa v 2, ca p 7",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 2, ca p 8 1`] = `
+{
+  "_cmd": "wa v 2, ca p 8",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 2, ca p 9 1`] = `
+{
+  "_cmd": "wa v 2, ca p 9",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 2, ca p 10 1`] = `
+{
+  "_cmd": "wa v 2, ca p 10",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 2, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 1",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 2, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 2",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 2, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 3",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 2, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 4",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 2, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 5",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 2, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 6",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 2, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 7",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 2, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 8",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 2, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 9",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 2, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 10",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 2, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 11",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 2, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 12",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 2, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 13",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 2, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 14",
+  "attacker": 2,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 2, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 2, ca p v 15",
+  "attacker": 2,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 2, ca v 1 1`] = `
+{
+  "_cmd": "wa v 2, ca v 1",
+  "attacker": 2,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 2, ca v 2 1`] = `
+{
+  "_cmd": "wa v 2, ca v 2",
+  "attacker": 2,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 2, ca v 3 1`] = `
+{
+  "_cmd": "wa v 2, ca v 3",
+  "attacker": 2,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 2, ca v 4 1`] = `
+{
+  "_cmd": "wa v 2, ca v 4",
+  "attacker": 2,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 2, ca v 5 1`] = `
+{
+  "_cmd": "wa v 2, ca v 5",
+  "attacker": 2,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 2, ca v 6 1`] = `
+{
+  "_cmd": "wa v 2, ca v 6",
+  "attacker": 2,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 2, ca v 7 1`] = `
+{
+  "_cmd": "wa v 2, ca v 7",
+  "attacker": 2,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 2, ca v 8 1`] = `
+{
+  "_cmd": "wa v 2, ca v 8",
+  "attacker": 2,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 2, ca v 9 1`] = `
+{
+  "_cmd": "wa v 2, ca v 9",
+  "attacker": 2,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 2, ca v 10 1`] = `
+{
+  "_cmd": "wa v 2, ca v 10",
+  "attacker": 2,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 2, ca v 11 1`] = `
+{
+  "_cmd": "wa v 2, ca v 11",
+  "attacker": 2,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 2, ca v 12 1`] = `
+{
+  "_cmd": "wa v 2, ca v 12",
+  "attacker": 2,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 2, ca v 13 1`] = `
+{
+  "_cmd": "wa v 2, ca v 13",
+  "attacker": 2,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 2, ca v 14 1`] = `
+{
+  "_cmd": "wa v 2, ca v 14",
+  "attacker": 2,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 2, ca v 15 1`] = `
+{
+  "_cmd": "wa v 2, ca v 15",
+  "attacker": 2,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 3, ca p 1 1`] = `
+{
+  "_cmd": "wa v 3, ca p 1",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 3, ca p 2 1`] = `
+{
+  "_cmd": "wa v 3, ca p 2",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 3, ca p 3 1`] = `
+{
+  "_cmd": "wa v 3, ca p 3",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 3, ca p 4 1`] = `
+{
+  "_cmd": "wa v 3, ca p 4",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 3, ca p 5 1`] = `
+{
+  "_cmd": "wa v 3, ca p 5",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 3, ca p 6 1`] = `
+{
+  "_cmd": "wa v 3, ca p 6",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 3, ca p 7 1`] = `
+{
+  "_cmd": "wa v 3, ca p 7",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 3, ca p 8 1`] = `
+{
+  "_cmd": "wa v 3, ca p 8",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 3, ca p 9 1`] = `
+{
+  "_cmd": "wa v 3, ca p 9",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 3, ca p 10 1`] = `
+{
+  "_cmd": "wa v 3, ca p 10",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 3, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 1",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 3, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 2",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 3, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 3",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 3, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 4",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 3, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 5",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 3, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 6",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 3, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 7",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 3, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 8",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 3, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 9",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 3, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 10",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 3, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 11",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 3, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 12",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 3, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 13",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 3, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 14",
+  "attacker": 3,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 3, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 3, ca p v 15",
+  "attacker": 3,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 3, ca v 1 1`] = `
+{
+  "_cmd": "wa v 3, ca v 1",
+  "attacker": 3,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 3, ca v 2 1`] = `
+{
+  "_cmd": "wa v 3, ca v 2",
+  "attacker": 3,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 3, ca v 3 1`] = `
+{
+  "_cmd": "wa v 3, ca v 3",
+  "attacker": 3,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 3, ca v 4 1`] = `
+{
+  "_cmd": "wa v 3, ca v 4",
+  "attacker": 3,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 3, ca v 5 1`] = `
+{
+  "_cmd": "wa v 3, ca v 5",
+  "attacker": 3,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 3, ca v 6 1`] = `
+{
+  "_cmd": "wa v 3, ca v 6",
+  "attacker": 3,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 3, ca v 7 1`] = `
+{
+  "_cmd": "wa v 3, ca v 7",
+  "attacker": 3,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 3, ca v 8 1`] = `
+{
+  "_cmd": "wa v 3, ca v 8",
+  "attacker": 3,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 3, ca v 9 1`] = `
+{
+  "_cmd": "wa v 3, ca v 9",
+  "attacker": 3,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 3, ca v 10 1`] = `
+{
+  "_cmd": "wa v 3, ca v 10",
+  "attacker": 3,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 3, ca v 11 1`] = `
+{
+  "_cmd": "wa v 3, ca v 11",
+  "attacker": 3,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 3, ca v 12 1`] = `
+{
+  "_cmd": "wa v 3, ca v 12",
+  "attacker": 3,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 3, ca v 13 1`] = `
+{
+  "_cmd": "wa v 3, ca v 13",
+  "attacker": 3,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 3, ca v 14 1`] = `
+{
+  "_cmd": "wa v 3, ca v 14",
+  "attacker": 3,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 3, ca v 15 1`] = `
+{
+  "_cmd": "wa v 3, ca v 15",
+  "attacker": 3,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 4, ca p 1 1`] = `
+{
+  "_cmd": "wa v 4, ca p 1",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 4, ca p 2 1`] = `
+{
+  "_cmd": "wa v 4, ca p 2",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 4, ca p 3 1`] = `
+{
+  "_cmd": "wa v 4, ca p 3",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 4, ca p 4 1`] = `
+{
+  "_cmd": "wa v 4, ca p 4",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 4, ca p 5 1`] = `
+{
+  "_cmd": "wa v 4, ca p 5",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 4, ca p 6 1`] = `
+{
+  "_cmd": "wa v 4, ca p 6",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 4, ca p 7 1`] = `
+{
+  "_cmd": "wa v 4, ca p 7",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 4, ca p 8 1`] = `
+{
+  "_cmd": "wa v 4, ca p 8",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 4, ca p 9 1`] = `
+{
+  "_cmd": "wa v 4, ca p 9",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 4, ca p 10 1`] = `
+{
+  "_cmd": "wa v 4, ca p 10",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 4, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 1",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 4, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 2",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 4, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 3",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 4, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 4",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 4, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 5",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 4, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 6",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 4, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 7",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 4, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 8",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 4, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 9",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 4, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 10",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 4, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 11",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 4, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 12",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 4, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 13",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 4, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 14",
+  "attacker": 4,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 4, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 4, ca p v 15",
+  "attacker": 4,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 4, ca v 1 1`] = `
+{
+  "_cmd": "wa v 4, ca v 1",
+  "attacker": 4,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 4, ca v 2 1`] = `
+{
+  "_cmd": "wa v 4, ca v 2",
+  "attacker": 4,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 4, ca v 3 1`] = `
+{
+  "_cmd": "wa v 4, ca v 3",
+  "attacker": 4,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 4, ca v 4 1`] = `
+{
+  "_cmd": "wa v 4, ca v 4",
+  "attacker": 4,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 4, ca v 5 1`] = `
+{
+  "_cmd": "wa v 4, ca v 5",
+  "attacker": 4,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 4, ca v 6 1`] = `
+{
+  "_cmd": "wa v 4, ca v 6",
+  "attacker": 4,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 4, ca v 7 1`] = `
+{
+  "_cmd": "wa v 4, ca v 7",
+  "attacker": 4,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 4, ca v 8 1`] = `
+{
+  "_cmd": "wa v 4, ca v 8",
+  "attacker": 4,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 4, ca v 9 1`] = `
+{
+  "_cmd": "wa v 4, ca v 9",
+  "attacker": 4,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 4, ca v 10 1`] = `
+{
+  "_cmd": "wa v 4, ca v 10",
+  "attacker": 4,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 4, ca v 11 1`] = `
+{
+  "_cmd": "wa v 4, ca v 11",
+  "attacker": 4,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 4, ca v 12 1`] = `
+{
+  "_cmd": "wa v 4, ca v 12",
+  "attacker": 4,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 4, ca v 13 1`] = `
+{
+  "_cmd": "wa v 4, ca v 13",
+  "attacker": 4,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 4, ca v 14 1`] = `
+{
+  "_cmd": "wa v 4, ca v 14",
+  "attacker": 4,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 4, ca v 15 1`] = `
+{
+  "_cmd": "wa v 4, ca v 15",
+  "attacker": 4,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 5, ca p 1 1`] = `
+{
+  "_cmd": "wa v 5, ca p 1",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 5, ca p 2 1`] = `
+{
+  "_cmd": "wa v 5, ca p 2",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 5, ca p 3 1`] = `
+{
+  "_cmd": "wa v 5, ca p 3",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 5, ca p 4 1`] = `
+{
+  "_cmd": "wa v 5, ca p 4",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 5, ca p 5 1`] = `
+{
+  "_cmd": "wa v 5, ca p 5",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 5, ca p 6 1`] = `
+{
+  "_cmd": "wa v 5, ca p 6",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 5, ca p 7 1`] = `
+{
+  "_cmd": "wa v 5, ca p 7",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 5, ca p 8 1`] = `
+{
+  "_cmd": "wa v 5, ca p 8",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 5, ca p 9 1`] = `
+{
+  "_cmd": "wa v 5, ca p 9",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 5, ca p 10 1`] = `
+{
+  "_cmd": "wa v 5, ca p 10",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 5, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 1",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 5, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 2",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 5, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 3",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 5, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 4",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 5, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 5",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 5, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 6",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 5, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 7",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 5, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 8",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 5, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 9",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 5, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 10",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 5, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 11",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 5, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 12",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 5, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 13",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 5, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 14",
+  "attacker": 5,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 5, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 5, ca p v 15",
+  "attacker": 5,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 5, ca v 1 1`] = `
+{
+  "_cmd": "wa v 5, ca v 1",
+  "attacker": 5,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 5, ca v 2 1`] = `
+{
+  "_cmd": "wa v 5, ca v 2",
+  "attacker": 5,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 5, ca v 3 1`] = `
+{
+  "_cmd": "wa v 5, ca v 3",
+  "attacker": 5,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 5, ca v 4 1`] = `
+{
+  "_cmd": "wa v 5, ca v 4",
+  "attacker": 5,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 5, ca v 5 1`] = `
+{
+  "_cmd": "wa v 5, ca v 5",
+  "attacker": 5,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 5, ca v 6 1`] = `
+{
+  "_cmd": "wa v 5, ca v 6",
+  "attacker": 5,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 5, ca v 7 1`] = `
+{
+  "_cmd": "wa v 5, ca v 7",
+  "attacker": 5,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 5, ca v 8 1`] = `
+{
+  "_cmd": "wa v 5, ca v 8",
+  "attacker": 5,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 5, ca v 9 1`] = `
+{
+  "_cmd": "wa v 5, ca v 9",
+  "attacker": 5,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 5, ca v 10 1`] = `
+{
+  "_cmd": "wa v 5, ca v 10",
+  "attacker": 5,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 5, ca v 11 1`] = `
+{
+  "_cmd": "wa v 5, ca v 11",
+  "attacker": 5,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 5, ca v 12 1`] = `
+{
+  "_cmd": "wa v 5, ca v 12",
+  "attacker": 5,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 5, ca v 13 1`] = `
+{
+  "_cmd": "wa v 5, ca v 13",
+  "attacker": 5,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 5, ca v 14 1`] = `
+{
+  "_cmd": "wa v 5, ca v 14",
+  "attacker": 5,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 5, ca v 15 1`] = `
+{
+  "_cmd": "wa v 5, ca v 15",
+  "attacker": 5,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 6, ca p 1 1`] = `
+{
+  "_cmd": "wa v 6, ca p 1",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 6, ca p 2 1`] = `
+{
+  "_cmd": "wa v 6, ca p 2",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 6, ca p 3 1`] = `
+{
+  "_cmd": "wa v 6, ca p 3",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 6, ca p 4 1`] = `
+{
+  "_cmd": "wa v 6, ca p 4",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 6, ca p 5 1`] = `
+{
+  "_cmd": "wa v 6, ca p 5",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 6, ca p 6 1`] = `
+{
+  "_cmd": "wa v 6, ca p 6",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 6, ca p 7 1`] = `
+{
+  "_cmd": "wa v 6, ca p 7",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 6, ca p 8 1`] = `
+{
+  "_cmd": "wa v 6, ca p 8",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 6, ca p 9 1`] = `
+{
+  "_cmd": "wa v 6, ca p 9",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 6, ca p 10 1`] = `
+{
+  "_cmd": "wa v 6, ca p 10",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 6, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 1",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 6, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 2",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 6, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 3",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 6, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 4",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 6, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 5",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 6, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 6",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 6, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 7",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 6, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 8",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 6, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 9",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 6, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 10",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 6, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 11",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 6, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 12",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 6, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 13",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 6, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 14",
+  "attacker": 6,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 6, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 6, ca p v 15",
+  "attacker": 6,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 6, ca v 1 1`] = `
+{
+  "_cmd": "wa v 6, ca v 1",
+  "attacker": 6,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 6, ca v 2 1`] = `
+{
+  "_cmd": "wa v 6, ca v 2",
+  "attacker": 6,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 6, ca v 3 1`] = `
+{
+  "_cmd": "wa v 6, ca v 3",
+  "attacker": 6,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 6, ca v 4 1`] = `
+{
+  "_cmd": "wa v 6, ca v 4",
+  "attacker": 6,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 6, ca v 5 1`] = `
+{
+  "_cmd": "wa v 6, ca v 5",
+  "attacker": 6,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 6, ca v 6 1`] = `
+{
+  "_cmd": "wa v 6, ca v 6",
+  "attacker": 6,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 6, ca v 7 1`] = `
+{
+  "_cmd": "wa v 6, ca v 7",
+  "attacker": 6,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 6, ca v 8 1`] = `
+{
+  "_cmd": "wa v 6, ca v 8",
+  "attacker": 6,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 6, ca v 9 1`] = `
+{
+  "_cmd": "wa v 6, ca v 9",
+  "attacker": 6,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 6, ca v 10 1`] = `
+{
+  "_cmd": "wa v 6, ca v 10",
+  "attacker": 6,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 6, ca v 11 1`] = `
+{
+  "_cmd": "wa v 6, ca v 11",
+  "attacker": 6,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 6, ca v 12 1`] = `
+{
+  "_cmd": "wa v 6, ca v 12",
+  "attacker": 6,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 6, ca v 13 1`] = `
+{
+  "_cmd": "wa v 6, ca v 13",
+  "attacker": 6,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 6, ca v 14 1`] = `
+{
+  "_cmd": "wa v 6, ca v 14",
+  "attacker": 6,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 6, ca v 15 1`] = `
+{
+  "_cmd": "wa v 6, ca v 15",
+  "attacker": 6,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 7, ca p 1 1`] = `
+{
+  "_cmd": "wa v 7, ca p 1",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 7, ca p 2 1`] = `
+{
+  "_cmd": "wa v 7, ca p 2",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 7, ca p 3 1`] = `
+{
+  "_cmd": "wa v 7, ca p 3",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 7, ca p 4 1`] = `
+{
+  "_cmd": "wa v 7, ca p 4",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 7, ca p 5 1`] = `
+{
+  "_cmd": "wa v 7, ca p 5",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 7, ca p 6 1`] = `
+{
+  "_cmd": "wa v 7, ca p 6",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 7, ca p 7 1`] = `
+{
+  "_cmd": "wa v 7, ca p 7",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 7, ca p 8 1`] = `
+{
+  "_cmd": "wa v 7, ca p 8",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 7, ca p 9 1`] = `
+{
+  "_cmd": "wa v 7, ca p 9",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 7, ca p 10 1`] = `
+{
+  "_cmd": "wa v 7, ca p 10",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 7, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 1",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 7, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 2",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 7, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 3",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 7, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 4",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 7, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 5",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 7, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 6",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 7, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 7",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 7, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 8",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 7, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 9",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 7, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 10",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 7, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 11",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 7, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 12",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 7, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 13",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 7, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 14",
+  "attacker": 7,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 7, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 7, ca p v 15",
+  "attacker": 7,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 7, ca v 1 1`] = `
+{
+  "_cmd": "wa v 7, ca v 1",
+  "attacker": 7,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 7, ca v 2 1`] = `
+{
+  "_cmd": "wa v 7, ca v 2",
+  "attacker": 7,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 7, ca v 3 1`] = `
+{
+  "_cmd": "wa v 7, ca v 3",
+  "attacker": 7,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 7, ca v 4 1`] = `
+{
+  "_cmd": "wa v 7, ca v 4",
+  "attacker": 7,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 7, ca v 5 1`] = `
+{
+  "_cmd": "wa v 7, ca v 5",
+  "attacker": 7,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 7, ca v 6 1`] = `
+{
+  "_cmd": "wa v 7, ca v 6",
+  "attacker": 7,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 7, ca v 7 1`] = `
+{
+  "_cmd": "wa v 7, ca v 7",
+  "attacker": 7,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 7, ca v 8 1`] = `
+{
+  "_cmd": "wa v 7, ca v 8",
+  "attacker": 7,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 7, ca v 9 1`] = `
+{
+  "_cmd": "wa v 7, ca v 9",
+  "attacker": 7,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 7, ca v 10 1`] = `
+{
+  "_cmd": "wa v 7, ca v 10",
+  "attacker": 7,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 7, ca v 11 1`] = `
+{
+  "_cmd": "wa v 7, ca v 11",
+  "attacker": 7,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 7, ca v 12 1`] = `
+{
+  "_cmd": "wa v 7, ca v 12",
+  "attacker": 7,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 7, ca v 13 1`] = `
+{
+  "_cmd": "wa v 7, ca v 13",
+  "attacker": 7,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 7, ca v 14 1`] = `
+{
+  "_cmd": "wa v 7, ca v 14",
+  "attacker": 7,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 7, ca v 15 1`] = `
+{
+  "_cmd": "wa v 7, ca v 15",
+  "attacker": 7,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 8, ca p 1 1`] = `
+{
+  "_cmd": "wa v 8, ca p 1",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 8, ca p 2 1`] = `
+{
+  "_cmd": "wa v 8, ca p 2",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 8, ca p 3 1`] = `
+{
+  "_cmd": "wa v 8, ca p 3",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 8, ca p 4 1`] = `
+{
+  "_cmd": "wa v 8, ca p 4",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 8, ca p 5 1`] = `
+{
+  "_cmd": "wa v 8, ca p 5",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 8, ca p 6 1`] = `
+{
+  "_cmd": "wa v 8, ca p 6",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 8, ca p 7 1`] = `
+{
+  "_cmd": "wa v 8, ca p 7",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 8, ca p 8 1`] = `
+{
+  "_cmd": "wa v 8, ca p 8",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 8, ca p 9 1`] = `
+{
+  "_cmd": "wa v 8, ca p 9",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 8, ca p 10 1`] = `
+{
+  "_cmd": "wa v 8, ca p 10",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 8, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 1",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 8, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 2",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 8, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 3",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 8, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 4",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 8, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 5",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 8, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 6",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 8, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 7",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 8, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 8",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 8, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 9",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 8, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 10",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 8, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 11",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 8, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 12",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 8, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 13",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 8, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 14",
+  "attacker": 8,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 8, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 8, ca p v 15",
+  "attacker": 8,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 8, ca v 1 1`] = `
+{
+  "_cmd": "wa v 8, ca v 1",
+  "attacker": 8,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 8, ca v 2 1`] = `
+{
+  "_cmd": "wa v 8, ca v 2",
+  "attacker": 8,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 8, ca v 3 1`] = `
+{
+  "_cmd": "wa v 8, ca v 3",
+  "attacker": 8,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 8, ca v 4 1`] = `
+{
+  "_cmd": "wa v 8, ca v 4",
+  "attacker": 8,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 8, ca v 5 1`] = `
+{
+  "_cmd": "wa v 8, ca v 5",
+  "attacker": 8,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 8, ca v 6 1`] = `
+{
+  "_cmd": "wa v 8, ca v 6",
+  "attacker": 8,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 8, ca v 7 1`] = `
+{
+  "_cmd": "wa v 8, ca v 7",
+  "attacker": 8,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 8, ca v 8 1`] = `
+{
+  "_cmd": "wa v 8, ca v 8",
+  "attacker": 8,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 8, ca v 9 1`] = `
+{
+  "_cmd": "wa v 8, ca v 9",
+  "attacker": 8,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 8, ca v 10 1`] = `
+{
+  "_cmd": "wa v 8, ca v 10",
+  "attacker": 8,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 8, ca v 11 1`] = `
+{
+  "_cmd": "wa v 8, ca v 11",
+  "attacker": 8,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 8, ca v 12 1`] = `
+{
+  "_cmd": "wa v 8, ca v 12",
+  "attacker": 8,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 8, ca v 13 1`] = `
+{
+  "_cmd": "wa v 8, ca v 13",
+  "attacker": 8,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 8, ca v 14 1`] = `
+{
+  "_cmd": "wa v 8, ca v 14",
+  "attacker": 8,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 8, ca v 15 1`] = `
+{
+  "_cmd": "wa v 8, ca v 15",
+  "attacker": 8,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 9, ca p 1 1`] = `
+{
+  "_cmd": "wa v 9, ca p 1",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 9, ca p 2 1`] = `
+{
+  "_cmd": "wa v 9, ca p 2",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 9, ca p 3 1`] = `
+{
+  "_cmd": "wa v 9, ca p 3",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 9, ca p 4 1`] = `
+{
+  "_cmd": "wa v 9, ca p 4",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 9, ca p 5 1`] = `
+{
+  "_cmd": "wa v 9, ca p 5",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 9, ca p 6 1`] = `
+{
+  "_cmd": "wa v 9, ca p 6",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 9, ca p 7 1`] = `
+{
+  "_cmd": "wa v 9, ca p 7",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 9, ca p 8 1`] = `
+{
+  "_cmd": "wa v 9, ca p 8",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 9, ca p 9 1`] = `
+{
+  "_cmd": "wa v 9, ca p 9",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 9, ca p 10 1`] = `
+{
+  "_cmd": "wa v 9, ca p 10",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 9, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 1",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 9, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 2",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 9, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 3",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 9, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 4",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 9, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 5",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 9, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 6",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 9, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 7",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 9, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 8",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 9, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 9",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 9, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 10",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 9, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 11",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 9, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 12",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 9, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 13",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 9, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 14",
+  "attacker": 9,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 9, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 9, ca p v 15",
+  "attacker": 9,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 9, ca v 1 1`] = `
+{
+  "_cmd": "wa v 9, ca v 1",
+  "attacker": 9,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 9, ca v 2 1`] = `
+{
+  "_cmd": "wa v 9, ca v 2",
+  "attacker": 9,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 9, ca v 3 1`] = `
+{
+  "_cmd": "wa v 9, ca v 3",
+  "attacker": 9,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 9, ca v 4 1`] = `
+{
+  "_cmd": "wa v 9, ca v 4",
+  "attacker": 9,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 9, ca v 5 1`] = `
+{
+  "_cmd": "wa v 9, ca v 5",
+  "attacker": 9,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 9, ca v 6 1`] = `
+{
+  "_cmd": "wa v 9, ca v 6",
+  "attacker": 9,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 9, ca v 7 1`] = `
+{
+  "_cmd": "wa v 9, ca v 7",
+  "attacker": 9,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 9, ca v 8 1`] = `
+{
+  "_cmd": "wa v 9, ca v 8",
+  "attacker": 9,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 9, ca v 9 1`] = `
+{
+  "_cmd": "wa v 9, ca v 9",
+  "attacker": 9,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 9, ca v 10 1`] = `
+{
+  "_cmd": "wa v 9, ca v 10",
+  "attacker": 9,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 9, ca v 11 1`] = `
+{
+  "_cmd": "wa v 9, ca v 11",
+  "attacker": 9,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 9, ca v 12 1`] = `
+{
+  "_cmd": "wa v 9, ca v 12",
+  "attacker": 9,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 9, ca v 13 1`] = `
+{
+  "_cmd": "wa v 9, ca v 13",
+  "attacker": 9,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 9, ca v 14 1`] = `
+{
+  "_cmd": "wa v 9, ca v 14",
+  "attacker": 9,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 9, ca v 15 1`] = `
+{
+  "_cmd": "wa v 9, ca v 15",
+  "attacker": 9,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 10, ca p 1 1`] = `
+{
+  "_cmd": "wa v 10, ca p 1",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 10, ca p 2 1`] = `
+{
+  "_cmd": "wa v 10, ca p 2",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 10, ca p 3 1`] = `
+{
+  "_cmd": "wa v 10, ca p 3",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 10, ca p 4 1`] = `
+{
+  "_cmd": "wa v 10, ca p 4",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 10, ca p 5 1`] = `
+{
+  "_cmd": "wa v 10, ca p 5",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 10, ca p 6 1`] = `
+{
+  "_cmd": "wa v 10, ca p 6",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 10, ca p 7 1`] = `
+{
+  "_cmd": "wa v 10, ca p 7",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 10, ca p 8 1`] = `
+{
+  "_cmd": "wa v 10, ca p 8",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 10, ca p 9 1`] = `
+{
+  "_cmd": "wa v 10, ca p 9",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 10, ca p 10 1`] = `
+{
+  "_cmd": "wa v 10, ca p 10",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 10, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 1",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 10, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 2",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 10, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 3",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 10, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 4",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 10, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 5",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 10, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 6",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 10, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 7",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 10, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 8",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 10, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 9",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 10, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 10",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 10, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 11",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 10, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 12",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 10, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 13",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 10, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 14",
+  "attacker": 10,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 10, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 10, ca p v 15",
+  "attacker": 10,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 10, ca v 1 1`] = `
+{
+  "_cmd": "wa v 10, ca v 1",
+  "attacker": 10,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 10, ca v 2 1`] = `
+{
+  "_cmd": "wa v 10, ca v 2",
+  "attacker": 10,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 10, ca v 3 1`] = `
+{
+  "_cmd": "wa v 10, ca v 3",
+  "attacker": 10,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 10, ca v 4 1`] = `
+{
+  "_cmd": "wa v 10, ca v 4",
+  "attacker": 10,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 10, ca v 5 1`] = `
+{
+  "_cmd": "wa v 10, ca v 5",
+  "attacker": 10,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 10, ca v 6 1`] = `
+{
+  "_cmd": "wa v 10, ca v 6",
+  "attacker": 10,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 10, ca v 7 1`] = `
+{
+  "_cmd": "wa v 10, ca v 7",
+  "attacker": 10,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 10, ca v 8 1`] = `
+{
+  "_cmd": "wa v 10, ca v 8",
+  "attacker": 10,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 10, ca v 9 1`] = `
+{
+  "_cmd": "wa v 10, ca v 9",
+  "attacker": 10,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 10, ca v 10 1`] = `
+{
+  "_cmd": "wa v 10, ca v 10",
+  "attacker": 10,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 10, ca v 11 1`] = `
+{
+  "_cmd": "wa v 10, ca v 11",
+  "attacker": 10,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 10, ca v 12 1`] = `
+{
+  "_cmd": "wa v 10, ca v 12",
+  "attacker": 10,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 10, ca v 13 1`] = `
+{
+  "_cmd": "wa v 10, ca v 13",
+  "attacker": 10,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 10, ca v 14 1`] = `
+{
+  "_cmd": "wa v 10, ca v 14",
+  "attacker": 10,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 10, ca v 15 1`] = `
+{
+  "_cmd": "wa v 10, ca v 15",
+  "attacker": 10,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 11, ca p 1 1`] = `
+{
+  "_cmd": "wa v 11, ca p 1",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 11, ca p 2 1`] = `
+{
+  "_cmd": "wa v 11, ca p 2",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 11, ca p 3 1`] = `
+{
+  "_cmd": "wa v 11, ca p 3",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 11, ca p 4 1`] = `
+{
+  "_cmd": "wa v 11, ca p 4",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 11, ca p 5 1`] = `
+{
+  "_cmd": "wa v 11, ca p 5",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 11, ca p 6 1`] = `
+{
+  "_cmd": "wa v 11, ca p 6",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 11, ca p 7 1`] = `
+{
+  "_cmd": "wa v 11, ca p 7",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 11, ca p 8 1`] = `
+{
+  "_cmd": "wa v 11, ca p 8",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 11, ca p 9 1`] = `
+{
+  "_cmd": "wa v 11, ca p 9",
+  "attacker": 11,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 11, ca p 10 1`] = `
+{
+  "_cmd": "wa v 11, ca p 10",
+  "attacker": 11,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 11, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 1",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 11, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 2",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 11, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 3",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 11, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 4",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 11, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 5",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 11, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 6",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 11, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 7",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 11, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 8",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 11, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 9",
+  "attacker": 11,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 11, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 10",
+  "attacker": 11,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 11, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 11",
+  "attacker": 11,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 11, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 12",
+  "attacker": 11,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 11, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 13",
+  "attacker": 11,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 11, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 14",
+  "attacker": 11,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 11, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 11, ca p v 15",
+  "attacker": 11,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 11, ca v 1 1`] = `
+{
+  "_cmd": "wa v 11, ca v 1",
+  "attacker": 11,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 11, ca v 2 1`] = `
+{
+  "_cmd": "wa v 11, ca v 2",
+  "attacker": 11,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 11, ca v 3 1`] = `
+{
+  "_cmd": "wa v 11, ca v 3",
+  "attacker": 11,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 11, ca v 4 1`] = `
+{
+  "_cmd": "wa v 11, ca v 4",
+  "attacker": 11,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 11, ca v 5 1`] = `
+{
+  "_cmd": "wa v 11, ca v 5",
+  "attacker": 11,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 11, ca v 6 1`] = `
+{
+  "_cmd": "wa v 11, ca v 6",
+  "attacker": 11,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 11, ca v 7 1`] = `
+{
+  "_cmd": "wa v 11, ca v 7",
+  "attacker": 11,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 11, ca v 8 1`] = `
+{
+  "_cmd": "wa v 11, ca v 8",
+  "attacker": 11,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 11, ca v 9 1`] = `
+{
+  "_cmd": "wa v 11, ca v 9",
+  "attacker": 11,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 11, ca v 10 1`] = `
+{
+  "_cmd": "wa v 11, ca v 10",
+  "attacker": 11,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 11, ca v 11 1`] = `
+{
+  "_cmd": "wa v 11, ca v 11",
+  "attacker": 11,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 11, ca v 12 1`] = `
+{
+  "_cmd": "wa v 11, ca v 12",
+  "attacker": 11,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 11, ca v 13 1`] = `
+{
+  "_cmd": "wa v 11, ca v 13",
+  "attacker": 11,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 11, ca v 14 1`] = `
+{
+  "_cmd": "wa v 11, ca v 14",
+  "attacker": 11,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 11, ca v 15 1`] = `
+{
+  "_cmd": "wa v 11, ca v 15",
+  "attacker": 11,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 12, ca p 1 1`] = `
+{
+  "_cmd": "wa v 12, ca p 1",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 12, ca p 2 1`] = `
+{
+  "_cmd": "wa v 12, ca p 2",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 12, ca p 3 1`] = `
+{
+  "_cmd": "wa v 12, ca p 3",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 12, ca p 4 1`] = `
+{
+  "_cmd": "wa v 12, ca p 4",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 12, ca p 5 1`] = `
+{
+  "_cmd": "wa v 12, ca p 5",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 12, ca p 6 1`] = `
+{
+  "_cmd": "wa v 12, ca p 6",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 12, ca p 7 1`] = `
+{
+  "_cmd": "wa v 12, ca p 7",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 12, ca p 8 1`] = `
+{
+  "_cmd": "wa v 12, ca p 8",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 12, ca p 9 1`] = `
+{
+  "_cmd": "wa v 12, ca p 9",
+  "attacker": 12,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 12, ca p 10 1`] = `
+{
+  "_cmd": "wa v 12, ca p 10",
+  "attacker": 12,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 12, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 1",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 12, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 2",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 12, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 3",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 12, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 4",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 12, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 5",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 12, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 6",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 12, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 7",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 12, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 8",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 12, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 9",
+  "attacker": 12,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 12, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 10",
+  "attacker": 12,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 12, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 11",
+  "attacker": 12,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 12, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 12",
+  "attacker": 12,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 12, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 13",
+  "attacker": 12,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 12, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 14",
+  "attacker": 12,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 12, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 12, ca p v 15",
+  "attacker": 12,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 12, ca v 1 1`] = `
+{
+  "_cmd": "wa v 12, ca v 1",
+  "attacker": 12,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 12, ca v 2 1`] = `
+{
+  "_cmd": "wa v 12, ca v 2",
+  "attacker": 12,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 12, ca v 3 1`] = `
+{
+  "_cmd": "wa v 12, ca v 3",
+  "attacker": 12,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 12, ca v 4 1`] = `
+{
+  "_cmd": "wa v 12, ca v 4",
+  "attacker": 12,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 12, ca v 5 1`] = `
+{
+  "_cmd": "wa v 12, ca v 5",
+  "attacker": 12,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 12, ca v 6 1`] = `
+{
+  "_cmd": "wa v 12, ca v 6",
+  "attacker": 12,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 12, ca v 7 1`] = `
+{
+  "_cmd": "wa v 12, ca v 7",
+  "attacker": 12,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 12, ca v 8 1`] = `
+{
+  "_cmd": "wa v 12, ca v 8",
+  "attacker": 12,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 12, ca v 9 1`] = `
+{
+  "_cmd": "wa v 12, ca v 9",
+  "attacker": 12,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 12, ca v 10 1`] = `
+{
+  "_cmd": "wa v 12, ca v 10",
+  "attacker": 12,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 12, ca v 11 1`] = `
+{
+  "_cmd": "wa v 12, ca v 11",
+  "attacker": 12,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 12, ca v 12 1`] = `
+{
+  "_cmd": "wa v 12, ca v 12",
+  "attacker": 12,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 12, ca v 13 1`] = `
+{
+  "_cmd": "wa v 12, ca v 13",
+  "attacker": 12,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 12, ca v 14 1`] = `
+{
+  "_cmd": "wa v 12, ca v 14",
+  "attacker": 12,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 12, ca v 15 1`] = `
+{
+  "_cmd": "wa v 12, ca v 15",
+  "attacker": 12,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 13, ca p 1 1`] = `
+{
+  "_cmd": "wa v 13, ca p 1",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 13, ca p 2 1`] = `
+{
+  "_cmd": "wa v 13, ca p 2",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 13, ca p 3 1`] = `
+{
+  "_cmd": "wa v 13, ca p 3",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 13, ca p 4 1`] = `
+{
+  "_cmd": "wa v 13, ca p 4",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 13, ca p 5 1`] = `
+{
+  "_cmd": "wa v 13, ca p 5",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 13, ca p 6 1`] = `
+{
+  "_cmd": "wa v 13, ca p 6",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 13, ca p 7 1`] = `
+{
+  "_cmd": "wa v 13, ca p 7",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 13, ca p 8 1`] = `
+{
+  "_cmd": "wa v 13, ca p 8",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 13, ca p 9 1`] = `
+{
+  "_cmd": "wa v 13, ca p 9",
+  "attacker": 13,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 13, ca p 10 1`] = `
+{
+  "_cmd": "wa v 13, ca p 10",
+  "attacker": 13,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 13, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 1",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 13, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 2",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 13, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 3",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 13, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 4",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 13, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 5",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 13, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 6",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 13, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 7",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 13, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 8",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 13, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 9",
+  "attacker": 13,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 13, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 10",
+  "attacker": 13,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 13, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 11",
+  "attacker": 13,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 13, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 12",
+  "attacker": 13,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 13, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 13",
+  "attacker": 13,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 13, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 14",
+  "attacker": 13,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 13, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 13, ca p v 15",
+  "attacker": 13,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 13, ca v 1 1`] = `
+{
+  "_cmd": "wa v 13, ca v 1",
+  "attacker": 13,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 13, ca v 2 1`] = `
+{
+  "_cmd": "wa v 13, ca v 2",
+  "attacker": 13,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 13, ca v 3 1`] = `
+{
+  "_cmd": "wa v 13, ca v 3",
+  "attacker": 13,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 13, ca v 4 1`] = `
+{
+  "_cmd": "wa v 13, ca v 4",
+  "attacker": 13,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 13, ca v 5 1`] = `
+{
+  "_cmd": "wa v 13, ca v 5",
+  "attacker": 13,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 13, ca v 6 1`] = `
+{
+  "_cmd": "wa v 13, ca v 6",
+  "attacker": 13,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 13, ca v 7 1`] = `
+{
+  "_cmd": "wa v 13, ca v 7",
+  "attacker": 13,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 13, ca v 8 1`] = `
+{
+  "_cmd": "wa v 13, ca v 8",
+  "attacker": 13,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 13, ca v 9 1`] = `
+{
+  "_cmd": "wa v 13, ca v 9",
+  "attacker": 13,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 13, ca v 10 1`] = `
+{
+  "_cmd": "wa v 13, ca v 10",
+  "attacker": 13,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 13, ca v 11 1`] = `
+{
+  "_cmd": "wa v 13, ca v 11",
+  "attacker": 13,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 13, ca v 12 1`] = `
+{
+  "_cmd": "wa v 13, ca v 12",
+  "attacker": 13,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 13, ca v 13 1`] = `
+{
+  "_cmd": "wa v 13, ca v 13",
+  "attacker": 13,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 13, ca v 14 1`] = `
+{
+  "_cmd": "wa v 13, ca v 14",
+  "attacker": 13,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 13, ca v 15 1`] = `
+{
+  "_cmd": "wa v 13, ca v 15",
+  "attacker": 13,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 14, ca p 1 1`] = `
+{
+  "_cmd": "wa v 14, ca p 1",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 14, ca p 2 1`] = `
+{
+  "_cmd": "wa v 14, ca p 2",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 14, ca p 3 1`] = `
+{
+  "_cmd": "wa v 14, ca p 3",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 14, ca p 4 1`] = `
+{
+  "_cmd": "wa v 14, ca p 4",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 14, ca p 5 1`] = `
+{
+  "_cmd": "wa v 14, ca p 5",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 14, ca p 6 1`] = `
+{
+  "_cmd": "wa v 14, ca p 6",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 14, ca p 7 1`] = `
+{
+  "_cmd": "wa v 14, ca p 7",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 14, ca p 8 1`] = `
+{
+  "_cmd": "wa v 14, ca p 8",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 14, ca p 9 1`] = `
+{
+  "_cmd": "wa v 14, ca p 9",
+  "attacker": 14,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 14, ca p 10 1`] = `
+{
+  "_cmd": "wa v 14, ca p 10",
+  "attacker": 14,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 14, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 1",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 14, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 2",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 14, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 3",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 14, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 4",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 14, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 5",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 14, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 6",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 14, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 7",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 14, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 8",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 14, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 9",
+  "attacker": 14,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 14, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 10",
+  "attacker": 14,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 14, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 11",
+  "attacker": 14,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 14, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 12",
+  "attacker": 14,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 14, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 13",
+  "attacker": 14,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 14, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 14",
+  "attacker": 14,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 14, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 14, ca p v 15",
+  "attacker": 14,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 14, ca v 1 1`] = `
+{
+  "_cmd": "wa v 14, ca v 1",
+  "attacker": 14,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 14, ca v 2 1`] = `
+{
+  "_cmd": "wa v 14, ca v 2",
+  "attacker": 14,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 14, ca v 3 1`] = `
+{
+  "_cmd": "wa v 14, ca v 3",
+  "attacker": 14,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 14, ca v 4 1`] = `
+{
+  "_cmd": "wa v 14, ca v 4",
+  "attacker": 14,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 14, ca v 5 1`] = `
+{
+  "_cmd": "wa v 14, ca v 5",
+  "attacker": 14,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 14, ca v 6 1`] = `
+{
+  "_cmd": "wa v 14, ca v 6",
+  "attacker": 14,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 14, ca v 7 1`] = `
+{
+  "_cmd": "wa v 14, ca v 7",
+  "attacker": 14,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 14, ca v 8 1`] = `
+{
+  "_cmd": "wa v 14, ca v 8",
+  "attacker": 14,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 14, ca v 9 1`] = `
+{
+  "_cmd": "wa v 14, ca v 9",
+  "attacker": 14,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 14, ca v 10 1`] = `
+{
+  "_cmd": "wa v 14, ca v 10",
+  "attacker": 14,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 14, ca v 11 1`] = `
+{
+  "_cmd": "wa v 14, ca v 11",
+  "attacker": 14,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 14, ca v 12 1`] = `
+{
+  "_cmd": "wa v 14, ca v 12",
+  "attacker": 14,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 14, ca v 13 1`] = `
+{
+  "_cmd": "wa v 14, ca v 13",
+  "attacker": 14,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 14, ca v 14 1`] = `
+{
+  "_cmd": "wa v 14, ca v 14",
+  "attacker": 14,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 14, ca v 15 1`] = `
+{
+  "_cmd": "wa v 14, ca v 15",
+  "attacker": 14,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 15, ca p 1 1`] = `
+{
+  "_cmd": "wa v 15, ca p 1",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 15, ca p 2 1`] = `
+{
+  "_cmd": "wa v 15, ca p 2",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 15, ca p 3 1`] = `
+{
+  "_cmd": "wa v 15, ca p 3",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 15, ca p 4 1`] = `
+{
+  "_cmd": "wa v 15, ca p 4",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 15, ca p 5 1`] = `
+{
+  "_cmd": "wa v 15, ca p 5",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 15, ca p 6 1`] = `
+{
+  "_cmd": "wa v 15, ca p 6",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 15, ca p 7 1`] = `
+{
+  "_cmd": "wa v 15, ca p 7",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 15, ca p 8 1`] = `
+{
+  "_cmd": "wa v 15, ca p 8",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 15, ca p 9 1`] = `
+{
+  "_cmd": "wa v 15, ca p 9",
+  "attacker": 15,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 15, ca p 10 1`] = `
+{
+  "_cmd": "wa v 15, ca p 10",
+  "attacker": 15,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 15, ca p v 1 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 1",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 15, ca p v 2 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 2",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 15, ca p v 3 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 3",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 15, ca p v 4 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 4",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 15, ca p v 5 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 5",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 15, ca p v 6 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 6",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 15, ca p v 7 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 7",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 15, ca p v 8 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 8",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 15, ca p v 9 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 9",
+  "attacker": 15,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 15, ca p v 10 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 10",
+  "attacker": 15,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 15, ca p v 11 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 11",
+  "attacker": 15,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 15, ca p v 12 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 12",
+  "attacker": 15,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 15, ca p v 13 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 13",
+  "attacker": 15,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 15, ca p v 14 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 14",
+  "attacker": 15,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 15, ca p v 15 1`] = `
+{
+  "_cmd": "wa v 15, ca p v 15",
+  "attacker": 15,
+  "defender": 6,
+}
+`;
+
+exports[`wa v 15, ca v 1 1`] = `
+{
+  "_cmd": "wa v 15, ca v 1",
+  "attacker": 15,
+  "defender": -8,
+}
+`;
+
+exports[`wa v 15, ca v 2 1`] = `
+{
+  "_cmd": "wa v 15, ca v 2",
+  "attacker": 15,
+  "defender": -7,
+}
+`;
+
+exports[`wa v 15, ca v 3 1`] = `
+{
+  "_cmd": "wa v 15, ca v 3",
+  "attacker": 15,
+  "defender": -6,
+}
+`;
+
+exports[`wa v 15, ca v 4 1`] = `
+{
+  "_cmd": "wa v 15, ca v 4",
+  "attacker": 15,
+  "defender": -5,
+}
+`;
+
+exports[`wa v 15, ca v 5 1`] = `
+{
+  "_cmd": "wa v 15, ca v 5",
+  "attacker": 15,
+  "defender": -4,
+}
+`;
+
+exports[`wa v 15, ca v 6 1`] = `
+{
+  "_cmd": "wa v 15, ca v 6",
+  "attacker": 15,
+  "defender": -3,
+}
+`;
+
+exports[`wa v 15, ca v 7 1`] = `
+{
+  "_cmd": "wa v 15, ca v 7",
+  "attacker": 15,
+  "defender": -2,
+}
+`;
+
+exports[`wa v 15, ca v 8 1`] = `
+{
+  "_cmd": "wa v 15, ca v 8",
+  "attacker": 15,
+  "defender": -1,
+}
+`;
+
+exports[`wa v 15, ca v 9 1`] = `
+{
+  "_cmd": "wa v 15, ca v 9",
+  "attacker": 15,
+  "defender": 0,
+}
+`;
+
+exports[`wa v 15, ca v 10 1`] = `
+{
+  "_cmd": "wa v 15, ca v 10",
+  "attacker": 15,
+  "defender": 1,
+}
+`;
+
+exports[`wa v 15, ca v 11 1`] = `
+{
+  "_cmd": "wa v 15, ca v 11",
+  "attacker": 15,
+  "defender": 2,
+}
+`;
+
+exports[`wa v 15, ca v 12 1`] = `
+{
+  "_cmd": "wa v 15, ca v 12",
+  "attacker": 15,
+  "defender": 3,
+}
+`;
+
+exports[`wa v 15, ca v 13 1`] = `
+{
+  "_cmd": "wa v 15, ca v 13",
+  "attacker": 15,
+  "defender": 4,
+}
+`;
+
+exports[`wa v 15, ca v 14 1`] = `
+{
+  "_cmd": "wa v 15, ca v 14",
+  "attacker": 15,
+  "defender": 5,
+}
+`;
+
+exports[`wa v 15, ca v 15 1`] = `
+{
+  "_cmd": "wa v 15, ca v 15",
+  "attacker": 15,
+  "defender": 6,
+}
+`;
