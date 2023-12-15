@@ -1,9 +1,9 @@
 const { test, expect } = require('@jest/globals');
 const { execute } = require('../../commands/calc.js');
-const { generateTestSuit, replyData } = require('./utils.js');
+const { generateTestSuite, replyData } = require('./utils.js');
 
 const testData = () =>
-  generateTestSuit('de', ['b', 'v', 'b v'], 'wa', [
+  generateTestSuite('de', ['b', 'v', 'b v'], 'wa', [
     'd',
     'd v',
     'p',

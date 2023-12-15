@@ -30,7 +30,7 @@ const generateTests = (attacker, defender) => {
   return tests;
 };
 
-const generateTestSuit = (
+const generateTestSuite = (
   attCode,
   attModifierList,
   defCode,
@@ -62,4 +62,4 @@ const replyData = () => ({
   },
 });
 
-module.exports = { generateTests, getTestUnit, generateTestSuit, replyData };
+module.exports = { generateTests, getTestUnit, generateTestSuite, replyData };
