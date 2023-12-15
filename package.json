@@ -12,16 +12,22 @@
     "discord-api-types": "0.24.0",
     "discord.js": "13.5.0",
     "dotenv": "8.0.0",
-    "eslint": "6.8.0",
     "express": "4.17.3",
     "helmet": "3.21.3",
     "nodemon": "^2.0.20",
     "pg": "8.5.1"
   },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "jest": "29.7.0"
+  },
   "scripts": {
     "start": "node server/index.js",
     "api": "nodemon server/index.js",
-    "bot": "nodemon bot/index.js"
+    "bot": "nodemon bot/index.js",
+    "test": "jest",
+    "test:updateSnapshots": "jest --updateSnapshot",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "jd (alphaSeahorse)",
