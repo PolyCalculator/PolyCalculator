@@ -1,4 +1,4 @@
-const { expect } = require('@jest/globals');
+const { expect, test } = require('@jest/globals');
 const { execute } = require('../../commands/calc.js');
 const { getUnit } = require('../../commands/units.js');
 
@@ -90,22 +90,26 @@ const replyData = () => ({
   },
 });
 
-const runTestCmd = (cmd) => {
-  const reply = replyData();
-  execute({}, cmd, reply, {});
-  const result = {
-    _cmd: cmd, // use underscore to put it on top of the snapshot
-    attacker: reply.outcome.attackers[0].afterhp,
-    defender: reply.outcome.defender.afterhp,
-  };
+const defenders = ['ca', 'de', 'ga', 'gi', 'po', 'ri', 'wa'];
 
-  expect(result).toMatchSnapshot();
+const runTestSuite = (attacker) => {
+  defenders.forEach((defender) => {
+    generateTestSuite(attacker, defender).forEach((cmd) => {
+      test(cmd, () => {
+        const reply = replyData();
+        execute({}, cmd, reply, {});
+        const result = {
+          _cmd: cmd, // use underscore to put it on top of the snapshot
+          attacker: reply.outcome.attackers[0].afterhp,
+          defender: reply.outcome.defender.afterhp,
+        };
+
+        expect(result).toMatchSnapshot();
+      });
+    });
+  });
 };
 
 module.exports = {
-  generateTests,
-  getTestUnit,
-  generateTestSuite,
-  replyData,
-  runTestCmd,
+  runTestSuite,
 };
