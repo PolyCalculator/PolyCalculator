@@ -12,7 +12,7 @@ const getTestUnit = (code, modifier) => {
 };
 
 const getMaxHp = (unit) => {
-  if (unit.modifiers.includes('v')) {
+  if (unit.modifiers.includes('v') && unit.vet) {
     return unit.maxhp + 5;
   }
   return unit.maxhp;
@@ -37,8 +37,8 @@ const generateTestSuite = (
   defModifierList,
 ) => {
   const result = [];
-  attModifierList.forEach((attModifier) => {
-    defModifierList.forEach((defModifier) => {
+  attModifierList.concat(['']).forEach((attModifier) => {
+    defModifierList.concat(['']).forEach((defModifier) => {
       const att = getTestUnit(attCode, attModifier);
       const def = getTestUnit(defCode, defModifier);
       result.push(...generateTests(att, def));
