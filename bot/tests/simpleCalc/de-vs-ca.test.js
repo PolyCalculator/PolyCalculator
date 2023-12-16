@@ -1,19 +1,8 @@
-const { test, expect } = require('@jest/globals');
-const { execute } = require('../../commands/calc.js');
-const { generateTestSuite, replyData } = require('./utils.js');
+const { test } = require('@jest/globals');
+const { generateTestSuite, runTestCmd } = require('./utils.js');
 
-const testData = () => generateTestSuite('de', 'ca');
-
-testData().forEach((cmd) => {
+generateTestSuite('de', 'ca').forEach((cmd) => {
   test(cmd, () => {
-    const reply = replyData();
-    execute({}, cmd, reply, {});
-    const result = {
-      _cmd: cmd, // use underscore to put it on top of the snapshot
-      attacker: reply.outcome.attackers[0].afterhp,
-      defender: reply.outcome.defender.afterhp,
-    };
-
-    expect(result).toMatchSnapshot();
+    runTestCmd(cmd);
   });
 });

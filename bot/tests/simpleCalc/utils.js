@@ -1,5 +1,6 @@
+const { expect } = require('@jest/globals');
+const { execute } = require('../../commands/calc.js');
 const { getUnit } = require('../../commands/units.js');
-const { de } = require('../../util/unitsList.js');
 
 const getTestUnit = (code, modifier) => {
   const unit = getUnit(code);
@@ -18,10 +19,6 @@ const getMaxHp = (unit) => {
   }
   return unit.maxhp;
 };
-
-// TODO:
-// Add gaami
-// Generate modifiers automatically
 
 const generateTests = (attacker, defender) => {
   const tests = [];
@@ -93,4 +90,22 @@ const replyData = () => ({
   },
 });
 
-module.exports = { generateTests, getTestUnit, generateTestSuite, replyData };
+const runTestCmd = (cmd) => {
+  const reply = replyData();
+  execute({}, cmd, reply, {});
+  const result = {
+    _cmd: cmd, // use underscore to put it on top of the snapshot
+    attacker: reply.outcome.attackers[0].afterhp,
+    defender: reply.outcome.defender.afterhp,
+  };
+
+  expect(result).toMatchSnapshot();
+};
+
+module.exports = {
+  generateTests,
+  getTestUnit,
+  generateTestSuite,
+  replyData,
+  runTestCmd,
+};
