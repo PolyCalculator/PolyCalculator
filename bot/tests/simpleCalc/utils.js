@@ -108,8 +108,8 @@ const runTestSuite = (attacker) => {
         execute({}, cmd, reply, {});
         const result = {
           _cmd: cmd, // use underscore to put it on top of the snapshot
-          attacker: reply.outcome.attackers[0].afterhp,
-          defender: reply.outcome.defender.afterhp,
+          attacker: Math.max(reply.outcome.attackers[0].afterhp, 0),
+          defender: Math.max(reply.outcome.defender.afterhp, 0),
         };
 
         expect(result).toMatchSnapshot();
@@ -120,4 +120,5 @@ const runTestSuite = (attacker) => {
 
 module.exports = {
   runTestSuite,
+  replyData,
 };
