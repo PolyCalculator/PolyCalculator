@@ -40,6 +40,14 @@ const generateTestSuite = (attCode, defCode) => {
     attModifiers.push('v');
     attModifiers.push('b v');
   }
+  if (attacker.splash !== false) {
+    attModifiers.push('s');
+    attModifiers.push('b s');
+  }
+  if (attacker.splash !== false && attacker.vet) {
+    attModifiers.push('s v');
+    attModifiers.push('b s v');
+  }
   attModifiers.push('');
 
   const defender = getUnit(defCode);
@@ -90,7 +98,7 @@ const replyData = () => ({
   },
 });
 
-const defenders = ['ca', 'de', 'ga', 'gi', 'po', 'ri', 'wa'];
+const defenders = ['ca', 'de', 'dr', 'ga', 'gi', 'po', 'ri', 'wa'];
 
 const runTestSuite = (attacker) => {
   defenders.forEach((defender) => {
