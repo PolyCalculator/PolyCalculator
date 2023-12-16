@@ -1,3 +1,5 @@
+const { expect, test } = require('@jest/globals');
+const { execute } = require('../../commands/calc.js');
 const { getUnit } = require('../../commands/units.js');
 
 const getTestUnit = (code, modifier) => {
@@ -30,15 +32,41 @@ const generateTests = (attacker, defender) => {
   return tests;
 };
 
-const generateTestSuite = (
-  attCode,
-  attModifierList,
-  defCode,
-  defModifierList,
-) => {
+const generateTestSuite = (attCode, defCode) => {
   const result = [];
-  attModifierList.concat(['']).forEach((attModifier) => {
-    defModifierList.concat(['']).forEach((defModifier) => {
+  const attacker = getUnit(attCode);
+  const attModifiers = ['b'];
+  if (attacker.vet) {
+    attModifiers.push('v');
+    attModifiers.push('b v');
+  }
+  attModifiers.push('');
+
+  const defender = getUnit(defCode);
+  const defModifiers = [];
+  if (defender.def > 0) {
+    defModifiers.push('d');
+    if (defender.vet) {
+      defModifiers.push('d v');
+    }
+  }
+  defModifiers.push('p');
+  if (defender.vet) {
+    defModifiers.push('p v');
+  }
+  if (defender.fort) {
+    defModifiers.push('w');
+    if (defender.vet) {
+      defModifiers.push('w v');
+    }
+  }
+  if (defender.vet) {
+    defModifiers.push('v');
+  }
+  defModifiers.push('');
+
+  attModifiers.forEach((attModifier) => {
+    defModifiers.forEach((defModifier) => {
       const att = getTestUnit(attCode, attModifier);
       const def = getTestUnit(defCode, defModifier);
       result.push(...generateTests(att, def));
@@ -62,4 +90,26 @@ const replyData = () => ({
   },
 });
 
-module.exports = { generateTests, getTestUnit, generateTestSuite, replyData };
+const defenders = ['ca', 'de', 'ga', 'gi', 'po', 'ri', 'wa'];
+
+const runTestSuite = (attacker) => {
+  defenders.forEach((defender) => {
+    generateTestSuite(attacker, defender).forEach((cmd) => {
+      test(cmd, () => {
+        const reply = replyData();
+        execute({}, cmd, reply, {});
+        const result = {
+          _cmd: cmd, // use underscore to put it on top of the snapshot
+          attacker: reply.outcome.attackers[0].afterhp,
+          defender: reply.outcome.defender.afterhp,
+        };
+
+        expect(result).toMatchSnapshot();
+      });
+    });
+  });
+};
+
+module.exports = {
+  runTestSuite,
+};
