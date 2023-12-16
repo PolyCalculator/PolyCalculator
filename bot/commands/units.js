@@ -139,6 +139,13 @@ module.exports = {
         boost(unit)
     }
 
+    // Add integer values to be used for damage calculation.
+    unit.iAtt = BigInt(unit.att * 100);
+    unit.iBonus = BigInt(unit.bonus * 10);
+    unit.iDef = BigInt(unit.def * 100 * unit.bonus);
+    unit.iMaxHp = BigInt(unit.maxhp * 10);
+    unit.iCurrentHp = BigInt(unit.currenthp * 10);
+
     return unit
   },
   // eslint-disable-next-line no-unused-vars
