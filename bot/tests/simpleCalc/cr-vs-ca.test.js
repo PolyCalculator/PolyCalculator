@@ -2,12 +2,7 @@ const { test, expect } = require('@jest/globals');
 const { execute } = require('../../commands/calc.js');
 const { generateTestSuite, replyData } = require('./utils.js');
 
-const testData = () =>
-  generateTestSuite('cr', ['b'], 'ca', [
-    'p',
-    'p v',
-    'v',
-  ]);
+const testData = () => generateTestSuite('cr', 'ca');
 
 testData().forEach((cmd) => {
   test(cmd, () => {
