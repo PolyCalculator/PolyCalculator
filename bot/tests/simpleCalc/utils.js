@@ -1,6 +1,7 @@
 const { expect, test } = require('@jest/globals');
 const { execute } = require('../../commands/calc.js');
 const { getUnit } = require('../../commands/units.js');
+const { replyData } = require('../commandUtils.js');
 
 const getTestUnit = (code, modifier) => {
   const unit = getUnit(code);
@@ -82,21 +83,6 @@ const generateTestSuite = (attCode, defCode) => {
   });
   return result;
 };
-
-const replyData = () => ({
-  content: [],
-  deleteContent: false,
-  discord: {
-    title: undefined,
-    description: undefined,
-    fields: [],
-    footer: undefined,
-  },
-  outcome: {
-    attackers: [],
-    defender: {},
-  },
-});
 
 const defenders = ['ca', 'de', 'dr', 'ga', 'gi', 'po', 'ri', 'wa'];
 

@@ -1,20 +1,20 @@
 const { MessageEmbed, Collection } = require('discord.js')
 
+function Round(n) {
+  const num = n / 10n * 10n;
+  const num2 = num + 10n;
+  if (n - num < num2 - n) {
+    return num;
+  }
+  return num2;
+}
+
 module.exports.attackerCalc = function (aforce, totaldam, attacker) {
-  const step1 = aforce * attacker.att
-  const step3 = step1 * 4.5
-  const step5 = step3 / totaldam
-  // const step6 = Math.round(step5 * 10) / 10
-  const step7 = Math.round(step5 + 0.001)
-  return step7
+  return Round(aforce * attacker.iAtt * 450n / (1000n * totaldam)) / 10n;
 }
 
 module.exports.defenderCalc = function (aforce, totaldam, defender) {
-  const step1 = aforce * defender.def
-  const step3 = step1 * 4.5
-  const step5 = step3 / totaldam
-  const step7 = Math.round(step5 + 0.001)
-  return step7
+  return Round(aforce * defender.iDef * 4500n / (1000n * totaldam * defender.iBonus)) / 10n;
 }
 
 module.exports.buildEmbed = function (data) {

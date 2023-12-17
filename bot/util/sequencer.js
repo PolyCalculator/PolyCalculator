@@ -106,11 +106,11 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * solution.defenderHP / defender.maxhp * defender.bonus;
+  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
+  const dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
 
   const totaldam = aforce + dforce;
-  let defdiff = attackerCalc(aforce, totaldam, attacker)
+  let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
   if (attacker.splash || attacker.exploding) {
     defdiff = Math.floor(defdiff / 2)
     // if ((attacker.poisonattack && !attacker.exploding) || (attacker.poisonexplosion && attacker.exploding))
@@ -118,7 +118,7 @@ function combat(attacker, defender, solution) {
     if (attacker.splash) {
       attacker.name = `${attacker.name} 💦`
       attacker.plural = `${attacker.plural} 💦`
-  }
+    }
   }
 
   solution.hpDealt.push(defdiff)
@@ -136,7 +136,7 @@ function combat(attacker, defender, solution) {
   } else if (attacker.exploding || attacker.name === 'Segment') {
     attdiff = attacker.currenthp
   } else {
-    attdiff = defenderCalc(dforce, totaldam, defender)
+    attdiff = Number(defenderCalc(dforce, totaldam, defender));
     attacker.attdiff = attdiff
     hpattacker = attacker.currenthp - attdiff;
     if (hpattacker <= 0) {
@@ -179,31 +179,5 @@ module.exports.evaluate = function (bestSolution, newSolution) {
         } else return false
       }
     } else return false
-  }
-}
-
-module.exports.simpleCombat = function (attacker, defender) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
-
-  const totaldam = aforce + dforce;
-  const defdiff = attackerCalc(aforce, totaldam, attacker)
-    ;
-
-  let attdiff
-
-  if (defender.currenthp - defdiff <= 0) {
-    attdiff = 0
-  } else if (defender.forceRetaliation === false || defender.retaliation === false) {
-    attdiff = 0
-  } else if (attacker.range === true && defender.range === false && defender.forceRetaliation !== true) {
-    attdiff = 0
-  } else {
-    attdiff = defenderCalc(dforce, totaldam, defender)
-  }
-
-  return {
-    def: parseInt(defdiff),
-    att: parseInt(attdiff)
   }
 }

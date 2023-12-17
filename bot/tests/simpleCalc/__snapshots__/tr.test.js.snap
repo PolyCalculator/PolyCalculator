@@ -124964,7 +124964,7 @@ exports[`tr b v 2, po p 11 1`] = `
 {
   "_cmd": "tr b v 2, po p 11",
   "attacker": 2,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -125564,7 +125564,7 @@ exports[`tr b v 2, ri p v 11 1`] = `
 {
   "_cmd": "tr b v 2, ri p v 11",
   "attacker": 2,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -135156,7 +135156,7 @@ exports[`tr b v 4, ga p 25 1`] = `
 {
   "_cmd": "tr b v 4, ga p 25",
   "attacker": 4,
-  "defender": 20,
+  "defender": 21,
 }
 `;
 
@@ -158172,7 +158172,7 @@ exports[`tr b v 8, ga p 22 1`] = `
 {
   "_cmd": "tr b v 8, ga p 22",
   "attacker": 8,
-  "defender": 14,
+  "defender": 15,
 }
 `;
 

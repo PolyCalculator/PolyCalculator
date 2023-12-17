@@ -117244,7 +117244,7 @@ exports[`kn b v 1, ga 6 1`] = `
 {
   "_cmd": "kn b v 1, ga 6",
   "attacker": 0,
-  "defender": 1,
+  "defender": 2,
 }
 `;
 
@@ -117372,7 +117372,7 @@ exports[`kn b v 1, ga 22 1`] = `
 {
   "_cmd": "kn b v 1, ga 22",
   "attacker": 0,
-  "defender": 20,
+  "defender": 21,
 }
 `;
 
@@ -117980,7 +117980,7 @@ exports[`kn b v 1, gi 8 1`] = `
 {
   "_cmd": "kn b v 1, gi 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -118972,7 +118972,7 @@ exports[`kn b v 1, po 12 1`] = `
 {
   "_cmd": "kn b v 1, po 12",
   "attacker": 0,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -119060,7 +119060,7 @@ exports[`kn b v 1, po d 8 1`] = `
 {
   "_cmd": "kn b v 1, po d 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -119179,8 +119179,8 @@ exports[`kn b v 1, po p 7 1`] = `
 exports[`kn b v 1, po p 8 1`] = `
 {
   "_cmd": "kn b v 1, po p 8",
-  "attacker": 1,
-  "defender": 0,
+  "attacker": 0,
+  "defender": 1,
 }
 `;
 
@@ -119324,7 +119324,7 @@ exports[`kn b v 1, po w 11 1`] = `
 {
   "_cmd": "kn b v 1, po w 11",
   "attacker": 0,
-  "defender": 9,
+  "defender": 10,
 }
 `;
 
@@ -119420,7 +119420,7 @@ exports[`kn b v 1, ri 8 1`] = `
 {
   "_cmd": "kn b v 1, ri 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -119580,7 +119580,7 @@ exports[`kn b v 1, ri d v 8 1`] = `
 {
   "_cmd": "kn b v 1, ri d v 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -119779,8 +119779,8 @@ exports[`kn b v 1, ri p v 7 1`] = `
 exports[`kn b v 1, ri p v 8 1`] = `
 {
   "_cmd": "kn b v 1, ri p v 8",
-  "attacker": 1,
-  "defender": 0,
+  "attacker": 0,
+  "defender": 1,
 }
 `;
 
@@ -119932,7 +119932,7 @@ exports[`kn b v 1, ri v 12 1`] = `
 {
   "_cmd": "kn b v 1, ri v 12",
   "attacker": 0,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -120124,7 +120124,7 @@ exports[`kn b v 1, ri w v 11 1`] = `
 {
   "_cmd": "kn b v 1, ri w v 11",
   "attacker": 0,
-  "defender": 9,
+  "defender": 10,
 }
 `;
 
@@ -120684,7 +120684,7 @@ exports[`kn b v 1, wa v 6 1`] = `
 {
   "_cmd": "kn b v 1, wa v 6",
   "attacker": 0,
-  "defender": 1,
+  "defender": 2,
 }
 `;
 
@@ -121420,7 +121420,7 @@ exports[`kn b v 2, de 8 1`] = `
 {
   "_cmd": "kn b v 2, de 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -123052,7 +123052,7 @@ exports[`kn b v 2, ga 12 1`] = `
 {
   "_cmd": "kn b v 2, ga 12",
   "attacker": 0,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -123260,7 +123260,7 @@ exports[`kn b v 2, ga d 8 1`] = `
 {
   "_cmd": "kn b v 2, ga d 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -123804,7 +123804,7 @@ exports[`kn b v 2, gi 16 1`] = `
 {
   "_cmd": "kn b v 2, gi 16",
   "attacker": 0,
-  "defender": 11,
+  "defender": 12,
 }
 `;
 
@@ -125044,7 +125044,7 @@ exports[`kn b v 2, po w 6 1`] = `
 {
   "_cmd": "kn b v 2, po w 6",
   "attacker": 0,
-  "defender": 1,
+  "defender": 2,
 }
 `;
 
@@ -125844,7 +125844,7 @@ exports[`kn b v 2, ri w v 6 1`] = `
 {
   "_cmd": "kn b v 2, ri w v 6",
   "attacker": 0,
-  "defender": 1,
+  "defender": 2,
 }
 `;
 
@@ -125980,7 +125980,7 @@ exports[`kn b v 2, wa 8 1`] = `
 {
   "_cmd": "kn b v 2, wa 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -126140,7 +126140,7 @@ exports[`kn b v 2, wa d v 8 1`] = `
 {
   "_cmd": "kn b v 2, wa d v 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -126492,7 +126492,7 @@ exports[`kn b v 2, wa v 12 1`] = `
 {
   "_cmd": "kn b v 2, wa v 12",
   "attacker": 0,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -126684,7 +126684,7 @@ exports[`kn b v 2, wa w v 11 1`] = `
 {
   "_cmd": "kn b v 2, wa w v 11",
   "attacker": 0,
-  "defender": 9,
+  "defender": 10,
 }
 `;
 
@@ -134668,7 +134668,7 @@ exports[`kn b v 4, ga 24 1`] = `
 {
   "_cmd": "kn b v 4, ga 24",
   "attacker": 0,
-  "defender": 19,
+  "defender": 20,
 }
 `;
 
@@ -134844,7 +134844,7 @@ exports[`kn b v 4, ga d 16 1`] = `
 {
   "_cmd": "kn b v 4, ga d 16",
   "attacker": 0,
-  "defender": 11,
+  "defender": 12,
 }
 `;
 
@@ -135084,7 +135084,7 @@ exports[`kn b v 4, ga p 16 1`] = `
 {
   "_cmd": "kn b v 4, ga p 16",
   "attacker": 0,
-  "defender": 8,
+  "defender": 9,
 }
 `;
 
@@ -135452,7 +135452,7 @@ exports[`kn b v 4, gi 32 1`] = `
 {
   "_cmd": "kn b v 4, gi 32",
   "attacker": 0,
-  "defender": 27,
+  "defender": 28,
 }
 `;
 
@@ -136612,7 +136612,7 @@ exports[`kn b v 4, po w 12 1`] = `
 {
   "_cmd": "kn b v 4, po w 12",
   "attacker": 1,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -137300,7 +137300,7 @@ exports[`kn b v 4, ri w 8 1`] = `
 {
   "_cmd": "kn b v 4, ri w 8",
   "attacker": 1,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -137412,7 +137412,7 @@ exports[`kn b v 4, ri w v 12 1`] = `
 {
   "_cmd": "kn b v 4, ri w v 12",
   "attacker": 1,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -138164,7 +138164,7 @@ exports[`kn b v 4, wa w v 6 1`] = `
 {
   "_cmd": "kn b v 4, wa w v 6",
   "attacker": 0,
-  "defender": 1,
+  "defender": 2,
 }
 `;
 
@@ -139515,8 +139515,8 @@ exports[`kn b v 5, de w 4 1`] = `
 exports[`kn b v 5, de w 5 1`] = `
 {
   "_cmd": "kn b v 5, de w 5",
-  "attacker": 5,
-  "defender": 0,
+  "attacker": 0,
+  "defender": 1,
 }
 `;
 
@@ -140476,7 +140476,7 @@ exports[`kn b v 5, ga 30 1`] = `
 {
   "_cmd": "kn b v 5, ga 30",
   "attacker": 0,
-  "defender": 25,
+  "defender": 26,
 }
 `;
 
@@ -140636,7 +140636,7 @@ exports[`kn b v 5, ga d 20 1`] = `
 {
   "_cmd": "kn b v 5, ga d 20",
   "attacker": 0,
-  "defender": 15,
+  "defender": 16,
 }
 `;
 
@@ -141276,7 +141276,7 @@ exports[`kn b v 5, gi 40 1`] = `
 {
   "_cmd": "kn b v 5, gi 40",
   "attacker": 0,
-  "defender": 35,
+  "defender": 36,
 }
 `;
 
@@ -142396,7 +142396,7 @@ exports[`kn b v 5, po w 15 1`] = `
 {
   "_cmd": "kn b v 5, po w 15",
   "attacker": 2,
-  "defender": 10,
+  "defender": 11,
 }
 `;
 
@@ -143076,7 +143076,7 @@ exports[`kn b v 5, ri w 10 1`] = `
 {
   "_cmd": "kn b v 5, ri w 10",
   "attacker": 2,
-  "defender": 5,
+  "defender": 6,
 }
 `;
 
@@ -143196,7 +143196,7 @@ exports[`kn b v 5, ri w v 15 1`] = `
 {
   "_cmd": "kn b v 5, ri w v 15",
   "attacker": 2,
-  "defender": 10,
+  "defender": 11,
 }
 `;
 
@@ -143835,8 +143835,8 @@ exports[`kn b v 5, wa w 4 1`] = `
 exports[`kn b v 5, wa w 5 1`] = `
 {
   "_cmd": "kn b v 5, wa w 5",
-  "attacker": 5,
-  "defender": 0,
+  "attacker": 0,
+  "defender": 1,
 }
 `;
 
@@ -151052,7 +151052,7 @@ exports[`kn b v 7, de w 7 1`] = `
 {
   "_cmd": "kn b v 7, de w 7",
   "attacker": 0,
-  "defender": 2,
+  "defender": 3,
 }
 `;
 
@@ -152220,7 +152220,7 @@ exports[`kn b v 7, ga d 28 1`] = `
 {
   "_cmd": "kn b v 7, ga d 28",
   "attacker": 0,
-  "defender": 23,
+  "defender": 24,
 }
 `;
 
@@ -152460,7 +152460,7 @@ exports[`kn b v 7, ga p 28 1`] = `
 {
   "_cmd": "kn b v 7, ga p 28",
   "attacker": 0,
-  "defender": 20,
+  "defender": 21,
 }
 `;
 
@@ -155372,7 +155372,7 @@ exports[`kn b v 7, wa w 7 1`] = `
 {
   "_cmd": "kn b v 7, wa w 7",
   "attacker": 0,
-  "defender": 2,
+  "defender": 3,
 }
 `;
 
@@ -156820,7 +156820,7 @@ exports[`kn b v 8, de w 8 1`] = `
 {
   "_cmd": "kn b v 8, de w 8",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -159635,7 +159635,7 @@ exports[`kn b v 8, po w 9 1`] = `
 exports[`kn b v 8, po w 10 1`] = `
 {
   "_cmd": "kn b v 8, po w 10",
-  "attacker": 5,
+  "attacker": 6,
   "defender": 2,
 }
 `;
@@ -160435,7 +160435,7 @@ exports[`kn b v 8, ri w v 9 1`] = `
 exports[`kn b v 8, ri w v 10 1`] = `
 {
   "_cmd": "kn b v 8, ri w v 10",
-  "attacker": 5,
+  "attacker": 6,
   "defender": 2,
 }
 `;
@@ -161140,7 +161140,7 @@ exports[`kn b v 8, wa w 8 1`] = `
 {
   "_cmd": "kn b v 8, wa w 8",
   "attacker": 1,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -161252,7 +161252,7 @@ exports[`kn b v 8, wa w v 12 1`] = `
 {
   "_cmd": "kn b v 8, wa w v 12",
   "attacker": 1,
-  "defender": 7,
+  "defender": 8,
 }
 `;
 
@@ -168356,7 +168356,7 @@ exports[`kn b v 10, de w 10 1`] = `
 {
   "_cmd": "kn b v 10, de w 10",
   "attacker": 0,
-  "defender": 5,
+  "defender": 6,
 }
 `;
 
@@ -169260,7 +169260,7 @@ exports[`kn b v 10, ga 28 1`] = `
 {
   "_cmd": "kn b v 10, ga 28",
   "attacker": 0,
-  "defender": 20,
+  "defender": 21,
 }
 `;
 
@@ -171188,7 +171188,7 @@ exports[`kn b v 10, po w 14 1`] = `
 {
   "_cmd": "kn b v 10, po w 14",
   "attacker": 7,
-  "defender": 6,
+  "defender": 7,
 }
 `;
 
@@ -171988,7 +171988,7 @@ exports[`kn b v 10, ri w v 14 1`] = `
 {
   "_cmd": "kn b v 10, ri w v 14",
   "attacker": 7,
-  "defender": 6,
+  "defender": 7,
 }
 `;
 
@@ -172676,7 +172676,7 @@ exports[`kn b v 10, wa w 10 1`] = `
 {
   "_cmd": "kn b v 10, wa w 10",
   "attacker": 3,
-  "defender": 5,
+  "defender": 6,
 }
 `;
 
@@ -172796,7 +172796,7 @@ exports[`kn b v 10, wa w v 15 1`] = `
 {
   "_cmd": "kn b v 10, wa w v 15",
   "attacker": 3,
-  "defender": 10,
+  "defender": 11,
 }
 `;
 
@@ -174124,7 +174124,7 @@ exports[`kn b v 11, de w 11 1`] = `
 {
   "_cmd": "kn b v 11, de w 11",
   "attacker": 1,
-  "defender": 6,
+  "defender": 7,
 }
 `;
 
@@ -178347,7 +178347,7 @@ exports[`kn b v 11, wa v 13 1`] = `
 exports[`kn b v 11, wa v 14 1`] = `
 {
   "_cmd": "kn b v 11, wa v 14",
-  "attacker": 7,
+  "attacker": 8,
   "defender": 3,
 }
 `;
@@ -185660,7 +185660,7 @@ exports[`kn b v 13, de w 13 1`] = `
 {
   "_cmd": "kn b v 13, de w 13",
   "attacker": 3,
-  "defender": 8,
+  "defender": 9,
 }
 `;
 
@@ -191428,7 +191428,7 @@ exports[`kn b v 14, de w 14 1`] = `
 {
   "_cmd": "kn b v 14, de w 14",
   "attacker": 4,
-  "defender": 9,
+  "defender": 10,
 }
 `;
 
@@ -192235,7 +192235,7 @@ exports[`kn b v 14, ga 19 1`] = `
 exports[`kn b v 14, ga 20 1`] = `
 {
   "_cmd": "kn b v 14, ga 20",
-  "attacker": 6,
+  "attacker": 7,
   "defender": 9,
 }
 `;
@@ -195803,7 +195803,7 @@ exports[`kn b v 14, wa w v 10 1`] = `
 exports[`kn b v 14, wa w v 11 1`] = `
 {
   "_cmd": "kn b v 14, wa w v 11",
-  "attacker": 8,
+  "attacker": 9,
   "defender": 4,
 }
 `;
@@ -211364,7 +211364,7 @@ exports[`kn v 2, po p 11 1`] = `
 {
   "_cmd": "kn v 2, po p 11",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -211964,7 +211964,7 @@ exports[`kn v 2, ri p v 11 1`] = `
 {
   "_cmd": "kn v 2, ri p v 11",
   "attacker": 0,
-  "defender": 3,
+  "defender": 4,
 }
 `;
 
@@ -221556,7 +221556,7 @@ exports[`kn v 4, ga p 25 1`] = `
 {
   "_cmd": "kn v 4, ga p 25",
   "attacker": 0,
-  "defender": 20,
+  "defender": 21,
 }
 `;
 
@@ -244572,7 +244572,7 @@ exports[`kn v 8, ga p 22 1`] = `
 {
   "_cmd": "kn v 8, ga p 22",
   "attacker": 0,
-  "defender": 14,
+  "defender": 15,
 }
 `;
 
