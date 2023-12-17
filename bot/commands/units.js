@@ -1,4 +1,4 @@
-const unitList = require('../util/unitsList')
+const unitsList = require('../util/unitsList')
 const { handleAliases, poison, boost } = require('../util/util')
 
 module.exports = {
@@ -42,15 +42,15 @@ module.exports = {
       replyData.discord.fields.push({ name: '`.o` specific modifiers:', value: 'Only combos with that/those unit(s) doing the final hit: `f`' })
 
       replyData.outcome = []
-      for (const key in unitList) {
+      for (const key in unitsList) {
         if (key === 'nb')
           continue
 
-        replyData.outcome.push({ code: key, ...unitList[key] })
+        replyData.outcome.push({ code: key, ...unitsList[key] })
         if (replyData.discord.description === undefined)
-          replyData.discord.description = `${unitList[key].name}: \`${key}\``
+          replyData.discord.description = `${unitsList[key].name}: \`${key}\``
         else {
-          replyData.discord.description = `${replyData.discord.description}\n${unitList[key].name}: \`${key}\``
+          replyData.discord.description = `${replyData.discord.description}\n${unitsList[key].name}: \`${key}\``
         }
       }
     }
@@ -60,15 +60,15 @@ module.exports = {
   getUnit: function(unitCode) {
     if (unitCode.length < 2)
       throw 'You need a minimum of two characters to return the stats for a specific unit!'
-    if (!unitList[unitCode])
+    if (!unitsList[unitCode])
       throw 'The unit you are looking for doesn\'t exist or is under a different code.\nTry `/units` to get the list of all units codes!'
 
-    return { ...unitList[unitCode] }
+    return { ...unitsList[unitCode] }
   },
   getUnitFromArray: function(unitArray, replyData) {
     unitArray = handleAliases(unitArray)
 
-    const unitKeys = Object.keys(unitList);
+    const unitKeys = Object.keys(unitsList);
     let unitCode = unitArray.filter(value => unitKeys.includes(value.substring(0, 2).toLowerCase()))
     const isNaval = unitArray.filter(value => value.includes('rf') || value.includes('sc') || value.includes('bo') || value.includes('rm') || value.includes('ob') || value.includes('oh') || value.includes('os'))
     const rangeOverride = unitArray.filter(value => value === 'r' || value === 'nr')
