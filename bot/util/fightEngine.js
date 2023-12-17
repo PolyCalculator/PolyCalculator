@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const deadText = require('./deadtexts')
 const { attackerCalc, defenderCalc } = require('./util')
-const { generateArraySequences, generateSequences, multicombat, evaluate, simpleCombat } = require('./sequencer')
+const { generateArraySequences, generateSequences, multicombat, evaluate } = require('./sequencer')
 
 module.exports.optim = function(attackers, defender, replyData) {
   const arrayNbAttackers = generateArraySequences(attackers.length)
@@ -143,11 +143,11 @@ module.exports.calc = function(attackers, defender, replyData) {
 }
 
 module.exports.bulk = function(attacker, defender, replyData) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
+  let dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
 
   let totaldam = aforce + dforce;
-  let defdiff = attackerCalc(aforce, totaldam, attacker);
+  let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
   const defenderBonus = ({
     0.7: ' (poisoned)',
@@ -167,9 +167,9 @@ module.exports.bulk = function(attacker, defender, replyData) {
 
   for (; hpdefender > 0; i++) {
     hpdefender = hpdefender - defdiff;
-    dforce = defender.def * hpdefender / defender.maxhp * defender.bonus;
+    dforce = defender.iDef * BigInt(hpdefender * 10) * 100n / defender.iMaxHp;
     totaldam = aforce + dforce;
-    defdiff = attackerCalc(aforce, totaldam, attacker);
+    defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
     if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding))
       defender.bonus = 0.7
@@ -196,14 +196,15 @@ module.exports.bulk = function(attacker, defender, replyData) {
 }
 
 module.exports.provideDefHP = function(attacker, defender, replyData) {
-  let aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  const dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  let aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
+  const dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
+
   let totaldam
 
   for (attacker.currenthp = 0; attacker.currenthp <= attacker.maxhp; attacker.currenthp++) {
-    aforce = attacker.att * attacker.currenthp / attacker.maxhp;
+    aforce = attacker.iAtt * BigInt(attacker.currenthp * 10) * 100n / attacker.iMaxHp;
     totaldam = aforce + dforce;
-    const defdiff = attackerCalc(aforce, totaldam, attacker);
+    const defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
     if (defender.currenthp - defdiff <= 0)
       break
@@ -240,8 +241,8 @@ module.exports.provideDefHP = function(attacker, defender, replyData) {
 }
 
 module.exports.provideAttHP = function(attacker, defender, replyData) {
-  const aforce = attacker.att * attacker.currenthp / attacker.maxhp;
-  let dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
+  let dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
   let totaldam;
 
   if (attacker.att <= 0)
@@ -250,9 +251,9 @@ module.exports.provideAttHP = function(attacker, defender, replyData) {
   defender.currenthp = defender.maxhp
 
   for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
-    dforce = defender.def * defender.currenthp / defender.maxhp * defender.bonus;
+    dforce = defender.iDef * BigInt(defender.currenthp * 10) * 100n / defender.iMaxHp;
     totaldam = aforce + dforce;
-    defdiff = attackerCalc(aforce, totaldam, attacker);
+    defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
     if (defender.currenthp - defdiff <= 0)
       break
@@ -284,33 +285,6 @@ module.exports.provideAttHP = function(attacker, defender, replyData) {
     replyData.discord.title = `A ${attacker.currenthp}hp ${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${attacker.description} will kill a defending:`
     replyData.discord.fields.push({ name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${defender.description}${defenderBonus}**:`, value: `Max: ${defender.currenthp}hp` })
   }
-
-  return replyData
-}
-
-module.exports.dragon = function(dragon, direct, splashed, replyData) {
-  const deathText = deadText[Math.floor(Math.random() * deadText.length)]
-
-  const directBonus = ({
-    0.7: ' (poisoned)',
-    1: '',
-    1.5: ' (protected)',
-    4: ' (walled)'
-  })[direct.bonus]
-
-  const directDiff = simpleCombat(dragon, direct)
-  replyData.discord.fields.push({ name: 'Dragon: startHP ➔ endHP', value: `${dragon.currenthp} ➔ ${dragon.currenthp - directDiff.att <= 0 ? deathText : dragon.currenthp - directDiff.att}` })
-  replyData.discord.fields.push({ name: `**${direct.vetNow ? 'Veteran ' : ''}${direct.name}${direct.description}${directBonus}**:`, value: `${direct.currenthp} ➔ ${(direct.currenthp - directDiff.def < 1) ? deathText : direct.currenthp - directDiff.def}` })
-
-  splashed.forEach(splash => {
-    const deathText2 = deadText[Math.floor(Math.random() * deadText.length)]
-    const splashDiff = simpleCombat(dragon, splash)
-    const splashDamage = Math.floor(splashDiff.def / 2)
-
-    replyData.discord.fields.push({ name: `**${splash.vetNow ? 'Veteran ' : ''}${splash.name}${splash.description}${splash.bonus === 1 ? ' (splashed)' : splash.bonus === 1.5 ? ' (protected, splashed)' : ' (walled, splashed)'}**:`, value: `${splash.currenthp} ➔ ${(splash.currenthp - splashDamage < 1) ? deathText2 : splash.currenthp - splashDamage}` })
-  })
-
-  replyData.discord.title = 'The outcome of the fight is:'
 
   return replyData
 }
