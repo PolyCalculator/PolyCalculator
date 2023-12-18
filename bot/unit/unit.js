@@ -23,133 +23,182 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
         splash = false,
         final = false
     } = {}) {
+        if(currenthp < 1)
+            throw new Error('One of the units is already dead. RIP.')
+
+        if(currenthp > maxhp)
+            throw new Error('A unit can\'t have a higher hp than it\'s max')
+
         return Object.freeze({
-            name: 'Default Warrior',
-            plural: 'Default Warriors',
-            description: '',
+            name: name,
+            plural: plural,
+            description: description,
             currenthp: currenthp,
             maxhp: maxhp,
+            setHP: (newHP, replyData) => {
+                if (newHP < 1)
+                    throw 'I don\'t accept manual killings here.'
+
+                if(newHP > maxhp) {
+                    if(newHP > maxhp + 5 && vet && !vetNow) {
+                        replyData.content.push([`You can't set an hp for a unit higher than its veteran max hp, so I will top it at the veteran's hp`, {}])
+                        replyData.deleteContent = true
+                        toVeteran(replyData)
+                    } else {
+                        replyData.content.push([`You can't set an hp for a unit higher than its max hp, so I just topped the current hp off`, {}])
+                        replyData.deleteContent = true
+                        currenthp = maxhp
+                    }
+                } else
+                    currenthp = newHP
+            },
             vet: vet,
             vetNow: vetNow,
-            toVeteran: () => { vet = true},
+            toVeteran: (replyData) => { 
+                if(vet) {
+                    if(!vetNow) {
+                        name = `Veteran ${name}`
+                        plural = `Veteran ${plural}`
+                        vetNow = true
+                        setHP(currenthp + 5, replyData)
+                    } else 
+                        replyData.content.push([`This ${name} is already a veteran`, {}])
+                } else
+                    replyData.content.push([`${plural} can't become veterans, so I ignored the request to make it veteran`, {}])
+            },
             att: att,
             def: def,
             bonus: bonus,
+            setBonus: (modifierArray, replyData) => {
+                const hasD = modifierArray.includes('d') || modifierArray.includes('p')
+                const hasW = modifierArray.includes('w')
+
+                if(hasD && hasW) {
+                    replyData.content.push(['You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.', {}])
+                    replyData.deleteContent = true
+                    bonus = 4
+                } else if (hasD)
+                    bonus = 1.5
+                else if (hasW) {
+                    if(fort)
+                        bonus = 4
+                    else {
+                        replyData.content.push([`${plural} can't benefit from the wall defense bonus, so I used the single defense bonus instead.`, {}])
+                        replyData.deleteContent = true
+
+                        bonus = 1.5
+                    }
+                }
+            },
             fort: fort,
             range: range,
             retaliation: retaliation,
+            overrideRange: (newRange) => { range = newRange },
+            overrideRetaliation: (overridesArray) => {
+                const hasR = overridesArray.includes('r')
+                const hasNR = overridesArray.includes('nr')
+
+                if(hasR && hasNR)
+                    throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${currenthp}hp ${name}${description}...`
+                else if (hasR)
+                    retaliation = true
+                else if (hasNR)
+                    retaliation = false
+            },
             poisonattack: poisonattack,
             poisonexplosion: poisonexplosion,
+            toPoison: (defender) => {
+                if(poisonattack || (poisonexplosion && exploding)) {
+                    defender.bonus = 0.7
+                } else
+                    replyData.content.push([`${plural} can't poison, so I'll procede without it`, {}])
+            },
+            toBoost: () => {
+                if(att > 0) {
+                    name = `Boosted ${name}`
+                    plural = `Boosted ${plural}`
+                    att = att + 0.5
+                } else
+                    replyData.content.push([`${plural} can't benefit from boosts because of their ${att} attack, so I'll procede without it`, {}])
+            },
             canExplode: canExplode,
             exploding: exploding,
-            toExplode: () => { exploding = true },
+            toExplode: (replyData) => {
+                if(canExplode) {
+                    description = `${description} 💥`
+                    exploding = true
+                } else
+                    replyData.content.push([`${plural} can't explode, so I calculated it as a direct attack`, {}])
+            },
             freeze: freeze,
             convert: convert,
             converted: converted,
-            toConvert: () => { converted = true },
+            toConvert: (convertedUnit) => { 
+                if(convert) {
+                    convertedUnit.description = `${description} (converted)`
+                    convertedUnit.converted = true
+                } else
+                    replyData.content.push([`${plural} can't convert, so I calculated it as a direct attack`, {}])
+            },
             splash: splash,
-            final: final
-          })
+            toSplash: () => {
+                if(splash == undefined) {
+                    description = `${description} 💦`
+                    splash = true
+                } else
+                    replyData.content.push([`${plural} can't splash, so I calculated it as a normal attack`, {}])
+            },
+            final: final,
+            makeFinal: () => { final = true },
+            makeNaval: (navalUnitCode) => {
+                if (bonus === 4)
+                    throw 'Are you saying a naval unit can be in a city :thinking:...'
+
+                if (navalUnitCode == 'rf') {
+                    description = description + ' Raft'
+                    att = 0
+                    def = 1
+                    overrideRetaliation(false)
+                }
+                if (navalUnitCode == 'sc') {
+                    description = description + ' Scout'
+                    att = 2
+                    def = 1
+                    overrideRange(true)
+                }
+                if (navalUnitCode == 'rm') {
+                    description = description + ' Rammer'
+                    att = 3
+                    def = 3
+                    overrideRange(false)
+                }
+                if (navalUnitCode == 'bo') {
+                    description = description + ' Bomber'
+                    att = 4
+                    def = 2
+                    overrideRetaliation(false)
+                    range = true
+                    splash = undefined
+                }
+                if (navalUnitCode == 'ob') {
+                    description = description + ' (Old) Boat'
+                    att = 1
+                    def = 1
+                    overrideRange(true)
+                }
+                if (navalUnitCode == 'oh') {
+                    description = description + ' (Old) Ship'
+                    att = 2
+                    def = 2
+                    overrideRange(true)
+                }
+                if (navalUnitCode == 'os') {
+                    description = description + ' (Old) Battleship'
+                    att = 4
+                    def = 3
+                    overrideRange(true)
+                }
+            }
+        })
     }
-}
-
-function addBonus(bonusArray, replyData) {
-let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd' || value.toLowerCase() === 'p')
-defenseBonus = [...new Set(defenseBonus)] // Deletes doubles
-
-if (defenseBonus.length >= 2) {
-    replyData.content.push(['You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.', {}])
-    replyData.deleteContent = true
-    if (defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true)
-    this.bonus = 4
-    else
-    this.bonus = 1.5
-} else {
-    if (defenseBonus[0].toLowerCase() === 'd' || defenseBonus[0].toLowerCase() === 'p')
-    this.bonus = 1.5
-    else if (defenseBonus[0].toLowerCase() === 'w' && this.fort === true)
-    this.bonus = 4
-    else
-    this.bonus = 1
-}
-}
-
-// Raft a:0 d:1
-// Bomber a:4 d:2
-// Rammer a:3 d:3
-// Scout a:2 d:1
-// Juggernaut a:4 d:4
-
-function onTheWater(navalArray) {
-if (this.bonus === 4)
-    throw 'Are you saying a naval unit can be in a city :thinking:...'
-
-if (navalArray[0].toLowerCase().startsWith('rf')) {
-    this.description = this.description + ' Raft'
-    this.att = 0
-    this.def = 1
-    this.retaliation = false
-}
-if (navalArray[0].toLowerCase().startsWith('sc')) {
-    this.description = this.description + ' Scout'
-    this.att = 2
-    this.def = 1
-    this.range = true
-}
-if (navalArray[0].toLowerCase().startsWith('rm')) {
-    this.description = this.description + ' Rammer'
-    this.att = 3
-    this.def = 3
-    this.range = false
-}
-if (navalArray[0].toLowerCase().startsWith('bo')) {
-    this.description = this.description + ' Bomber'
-    this.att = 4
-    this.def = 2
-    this.retaliation = false
-    this.range = true
-    this.splash = undefined
-}
-if (navalArray[0].toLowerCase().startsWith('ob')) {
-    this.description = this.description + ' (Old) Boat'
-    this.att = 1
-    this.def = 1
-    this.range = true
-}
-if (navalArray[0].toLowerCase().startsWith('oh')) {
-    this.description = this.description + ' (Old) Ship'
-    this.att = 2
-    this.def = 2
-    this.range = true
-}
-if (navalArray[0].toLowerCase().startsWith('os')) {
-    this.description = this.description + ' (Old) Battleship'
-    this.att = 4
-    this.def = 3
-    this.range = true
-}
-}
-
-// Get override and exploding
-function getOverride(string, replyData) {
-const overrides = string.filter(x => x === 'r' || x === 'nr')
-const exploding = string.filter(x => x === 'x')
-
-if (overrides.length > 1)
-    throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
-else if (overrides.length === 1) {
-    if (overrides[0] === 'r')
-    this.forceRetaliation = true
-    if (overrides[0] === 'nr')
-    this.forceRetaliation = false
-}
-
-if (exploding.length > 0 && this.canExplode) {
-    this.name = `${this.name} 💥`
-    this.plural = `${this.plural} 💥`
-    this.exploding = true
-}
-
-if (exploding.length > 0 && !this.canExplode)
-    replyData.content.push([`${this.plural} can't explode, so I calculated it as a direct attack:`, {}])
 }
