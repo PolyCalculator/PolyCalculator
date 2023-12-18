@@ -1,6 +1,10 @@
 const { expect, test } = require('@jest/globals');
 const { execute } = require('../commands/optim.js');
 const { replyData } = require('./commandUtils.js');
+const deadTexts = require('../util/deadtexts.js');
+
+deadTexts.length = 1;
+deadTexts[0] = 'DEAD';
 
 test('/o attackers: ca, de, wa defender: de d', () => {
   const reply = replyData();
@@ -15,14 +19,14 @@ test('/o attackers: ca, de, wa defender: de d', () => {
         {
           name: 'Attacker: startHP ➔ endHP (enemyHP)',
           value: [
-            'Catapult: 10 ➔ 10 (**7**)',
-            'Defender: 15 ➔ 4 (**6**)',
-            'Warrior: 10 ➔ 1 (**3**)',
+            'Defender: 15 ➔ 4 (**14**)',
+            'Catapult: 10 ➔ 10 (**5**)',
+            'Warrior: 10 ➔ 10 (**0**)',
           ],
         },
         {
           name: '**Defender (protected)**:',
-          value: '15 ➔ 3',
+          value: '15 ➔ DEAD',
         },
       ],
       footer: undefined,
@@ -30,35 +34,35 @@ test('/o attackers: ca, de, wa defender: de d', () => {
     outcome: {
       attackers: [
         {
-          name: 'Catapult',
-          afterhp: 10,
-          beforehp: 10,
-          hpdefender: 7,
-          hplost: 0,
-          maxhp: 10,
-        },
-        {
           name: 'Defender',
           afterhp: 4,
           beforehp: 15,
-          hpdefender: 6,
+          hpdefender: 14,
           hplost: 11,
           maxhp: 15,
         },
         {
-          name: 'Warrior',
-          afterhp: 1,
+          name: 'Catapult',
+          afterhp: 10,
           beforehp: 10,
-          hpdefender: 3,
-          hplost: 9,
+          hpdefender: 5,
+          hplost: 0,
+          maxhp: 10,
+        },
+        {
+          name: 'Warrior',
+          afterhp: 10,
+          beforehp: 10,
+          hpdefender: 0,
+          hplost: 0,
           maxhp: 10,
         },
       ],
       defender: {
         name: 'Defender (protected)',
-        afterhp: 3,
+        afterhp: 0,
         currenthp: 15,
-        hplost: 12,
+        hplost: 15,
         maxhp: 15,
       },
     },
@@ -80,12 +84,12 @@ test('/o attackers: ca f, de, wa defender: de d', () => {
           value: [
             'Defender: 15 ➔ 4 (**14**)',
             'Warrior: 10 ➔ 1 (**11**)',
-            'Catapult: 10 ➔ 10 (**3**)',
+            'Catapult: 10 ➔ 10 (**1**)',
           ],
         },
         {
           name: '**Defender (protected)**:',
-          value: '15 ➔ 3',
+          value: '15 ➔ 1',
         },
       ],
       footer: undefined,
@@ -112,16 +116,16 @@ test('/o attackers: ca f, de, wa defender: de d', () => {
           name: 'Catapult',
           afterhp: 10,
           beforehp: 10,
-          hpdefender: 3,
+          hpdefender: 1,
           hplost: 0,
           maxhp: 10,
         },
       ],
       defender: {
         name: 'Defender (protected)',
-        afterhp: 3,
+        afterhp: 1,
         currenthp: 15,
-        hplost: 12,
+        hplost: 14,
         maxhp: 15,
       },
     },

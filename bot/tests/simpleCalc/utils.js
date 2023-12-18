@@ -89,9 +89,9 @@ const defenders = ['ca', 'de', 'dr', 'ga', 'gi', 'po', 'ri', 'wa'];
 const runTestSuite = (attacker) => {
   defenders.forEach((defender) => {
     generateTestSuite(attacker, defender).forEach((cmd) => {
-      test(cmd, () => {
+      test(cmd, async () => {
         const reply = replyData();
-        execute({}, cmd, reply, {});
+        await execute({}, cmd, reply, {});
         const result = {
           _cmd: cmd, // use underscore to put it on top of the snapshot
           attacker: Math.max(reply.outcome.attackers[0].afterhp, 0),
