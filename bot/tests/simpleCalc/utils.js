@@ -1,6 +1,7 @@
 const { expect, test } = require('@jest/globals');
 const { execute } = require('../../commands/calc.js');
 const { getUnit } = require('../../commands/units.js');
+const { replyData } = require('../commandUtils.js');
 
 const getTestUnit = (code, modifier) => {
   const unit = getUnit(code);
@@ -83,29 +84,14 @@ const generateTestSuite = (attCode, defCode) => {
   return result;
 };
 
-const replyData = () => ({
-  content: [],
-  deleteContent: false,
-  discord: {
-    title: undefined,
-    description: undefined,
-    fields: [],
-    footer: undefined,
-  },
-  outcome: {
-    attackers: [],
-    defender: {},
-  },
-});
-
 const defenders = ['ca', 'de', 'dr', 'ga', 'gi', 'po', 'ri', 'wa'];
 
 const runTestSuite = (attacker) => {
   defenders.forEach((defender) => {
     generateTestSuite(attacker, defender).forEach((cmd) => {
-      test(cmd, () => {
+      test(cmd, async () => {
         const reply = replyData();
-        execute({}, cmd, reply, {});
+        await execute({}, cmd, reply, {});
         const result = {
           _cmd: cmd, // use underscore to put it on top of the snapshot
           attacker: Math.max(reply.outcome.attackers[0].afterhp, 0),
