@@ -10,11 +10,11 @@ function Round(n) {
 }
 
 module.exports.attackerCalc = function (aforce, totaldam, attacker) {
-  return Round(aforce * attacker.iAtt * 450n / (1000n * totaldam)) / 10n;
+  return Round(aforce * attacker.iAtt() * 450n / (1000n * totaldam)) / 10n;
 }
 
 module.exports.defenderCalc = function (aforce, totaldam, defender) {
-  return Round(aforce * defender.iDef * 4500n / (1000n * totaldam * defender.iBonus)) / 10n;
+  return Round(aforce * defender.iDef() * 4500n / (1000n * totaldam * defender.iBonus())) / 10n;
 }
 
 module.exports.buildEmbed = function (data) {

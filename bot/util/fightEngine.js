@@ -143,8 +143,8 @@ module.exports.calc = function(attackers, defender, replyData) {
 }
 
 module.exports.bulk = function(attacker, defender, replyData) {
-  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
-  let dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
+  const aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
+  let dforce = defender.iDef() * defender.iCurrentHp() * 100n / defender.iMaxHp();
 
   let totaldam = aforce + dforce;
   let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
@@ -167,7 +167,7 @@ module.exports.bulk = function(attacker, defender, replyData) {
 
   for (; hpdefender > 0; i++) {
     hpdefender = hpdefender - defdiff;
-    dforce = defender.iDef * BigInt(hpdefender * 10) * 100n / defender.iMaxHp;
+    dforce = defender.iDef() * BigInt(hpdefender * 10) * 100n / defender.iMaxHp();
     totaldam = aforce + dforce;
     defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
@@ -196,13 +196,13 @@ module.exports.bulk = function(attacker, defender, replyData) {
 }
 
 module.exports.provideDefHP = function(attacker, defender, replyData) {
-  let aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
-  const dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
+  let aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
+  const dforce = defender.iDef() * defender.iCurrentHp() * 100n / defender.iMaxHp();
 
   let totaldam
 
   for (attacker.currenthp = 0; attacker.currenthp <= attacker.maxhp; attacker.currenthp++) {
-    aforce = attacker.iAtt * BigInt(attacker.currenthp * 10) * 100n / attacker.iMaxHp;
+    aforce = attacker.iAtt() * BigInt(attacker.currenthp * 10) * 100n / attacker.iMaxHp();
     totaldam = aforce + dforce;
     const defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 
@@ -241,8 +241,8 @@ module.exports.provideDefHP = function(attacker, defender, replyData) {
 }
 
 module.exports.provideAttHP = function(attacker, defender, replyData) {
-  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
-  let dforce = defender.iDef * defender.iCurrentHp * 100n / defender.iMaxHp;
+  const aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
+  let dforce = defender.iDef() * defender.iCurrentHp() * 100n / defender.iMaxHp();
   let totaldam;
 
   if (attacker.att <= 0)
@@ -251,7 +251,7 @@ module.exports.provideAttHP = function(attacker, defender, replyData) {
   defender.currenthp = defender.maxhp
 
   for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
-    dforce = defender.iDef * BigInt(defender.currenthp * 10) * 100n / defender.iMaxHp;
+    dforce = defender.iDef() * BigInt(defender.currenthp * 10) * 100n / defender.iMaxHp();
     totaldam = aforce + dforce;
     defdiff = Number(attackerCalc(aforce, totaldam, attacker));
 

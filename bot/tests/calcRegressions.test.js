@@ -40,3 +40,12 @@ test('gi 31, wa 10, gi 40', async () => {
   expect(reply.outcome.attackers[1].afterhp).toBe(0);
   expect(reply.outcome.defender.afterhp).toBe(25);
 });
+
+test('ex, wa, de', async () => {
+  const reply = replyData();
+  await execute({}, 'ex, wa, de', reply, {});
+  expect(reply.outcome.attackers[0].afterhp).toBe(10);
+  expect(reply.outcome.attackers[1].afterhp).toBe(5);
+  expect(reply.outcome.defender.afterhp).toBe(2);
+});
+

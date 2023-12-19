@@ -106,8 +106,8 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
-  const aforce = attacker.iAtt * attacker.iCurrentHp * 100n / attacker.iMaxHp;
-  const dforce = defender.iDef * BigInt(solution.defenderHP * 10) * 100n / defender.iMaxHp;
+  const aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
+  const dforce = defender.iDef() * BigInt(solution.defenderHP * 10) * 100n / defender.iMaxHp();
 
   const totaldam = aforce + dforce;
   let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
