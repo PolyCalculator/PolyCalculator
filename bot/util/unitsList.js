@@ -261,7 +261,7 @@ module.exports = {
     vet: false,
     vetNow: false,
     att: 4,
-    def: 4,
+    def: 5,
     bonus: 1,
     fort: false,
     range: false,
