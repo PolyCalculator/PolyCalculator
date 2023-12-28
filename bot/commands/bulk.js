@@ -1,5 +1,5 @@
 const fight = require('../util/fightEngine')
-const units = require('./units')
+const { getBothUnitsArray, getUnitFromArray } = require('../unit/use-cases')
 
 module.exports = {
   name: 'bulk',
@@ -20,13 +20,13 @@ module.exports = {
       return replyData
     }
 
-    const unitsArray = units.getBothUnitArray(argsStr)
+    const unitsArray = getBothUnitsArray(argsStr)
 
     const attackerArray = unitsArray[0].split(/ +/).filter(x => x != '')
     const defenderArray = unitsArray[1].split(/ +/).filter(x => x != '')
 
-    const attacker = units.getUnitFromArray(attackerArray, replyData)
-    const defender = units.getUnitFromArray(defenderArray, replyData)
+    const attacker = getUnitFromArray(attackerArray, replyData)
+    const defender = getUnitFromArray(defenderArray, replyData)
     replyData = fight.bulk(attacker, defender, replyData)
 
     dbData.attacker = attacker.name

@@ -35,6 +35,11 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
             description: description,
             currenthp: currenthp,
             maxhp: maxhp,
+            iAtt: BigInt(att * 100),
+            iBonus: BigInt(bonus * 10),
+            iDef: BigInt(def * 100 * bonus),
+            iMaxHp: BigInt(maxhp * 10),
+            iCurrentHp: BigInt(currenthp * 10),
             setHP: (newHP, replyData) => {
                 if (newHP < 1)
                     throw 'I don\'t accept manual killings here.'

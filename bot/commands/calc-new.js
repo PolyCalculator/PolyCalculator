@@ -1,5 +1,6 @@
 const fight = require('../util/fightEngine')
 const units = require('./units')
+const { getBothUnitsArray, getUnitFromArray } = require('../unit/use-cases')
 
 module.exports = {
   name: 'calc',
@@ -21,18 +22,18 @@ module.exports = {
       return replyData
     }
 
-    const unitsArray = units.getBothUnitsArray(argsStr).filter(x => x != '')
+    const unitsArray = getBothUnitsArray(argsStr).filter(x => x != '')
 
     const defenderStr = unitsArray.pop()
     const defenderArray = defenderStr.split(/ +/)
     const attackers = []
 
-    const defender = units.getUnitFromArray(defenderArray, replyData)
+    const defender = getUnitFromArray(defenderArray, replyData)
     defender.getOverride(defenderArray, replyData)
 
     unitsArray.forEach(x => {
       const attackerArray = x.split(/ +/).filter(y => y != '')
-      const attacker = units.getUnitFromArray(attackerArray, replyData)
+      const attacker = getUnitFromArray(attackerArray, replyData)
       attacker.getOverride(attackerArray, replyData)
       if (attacker.att !== 0)
         attackers.push(attacker)
