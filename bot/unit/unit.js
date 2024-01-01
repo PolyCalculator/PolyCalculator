@@ -106,8 +106,11 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
             },
             poisonattack: poisonattack,
             poisonexplosion: poisonexplosion,
+            selfPoison: function() {
+                this.bonus = 0.7
+            },
             toPoison: function(defender, replyData) {
-                if(poisonattack || (poisonexplosion && exploding)) {
+                if(this.poisonattack || (this.poisonexplosion && this.exploding)) {
                     defender.bonus = 0.7
                 } else
                     replyData.content.push([`${plural} can't poison, so I'll procede without it`, {}])

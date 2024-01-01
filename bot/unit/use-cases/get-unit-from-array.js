@@ -39,6 +39,9 @@ module.exports = function makeGetUnitFromArray ({ unitsList, handleAliases, getU
         if(unitModifiers.includes('b'))
             unit.toBoost(replyData)
 
+        if(unitModifiers.includes('p'))
+            unit.selfPoison()
+
         if(unitModifiers.includes('x'))
             unit.toExplode(replyData)
 

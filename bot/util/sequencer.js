@@ -79,6 +79,7 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 
         if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding)) {
             poison(defender)
+            attacker.toPoison(defender)
             solution.wasPoisoned = true
         }
 
@@ -113,8 +114,6 @@ function combat(attacker, defender, solution) {
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
     if (attacker.splash || attacker.exploding) {
         defdiff = Math.floor(defdiff / 2)
-        // if ((attacker.poisonattack && !attacker.exploding) || (attacker.poisonexplosion && attacker.exploding))
-        //   defender.description = `${defender.description} (poisoned)`
         if (attacker.splash) {
             attacker.name = `${attacker.name} 💦`
             attacker.plural = `${attacker.plural} 💦`
