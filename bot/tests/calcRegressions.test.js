@@ -1,5 +1,5 @@
 const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/calc.js');
+const { execute } = require('../commands/calc-new.js');
 const { replyData } = require('./simpleCalc/utils.js');
 
 test('de 1, v ri 2', async () => {

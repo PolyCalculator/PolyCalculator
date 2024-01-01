@@ -1,5 +1,5 @@
 const { expect, test } = require('@jest/globals');
-const { execute } = require('../../commands/calc.js');
+const { execute } = require('../../commands/calc-new.js');
 const { getUnit } = require('../../commands/units.js');
 const { replyData } = require('../commandUtils.js');
 

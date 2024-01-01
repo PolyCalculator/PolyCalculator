@@ -19,7 +19,7 @@
     "handle-callback-err": "off",
     "indent": [
       "error",
-      2
+      4
     ],
     "max-nested-callbacks": [
       "error",
