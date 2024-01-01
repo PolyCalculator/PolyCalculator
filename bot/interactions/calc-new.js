@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const calcNew = require('../commands/calc-new')
+const calc = require('./calc')
 
 module.exports = {
     dev: false,
@@ -9,6 +10,7 @@ module.exports = {
         .addStringOption(option => option.setName('attackers').setDescription('Enter attackers separated by comma').setRequired(true))
         .addStringOption(option => option.setName('defender').setDescription('Enter a defender').setRequired(true)),
     async execute(interaction, replyData, dbData) {
+        calc.execute(interaction, replyData, dbData)
         const array = []
         array.push(interaction.options.get('attackers'))
         array.push(interaction.options.get('defender'))

@@ -36,11 +36,6 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
             description: description,
             currenthp: currenthp,
             maxhp: maxhp,
-            iAtt: function() { return BigInt(att * 100) },
-            iBonus: function() { return BigInt(bonus * 10) },
-            iDef: function() { return BigInt(def * 100 * bonus) },
-            iMaxHp: function() { return BigInt(maxhp * 10) },
-            iCurrentHp: function() { return BigInt(currenthp * 10) },
             setHP: function(newHP, replyData) {
                 if (newHP < 1)
                     throw 'I don\'t accept manual killings here.'
@@ -153,6 +148,11 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
                     replyData.content.push([`${plural} can't splash, so I calculated it as a normal attack`, {}])
             },
             final: final,
+            iAtt: function() { return BigInt(this.att * 100) },
+            iBonus: function() { return BigInt(this.bonus * 10) },
+            iDef: function() { return BigInt(this.def * 100 * this.bonus) },
+            iMaxHp: function() { return BigInt(this.maxhp * 10) },
+            iCurrentHp: function() { return BigInt(this.currenthp * 10) },
             makeFinal: function() { this.final = true },
             canBoard: canBoard,
             makeNaval: function(navalUnitCode) {
@@ -160,7 +160,7 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
                     throw 'Are you saying a naval unit can be in a city :thinking:...'
 
                 if (navalUnitCode == 'rf') {
-                    this.description = description + ' Raft'
+                    this.description = this.description + ' Raft'
                     this.att = 0
                     this.def = 1
                     this.retaliation = false

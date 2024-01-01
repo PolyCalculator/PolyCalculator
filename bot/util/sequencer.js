@@ -106,7 +106,6 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
-    const peace = attacker.iAtt()
     const aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
     const dforce = defender.iDef() * BigInt(solution.defenderHP * 10) * 100n / defender.iMaxHp();
 
