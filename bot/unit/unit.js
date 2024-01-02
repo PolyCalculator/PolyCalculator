@@ -1,4 +1,4 @@
-module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
+module.exports = function buildMakeUnit () {
     return function makeUnit ({
         name = 'Default Warrior',
         plural = 'Default Warriors',
@@ -20,7 +20,8 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
         freeze = false,
         convert = false,
         converted = false,
-        splash = false,
+        canSplash = false,
+        splashNow = false,
         final = false,
         canBoard = true,
     } = {}) {
@@ -60,8 +61,7 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
                         this.vetNow = true
                         this.currenthp = this.currenthp + 5
                         this.maxhp = this.maxhp + 5
-                    } //else
-                      //  replyData.content.push([`This ${name} is already a veteran`, {}])
+                    }
                 } else
                     replyData.content.push([`${plural} can't become veterans, so I ignored the request to make it veteran`, {}])
             },
@@ -142,12 +142,12 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
                 } else
                     replyData.content.push([`${plural} can't convert, so I calculated it as a direct attack`, {}])
             },
-            splash: splash,
+            canSplash: canSplash,
+            splashNow: splashNow,
             toSplash: function(replyData) {
-                if(this.splash == undefined) {
-                    this.description = `${description} 💦`
-                    this.splash = true
-                } else
+                if(this.canSplash == true)
+                    this.splashNow = true
+                else
                     replyData.content.push([`${plural} can't splash, so I calculated it as a normal attack`, {}])
             },
             final: final,
@@ -186,7 +186,8 @@ module.exports = function buildMakeUnit ({ unitsList, handleAliases }) {
                     this.def = 2
                     this.retaliation = false
                     this.range = true
-                    this.splash = undefined
+                    this.canSplash = true
+                    this.splashNow = true
                 }
                 if (navalUnitCode == 'ob') {
                     this.description = this.description + ' (Old) Boat'

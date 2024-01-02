@@ -122,9 +122,10 @@ module.exports = {
         // const isDragon = unitArray.some(value => value.toLowerCase() === 'dr')
         // const isJuggernaut = unitArray.some(value => value.toLowerCase() === 'ju')
 
-        if (toSplash && unit.splash !== false)
+        if (toSplash && (unit.splash === undefined || unit.canSplash)) {
             unit.splash = true
-        else if (toSplash) {
+            unit.splashNow = true
+        } else if (toSplash) {
             throw `${unit.description ? unit.name + unit.description + 's' : unit.plural} can't splash\nRemove the \`s\` to proceed`
         }
 

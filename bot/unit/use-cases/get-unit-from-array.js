@@ -55,7 +55,7 @@ module.exports = function makeGetUnitFromArray ({ unitsList, handleAliases, getU
             unit.overrideRetaliation(unitModifiers)
 
         if(unitModifiers.includes('s'))
-            unit.toSplash()
+            unit.toSplash(replyData)
 
         if(unitModifiers.includes('f'))
             unit.makeFinal()
