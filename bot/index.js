@@ -185,7 +185,7 @@ bot.on('messageReactionAdd', async (reaction, user) => {
     // eslint-disable-next-line no-console
     console.log(error)
     // const pathArray = error.path.split('/')
-    errorChannel.send(`${error.message}\n${error.stack}`)
+    errorChannel.send(`messageReactionAdd\n${error.message}\n${error.stack}`)
   }
 })
 // --------------------------------------
@@ -199,7 +199,7 @@ bot.on('guildCreate', guild => {
       feedbackChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}, <@217385992837922819>`)
+      errorChannel.send(`guildCreate\n${errorMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     })
   return
@@ -216,7 +216,7 @@ bot.on('guildDelete', guild => {
       feedbackChannel.send(`${logMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     }).catch(errorMsg => {
-      errorChannel.send(`${errorMsg}, <@217385992837922819>`)
+      errorChannel.send(`guildDelete\n${errorMsg}, <@217385992837922819>`)
         .then().catch(console.error)
     })
   return
@@ -240,6 +240,7 @@ bot.on('guildMemberAdd', newMember => {
 process.on('unhandledRejection', (code) => {
   // eslint-disable-next-line no-console
   console.log(`unhandledRejection: ${code.stack}`)
+  errorChannel.send(`unhandledRejection\n${code.stack}`)
 })
 
 bot.login(process.env.TOKEN);
