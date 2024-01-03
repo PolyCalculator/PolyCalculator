@@ -187,7 +187,6 @@ module.exports = function buildMakeUnit () {
                     this.retaliation = false
                     this.range = true
                     this.canSplash = true
-                    this.splashNow = true
                 }
                 if (navalUnitCode == 'ob') {
                     this.description = this.description + ' (Old) Boat'

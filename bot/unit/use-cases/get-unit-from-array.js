@@ -25,6 +25,9 @@ module.exports = function makeGetUnitFromArray ({ unitsList, handleAliases, getU
 
         const unit = getUnitFromCode(unitCode)
 
+        if(navalUnitCode)
+            unit.makeNaval(navalUnitCode)
+
         // s f
         if(unitModifiers.includes('d'))
             unit.setBonus(['d'], replyData)

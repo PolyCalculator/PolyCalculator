@@ -2,6 +2,20 @@ const { expect, test } = require('@jest/globals');
 const { execute } = require('../commands/calc.js');
 const { replyData } = require('./simpleCalc/utils.js');
 
+test('de bo s, de', async () => {
+    const reply = replyData();
+    await execute({}, 'de bo s, de', reply, {});
+    expect(reply.outcome.attackers[0].afterhp).toBe(15);
+    expect(reply.outcome.defender.afterhp).toBe(10);
+});
+
+test('de bo, de', async () => {
+    const reply = replyData();
+    await execute({}, 'de bo, de', reply, {});
+    expect(reply.outcome.attackers[0].afterhp).toBe(15);
+    expect(reply.outcome.defender.afterhp).toBe(5);
+});
+
 test('de 1, v ri 2', async () => {
     const reply = replyData();
     await execute({}, 'de 1, v ri 2', reply, {});
