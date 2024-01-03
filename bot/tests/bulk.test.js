@@ -1,5 +1,5 @@
 const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/bulk-new.js');
+const { execute } = require('../commands/bulk.js');
 const { replyData } = require('./commandUtils.js');
 
 test('/b attackers: wa defender: de', () => {

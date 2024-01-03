@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const calc = require('../commands/calc-new')
+const calc = require('../commands/calc')
 
 module.exports = {
     dev: false,

@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const optim = require('../commands/optim-new')
+const optim = require('../commands/optim')
 
 module.exports = {
     dev: false,

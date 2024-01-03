@@ -1,5 +1,5 @@
 const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/elim-new.js');
+const { execute } = require('../commands/elim.js');
 const { replyData } = require('./commandUtils.js');
 
 test('/e gi 32, de w ?', () => {
