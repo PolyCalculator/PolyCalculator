@@ -1,5 +1,5 @@
 const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/optim.js');
+const { execute } = require('../commands/optim-new.js');
 const { replyData } = require('./commandUtils.js');
 const deadTexts = require('../util/deadtexts.js');
 
