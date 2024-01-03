@@ -9,7 +9,7 @@ test('/b attackers: wa defender: de', () => {
         content: [],
         deleteContent: false,
         discord: {
-            title: 'You\'ll need this many hits from a Warrior to kill the Defender:',
+            title: "You'll need this many hits from a Warrior to kill the Defender:",
             description: undefined,
             fields: [
                 {

@@ -62,4 +62,3 @@ test('ex, wa, de', async () => {
     expect(reply.outcome.attackers[1].afterhp).toBe(5);
     expect(reply.outcome.defender.afterhp).toBe(2);
 });
-

@@ -960,5 +960,5 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-    }
-}
+    },
+};
