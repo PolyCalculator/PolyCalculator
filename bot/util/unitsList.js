@@ -25,9 +25,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ri: {
         name: 'Rider',
@@ -54,9 +51,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ar: {
         name: 'Archer',
@@ -83,9 +77,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     de: {
         name: 'Defender',
@@ -112,9 +103,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     kn: {
         name: 'Knight',
@@ -141,9 +129,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ok: {
         name: 'Old Knight',
@@ -170,9 +155,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     sw: {
         name: 'Swordsman',
@@ -199,9 +181,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ca: {
         name: 'Catapult',
@@ -228,9 +207,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     gi: {
         name: 'Giant',
@@ -257,9 +233,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     cr: {
         name: 'Crab',
@@ -286,9 +259,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     tr: {
         name: 'Tridention',
@@ -315,9 +285,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     po: {
         name: 'Polytaur',
@@ -344,9 +311,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     na: {
         name: 'Navalon',
@@ -373,9 +337,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ga: {
         name: 'Gaami',
@@ -402,9 +363,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     mb: {
         name: 'Mind Bender',
@@ -431,9 +389,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     eg: {
         name: 'Dragon Egg',
@@ -460,9 +415,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     bd: {
         name: 'Baby Dragon',
@@ -489,9 +441,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     dr: {
         name: 'Fire Dragon',
@@ -517,9 +466,6 @@ module.exports = {
         converted: false,
         splash: undefined,
         canSplash: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     mo: {
         name: 'Mooni',
@@ -546,9 +492,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     bs: {
         name: 'Battle Sled',
@@ -575,9 +518,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     if: {
         name: 'Ice Fortress',
@@ -604,9 +544,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ia: {
         name: 'Ice Archer',
@@ -633,9 +570,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     nb: {
         name: 'Nature Bunny',
@@ -662,9 +596,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     sh: {
         name: 'Shaman',
@@ -691,9 +622,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     he: {
         name: 'Hexapod',
@@ -720,9 +648,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ki: {
         name: 'Kiton',
@@ -749,9 +674,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ko: {
         name: 'Old Kiton',
@@ -778,9 +700,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ph: {
         name: 'Phychi',
@@ -807,9 +726,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ex: {
         name: 'Exida',
@@ -836,9 +752,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ra: {
         name: 'Raychi',
@@ -865,9 +778,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     do: {
         name: 'Doomux',
@@ -894,9 +804,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ce: {
         name: 'Centipede',
@@ -923,9 +830,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     se: {
         name: 'Segment',
@@ -952,9 +856,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     da: {
         name: 'Dagger',
@@ -981,9 +882,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: true,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     cl: {
         name: 'Cloak',
@@ -1010,9 +908,6 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     ju: {
         name: 'Juggernaut',
@@ -1039,9 +934,6 @@ module.exports = {
         splash: undefined,
         canSplash: true,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     },
     pi: {
         name: 'Pirate',
@@ -1068,105 +960,5 @@ module.exports = {
         splash: false,
         canSplash: false,
         canBoard: false,
-        setHP: setHP,
-        addBonus: addBonus,
-        getOverride: getOverride
     }
-}
-
-function setHP(hpArray, replyData) {
-    const currentHPArray = hpArray.filter(x => !isNaN(parseInt(x)))
-    const currentHP = parseInt(currentHPArray[0])
-    const vetHP = (this.vet) ? this.maxhp + 5 : this.maxhp
-    if (currentHP < 1)
-        throw 'One of the units is already dead. RIP.'
-
-    if (hpArray.some(x => x === 'v')) {
-        if (this.vet) {
-            this.vetNow = true
-            this.maxhp = vetHP
-            if (!currentHP || currentHP > this.maxhp)
-                this.currenthp = this.maxhp
-            else
-                this.currenthp = currentHP
-        } else {
-            if (!currentHP || currentHP > this.maxhp)
-                this.currenthp = this.maxhp
-            else
-                this.currenthp = currentHP
-
-            replyData.content.push([`The ${this.name} can't become a veteran, so we'll proceed without it!`, {}])
-            replyData.deleteContent = true
-        }
-    } else if (currentHP > this.maxhp) {
-        if (!this.vet) {
-            replyData.content.push([`The ${this.name} can't become a veteran, so we'll proceed without it!`, {}])
-            replyData.deleteContent = true
-        } else {
-            this.vetNow = true
-            this.maxhp = vetHP
-            if (currentHP > vetHP) {
-                this.currenthp = vetHP
-                replyData.content.push([`You have inputed a current hp higher than the maximum hp for ${this.name}.\nIn the meantime, this result calculates with the highest hp possible, ${vetHP}.`, {}])
-                replyData.deleteContent = true
-            } else {
-                this.currenthp = currentHP
-                replyData.content.push([`I just made the ${this.name} into a veteran for you!\nNext time, you can just add a \`v\` in there to ensure it's a veteran!`, {}])
-                replyData.deleteContent = true
-            }
-        }
-    } else {
-        this.currenthp = currentHP
-    }
-}
-
-function addBonus(bonusArray, replyData) {
-    let defenseBonus = bonusArray.filter(value => value.toLowerCase() === 'w' || value.toLowerCase() === 'd' || value.toLowerCase() === 'p')
-    defenseBonus = [...new Set(defenseBonus)] // Deletes doubles
-
-    if (defenseBonus.length >= 2) {
-        replyData.content.push(['You\'ve provided more than one bonus\nBy default, I take `w` over `d` if both are present.', {}])
-        replyData.deleteContent = true
-        if (defenseBonus.some(x => x.toLowerCase() === 'w') && this.fort === true)
-            this.bonus = 4
-        else
-            this.bonus = 1.5
-    } else {
-        if (defenseBonus[0].toLowerCase() === 'd' || defenseBonus[0].toLowerCase() === 'p')
-            this.bonus = 1.5
-        else if (defenseBonus[0].toLowerCase() === 'w' && this.fort === true)
-            this.bonus = 4
-        else
-            this.bonus = 1
-    }
-}
-
-// Raft a:0 d:1
-// Bomber a:4 d:2
-// Rammer a:3 d:3
-// Scout a:2 d:1
-// Juggernaut a:4 d:4
-
-// Get override and exploding
-function getOverride(unitArray, replyData) {
-    const overrides = unitArray.filter(x => x === 'r' || x === 'nr')
-    const exploding = unitArray.filter(x => x === 'x')
-
-    if (overrides.length > 1)
-        throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${this.currenthp}hp ${this.name}${this.description}...`
-    else if (overrides.length === 1) {
-        if (overrides[0] === 'r')
-            this.forceRetaliation = true
-        if (overrides[0] === 'nr')
-            this.forceRetaliation = false
-    }
-
-    if (exploding.length > 0 && this.canExplode) {
-        this.name = `${this.name} 💥`
-        this.plural = `${this.plural} 💥`
-        this.exploding = true
-    }
-
-    if (exploding.length > 0 && !this.canExplode)
-        replyData.content.push([`${this.plural} can't explode, so I calculated it as a direct attack:`, {}])
 }
