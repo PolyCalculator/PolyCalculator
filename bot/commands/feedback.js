@@ -22,14 +22,14 @@ module.exports = {
     const feedbackChannel = calcServer.channels.cache.get('738926248700411994')
 
     const feedbackData = { ...replyData }
-    feedbackData.title = argsStr
-    feedbackData.description = `From: ${message.author} (${message.author.tag})\n${message.url}`
+    feedbackData.discord.title = argsStr
+    feedbackData.discord.description = `From: ${message.member} (${message.member.displayName})\n${message.channel}`
     const embed = buildEmbed(feedbackData)
 
     feedbackChannel.send({ embeds: [embed] })
     feedbackChannel.send('<@217385992837922819>')
 
-    replyData.content.push(['Feedback sent! :wave:', {}])
+    replyData.discord.description = 'Feedback sent! :wave:'
 
     return replyData
   }
