@@ -11,6 +11,6 @@ const replyData = () => ({
         attackers: [],
         defender: {},
     },
-});
+})
 
-module.exports = { replyData };
+module.exports = { replyData }

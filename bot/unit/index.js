@@ -1,5 +1,5 @@
-const buildMakeUnit = require('./unit');
+const buildMakeUnit = require('./unit')
 
-const makeUnit = buildMakeUnit();
+const makeUnit = buildMakeUnit()
 
-module.exports = { makeUnit };
+module.exports = { makeUnit }

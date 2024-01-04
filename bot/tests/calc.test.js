@@ -1,11 +1,11 @@
-const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/calc.js');
-const { replyData } = require('./commandUtils.js');
+const { expect, test } = require('@jest/globals')
+const { execute } = require('../commands/calc.js')
+const { replyData } = require('./commandUtils.js')
 
 // simple test
 test('/c attackers: wa defender: ri', () => {
-    const reply = replyData();
-    execute({}, 'wa, ri', reply, {});
+    const reply = replyData()
+    execute({}, 'wa, ri', reply, {})
     expect(reply).toEqual({
         content: [],
         deleteContent: false,
@@ -43,5 +43,5 @@ test('/c attackers: wa defender: ri', () => {
                 afterhp: 4,
             },
         },
-    });
-});
+    })
+})

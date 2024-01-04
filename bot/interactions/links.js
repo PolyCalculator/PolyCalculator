@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const links = require('../commands/links');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const links = require('../commands/links')
 
 module.exports = {
     dev: false,
@@ -9,8 +9,8 @@ module.exports = {
             "Show the links to invite the bot and to the developer's server!",
         ),
     async execute(interaction, replyData, dbData) {
-        dbData.content = `${interaction.commandName}`;
+        dbData.content = `${interaction.commandName}`
 
-        return await links.execute({}, '', replyData, dbData);
+        return await links.execute({}, '', replyData, dbData)
     },
-};
+}

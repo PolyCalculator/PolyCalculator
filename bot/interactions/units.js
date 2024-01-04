@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const units = require('../commands/units');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const units = require('../commands/units')
 
 module.exports = {
     dev: false,
@@ -16,11 +16,11 @@ module.exports = {
     async execute(interaction, replyData, dbData) {
         const input = interaction.options.get('unit')
             ? interaction.options.get('unit').value
-            : '';
+            : ''
 
-        dbData.arg = input;
-        dbData.content = `${interaction.commandName} ${input}`;
+        dbData.arg = input
+        dbData.content = `${interaction.commandName} ${input}`
 
-        return await units.execute({}, input, replyData, dbData);
+        return await units.execute({}, input, replyData, dbData)
     },
-};
+}

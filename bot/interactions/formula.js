@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const formula = require('../commands/formula');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const formula = require('../commands/formula')
 
 module.exports = {
     dev: false,
@@ -9,8 +9,8 @@ module.exports = {
             'Get the breakdown of the formula for damage calculator!',
         ),
     async execute(interaction, replyData, dbData) {
-        dbData.content = `${interaction.commandName}`;
+        dbData.content = `${interaction.commandName}`
 
-        return await formula.execute({}, '', replyData, dbData);
+        return await formula.execute({}, '', replyData, dbData)
     },
-};
+}

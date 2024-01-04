@@ -1,4 +1,4 @@
-const dbStats = require('../../db/index');
+const dbStats = require('../../db/index')
 
 module.exports = {
     name: 'stats',
@@ -6,10 +6,10 @@ module.exports = {
         'show uses of the bot locally and globally.\n[You can optionally ping someone].',
     aliases: ['stat'],
     shortUsage(prefix) {
-        return `${prefix}stat [@ping]`;
+        return `${prefix}stat [@ping]`
     },
     longUsage(prefix) {
-        return `${prefix}stats [@ping]`;
+        return `${prefix}stats [@ping]`
     },
     category: 'Other',
     permsAllowed: ['VIEW_CHANNEL'],
@@ -18,23 +18,20 @@ module.exports = {
         try {
             // const localsql = 'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 AND server_id = $2 GROUP BY author_id'
             const localsql =
-                'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 AND server_id = $2 GROUP BY author_id';
-            const localvalues = [user.id, message.guild.id];
-            const localUserStats = await dbStats.query(localsql, localvalues);
+                'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 AND server_id = $2 GROUP BY author_id'
+            const localvalues = [user.id, message.guild.id]
+            const localUserStats = await dbStats.query(localsql, localvalues)
 
             const globalsql =
-                'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 GROUP BY author_id';
-            const globalvalues = [user.id];
-            const globalUserStats = await dbStats.query(
-                globalsql,
-                globalvalues,
-            );
+                'SELECT COUNT(id) AS count, author_id FROM stats WHERE author_id = $1 GROUP BY author_id'
+            const globalvalues = [user.id]
+            const globalUserStats = await dbStats.query(globalsql, globalvalues)
 
             replyData.discord.description = `${
                 user
                     ? `These are ${user}'s stats for this bot in ${message.guild.name}`
                     : `These are your stats for this bot in ${message.guild.name}`
-            }`;
+            }`
             replyData.discord.fields.push({
                 name: 'Local count',
                 value: `${
@@ -42,7 +39,7 @@ module.exports = {
                         ? localUserStats.rows[0].count
                         : 'Never here'
                 }`,
-            });
+            })
             replyData.discord.fields.push({
                 name: 'Global count',
                 value: `${
@@ -50,11 +47,11 @@ module.exports = {
                         ? globalUserStats.rows[0].count
                         : 'Never used it at all :scream:'
                 }`,
-            });
+            })
 
-            return replyData;
+            return replyData
         } catch (err) {
-            throw err;
+            throw err
         }
     },
-};
+}

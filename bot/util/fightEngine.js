@@ -1,30 +1,30 @@
 /* eslint-disable no-unused-vars */
-const deadText = require('./deadtexts');
-const { attackerCalc, defenderCalc } = require('./util');
+const deadText = require('./deadtexts')
+const { attackerCalc, defenderCalc } = require('./util')
 const {
     generateArraySequences,
     generateSequences,
     multicombat,
     evaluate,
-} = require('./sequencer');
+} = require('./sequencer')
 
 module.exports.optim = function (attackers, defender, replyData) {
-    const arrayNbAttackers = generateArraySequences(attackers.length);
-    const sequences = generateSequences(arrayNbAttackers);
-    let solutions = [];
+    const arrayNbAttackers = generateArraySequences(attackers.length)
+    const sequences = generateSequences(arrayNbAttackers)
+    let solutions = []
 
-    const hasFinal = attackers.some((attacker) => attacker.final === true);
+    const hasFinal = attackers.some((attacker) => attacker.final === true)
     sequences.forEach(function (sequence) {
-        const attackersSorted = [];
+        const attackersSorted = []
 
         for (let j = 0; j < sequence.length; j++) {
-            attackersSorted.push(attackers[sequence[j] - 1]);
+            attackersSorted.push(attackers[sequence[j] - 1])
         }
 
-        const solution = multicombat(attackersSorted, defender, sequence);
+        const solution = multicombat(attackersSorted, defender, sequence)
 
-        solutions.push(solution);
-    });
+        solutions.push(solution)
+    })
 
     // console.log(solutions)
     if (hasFinal)
@@ -32,28 +32,28 @@ module.exports.optim = function (attackers, defender, replyData) {
             (x) =>
                 attackers[x.finalSequence[x.finalSequence.length - 1] - 1]
                     .final,
-        );
+        )
 
-    let bestSolution = solutions[0];
+    let bestSolution = solutions[0]
 
     if (!bestSolution)
-        throw 'There is no order that can conform to your request.\nMaybe try without the `f`?';
+        throw 'There is no order that can conform to your request.\nMaybe try without the `f`?'
     solutions.forEach((solution) => {
-        if (evaluate(bestSolution, solution)) bestSolution = solution;
-    });
+        if (evaluate(bestSolution, solution)) bestSolution = solution
+    })
 
-    if (bestSolution.wasPoisoned) defender.bonus = 0.7;
+    if (bestSolution.wasPoisoned) defender.bonus = 0.7
 
     // if (bestSolution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
-    const descriptionArray = [];
-    let defHP = defender.currenthp;
-    const deathText = deadText[Math.floor(Math.random() * deadText.length)];
+    const descriptionArray = []
+    let defHP = defender.currenthp
+    const deathText = deadText[Math.floor(Math.random() * deadText.length)]
     bestSolution.finalSequence.forEach((seqIndex, order) => {
-        seqIndex--;
-        defHP = defHP - bestSolution.hpDealt[order];
-        attackers[seqIndex].defHP = defHP;
+        seqIndex--
+        defHP = defHP - bestSolution.hpDealt[order]
+        attackers[seqIndex].defHP = defHP
         replyData.outcome.attackers.push({
             name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                 attackers[seqIndex].name
@@ -63,7 +63,7 @@ module.exports.optim = function (attackers, defender, replyData) {
             maxhp: attackers[seqIndex].maxhp,
             hplost: bestSolution.hpLoss[order],
             hpdefender: defHP,
-        });
+        })
         descriptionArray.push(
             `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                 attackers[seqIndex].name
@@ -72,15 +72,15 @@ module.exports.optim = function (attackers, defender, replyData) {
             } ➔ ${
                 attackers[seqIndex].currenthp - bestSolution.hpLoss[order]
             } (**${defHP}**)`,
-        );
-    });
+        )
+    })
 
     const defenderBonus = {
         0.7: ' (poisoned)',
         1: '',
         1.5: ' (protected)',
         4: ' (walled)',
-    }[defender.bonus];
+    }[defender.bonus]
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -90,13 +90,13 @@ module.exports.optim = function (attackers, defender, replyData) {
         afterhp: defHP,
         maxhp: defender.maxhp,
         hplost: defender.currenthp - defHP,
-    };
+    }
 
-    replyData.discord.description = 'This is the order for best outcome:';
+    replyData.discord.description = 'This is the order for best outcome:'
     replyData.discord.fields.push({
         name: 'Attacker: startHP ➔ endHP (enemyHP)',
         value: descriptionArray,
-    });
+    })
     replyData.discord.fields.push({
         name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
@@ -104,36 +104,36 @@ module.exports.optim = function (attackers, defender, replyData) {
         value: `${defender.currenthp} ➔ ${
             bestSolution.defenderHP < 1 ? deathText : bestSolution.defenderHP
         }`,
-    });
+    })
 
-    return replyData;
-};
+    return replyData
+}
 
 module.exports.calc = function (attackers, defender, replyData) {
-    const sequence = [];
+    const sequence = []
     for (let i = 1; i <= attackers.length; i++) {
-        sequence.push(i);
+        sequence.push(i)
     }
 
-    const attackersSorted = [];
+    const attackersSorted = []
 
     for (let j = 0; j < sequence.length; j++) {
-        attackersSorted.push(attackers[sequence[j] - 1]);
+        attackersSorted.push(attackers[sequence[j] - 1])
     }
 
-    const solution = multicombat(attackersSorted, defender, sequence);
+    const solution = multicombat(attackersSorted, defender, sequence)
 
-    if (solution.wasPoisoned) defender.bonus = 0.7;
+    if (solution.wasPoisoned) defender.bonus = 0.7
 
     // if (solution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
-    const descriptionArray = [];
-    let defHP = defender.currenthp;
-    const deathText = deadText[Math.floor(Math.random() * deadText.length)];
+    const descriptionArray = []
+    let defHP = defender.currenthp
+    const deathText = deadText[Math.floor(Math.random() * deadText.length)]
     solution.finalSequence.forEach((seqIndex, order) => {
-        seqIndex--;
-        defHP = defHP - solution.hpDealt[order];
+        seqIndex--
+        defHP = defHP - solution.hpDealt[order]
         replyData.outcome.attackers.push({
             name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                 attackers[seqIndex].name
@@ -143,7 +143,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             maxhp: attackers[seqIndex].maxhp,
             hplost: solution.hpLoss[order],
             hpdefender: defHP,
-        });
+        })
         if (descriptionArray.toString().length < 1000)
             descriptionArray.push(
                 `**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
@@ -153,17 +153,17 @@ module.exports.calc = function (attackers, defender, replyData) {
                 } ➔ ${
                     attackers[seqIndex].currenthp - solution.hpLoss[order]
                 } (**${defHP}**)`,
-            );
+            )
         else if (!descriptionArray.toString().endsWith('...'))
-            descriptionArray.push('...');
-    });
+            descriptionArray.push('...')
+    })
 
     const defenderBonus = {
         0.7: ' (poisoned)',
         1: '',
         1.5: ' (protected)',
         4: ' (walled)',
-    }[defender.bonus];
+    }[defender.bonus]
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -173,13 +173,13 @@ module.exports.calc = function (attackers, defender, replyData) {
         afterhp: defHP,
         maxhp: defender.maxhp,
         hplost: defender.currenthp - defHP,
-    };
+    }
 
-    replyData.discord.description = 'The outcome of the fight is:';
+    replyData.discord.description = 'The outcome of the fight is:'
     replyData.discord.fields.push({
         name: 'Attacker: startHP ➔ endHP (enemyHP)',
         value: descriptionArray,
-    });
+    })
     replyData.discord.fields.push({
         name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
@@ -187,49 +187,49 @@ module.exports.calc = function (attackers, defender, replyData) {
         value: `${defender.currenthp} ➔ ${
             solution.defenderHP < 1 ? deathText : solution.defenderHP
         }`,
-    });
+    })
 
-    return replyData;
-};
+    return replyData
+}
 
 module.exports.bulk = function (attacker, defender, replyData) {
     const aforce =
-        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp();
+        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     let dforce =
-        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp();
+        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp()
 
-    let totaldam = aforce + dforce;
-    let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
+    let totaldam = aforce + dforce
+    let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
     const defenderBonus = {
         0.7: ' (poisoned)',
         1: '',
         1.5: ' (protected)',
         4: ' (walled)',
-    }[defender.bonus];
+    }[defender.bonus]
 
     if (attacker.att <= 0)
-        throw `When will you ever be able to attack with a **${attacker.name}**...`;
+        throw `When will you ever be able to attack with a **${attacker.name}**...`
     if (defdiff < 1)
-        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonus}**.`;
+        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonus}**.`
 
-    let hpdefender = defender.currenthp;
+    let hpdefender = defender.currenthp
 
-    let i = 0;
+    let i = 0
 
     for (; hpdefender > 0; i++) {
-        hpdefender = hpdefender - defdiff;
+        hpdefender = hpdefender - defdiff
         dforce =
             (defender.iDef() * BigInt(hpdefender * 10) * 100n) /
-            defender.iMaxHp();
-        totaldam = aforce + dforce;
-        defdiff = Number(attackerCalc(aforce, totaldam, attacker));
+            defender.iMaxHp()
+        totaldam = aforce + dforce
+        defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
         if (
             attacker.poisonattack ||
             (attacker.poisonexplosion && attacker.exploding)
         )
-            defender.bonus = 0.7;
+            defender.bonus = 0.7
     }
 
     replyData.outcome.attackers.push({
@@ -238,7 +238,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
         }`,
         currenthp: attacker.currenthp,
         maxhp: attacker.maxhp,
-    });
+    })
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -246,11 +246,11 @@ module.exports.bulk = function (attacker, defender, replyData) {
         }${defenderBonus}`,
         currenthp: defender.currenthp,
         maxhp: defender.maxhp,
-    };
+    }
 
-    replyData.outcome.response = i;
+    replyData.outcome.response = i
 
-    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonus}:`;
+    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonus}:`
     replyData.discord.fields.push({
         name: `**Number of ${
             i > 1 && attacker.description === ''
@@ -262,18 +262,18 @@ module.exports.bulk = function (attacker, defender, replyData) {
                 : attacker.description
         }**:`,
         value: `${i}`,
-    });
+    })
 
-    return replyData;
-};
+    return replyData
+}
 
 module.exports.provideDefHP = function (attacker, defender, replyData) {
     let aforce =
-        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp();
+        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     const dforce =
-        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp();
+        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp()
 
-    let totaldam;
+    let totaldam
 
     for (
         attacker.currenthp = 0;
@@ -282,11 +282,11 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
     ) {
         aforce =
             (attacker.iAtt() * BigInt(attacker.currenthp * 10) * 100n) /
-            attacker.iMaxHp();
-        totaldam = aforce + dforce;
-        const defdiff = Number(attackerCalc(aforce, totaldam, attacker));
+            attacker.iMaxHp()
+        totaldam = aforce + dforce
+        const defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
-        if (defender.currenthp - defdiff <= 0) break;
+        if (defender.currenthp - defdiff <= 0) break
     }
 
     const defenderBonus = {
@@ -294,14 +294,14 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
         1: '',
         1.5: ' (protected)',
         4: ' (walled)',
-    }[defender.bonus];
+    }[defender.bonus]
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${
             attacker.description
         }`,
         maxhp: attacker.maxhp,
-    });
+    })
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -309,9 +309,9 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
         }${defenderBonus}`,
         currenthp: defender.currenthp,
         maxhp: defender.maxhp,
-    };
+    }
 
-    replyData.outcome.response = attacker.currenthp;
+    replyData.outcome.response = attacker.currenthp
 
     if (attacker.currenthp > attacker.maxhp) {
         replyData.discord.title = `A full hp ${
@@ -320,44 +320,44 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
             defender.currenthp
         }hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
-        }${defenderBonus}.`;
+        }${defenderBonus}.`
     } else {
         replyData.discord.title = `The minimum attacker hp required to kill a ${
             defender.currenthp
         }hp ${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
-        }${defenderBonus} is:`;
+        }${defenderBonus} is:`
         replyData.discord.fields.push({
             name: `**${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${
                 attacker.description
             }**:`,
             value: `${attacker.currenthp}`,
-        });
+        })
     }
 
-    return replyData;
-};
+    return replyData
+}
 
 module.exports.provideAttHP = function (attacker, defender, replyData) {
     const aforce =
-        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp();
+        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     let dforce =
-        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp();
-    let totaldam;
+        (defender.iDef() * defender.iCurrentHp() * 100n) / defender.iMaxHp()
+    let totaldam
 
     if (attacker.att <= 0)
-        throw `When will you ever be able to attack with a **${attacker.name}**...`;
+        throw `When will you ever be able to attack with a **${attacker.name}**...`
 
-    defender.currenthp = defender.maxhp;
+    defender.currenthp = defender.maxhp
 
     for (let defdiff = 0; defender.currenthp > 0; defender.currenthp--) {
         dforce =
             (defender.iDef() * BigInt(defender.currenthp * 10) * 100n) /
-            defender.iMaxHp();
-        totaldam = aforce + dforce;
-        defdiff = Number(attackerCalc(aforce, totaldam, attacker));
+            defender.iMaxHp()
+        totaldam = aforce + dforce
+        defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
-        if (defender.currenthp - defdiff <= 0) break;
+        if (defender.currenthp - defdiff <= 0) break
     }
 
     const defenderBonus = {
@@ -365,14 +365,14 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
         1: '',
         1.5: ' (protected)',
         4: ' (walled)',
-    }[defender.bonus];
+    }[defender.bonus]
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${
             attacker.description
         }`,
         maxhp: attacker.maxhp,
-    });
+    })
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -380,27 +380,27 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
         }${defenderBonus}`,
         currenthp: defender.currenthp,
         maxhp: defender.maxhp,
-    };
+    }
 
-    replyData.outcome.response = defender.currenthp;
+    replyData.outcome.response = defender.currenthp
 
     if (defender.currenthp === 0) {
         replyData.discord.title = `A ${attacker.currenthp}hp ${
             attacker.vetNow ? 'Veteran ' : ''
         }${attacker.name}${attacker.description} cannot even kill a 1hp ${
             defender.vetNow ? 'Veteran ' : ''
-        }${defender.name}${defender.description}${defenderBonus}.`;
+        }${defender.name}${defender.description}${defenderBonus}.`
     } else {
         replyData.discord.title = `A ${attacker.currenthp}hp ${
             attacker.vetNow ? 'Veteran ' : ''
-        }${attacker.name}${attacker.description} will kill a defending:`;
+        }${attacker.name}${attacker.description} will kill a defending:`
         replyData.discord.fields.push({
             name: `**${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
                 defender.description
             }${defenderBonus}**:`,
             value: `Max: ${defender.currenthp}hp`,
-        });
+        })
     }
 
-    return replyData;
-};
+    return replyData
+}

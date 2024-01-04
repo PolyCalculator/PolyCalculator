@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const calc = require('../commands/calc');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const calc = require('../commands/calc')
 
 module.exports = {
     dev: false,
@@ -21,14 +21,14 @@ module.exports = {
                 .setRequired(true),
         ),
     async execute(interaction, replyData, dbData) {
-        const array = [];
-        array.push(interaction.options.get('attackers'));
-        array.push(interaction.options.get('defender'));
-        const input = array.map((x) => x.value).join(', ');
+        const array = []
+        array.push(interaction.options.get('attackers'))
+        array.push(interaction.options.get('defender'))
+        const input = array.map((x) => x.value).join(', ')
 
-        dbData.arg = input;
-        dbData.content = `${interaction.commandName} ${input}`;
+        dbData.arg = input
+        dbData.content = `${interaction.commandName} ${input}`
 
-        return await calc.execute({}, input, replyData, dbData);
+        return await calc.execute({}, input, replyData, dbData)
     },
-};
+}

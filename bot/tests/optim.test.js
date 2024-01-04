@@ -1,14 +1,14 @@
-const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/optim.js');
-const { replyData } = require('./commandUtils.js');
-const deadTexts = require('../util/deadtexts.js');
+const { expect, test } = require('@jest/globals')
+const { execute } = require('../commands/optim.js')
+const { replyData } = require('./commandUtils.js')
+const deadTexts = require('../util/deadtexts.js')
 
-deadTexts.length = 1;
-deadTexts[0] = 'DEAD';
+deadTexts.length = 1
+deadTexts[0] = 'DEAD'
 
 test('/o attackers: ca, de, wa defender: de d', () => {
-    const reply = replyData();
-    execute({}, 'ca, de, wa, de d', reply, {});
+    const reply = replyData()
+    execute({}, 'ca, de, wa, de d', reply, {})
     expect(reply).toEqual({
         content: [],
         deleteContent: false,
@@ -66,12 +66,12 @@ test('/o attackers: ca, de, wa defender: de d', () => {
                 maxhp: 15,
             },
         },
-    });
-});
+    })
+})
 
 test('/o attackers: ca f, de, wa defender: de d', () => {
-    const reply = replyData();
-    execute({}, 'ca f, de, wa, de d', reply, {});
+    const reply = replyData()
+    execute({}, 'ca f, de, wa, de d', reply, {})
     expect(reply).toEqual({
         content: [],
         deleteContent: false,
@@ -129,5 +129,5 @@ test('/o attackers: ca f, de, wa defender: de d', () => {
                 maxhp: 15,
             },
         },
-    });
-});
+    })
+})

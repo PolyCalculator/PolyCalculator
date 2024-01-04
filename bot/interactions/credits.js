@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const credits = require('../commands/credits');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const credits = require('../commands/credits')
 
 module.exports = {
     dev: false,
@@ -7,8 +7,8 @@ module.exports = {
         .setName('credits')
         .setDescription('PolyCalculator bot credits!'),
     async execute(interaction, replyData, dbData) {
-        dbData.content = `${interaction.commandName}`;
+        dbData.content = `${interaction.commandName}`
 
-        return await credits.execute({}, '', replyData, dbData);
+        return await credits.execute({}, '', replyData, dbData)
     },
-};
+}

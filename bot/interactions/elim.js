@@ -1,5 +1,5 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const elim = require('../commands/elim');
+const { SlashCommandBuilder } = require('@discordjs/builders')
+const elim = require('../commands/elim')
 
 module.exports = {
     dev: false,
@@ -23,11 +23,11 @@ module.exports = {
     async execute(interaction, replyData, dbData) {
         const input = `${interaction.options.get('attacker').value}, ${
             interaction.options.get('defender').value
-        }`;
+        }`
 
-        dbData.arg = input;
-        dbData.content = `${interaction.commandName} ${input}`;
+        dbData.arg = input
+        dbData.content = `${interaction.commandName} ${input}`
 
-        return await elim.execute({}, input, replyData, dbData);
+        return await elim.execute({}, input, replyData, dbData)
     },
-};
+}

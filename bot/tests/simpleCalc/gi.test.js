@@ -1,3 +1,3 @@
-const { runTestSuite } = require('./utils.js');
+const { runTestSuite } = require('./utils.js')
 
-runTestSuite('gi');
+runTestSuite('gi')
