@@ -1,86 +1,37 @@
 {
-  "extends": "eslint:recommended",
-  "env": {
-    "commonjs": true,
-    "node": true,
-    "es6": true,
-    "es2020": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2020
-  },
-  "rules": {
-    "comma-spacing": "error",
-    "comma-style": "error",
-    "dot-location": [
-      "error",
-      "property"
-    ],
-    "handle-callback-err": "off",
-    "indent": [
-      "error",
-      4
-    ],
-    "max-nested-callbacks": [
-      "error",
-      {
-        "max": 4
-      }
-    ],
-    "max-statements-per-line": [
-      "error",
-      {
-        "max": 2
-      }
-    ],
-    "no-console": [
-      "error",
-      {
-        "allow": [
-          "warn",
-          "error"
-        ]
-      }
-    ],
-    // "no-empty-function": "warn",
-    "no-floating-decimal": "error",
-    "no-multi-spaces": "error",
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 2,
-        "maxEOF": 1,
-        "maxBOF": 0
-      }
-    ],
-    "no-shadow": [
-      "error",
-      {
-        "allow": [
-          "err",
-          "resolve",
-          "reject"
-        ]
-      }
-    ],
-    "no-trailing-spaces": [
-      "error"
-    ],
-    "no-useless-catch": "off",
-    "no-var": "error",
-    "object-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "prefer-const": "error",
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "space-before-blocks": "error",
-    "space-in-parens": "error",
-    "space-infix-ops": "error",
-    "space-unary-ops": "error",
-    "yoda": "error"
-  }
+    "extends": ["eslint:recommended", "prettier"],
+    "env": {
+        "commonjs": true,
+        "node": true,
+        "es6": true,
+        "es2020": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "rules": {
+        "handle-callback-err": "off",
+        "max-nested-callbacks": [
+            "error",
+            {
+                "max": 4
+            }
+        ],
+        "no-console": [
+            "error",
+            {
+                "allow": ["warn", "error"]
+            }
+        ],
+        "no-shadow": [
+            "error",
+            {
+                "allow": ["err", "resolve", "reject"]
+            }
+        ],
+        "no-useless-catch": "off",
+        "no-var": "error",
+        "prefer-const": "error",
+        "yoda": "error"
+    }
 }

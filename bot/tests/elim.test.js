@@ -1,10 +1,10 @@
-const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/elim.js');
-const { replyData } = require('./commandUtils.js');
+const { expect, test } = require('@jest/globals')
+const { execute } = require('../commands/elim.js')
+const { replyData } = require('./commandUtils.js')
 
 test('/e gi 32, de w ?', () => {
-    const reply = replyData();
-    execute({}, 'gi 32, de w ?', reply, {});
+    const reply = replyData()
+    execute({}, 'gi 32, de w ?', reply, {})
     expect(reply).toEqual({
         content: [],
         deleteContent: false,
@@ -33,5 +33,5 @@ test('/e gi 32, de w ?', () => {
             },
             response: 8,
         },
-    });
-});
+    })
+})

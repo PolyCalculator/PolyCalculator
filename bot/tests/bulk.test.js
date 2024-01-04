@@ -1,15 +1,15 @@
-const { expect, test } = require('@jest/globals');
-const { execute } = require('../commands/bulk.js');
-const { replyData } = require('./commandUtils.js');
+const { expect, test } = require('@jest/globals')
+const { execute } = require('../commands/bulk.js')
+const { replyData } = require('./commandUtils.js')
 
 test('/b attackers: wa defender: de', () => {
-    const reply = replyData();
-    execute({}, 'wa, de', reply, {});
+    const reply = replyData()
+    execute({}, 'wa, de', reply, {})
     expect(reply).toEqual({
         content: [],
         deleteContent: false,
         discord: {
-            title: 'You\'ll need this many hits from a Warrior to kill the Defender:',
+            title: "You'll need this many hits from a Warrior to kill the Defender:",
             description: undefined,
             fields: [
                 {
@@ -34,5 +34,5 @@ test('/b attackers: wa defender: de', () => {
             },
             response: 4,
         },
-    });
-});
+    })
+})

@@ -15,14 +15,17 @@ module.exports = {
     // category: 'Paid',
     permsAllowed: ['VIEW_CHANNEL'],
     usersAllowed: ['217385992837922819'],
-    execute: async function(message, argsStr, replyData, dbData) {
+    execute: async function (message, argsStr, replyData, dbData) {
         if (argsStr.length === 0 || argsStr.includes('help')) {
-            replyData.content.push(['Try `.help c` for more information on how to use this command!', {}])
+            replyData.content.push([
+                'Try `.help c` for more information on how to use this command!',
+                {},
+            ])
             return replyData
         }
 
         try {
-            const unitsArray = getBothUnitsArray(argsStr).filter(x => x != '')
+            const unitsArray = getBothUnitsArray(argsStr).filter((x) => x != '')
 
             const defenderStr = unitsArray.pop()
             const defenderArray = defenderStr.split(/ +/)
@@ -30,11 +33,10 @@ module.exports = {
 
             const defender = getUnitFromArray(defenderArray, replyData)
 
-            unitsArray.forEach(x => {
-                const attackerArray = x.split(/ +/).filter(y => y != '')
+            unitsArray.forEach((x) => {
+                const attackerArray = x.split(/ +/).filter((y) => y != '')
                 const attacker = getUnitFromArray(attackerArray, replyData)
-                if (attacker.att !== 0)
-                    attackers.push(attacker)
+                if (attacker.att !== 0) attackers.push(attacker)
             })
 
             if (attackers.length === 0)
@@ -42,17 +44,19 @@ module.exports = {
 
             replyData = await fight.calc(attackers, defender, replyData)
 
-
             dbData.attacker = attackers.length
             dbData.defender = defender.name
             dbData.defender_description = defender.description
 
             if (replyData.discord.fields.length > 0)
-                dbData.reply_fields = [replyData.discord.fields[0].value.toString(), replyData.discord.fields[1].value]
+                dbData.reply_fields = [
+                    replyData.discord.fields[0].value.toString(),
+                    replyData.discord.fields[1].value,
+                ]
 
             return replyData
         } catch (error) {
             throw error
         }
-    }
-};
+    },
+}

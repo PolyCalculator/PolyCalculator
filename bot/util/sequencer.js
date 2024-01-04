@@ -10,10 +10,12 @@ module.exports.generateArraySequences = function (length) {
 }
 
 module.exports.generateSequences = function (xs) {
-    const ret = [];
+    const ret = []
 
     for (let i = 0; i < xs.length; i = i + 1) {
-        const rest = generateSubsequences(xs.slice(0, i).concat(xs.slice(i + 1)));
+        const rest = generateSubsequences(
+            xs.slice(0, i).concat(xs.slice(i + 1)),
+        )
 
         if (!rest.length) {
             ret.push([xs[i]])
@@ -23,14 +25,16 @@ module.exports.generateSequences = function (xs) {
             }
         }
     }
-    return ret;
+    return ret
 }
 
 function generateSubsequences(xs) {
-    const ret = [];
+    const ret = []
 
     for (let i = 0; i < xs.length; i = i + 1) {
-        const rest = generateSubsequences(xs.slice(0, i).concat(xs.slice(i + 1)));
+        const rest = generateSubsequences(
+            xs.slice(0, i).concat(xs.slice(i + 1)),
+        )
 
         if (!rest.length) {
             ret.push([xs[i]])
@@ -40,13 +44,13 @@ function generateSubsequences(xs) {
             }
         }
     }
-    return ret;
+    return ret
 }
 
 module.exports.multicombat = function (attackers, defender, sequence) {
     let totalAttackersHP = 0
 
-    attackers.forEach(attacker => {
+    attackers.forEach((attacker) => {
         totalAttackersHP = totalAttackersHP + attacker.currenthp
     })
 
@@ -58,18 +62,16 @@ module.exports.multicombat = function (attackers, defender, sequence) {
         hpDealt: [],
         sequence: sequence,
         finalSequence: [],
-        wasPoisoned: false
+        wasPoisoned: false,
     }
 
     const initialBonus = defender.bonus
 
     for (const attacker of attackers) {
-        if(attacker.convert)
-            convert(defender)
+        if (attacker.convert) convert(defender)
 
         const index = attackers.indexOf(attacker)
-        if (solution.defenderHP <= 0)
-            break
+        if (solution.defenderHP <= 0) break
 
         // if (defender.converted == true)
         //   continue
@@ -77,14 +79,16 @@ module.exports.multicombat = function (attackers, defender, sequence) {
         solution = combat(attacker, defender, solution)
         solution.finalSequence.push(sequence[index])
 
-        if (attacker.poisonattack || (attacker.poisonexplosion && attacker.exploding)) {
+        if (
+            attacker.poisonattack ||
+            (attacker.poisonexplosion && attacker.exploding)
+        ) {
             poison(defender)
             attacker.toPoison(defender)
             solution.wasPoisoned = true
         }
 
-        if (attacker.freeze)
-            freeze(defender)
+        if (attacker.freeze) freeze(defender)
     }
 
     defender.bonus = initialBonus
@@ -107,11 +111,14 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
-    const aforce = attacker.iAtt() * attacker.iCurrentHp() * 100n / attacker.iMaxHp();
-    const dforce = defender.iDef() * BigInt(solution.defenderHP * 10) * 100n / defender.iMaxHp();
+    const aforce =
+        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
+    const dforce =
+        (defender.iDef() * BigInt(solution.defenderHP * 10) * 100n) /
+        defender.iMaxHp()
 
-    const totaldam = aforce + dforce;
-    let defdiff = Number(attackerCalc(aforce, totaldam, attacker));
+    const totaldam = aforce + dforce
+    let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
     if (attacker.splash || attacker.exploding || attacker.splashNow) {
         defdiff = Math.floor(defdiff / 2)
         if (attacker.splash || attacker.splashNow)
@@ -124,18 +131,25 @@ function combat(attacker, defender, solution) {
     let attdiff = 0
     let hpattacker
     if (solution.defenderHP <= 0) {
-        hpattacker = attacker.currenthp;
-        solution.defenderHP = 0;
-    } else if (attacker.forceRetaliation === false || defender.retaliation === false) {
         hpattacker = attacker.currenthp
-    } else if (attacker.range === true && defender.range === false && attacker.forceRetaliation !== true) {
+        solution.defenderHP = 0
+    } else if (
+        attacker.forceRetaliation === false ||
+        defender.retaliation === false
+    ) {
+        hpattacker = attacker.currenthp
+    } else if (
+        attacker.range === true &&
+        defender.range === false &&
+        attacker.forceRetaliation !== true
+    ) {
         hpattacker = attacker.currenthp
     } else if (attacker.exploding || attacker.name === 'Segment') {
         attdiff = attacker.currenthp
     } else {
-        attdiff = Number(defenderCalc(dforce, totaldam, defender));
+        attdiff = Number(defenderCalc(dforce, totaldam, defender))
         attacker.attdiff = attdiff
-        hpattacker = attacker.currenthp - attdiff;
+        hpattacker = attacker.currenthp - attdiff
         if (hpattacker <= 0) {
             hpattacker = 0
             solution.attackerCasualties = solution.attackerCasualties + 1
@@ -154,23 +168,30 @@ function combat(attacker, defender, solution) {
 }
 
 module.exports.evaluate = function (bestSolution, newSolution) {
-
-    if (newSolution.defenderHP < bestSolution.defenderHP)
-        return true
+    if (newSolution.defenderHP < bestSolution.defenderHP) return true
     else {
         if (newSolution.defenderHP === bestSolution.defenderHP) {
-            if (bestSolution.attackerCasualties > newSolution.attackerCasualties)
+            if (
+                bestSolution.attackerCasualties > newSolution.attackerCasualties
+            )
                 return true
             else {
-                if (bestSolution.attackerCasualties === newSolution.attackerCasualties) {
+                if (
+                    bestSolution.attackerCasualties ===
+                    newSolution.attackerCasualties
+                ) {
                     if (bestSolution.attackersHP < newSolution.attackersHP)
                         return true
                     else {
-                        if (bestSolution.attackersHP === newSolution.attackersHP) {
-                            if (bestSolution.finalSequence.length > newSolution.finalSequence.length)
+                        if (
+                            bestSolution.attackersHP === newSolution.attackersHP
+                        ) {
+                            if (
+                                bestSolution.finalSequence.length >
+                                newSolution.finalSequence.length
+                            )
                                 return true
-                            else
-                                return false
+                            else return false
                         }
                     }
                 } else return false

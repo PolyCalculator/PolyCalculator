@@ -8,6 +8,10 @@ const makeGetUnitFromCode = require('./get-unit-from-code')
 
 const getBothUnitsArray = makeGetBothUnitsArray()
 const getUnitFromCode = makeGetUnitFromCode({ unitsList })
-const getUnitFromArray = makeGetUnitFromArray({ unitsList, handleAliases, getUnitFromCode })
+const getUnitFromArray = makeGetUnitFromArray({
+    unitsList,
+    handleAliases,
+    getUnitFromCode,
+})
 
 module.exports = { getBothUnitsArray, getUnitFromArray, getUnitFromCode }

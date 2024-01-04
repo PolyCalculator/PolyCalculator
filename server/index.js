@@ -1,11 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 const helmet = require('helmet')
 
-const app = express();
-const stats = express();
-const commands = express();
+const app = express()
+const stats = express()
+const commands = express()
 
 const topServers = require('./api/topServers')
 const topUsers = require('./api/topUsers')
@@ -15,21 +15,21 @@ const command = require('./api/command')
 
 // Middleware
 app.use(helmet())
-app.use(bodyParser.json());
-app.use(cors());
+app.use(bodyParser.json())
+app.use(cors())
 
 app.use('/api/stats', stats)
 app.use('/api', commands)
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {
-  // Static folder
-  app.use(express.static(__dirname + '/public'))
+    // Static folder
+    app.use(express.static(__dirname + '/public'))
 
-  // Handle SPA
-  app.get(/.*/, (req, res) => {
-    res.sendFile(__dirname + '/public/index.html')
-  })
+    // Handle SPA
+    app.get(/.*/, (req, res) => {
+        res.sendFile(__dirname + '/public/index.html')
+    })
 }
 
 // app.get('/', (req, res) => {
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 // })
 
 app.get('/api', (req, res) => {
-  res.send(`For some docs, try http://${req.hostname}/api/docs`)
+    res.send(`For some docs, try http://${req.hostname}/api/docs`)
 })
 
 // Routers
@@ -55,5 +55,7 @@ commands.use('/', command)
 
 const port = process.env.PORT || 3333
 
-// eslint-disable-next-line no-console
-app.listen(port, () => { return console.log(`Listening on http://localhost:${port}/api`) })
+app.listen(port, () => {
+    // eslint-disable-next-line no-console
+    return console.log(`Listening on http://localhost:${port}/api`)
+})
