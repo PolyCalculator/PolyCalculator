@@ -25,7 +25,7 @@ module.exports = [
     'ARGUED WITH MCOMPANY',
     'DIVIDED BY ZERO',
     'TIMEDOUT',
-    'MISSCLICKED',
+    'MISCLICKED',
     'ALT BUSTED',
     'COACHING GAME\'D',
     'IN VALHALLA',
