@@ -209,7 +209,7 @@ module.exports = function buildMakeUnit() {
                     this.def = 1
                     this.range = true
                 }
-                if (navalUnitCode == 'rm') {
+                if (navalUnitCode == 'rm' || 'rammer') {
                     this.description = this.description + ' Rammer'
                     this.att = 3
                     this.def = 3
