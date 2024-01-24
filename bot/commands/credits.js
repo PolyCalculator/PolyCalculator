@@ -3,7 +3,7 @@ module.exports = {
     description: 'show the team!',
     aliases: ['cred', 'credit'],
     shortUsage(prefix) {
-        return `${prefix}cred`
+        return `${prefix}credits`
     },
     longUsage(prefix) {
         return `${prefix}credits`

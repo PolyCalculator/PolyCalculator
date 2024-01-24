@@ -9,7 +9,7 @@ module.exports = {
         return `\`${prefix}c wa 7, ri 5\` or\n\`${prefix}c wa sc, wa bo, wa rm, de d\``
     },
     longUsage(prefix) {
-        return `\`${prefix}calc warrior 7, rider 5\` or\n\`${prefix}calc warrior scout, warrior bomber, warrior rmmer, defender d\``
+        return `\`${prefix}c warrior 7, rider 5\` or\n\`${prefix}calc warrior scout, warrior bomber, warrior rmmer, defender d\``
     },
     category: 'Main',
     // category: 'Paid',

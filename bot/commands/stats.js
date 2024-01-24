@@ -6,7 +6,7 @@ module.exports = {
         'show uses of the bot locally and globally.\n[You can optionally ping someone].',
     aliases: ['stat'],
     shortUsage(prefix) {
-        return `${prefix}stat [@ping]`
+        return `${prefix}stats [@ping]`
     },
     longUsage(prefix) {
         return `${prefix}stats [@ping]`

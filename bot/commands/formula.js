@@ -3,7 +3,7 @@ module.exports = {
     description: 'show the formula for calculating hp results.',
     aliases: ['f'],
     shortUsage(prefix) {
-        return `${prefix}f`
+        return `${prefix}formula`
     },
     longUsage(prefix) {
         return `${prefix}formula`

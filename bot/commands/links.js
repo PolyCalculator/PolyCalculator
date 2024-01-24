@@ -4,10 +4,10 @@ module.exports = {
         "show the link to invite the bot and to the developer's server.",
     aliases: ['link', 'inv', 'invite', 'server'],
     shortUsage(prefix) {
-        return `${prefix}inv`
+        return `${prefix}links`
     },
     longUsage(prefix) {
-        return `${prefix}link`
+        return `${prefix}links`
     },
     category: 'Other',
     permsAllowed: ['VIEW_CHANNEL'],

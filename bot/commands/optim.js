@@ -10,7 +10,7 @@ module.exports = {
         return `\`${prefix}o wa sc, wa bo, wa rm, de d\``
     },
     longUsage(prefix) {
-        return `\`${prefix}optim wa sc, wa bo, wa rm, de d\``
+        return `\`${prefix}o wa sc, wa bo, wa rm, de d\``
     },
     category: 'Advanced',
     // category: 'Paid',

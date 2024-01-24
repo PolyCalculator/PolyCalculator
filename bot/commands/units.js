@@ -7,7 +7,7 @@ module.exports = {
         'show the list of unit codes. ***Units require 2 characters.***',
     aliases: ['u', 'unit'],
     shortUsage(prefix) {
-        return `${prefix}u`
+        return `${prefix}units`
     },
     longUsage(prefix) {
         return `${prefix}units`

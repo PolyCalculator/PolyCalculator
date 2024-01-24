@@ -10,7 +10,7 @@ module.exports = {
         return `${prefix}b wa, de d`
     },
     longUsage(prefix) {
-        return `${prefix}bulk warrior, defender d`
+        return `${prefix}b warrior, defender d`
     },
     category: 'Advanced',
     permsAllowed: ['VIEW_CHANNEL'],

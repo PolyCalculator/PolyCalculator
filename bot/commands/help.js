@@ -6,7 +6,7 @@ module.exports = {
         return `${prefix}help {command}`
     },
     longUsage(prefix) {
-        return `${prefix}h {command}`
+        return `${prefix}help {command}`
     },
     category: 'hidden',
     permsAllowed: ['VIEW_CHANNEL'],
