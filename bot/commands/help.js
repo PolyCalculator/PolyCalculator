@@ -68,7 +68,7 @@ module.exports = {
             }
             if (command.name === 'optim') {
                 replyData.discord.fields.push({
-                    name: '`.o` specific modifier:',
+                    name: '`/o` specific modifier:',
                     value: 'Only combos with that/those unit(s) doing the final hit: `f`',
                 })
             }
