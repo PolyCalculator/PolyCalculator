@@ -217,7 +217,7 @@ module.exports = function buildMakeUnit() {
                 }
                 if (navalUnitCode == 'bo') {
                     this.description = this.description + ' Bomber'
-                    this.att = 4
+                    this.att = 3
                     this.def = 2
                     this.retaliation = false
                     this.range = true
