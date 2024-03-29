@@ -166,8 +166,10 @@ module.exports = function buildMakeUnit() {
             canSplash: canSplash,
             splashNow: splashNow,
             toSplash: function (replyData) {
-                if (this.canSplash == true) this.splashNow = true
-                else
+                if (this.canSplash == true) {
+                    this.splashNow = true
+                    this.description = `${this.description} 💦`
+                } else
                     replyData.content.push([
                         `${plural} can't splash, so I calculated it as a normal attack`,
                         {},

@@ -121,8 +121,6 @@ function combat(attacker, defender, solution) {
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
     if (attacker.splash || attacker.exploding || attacker.splashNow) {
         defdiff = Math.floor(defdiff / 2)
-        if (attacker.splash || attacker.splashNow)
-            attacker.description = `${attacker.description} 💦`
     }
 
     solution.hpDealt.push(defdiff)
