@@ -224,10 +224,12 @@ module.exports = function buildMakeUnit() {
                     this.canSplash = true
                 }
                 if (navalUnitCode == 'ob') {
-                    this.description = this.description + ' (Old) Boat'
-                    this.att = 1
-                    this.def = 1
+                    this.description = this.description + ' (Old) Bomber'
+                    this.att = 4
+                    this.def = 2
+                    this.retaliation = false
                     this.range = true
+                    this.canSplash = true
                 }
                 if (navalUnitCode == 'oh') {
                     this.description = this.description + ' (Old) Ship'
