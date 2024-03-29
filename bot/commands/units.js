@@ -37,7 +37,7 @@ module.exports = {
             replyData.discord.title = 'All units by code'
             replyData.discord.fields.push({
                 name: 'Naval unit codes to add to land units:',
-                value: 'Raft: `rf`\nScout: `sc`\nRammer: `rm`\nBomber: `bo`\nAlso old naval units for now:\nBoat: `ob`\nShip: `oh`\nBattleship: `os`',
+                value: 'Raft: `rf`\nScout: `sc`\nRammer: `rm`\nBomber: `bo`\nAlso old naval units for now:\nBomber (4 attack): `ob`\nShip: `oh`\nBattleship: `os`',
             })
             replyData.discord.fields.push({
                 name: 'Current hp:',
