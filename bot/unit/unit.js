@@ -13,6 +13,7 @@ module.exports = function buildMakeUnit() {
         fort = true,
         range = false,
         retaliation = true,
+        forceRetaliation = undefined,
         poisonattack = false,
         poisonexplosion = false,
         canExplode = false,
@@ -98,6 +99,7 @@ module.exports = function buildMakeUnit() {
             fort: fort,
             range: range,
             retaliation: retaliation,
+            forceRetaliation: forceRetaliation,
             overrideRange: function (newRange) {
                 range = newRange
             },
@@ -107,8 +109,13 @@ module.exports = function buildMakeUnit() {
 
                 if (hasR && hasNR)
                     throw `Put your beer down and learn to type.\nYou can't put both \`r\` **and** \`nr\` for the ${currenthp}hp ${name}${description}...`
-                else if (hasR) this.retaliation = true
-                else if (hasNR) this.etaliation = false
+                else if (hasR) {
+                    this.retaliation = true
+                    this.forceRetaliation = true
+                } else if (hasNR) {
+                    this.retaliation = false
+                    this.forceRetaliation = false
+                }
             },
             poisonattack: poisonattack,
             poisonexplosion: poisonexplosion,
