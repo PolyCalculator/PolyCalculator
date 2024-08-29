@@ -39,7 +39,7 @@ module.exports = function buildMakeUnit() {
             currenthp: currenthp,
             maxhp: maxhp,
             setHP: function (newHP, replyData) {
-                if (newHP < 1) throw "I don't accept manual killings here."
+                if (newHP <= 0) throw "I don't accept manual killings here."
 
                 if (newHP > this.maxhp) {
                     if (this.vet && !this.vetNow) {
