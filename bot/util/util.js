@@ -163,6 +163,9 @@ aliasMap.set('dd', ['de', 'd'])
 aliasMap.set('dw', ['de', 'w'])
 
 aliasMap.set('am', ['ri', ''])
+aliasMap.set('shark', ['sk', ''])
+
+aliasMap.set('shaman', ['sh', ''])
 
 aliasMap.set('?d', ['?', 'd'])
 aliasMap.set('d?', ['d', '?'])
