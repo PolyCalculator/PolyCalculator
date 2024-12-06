@@ -12,7 +12,7 @@
         "discord-api-types": "0.24.0",
         "discord.js": "13.5.0",
         "dotenv": "8.0.0",
-        "express": "4.19.2",
+        "express": "4.21.2",
         "helmet": "3.21.3",
         "nodemon": "^3.1.4",
         "pg": "8.5.1"
