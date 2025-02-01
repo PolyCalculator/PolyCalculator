@@ -102,7 +102,9 @@ module.exports.optim = function (attackers, defender, replyData) {
             defender.description
         }${defenderBonus}**:`,
         value: `${defender.currenthp} ➔ ${
-            bestSolution.defenderHP <= 0 ? `(0) ${deathText}` : bestSolution.defenderHP
+            bestSolution.defenderHP <= 0
+                ? `(0) ${deathText}`
+                : bestSolution.defenderHP
         }`,
     })
 

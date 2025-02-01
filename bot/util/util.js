@@ -56,7 +56,7 @@ module.exports.boost = function (unit) {
 }
 
 module.exports.convert = function (unit) {
-    if(unit.converted) return
+    if (unit.converted) return
 
     unit.description = `${unit.description} (converted)`
     // unit.currenthp = 'Converted'
@@ -125,26 +125,31 @@ module.exports.milestoneMsg = async function (message, db, newsChannel) {
 }
 
 module.exports.handleAliases = function (array) {
-    const newArray = [];
+    const newArray = []
 
-    const aliases = new Map([...aliasMap.entries()].map(([key, value]) => [key.toLowerCase(), value]));
+    const aliases = new Map(
+        [...aliasMap.entries()].map(([key, value]) => [
+            key.toLowerCase(),
+            value,
+        ]),
+    )
 
     array.forEach((el) => {
-        const lowerEl = el.toLowerCase();
+        const lowerEl = el.toLowerCase()
 
         if (aliases.has(lowerEl)) {
-            const aliasExpansion = aliases.get(lowerEl);
+            const aliasExpansion = aliases.get(lowerEl)
             // Always replace with two elements, even if one is empty
-            newArray.push(aliasExpansion[0]);
+            newArray.push(aliasExpansion[0])
             if (aliasExpansion[1]) {
-                newArray.push(aliasExpansion[1]);
+                newArray.push(aliasExpansion[1])
             }
         } else {
-            newArray.push(el);
+            newArray.push(el)
         }
-    });
+    })
 
-    return newArray;
+    return newArray
 }
 
 const aliasMap = new Collection()
