@@ -125,24 +125,26 @@ module.exports.milestoneMsg = async function (message, db, newsChannel) {
 }
 
 module.exports.handleAliases = function (array) {
-    const newArray = array
+    const newArray = [];
 
-    const aliases = [...aliasMap.keys()]
+    const aliases = new Map([...aliasMap.entries()].map(([key, value]) => [key.toLowerCase(), value]));
 
-    array.forEach((newArrayEl) => {
-        if (aliases.some((alias) => newArrayEl === alias)) {
-            const index = array.findIndex((el) =>
-                aliases.some((alias) => alias === el.toLowerCase()),
-            )
-            if (index !== -1) {
-                const openedAlias = aliasMap.get(array[index].toLowerCase())
-                newArray.splice(index, 1, openedAlias[0], openedAlias[1])
-                if (!openedAlias[1]) newArray.pop()
+    array.forEach((el) => {
+        const lowerEl = el.toLowerCase();
+
+        if (aliases.has(lowerEl)) {
+            const aliasExpansion = aliases.get(lowerEl);
+            // Always replace with two elements, even if one is empty
+            newArray.push(aliasExpansion[0]);
+            if (aliasExpansion[1]) {
+                newArray.push(aliasExpansion[1]);
             }
+        } else {
+            newArray.push(el);
         }
-    })
+    });
 
-    return newArray
+    return newArray;
 }
 
 const aliasMap = new Collection()
