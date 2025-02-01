@@ -26,7 +26,7 @@ module.exports = function buildMakeUnit() {
         final = false,
         canBoard = true,
     } = {}) {
-        if (currenthp < 1)
+        if (currenthp <= 0)
             throw new Error('One of the units is already dead. RIP.')
 
         if (currenthp > maxhp)
