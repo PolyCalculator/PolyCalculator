@@ -398,7 +398,7 @@ module.exports = {
         maxhp: 10,
         vet: true,
         vetNow: false,
-        att: 3,
+        att: 3.5,
         def: 2,
         bonus: 1,
         fort: false,
