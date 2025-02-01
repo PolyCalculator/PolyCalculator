@@ -26,7 +26,7 @@ test('/o attackers: ca, de, wa defender: de d', () => {
                 },
                 {
                     name: '**Defender (protected)**:',
-                    value: '15 ➔ DEAD',
+                    value: '15 ➔ (0) DEAD',
                 },
             ],
             footer: undefined,
