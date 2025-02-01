@@ -56,8 +56,10 @@ module.exports.boost = function (unit) {
 }
 
 module.exports.convert = function (unit) {
+    if(unit.converted) return
+
     unit.description = `${unit.description} (converted)`
-    unit.currenthp = 'Converted'
+    // unit.currenthp = 'Converted'
     unit.retaliation = false
     unit.converted = true
 }
