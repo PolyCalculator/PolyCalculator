@@ -948,7 +948,7 @@ module.exports = {
         bonus: 1,
         fort: false,
         range: false,
-        retaliation: false,
+        retaliation: true,
         forceRetaliation: false,
         poisonattack: false,
         poisonexplosion: false,
