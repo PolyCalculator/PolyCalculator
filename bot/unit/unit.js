@@ -14,6 +14,7 @@ module.exports = function buildMakeUnit() {
         range = false,
         retaliation = true,
         forceRetaliation = undefined,
+        preRetaliation = false,
         poisonattack = false,
         poisonexplosion = false,
         canExplode = false,
@@ -100,6 +101,12 @@ module.exports = function buildMakeUnit() {
             range: range,
             retaliation: retaliation,
             forceRetaliation: forceRetaliation,
+            preRetaliation: function (preRetaliation) {
+                if (name != "Jelly") {
+                    throw "Only Jellies can retaliate before being attacked."
+                }
+                this.preRetaliation = preRetaliation
+            },
             overrideRange: function (newRange) {
                 range = newRange
             },

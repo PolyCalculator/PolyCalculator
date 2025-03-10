@@ -111,6 +111,10 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
+    if (defender.preRetaliation) {
+        combat(defender, attacker, solution)
+    }
+
     const aforce =
         (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     const dforce =
