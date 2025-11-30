@@ -1065,7 +1065,7 @@ module.exports = {
         canSplash: false,
         canBoard: true,
     },
-    bo: {
+    bm: {
         name: 'Boomchi',
         plural: 'Boomchis',
         description: '',
