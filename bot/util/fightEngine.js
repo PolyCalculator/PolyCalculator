@@ -9,16 +9,53 @@ const {
 } = require('./sequencer')
 
 module.exports.optim = function (attackers, defender, replyData) {
-    const arrayNbAttackers = generateArraySequences(attackers.length)
+    // For canExplode units that aren't already set to exploding,
+    // add a duplicate "exploding" version so the optimizer can
+    // consider hit-then-explode sequences.
+    const explodePairs = [] // { hitIndex, explodeIndex }
+    const expandedAttackers = [...attackers]
+    for (let i = 0; i < attackers.length; i++) {
+        if (attackers[i].canExplode && !attackers[i].exploding) {
+            const clone = Object.assign({}, attackers[i])
+            clone.exploding = true
+            clone.description = `${clone.description} 💥`
+            clone._hitPairIndex = i // tracks the paired hit unit
+            const explodeIndex = expandedAttackers.length
+            expandedAttackers.push(clone)
+            explodePairs.push({
+                hitIndex: i,
+                explodeIndex: explodeIndex,
+            })
+        }
+    }
+
+    if (expandedAttackers.length > 8)
+        throw 'Too many attackers (including explode options) for optimization.\nTry reducing the number of attackers.'
+
+    const arrayNbAttackers = generateArraySequences(expandedAttackers.length)
     const sequences = generateSequences(arrayNbAttackers)
     let solutions = []
 
-    const hasFinal = attackers.some((attacker) => attacker.final === true)
+    const hasFinal = expandedAttackers.some(
+        (attacker) => attacker.final === true,
+    )
     sequences.forEach(function (sequence) {
+        // Enforce: exploding version must come after its hit version
+        let valid = true
+        for (const pair of explodePairs) {
+            const hitPos = sequence.indexOf(pair.hitIndex + 1)
+            const explodePos = sequence.indexOf(pair.explodeIndex + 1)
+            if (explodePos < hitPos) {
+                valid = false
+                break
+            }
+        }
+        if (!valid) return
+
         const attackersSorted = []
 
         for (let j = 0; j < sequence.length; j++) {
-            attackersSorted.push(attackers[sequence[j] - 1])
+            attackersSorted.push(expandedAttackers[sequence[j] - 1])
         }
 
         const solution = multicombat(attackersSorted, defender, sequence)
@@ -30,8 +67,9 @@ module.exports.optim = function (attackers, defender, replyData) {
     if (hasFinal)
         solutions = solutions.filter(
             (x) =>
-                attackers[x.finalSequence[x.finalSequence.length - 1] - 1]
-                    .final,
+                expandedAttackers[
+                    x.finalSequence[x.finalSequence.length - 1] - 1
+                ].final,
         )
 
     let bestSolution = solutions[0]
@@ -53,24 +91,36 @@ module.exports.optim = function (attackers, defender, replyData) {
     bestSolution.finalSequence.forEach((seqIndex, order) => {
         seqIndex--
         defHP = defHP - bestSolution.hpDealt[order]
-        attackers[seqIndex].defHP = defHP
+        expandedAttackers[seqIndex].defHP = defHP
+
+        // For exploding clones, show the HP after the paired hit
+        let beforehp = expandedAttackers[seqIndex].currenthp
+        if (expandedAttackers[seqIndex]._hitPairIndex !== undefined) {
+            // Find the hit's hpLoss in the solution
+            const hitSeqNum =
+                expandedAttackers[seqIndex]._hitPairIndex + 1
+            const hitOrder =
+                bestSolution.finalSequence.indexOf(hitSeqNum)
+            if (hitOrder !== -1) {
+                beforehp = beforehp - bestSolution.hpLoss[hitOrder]
+            }
+        }
+
         replyData.outcome.attackers.push({
-            name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
-                attackers[seqIndex].name
-            }${attackers[seqIndex].description}`,
-            beforehp: attackers[seqIndex].currenthp,
-            afterhp: attackers[seqIndex].currenthp - bestSolution.hpLoss[order],
-            maxhp: attackers[seqIndex].maxhp,
+            name: `${expandedAttackers[seqIndex].vetNow ? 'Veteran ' : ''}${
+                expandedAttackers[seqIndex].name
+            }${expandedAttackers[seqIndex].description}`,
+            beforehp: beforehp,
+            afterhp: beforehp - bestSolution.hpLoss[order],
+            maxhp: expandedAttackers[seqIndex].maxhp,
             hplost: bestSolution.hpLoss[order],
             hpdefender: defHP,
         })
         descriptionArray.push(
-            `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
-                attackers[seqIndex].name
-            }${attackers[seqIndex].description}: ${
-                attackers[seqIndex].currenthp
-            } ➔ ${
-                attackers[seqIndex].currenthp - bestSolution.hpLoss[order]
+            `${expandedAttackers[seqIndex].vetNow ? 'Veteran ' : ''}${
+                expandedAttackers[seqIndex].name
+            }${expandedAttackers[seqIndex].description}: ${beforehp} ➔ ${
+                beforehp - bestSolution.hpLoss[order]
             } (**${defHP}**)`,
         )
     })

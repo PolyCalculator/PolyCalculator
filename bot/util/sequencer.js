@@ -51,7 +51,10 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     let totalAttackersHP = 0
 
     attackers.forEach((attacker) => {
-        totalAttackersHP = totalAttackersHP + attacker.currenthp
+        // Don't double-count HP for exploding clones (same unit as their hit pair)
+        if (attacker._hitPairIndex === undefined) {
+            totalAttackersHP = totalAttackersHP + attacker.currenthp
+        }
     })
 
     let solution = {
@@ -73,11 +76,33 @@ module.exports.multicombat = function (attackers, defender, sequence) {
         const index = attackers.indexOf(attacker)
         if (solution.defenderHP <= 0) break
 
+        // For exploding clones, adjust currenthp based on paired hit's retaliation damage
+        let savedHp
+        if (attacker._hitPairIndex !== undefined) {
+            savedHp = attacker.currenthp
+            const hitSeqNum = attacker._hitPairIndex + 1
+            const hitOrder = solution.finalSequence.indexOf(hitSeqNum)
+            if (hitOrder !== -1) {
+                attacker.currenthp =
+                    attacker.currenthp - solution.hpLoss[hitOrder]
+                if (attacker.currenthp <= 0) {
+                    // The hit killed the unit, it can't explode
+                    attacker.currenthp = savedHp
+                    continue
+                }
+            }
+        }
+
         // if (defender.converted == true)
         //   continue
 
         solution = combat(attacker, defender, solution)
         solution.finalSequence.push(sequence[index])
+
+        // Restore original currenthp so it doesn't affect other sequences
+        if (savedHp !== undefined) {
+            attacker.currenthp = savedHp
+        }
 
         if (
             attacker.poisonattack ||
