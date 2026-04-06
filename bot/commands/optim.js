@@ -1,6 +1,19 @@
 const fight = require('../util/fightEngine')
 const { getBothUnitsArray, getUnitFromArray } = require('../unit/use-cases')
 
+function parseTarget(str) {
+    str = str.trim()
+    if (str.startsWith('<')) {
+        const hp = parseInt(str.substring(1), 10)
+        if (isNaN(hp)) throw 'Invalid target HP value.'
+        return { mode: 'below', hp }
+    } else {
+        const hp = parseInt(str, 10)
+        if (isNaN(hp)) throw 'Invalid target HP value.'
+        return { mode: 'exact', hp }
+    }
+}
+
 module.exports = {
     name: 'optim',
     description:
@@ -16,7 +29,7 @@ module.exports = {
     // category: 'Paid',
     permsAllowed: ['VIEW_CHANNEL'],
     usersAllowed: ['217385992837922819'],
-    execute: async function (message, argsStr, replyData, dbData) {
+    execute: async function (message, argsStr, replyData, dbData, targetStr) {
         if (argsStr.length === 0 || argsStr.includes('help')) {
             replyData.content.push([
                 'Try `.help o` for more information on how to use this command!',
@@ -35,7 +48,31 @@ module.exports = {
             const defenderArray = defenderStr.split(/ +/).filter((x) => x != '')
             const attackers = []
 
+            // Parse target HP from defender modifiers (t12 or t<12) or from targetStr parameter
+            let target = null
+            if (targetStr) {
+                target = parseTarget(targetStr)
+            } else {
+                const targetModifier = defenderArray.find((x) =>
+                    /^t<?[0-9]+$/i.test(x),
+                )
+                if (targetModifier) {
+                    defenderArray.splice(
+                        defenderArray.indexOf(targetModifier),
+                        1,
+                    )
+                    target = parseTarget(targetModifier.substring(1))
+                }
+            }
+
             const defender = getUnitFromArray(defenderArray, replyData)
+
+            if (target && target.hp >= defender.currenthp) {
+                throw `Target HP (${target.hp}) must be less than the defender's current HP (${defender.currenthp}).`
+            }
+            if (target && target.hp < 0) {
+                throw 'Target HP must be 0 or greater.'
+            }
 
             unitsArray.forEach((x) => {
                 const attackerArray = x.split(/ +/).filter((y) => y != '')
@@ -45,7 +82,12 @@ module.exports = {
             if (attackers.length === 0)
                 throw 'You need to specify at least one unit with more than 0 attack.'
 
-            replyData = await fight.optim(attackers, defender, replyData)
+            replyData = await fight.optim(
+                attackers,
+                defender,
+                replyData,
+                target,
+            )
 
             dbData.attacker = attackers.length
             dbData.defender = defender.name

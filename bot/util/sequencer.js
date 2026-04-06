@@ -165,6 +165,79 @@ function combat(attacker, defender, solution) {
     return solution
 }
 
+module.exports.evaluateWithTarget = function (
+    bestSolution,
+    newSolution,
+    target,
+) {
+    // For exact mode: prefer solutions closest to target HP from above (at or above target)
+    // For below mode: prefer solutions that get below the target HP
+    if (target.mode === 'exact') {
+        const bestDiff = bestSolution.defenderHP - target.hp
+        const newDiff = newSolution.defenderHP - target.hp
+
+        // Prefer solutions at or above the target (diff >= 0) over those below (diff < 0)
+        const bestMeetsTarget = bestDiff >= 0
+        const newMeetsTarget = newDiff >= 0
+
+        if (newMeetsTarget && !bestMeetsTarget) return true
+        if (!newMeetsTarget && bestMeetsTarget) return false
+
+        if (newMeetsTarget && bestMeetsTarget) {
+            // Both at or above target: prefer the one closer to target (smaller diff)
+            if (newDiff < bestDiff) return true
+            if (newDiff > bestDiff) return false
+        } else {
+            // Both below target: prefer the one closer to target (larger defenderHP)
+            if (newSolution.defenderHP > bestSolution.defenderHP) return true
+            if (newSolution.defenderHP < bestSolution.defenderHP) return false
+        }
+
+        // Tiebreakers: fewer casualties, more attacker HP, fewer attackers used
+        if (bestSolution.attackerCasualties > newSolution.attackerCasualties)
+            return true
+        if (bestSolution.attackerCasualties < newSolution.attackerCasualties)
+            return false
+        if (bestSolution.attackersHP < newSolution.attackersHP) return true
+        if (bestSolution.attackersHP > newSolution.attackersHP) return false
+        if (
+            bestSolution.finalSequence.length > newSolution.finalSequence.length
+        )
+            return true
+        return false
+    } else {
+        // below mode: prefer solutions where defenderHP < target.hp
+        const bestBelow = bestSolution.defenderHP < target.hp
+        const newBelow = newSolution.defenderHP < target.hp
+
+        if (newBelow && !bestBelow) return true
+        if (!newBelow && bestBelow) return false
+
+        if (newBelow && bestBelow) {
+            // Both below: prefer higher defenderHP (less overkill), then fewer casualties, etc.
+            if (newSolution.defenderHP > bestSolution.defenderHP) return true
+            if (newSolution.defenderHP < bestSolution.defenderHP) return false
+        } else {
+            // Neither below: prefer the one that does more damage (closer to getting below)
+            if (newSolution.defenderHP < bestSolution.defenderHP) return true
+            if (newSolution.defenderHP > bestSolution.defenderHP) return false
+        }
+
+        // Tiebreakers
+        if (bestSolution.attackerCasualties > newSolution.attackerCasualties)
+            return true
+        if (bestSolution.attackerCasualties < newSolution.attackerCasualties)
+            return false
+        if (bestSolution.attackersHP < newSolution.attackersHP) return true
+        if (bestSolution.attackersHP > newSolution.attackersHP) return false
+        if (
+            bestSolution.finalSequence.length > newSolution.finalSequence.length
+        )
+            return true
+        return false
+    }
+}
+
 module.exports.evaluate = function (bestSolution, newSolution) {
     if (newSolution.defenderHP < bestSolution.defenderHP) return true
     else {

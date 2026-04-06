@@ -6,9 +6,10 @@ const {
     generateSequences,
     multicombat,
     evaluate,
+    evaluateWithTarget,
 } = require('./sequencer')
 
-module.exports.optim = function (attackers, defender, replyData) {
+module.exports.optim = function (attackers, defender, replyData, target) {
     const arrayNbAttackers = generateArraySequences(attackers.length)
     const sequences = generateSequences(arrayNbAttackers)
     let solutions = []
@@ -21,9 +22,18 @@ module.exports.optim = function (attackers, defender, replyData) {
             attackersSorted.push(attackers[sequence[j] - 1])
         }
 
-        const solution = multicombat(attackersSorted, defender, sequence)
-
-        solutions.push(solution)
+        if (target) {
+            // Generate solutions for each prefix length to allow early stopping
+            for (let len = 1; len <= sequence.length; len++) {
+                const subAttackers = attackersSorted.slice(0, len)
+                const subSequence = sequence.slice(0, len)
+                const solution = multicombat(subAttackers, defender, subSequence)
+                solutions.push(solution)
+            }
+        } else {
+            const solution = multicombat(attackersSorted, defender, sequence)
+            solutions.push(solution)
+        }
     })
 
     // console.log(solutions)
@@ -38,8 +48,11 @@ module.exports.optim = function (attackers, defender, replyData) {
 
     if (!bestSolution)
         throw 'There is no order that can conform to your request.\nMaybe try without the `f`?'
+    const evaluator = target
+        ? (best, sol) => evaluateWithTarget(best, sol, target)
+        : evaluate
     solutions.forEach((solution) => {
-        if (evaluate(bestSolution, solution)) bestSolution = solution
+        if (evaluator(bestSolution, solution)) bestSolution = solution
     })
 
     if (bestSolution.wasPoisoned) defender.bonus = 0.7
@@ -92,7 +105,15 @@ module.exports.optim = function (attackers, defender, replyData) {
         hplost: defender.currenthp - defHP,
     }
 
-    replyData.discord.description = 'This is the order for best outcome:'
+    if (target) {
+        const targetLabel =
+            target.mode === 'exact'
+                ? `Target: defender at ${target.hp} HP`
+                : `Target: defender below ${target.hp} HP`
+        replyData.discord.description = `${targetLabel}\nThis is the order for best outcome:`
+    } else {
+        replyData.discord.description = 'This is the order for best outcome:'
+    }
     replyData.discord.fields.push({
         name: 'Attacker: startHP ➔ endHP (enemyHP)',
         value: descriptionArray,

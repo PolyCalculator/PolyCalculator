@@ -69,6 +69,63 @@ test('/o attackers: ca, de, wa defender: de d', () => {
     })
 })
 
+test('/o with exact target HP via prefix modifier: wa x8, gi t12', () => {
+    const reply = replyData()
+    execute(
+        {},
+        'wa, wa, wa, wa, wa, wa, wa, wa, gi t12',
+        reply,
+        {},
+    )
+    // Should get as close to 12 as possible from above
+    expect(reply.outcome.defender.afterhp).toBeGreaterThanOrEqual(12)
+    // Should use fewer than all 8 attackers
+    expect(reply.outcome.attackers.length).toBeLessThan(8)
+    expect(reply.discord.description).toContain('Target: defender at 12 HP')
+})
+
+test('/o with below target HP via prefix modifier: wa x3, gi t<35', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, gi t<35', reply, {})
+    // Should get below 35
+    expect(reply.outcome.defender.afterhp).toBeLessThan(35)
+    // Should use only 2 warriors (34 HP is below 35)
+    expect(reply.outcome.attackers.length).toBe(2)
+    expect(reply.discord.description).toContain(
+        'Target: defender below 35 HP',
+    )
+})
+
+test('/o with exact target HP via targetStr parameter', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi', reply, {}, '12')
+    expect(reply.outcome.defender.afterhp).toBeGreaterThanOrEqual(12)
+    expect(reply.outcome.attackers.length).toBeLessThan(8)
+})
+
+test('/o with below target HP via targetStr parameter', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi', reply, {}, '<12')
+    expect(reply.outcome.defender.afterhp).toBeLessThan(12)
+})
+
+test('/o target HP must be less than defender current HP', async () => {
+    const reply = replyData()
+    await expect(execute({}, 'wa, wa, gi t50', reply, {})).rejects.toMatch(
+        'Target HP (50) must be less than',
+    )
+})
+
+test('/o without target behaves as before', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, gi', reply, {})
+    // Normal optim: should use all attackers and maximize damage
+    expect(reply.outcome.attackers.length).toBe(3)
+    expect(reply.discord.description).toBe(
+        'This is the order for best outcome:',
+    )
+})
+
 test('/o attackers: ca f, de, wa defender: de d', () => {
     const reply = replyData()
     execute({}, 'ca f, de, wa, de d', reply, {})
