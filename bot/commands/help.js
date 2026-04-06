@@ -63,7 +63,7 @@ module.exports = {
                 })
                 replyData.discord.fields.push({
                     name: 'Modifiers:',
-                    value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`',
+                    value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nBoosted: `b`\nPoisoned: `p`\nExplode: `x`\nSplash: `s`\nOld splash (no floor): `h`\nSkip tentacles (already adjacent): `n`',
                 })
             }
             if (command.name === 'optim') {

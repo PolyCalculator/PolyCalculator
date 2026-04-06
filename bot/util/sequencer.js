@@ -113,8 +113,36 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 // }
 
 function combat(attacker, defender, solution) {
+    // TENTACLES PHASE: defender hits attacker BEFORE the attack
+    let tentacleDmg = 0
+    if (
+        defender.tentacles &&
+        !attacker.noTentacles &&
+        !attacker.range
+    ) {
+        const tAforce =
+            (defender.iAtt() * BigInt(solution.defenderHP * 10) * 100n) /
+            defender.iMaxHp()
+        const tDforce =
+            (attacker.iDef() * attacker.iCurrentHp() * 100n) /
+            attacker.iMaxHp()
+        const tTotaldam = tAforce + tDforce
+        tentacleDmg = Number(attackerCalc(tAforce, tTotaldam, defender))
+
+        if (attacker.currenthp - tentacleDmg <= 0) {
+            // Attacker killed by tentacles — no attack happens
+            solution.hpDealt.push(0)
+            solution.attackerCasualties = solution.attackerCasualties + 1
+            solution.attackersHP = solution.attackersHP - attacker.currenthp
+            solution.hpLoss.push(attacker.currenthp)
+            return solution
+        }
+    }
+
+    // Use reduced HP for attack force calculation if tentacles hit
+    const effectiveHp = attacker.currenthp - tentacleDmg
     const aforce =
-        (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
+        (attacker.iAtt() * BigInt(effectiveHp * 10) * 100n) / attacker.iMaxHp()
     const dforce =
         (defender.iDef() * BigInt(solution.defenderHP * 10) * 100n) /
         defender.iMaxHp()
@@ -128,26 +156,31 @@ function combat(attacker, defender, solution) {
     solution.hpDealt.push(defdiff)
     solution.defenderHP = solution.defenderHP - defdiff
 
-    let attdiff = 0
+    // Total attacker damage = tentacles + retaliation (if any)
+    let attdiff = tentacleDmg
     let hpattacker
     if (solution.defenderHP <= 0) {
-        hpattacker = attacker.currenthp
+        hpattacker = effectiveHp
         solution.defenderHP = 0
+    } else if (defender.tentacles && !attacker.noTentacles && !attacker.range) {
+        // Tentacles replaces normal retaliation
+        hpattacker = effectiveHp
     } else if (
         attacker.forceRetaliation === false ||
         defender.retaliation === false
     ) {
-        hpattacker = attacker.currenthp
+        hpattacker = effectiveHp
     } else if (
         attacker.range === true &&
         defender.range === false &&
         attacker.forceRetaliation !== true
     ) {
-        hpattacker = attacker.currenthp
+        hpattacker = effectiveHp
     } else if (attacker.exploding || attacker.name === 'Segment') {
         attdiff = attacker.currenthp
     } else {
-        attdiff = Number(defenderCalc(dforce, totaldam, defender))
+        const retDmg = Number(defenderCalc(dforce, totaldam, defender))
+        attdiff = tentacleDmg + retDmg
         attacker.attdiff = attdiff
         hpattacker = attacker.currenthp - attdiff
         if (hpattacker <= 0) {

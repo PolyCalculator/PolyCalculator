@@ -23,6 +23,7 @@ module.exports = function buildMakeUnit() {
         converted = false,
         canSplash = false,
         splashNow = false,
+        tentacles = false,
         final = false,
         canBoard = true,
     } = {}) {
@@ -192,6 +193,11 @@ module.exports = function buildMakeUnit() {
             oldSplash: false,
             toOldSplash: function () {
                 this.oldSplash = true
+            },
+            tentacles: tentacles,
+            noTentacles: false,
+            toNoTentacles: function () {
+                this.noTentacles = true
             },
             final: final,
             iAtt: function () {
