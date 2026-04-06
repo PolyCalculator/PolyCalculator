@@ -23,6 +23,7 @@ module.exports = function buildMakeUnit() {
         converted = false,
         canSplash = false,
         splashNow = false,
+        tentacles = false,
         final = false,
         canBoard = true,
     } = {}) {
@@ -181,6 +182,11 @@ module.exports = function buildMakeUnit() {
                         `${plural} can't splash, so I calculated it as a normal attack`,
                         {},
                     ])
+            },
+            tentacles: tentacles,
+            noTentacles: false,
+            toNoTentacles: function () {
+                this.noTentacles = true
             },
             final: final,
             iAtt: function () {

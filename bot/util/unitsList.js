@@ -457,6 +457,7 @@ module.exports = {
         range: false,
         retaliation: false,
         forceRetaliation: false,
+        tentacles: true,
         poisonattack: false,
         poisonexplosion: false,
         canExplode: false,
