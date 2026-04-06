@@ -8,6 +8,12 @@ const {
     evaluate,
 } = require('./sequencer')
 
+function getDefenderBonusLabel(defender) {
+    const baseBonus = defender.poisoned ? defender.bonus * 2 : defender.bonus
+    const baseLabel = { 1: '', 1.5: ' (protected)', 4: ' (walled)' }[baseBonus] || ''
+    return baseLabel + (defender.poisoned ? ' (poisoned)' : '')
+}
+
 module.exports.optim = function (attackers, defender, replyData) {
     const arrayNbAttackers = generateArraySequences(attackers.length)
     const sequences = generateSequences(arrayNbAttackers)
@@ -42,7 +48,10 @@ module.exports.optim = function (attackers, defender, replyData) {
         if (evaluate(bestSolution, solution)) bestSolution = solution
     })
 
-    if (bestSolution.wasPoisoned) defender.bonus = 0.7
+    if (bestSolution.wasPoisoned && !defender.poisoned) {
+        defender.bonus *= 0.5
+        defender.poisoned = true
+    }
 
     // if (bestSolution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -75,12 +84,7 @@ module.exports.optim = function (attackers, defender, replyData) {
         )
     })
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -125,7 +129,10 @@ module.exports.calc = function (attackers, defender, replyData) {
 
     const solution = multicombat(attackersSorted, defender, sequence)
 
-    if (solution.wasPoisoned) defender.bonus = 0.7
+    if (solution.wasPoisoned && !defender.poisoned) {
+        defender.bonus *= 0.5
+        defender.poisoned = true
+    }
 
     // if (solution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -160,12 +167,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             descriptionArray.push('...')
     })
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -203,17 +205,12 @@ module.exports.bulk = function (attacker, defender, replyData) {
     let totaldam = aforce + dforce
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonusLabel = getDefenderBonusLabel(defender)
 
     if (attacker.att <= 0)
         throw `When will you ever be able to attack with a **${attacker.name}**...`
     if (defdiff < 1)
-        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonus}**.`
+        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonusLabel}**.`
 
     let hpdefender = defender.currenthp
 
@@ -230,8 +227,12 @@ module.exports.bulk = function (attacker, defender, replyData) {
         if (
             attacker.poisonattack ||
             (attacker.poisonexplosion && attacker.exploding)
-        )
-            defender.bonus = 0.7
+        ) {
+            if (!defender.poisoned) {
+                defender.bonus *= 0.5
+                defender.poisoned = true
+            }
+        }
     }
 
     replyData.outcome.attackers.push({
@@ -245,14 +246,14 @@ module.exports.bulk = function (attacker, defender, replyData) {
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
-        }${defenderBonus}`,
+        }${defenderBonusLabel}`,
         currenthp: defender.currenthp,
         maxhp: defender.maxhp,
     }
 
     replyData.outcome.response = i
 
-    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonus}:`
+    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonusLabel}:`
     replyData.discord.fields.push({
         name: `**Number of ${
             i > 1 && attacker.description === ''
@@ -291,12 +292,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
         if (defender.currenthp - defdiff <= 0) break
     }
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${
@@ -362,12 +358,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
         if (defender.currenthp - defdiff <= 0) break
     }
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${

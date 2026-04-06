@@ -66,6 +66,7 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     }
 
     const initialBonus = defender.bonus
+    const initialPoisoned = defender.poisoned || false
 
     for (const attacker of attackers) {
         if (attacker.convert) convert(defender)
@@ -92,6 +93,7 @@ module.exports.multicombat = function (attackers, defender, sequence) {
     }
 
     defender.bonus = initialBonus
+    defender.poisoned = initialPoisoned
 
     return solution
 }
@@ -120,7 +122,7 @@ function combat(attacker, defender, solution) {
     const totaldam = aforce + dforce
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
     if (attacker.splash || attacker.exploding || attacker.splashNow) {
-        defdiff = defdiff / 2
+        defdiff = attacker.oldSplash ? defdiff / 2 : Math.floor(defdiff / 2)
     }
 
     solution.hpDealt.push(defdiff)

@@ -70,6 +70,7 @@ module.exports = function buildMakeUnit() {
             att: att,
             def: def,
             bonus: bonus,
+            poisoned: false,
             setBonus: function (modifierArray, replyData) {
                 const hasD =
                     modifierArray.includes('d') || modifierArray.includes('p')
@@ -120,14 +121,20 @@ module.exports = function buildMakeUnit() {
             poisonattack: poisonattack,
             poisonexplosion: poisonexplosion,
             selfPoison: function () {
-                this.bonus = 0.7
+                if (!this.poisoned) {
+                    this.bonus *= 0.5
+                    this.poisoned = true
+                }
             },
             toPoison: function (defender, replyData) {
                 if (
                     this.poisonattack ||
                     (this.poisonexplosion && this.exploding)
                 ) {
-                    defender.bonus = 0.7
+                    if (!defender.poisoned) {
+                        defender.bonus *= 0.5
+                        defender.poisoned = true
+                    }
                 } else
                     replyData.content.push([
                         `${plural} can't poison, so I'll procede without it`,
@@ -181,6 +188,10 @@ module.exports = function buildMakeUnit() {
                         `${plural} can't splash, so I calculated it as a normal attack`,
                         {},
                     ])
+            },
+            oldSplash: false,
+            toOldSplash: function () {
+                this.oldSplash = true
             },
             final: final,
             iAtt: function () {

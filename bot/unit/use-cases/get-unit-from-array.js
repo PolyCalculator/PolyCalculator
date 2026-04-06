@@ -80,6 +80,8 @@ module.exports = function makeGetUnitFromArray({
         if (unitModifiers.includes('r') || unitModifiers.includes('nr'))
             unit.overrideRetaliation(unitModifiers)
 
+        if (unitModifiers.includes('h')) unit.toOldSplash()
+
         if (unitModifiers.includes('s')) unit.toSplash(replyData)
 
         if (unitModifiers.includes('f')) unit.makeFinal()

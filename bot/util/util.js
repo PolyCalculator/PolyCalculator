@@ -41,7 +41,10 @@ module.exports.buildEmbed = function (data) {
 }
 
 module.exports.poison = function (unit) {
-    unit.bonus = 0.7
+    if (!unit.poisoned) {
+        unit.bonus *= 0.5
+        unit.poisoned = true
+    }
 }
 
 module.exports.freeze = function (unit) {
