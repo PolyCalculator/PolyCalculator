@@ -63,13 +63,13 @@ module.exports = {
                 })
                 replyData.discord.fields.push({
                     name: 'Modifiers:',
-                    value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`',
+                    value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nBoosted: `b`\nPoisoned: `p`\nExplode: `x`\nAttack then explode: `ax`\nAttack then instant explode: `axi`\nSplash: `s`\nOld splash (no floor): `h`\nForce retaliation: `r`\nNo retaliation/tentacles: `nr`',
                 })
             }
             if (command.name === 'optim') {
                 replyData.discord.fields.push({
                     name: '`/o` specific modifier:',
-                    value: 'Only combos with that/those unit(s) doing the final hit: `f`',
+                    value: 'Only combos with that/those unit(s) doing the final hit: `f`\nTarget HP: `t12` (exactly 12hp) or `t<12` (get below 12hp) on defender',
                 })
             }
             return replyData

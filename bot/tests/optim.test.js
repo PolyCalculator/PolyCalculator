@@ -69,6 +69,128 @@ test('/o attackers: ca, de, wa defender: de d', () => {
     })
 })
 
+test('/o exact target achievable: wa x8, gi t34', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi t34', reply, {})
+    // 2 warriors leave Giant at exactly 34hp
+    expect(reply.outcome.defender.afterhp).toBe(34)
+    expect(reply.outcome.attackers.length).toBe(2)
+    expect(reply.discord.description).toContain(
+        'Target: defender at exactly 34 HP',
+    )
+})
+
+test('/o exact target impossible: wa x8, gi t12 throws', async () => {
+    const reply = replyData()
+    await expect(
+        execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi t12', reply, {}),
+    ).rejects.toMatch('No combination leaves the defender at exactly 12 HP')
+})
+
+test('/o below target: wa x3, gi t<35', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, gi t<35', reply, {})
+    // Only 2 warriors needed to get below 35 (Giant at 34)
+    // Below target = "dead", so use minimum units
+    expect(reply.outcome.defender.afterhp).toBeLessThan(35)
+    expect(reply.outcome.attackers.length).toBe(2)
+    expect(reply.discord.description).toContain(
+        'Target: defender below 35 HP',
+    )
+})
+
+test('/o below target uses best solution: ca, wa, wa, gi t<35', () => {
+    const reply = replyData()
+    execute({}, 'ca, wa, wa, gi t<35', reply, {})
+    // Below target = "dead", so prefer fewest units with best attacker outcome
+    expect(reply.outcome.defender.afterhp).toBeLessThan(35)
+    // 1 catapult alone gets Giant to 30 (below 35), so only 1 unit needed
+    expect(reply.outcome.attackers.length).toBe(1)
+})
+
+test('/o exact target via targetStr parameter', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi', reply, {}, '37')
+    expect(reply.outcome.defender.afterhp).toBe(37)
+    expect(reply.outcome.attackers.length).toBe(1)
+})
+
+test('/o below target via targetStr parameter', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, wa, wa, wa, wa, wa, gi', reply, {}, '<12')
+    expect(reply.outcome.defender.afterhp).toBeLessThan(12)
+})
+
+test('/o target HP must be less than defender current HP', async () => {
+    const reply = replyData()
+    await expect(execute({}, 'wa, wa, gi t50', reply, {})).rejects.toMatch(
+        'Target HP (50) must be less than',
+    )
+})
+
+test('/o without target behaves as before', () => {
+    const reply = replyData()
+    execute({}, 'wa, wa, wa, gi', reply, {})
+    // Normal optim: should use all attackers and maximize damage
+    expect(reply.outcome.attackers.length).toBe(3)
+    expect(reply.discord.description).toBe(
+        'This is the order for best outcome:',
+    )
+})
+
+test('/o do (no modifier) — just attacks, no explosion', () => {
+    const reply = replyData()
+    execute({}, 'do, wa, wa, gi', reply, {})
+    // Doomux should appear once (no explosion)
+    const doomEntries = reply.outcome.attackers.filter((a) =>
+        a.name.includes('Doomux'),
+    )
+    expect(doomEntries.length).toBe(1)
+    expect(doomEntries[0].name).not.toContain('💥')
+    expect(reply.outcome.defender.afterhp).toBe(25)
+})
+
+test('/o do x — just explodes, no hit first', () => {
+    const reply = replyData()
+    execute({}, 'do x, wa, wa, gi', reply, {})
+    // Doomux should appear once as explosion only
+    const doomEntries = reply.outcome.attackers.filter((a) =>
+        a.name.includes('Doomux'),
+    )
+    expect(doomEntries.length).toBe(1)
+    expect(doomEntries[0].name).toContain('💥')
+    expect(reply.outcome.defender.afterhp).toBe(27)
+})
+
+test('/o do ax — attack then explode, others can go between', () => {
+    const reply = replyData()
+    execute({}, 'do ax, wa, wa, gi', reply, {})
+    // Doomux should appear twice (hit + explode)
+    const doomEntries = reply.outcome.attackers.filter((a) =>
+        a.name.includes('Doomux'),
+    )
+    expect(doomEntries.length).toBe(2)
+    expect(doomEntries[1].name).toContain('💥')
+    expect(reply.outcome.defender.afterhp).toBe(21)
+})
+
+test('/o do axi — attack then instant explode', () => {
+    const reply = replyData()
+    execute({}, 'do axi, wa, wa, gi', reply, {})
+    // Doomux should appear twice, explosion immediately after hit
+    const doomEntries = reply.outcome.attackers.filter((a) =>
+        a.name.includes('Doomux'),
+    )
+    expect(doomEntries.length).toBe(2)
+    // Verify explosion is immediately after hit in the sequence
+    const names = reply.outcome.attackers.map((a) => a.name)
+    const hitIdx = names.findIndex(
+        (n) => n.includes('Doomux') && !n.includes('💥'),
+    )
+    const explodeIdx = names.findIndex((n) => n.includes('💥'))
+    expect(explodeIdx).toBe(hitIdx + 1)
+})
+
 test('/o attackers: ca f, de, wa defender: de d', () => {
     const reply = replyData()
     execute({}, 'ca f, de, wa, de d', reply, {})

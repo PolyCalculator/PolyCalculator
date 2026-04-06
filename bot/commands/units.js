@@ -45,11 +45,11 @@ module.exports = {
             })
             replyData.discord.fields.push({
                 name: 'Modifiers:',
-                value: "Poison: `p`\nBoost: `b`\nExploding: `x`\nVeteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nAdd `r` to the attacker to force the defender's retaliation.\nAdd `nr` to the attacker to force no retaliation on the  defender.\nAdd `s` to a dragon to calculate it's splash damage instead of direct hit.",
+                value: 'Veteran: `v`\nSingle defense bonus: `d`\nWall defense bonus: `w`\nBoosted: `b`\nPoisoned: `p`\nExplode: `x`\nAttack then explode: `ax`\nAttack then instant explode: `axi`\nSplash: `s`\nOld splash (no floor): `h`\nForce retaliation: `r`\nNo retaliation/tentacles: `nr`',
             })
             replyData.discord.fields.push({
                 name: '`.o` specific modifiers:',
-                value: 'Only combos with that/those unit(s) doing the final hit: `f`',
+                value: 'Only combos with that/those unit(s) doing the final hit: `f`\nTarget HP: `t12` (exactly 12hp) or `t<12` (get below 12hp) on defender',
             })
 
             replyData.outcome = []
@@ -180,7 +180,7 @@ module.exports = {
 
         // Add integer values to be used for damage calculation.
         unit.iAtt = () => BigInt(unit.att * 100)
-        unit.iBonus = () => BigInt(unit.bonus * 10)
+        unit.iBonus = () => BigInt(Math.round(unit.bonus * 100))
         unit.iDef = () => BigInt(unit.def * 100 * unit.bonus)
         unit.iMaxHp = () => BigInt(unit.maxhp * 10)
         unit.iCurrentHp = () => BigInt(unit.currenthp * 10)

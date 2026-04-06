@@ -16,7 +16,7 @@ module.exports.attackerCalc = function (aforce, totaldam, attacker) {
 module.exports.defenderCalc = function (aforce, totaldam, defender) {
     return (
         Round(
-            (aforce * defender.iDef() * 4500n) /
+            (aforce * defender.iDef() * 45000n) /
                 (1000n * totaldam * defender.iBonus()),
         ) / 10n
     )
@@ -41,7 +41,10 @@ module.exports.buildEmbed = function (data) {
 }
 
 module.exports.poison = function (unit) {
-    unit.bonus = 0.7
+    if (!unit.poisoned) {
+        unit.bonus *= 0.5
+        unit.poisoned = true
+    }
 }
 
 module.exports.freeze = function (unit) {

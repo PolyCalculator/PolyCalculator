@@ -23,6 +23,7 @@ module.exports = function buildMakeUnit() {
         converted = false,
         canSplash = false,
         splashNow = false,
+        tentacles = false,
         final = false,
         canBoard = true,
     } = {}) {
@@ -70,6 +71,7 @@ module.exports = function buildMakeUnit() {
             att: att,
             def: def,
             bonus: bonus,
+            poisoned: false,
             setBonus: function (modifierArray, replyData) {
                 const hasD =
                     modifierArray.includes('d') || modifierArray.includes('p')
@@ -115,19 +117,26 @@ module.exports = function buildMakeUnit() {
                 } else if (hasNR) {
                     this.retaliation = false
                     this.forceRetaliation = false
+                    this.noTentacles = true
                 }
             },
             poisonattack: poisonattack,
             poisonexplosion: poisonexplosion,
             selfPoison: function () {
-                this.bonus = 0.7
+                if (!this.poisoned) {
+                    this.bonus *= 0.5
+                    this.poisoned = true
+                }
             },
             toPoison: function (defender, replyData) {
                 if (
                     this.poisonattack ||
                     (this.poisonexplosion && this.exploding)
                 ) {
-                    defender.bonus = 0.7
+                    if (!defender.poisoned) {
+                        defender.bonus *= 0.5
+                        defender.poisoned = true
+                    }
                 } else
                     replyData.content.push([
                         `${plural} can't poison, so I'll procede without it`,
@@ -151,6 +160,27 @@ module.exports = function buildMakeUnit() {
                 if (canExplode) {
                     this.description = `${description} 💥`
                     this.exploding = true
+                } else
+                    replyData.content.push([
+                        `${plural} can't explode, so I calculated it as a direct attack`,
+                        {},
+                    ])
+            },
+            attackExplode: false,
+            instantExplode: false,
+            toAttackExplode: function (replyData) {
+                if (canExplode) {
+                    this.attackExplode = true
+                } else
+                    replyData.content.push([
+                        `${plural} can't explode, so I calculated it as a direct attack`,
+                        {},
+                    ])
+            },
+            toInstantExplode: function (replyData) {
+                if (canExplode) {
+                    this.attackExplode = true
+                    this.instantExplode = true
                 } else
                     replyData.content.push([
                         `${plural} can't explode, so I calculated it as a direct attack`,
@@ -182,12 +212,21 @@ module.exports = function buildMakeUnit() {
                         {},
                     ])
             },
+            oldSplash: false,
+            toOldSplash: function () {
+                this.oldSplash = true
+            },
+            tentacles: tentacles,
+            noTentacles: false,
+            toNoTentacles: function () {
+                this.noTentacles = true
+            },
             final: final,
             iAtt: function () {
                 return BigInt(this.att * 100)
             },
             iBonus: function () {
-                return BigInt(this.bonus * 10)
+                return BigInt(Math.round(this.bonus * 100))
             },
             iDef: function () {
                 return BigInt(this.def * 100 * this.bonus)

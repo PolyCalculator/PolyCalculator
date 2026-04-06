@@ -70,7 +70,9 @@ module.exports = function makeGetUnitFromArray({
 
         if (unitModifiers.includes('p')) unit.selfPoison()
 
-        if (unitModifiers.includes('x')) unit.toExplode(replyData)
+        if (unitModifiers.includes('axi')) unit.toInstantExplode(replyData)
+        else if (unitModifiers.includes('ax')) unit.toAttackExplode(replyData)
+        else if (unitModifiers.includes('x')) unit.toExplode(replyData)
 
         if (unitModifiers.includes('v')) unit.toVeteran(replyData)
 
@@ -79,6 +81,9 @@ module.exports = function makeGetUnitFromArray({
 
         if (unitModifiers.includes('r') || unitModifiers.includes('nr'))
             unit.overrideRetaliation(unitModifiers)
+
+
+        if (unitModifiers.includes('h')) unit.toOldSplash()
 
         if (unitModifiers.includes('s')) unit.toSplash(replyData)
 
