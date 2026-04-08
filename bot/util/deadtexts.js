@@ -31,4 +31,5 @@ module.exports = [
     'IN VALHALLA',
     'SKIPPED ON TURN 2',
     'DEEBWEIGHT',
+    'PAID FOR BATTLECALC',
 ]
