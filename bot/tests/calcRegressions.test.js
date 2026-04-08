@@ -6,7 +6,7 @@ test('de bo s, de', async () => {
     const reply = replyData()
     await execute({}, 'de bo s, de', reply, {})
     expect(reply.outcome.attackers[0].afterhp).toBe(15)
-    expect(reply.outcome.defender.afterhp).toBe(12)
+    expect(reply.outcome.defender.afterhp).toBe(11.5)
 })
 
 test('de bo, de', async () => {

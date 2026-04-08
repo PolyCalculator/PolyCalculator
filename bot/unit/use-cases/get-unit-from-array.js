@@ -83,7 +83,7 @@ module.exports = function makeGetUnitFromArray({
             unit.overrideRetaliation(unitModifiers)
 
 
-        if (unitModifiers.includes('h')) unit.toOldSplash()
+        if (unitModifiers.includes('fl')) unit.toFloorSplash()
 
         if (unitModifiers.includes('s')) unit.toSplash(replyData)
 

@@ -159,7 +159,7 @@ test('/o do x — just explodes, no hit first', () => {
     )
     expect(doomEntries.length).toBe(1)
     expect(doomEntries[0].name).toContain('💥')
-    expect(reply.outcome.defender.afterhp).toBe(27)
+    expect(reply.outcome.defender.afterhp).toBe(26.5)
 })
 
 test('/o do ax — attack then explode, others can go between', () => {
@@ -171,7 +171,7 @@ test('/o do ax — attack then explode, others can go between', () => {
     )
     expect(doomEntries.length).toBe(2)
     expect(doomEntries[1].name).toContain('💥')
-    expect(reply.outcome.defender.afterhp).toBe(21)
+    expect(reply.outcome.defender.afterhp).toBe(20.5)
 })
 
 test('/o do axi — attack then instant explode', () => {

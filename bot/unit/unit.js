@@ -212,9 +212,9 @@ module.exports = function buildMakeUnit() {
                         {},
                     ])
             },
-            oldSplash: false,
-            toOldSplash: function () {
-                this.oldSplash = true
+            floorSplash: false,
+            toFloorSplash: function () {
+                this.floorSplash = true
             },
             tentacles: tentacles,
             noTentacles: false,
