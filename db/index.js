@@ -1,12 +1,15 @@
 require('dotenv').config()
-const { Pool } = require('pg')
 
 const connectionString = process.env.DATABASE_URL
 
-const pool = new Pool({
-    connectionString: connectionString,
-})
-
-module.exports = {
-    query: (text, params) => pool.query(text, params),
+if (connectionString) {
+    const { Pool } = require('pg')
+    const pool = new Pool({ connectionString })
+    module.exports = {
+        query: (text, params) => pool.query(text, params),
+    }
+} else {
+    module.exports = {
+        query: () => Promise.resolve({ rows: [] }),
+    }
 }

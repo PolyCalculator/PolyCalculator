@@ -13,10 +13,11 @@ const {
 } = require('./util/util')
 const db = require('../db')
 let calcServer = {}
-let newsChannel = {}
-let feedbackChannel = {}
-let logChannel = {}
-let errorChannel = {}
+const noop = { send: () => Promise.resolve(), catch: () => {} }
+let newsChannel = noop
+let feedbackChannel = noop
+let logChannel = noop
+let errorChannel = noop
 
 bot.commands = new Collection()
 const commandFiles = fs
@@ -47,10 +48,12 @@ const dbServers = require('./util/dbServers')
 // --------------------------------------
 bot.once('ready', () => {
     calcServer = bot.guilds.cache.get('581872879386492929')
-    newsChannel = calcServer.channels.cache.get('654168953643466752')
-    logChannel = calcServer.channels.cache.get('648688924155314176')
-    errorChannel = calcServer.channels.cache.get('658125562455261185')
-    feedbackChannel = calcServer.channels.cache.get('738926248700411994')
+    if (calcServer) {
+        newsChannel = calcServer.channels.cache.get('654168953643466752')
+        logChannel = calcServer.channels.cache.get('648688924155314176')
+        errorChannel = calcServer.channels.cache.get('658125562455261185')
+        feedbackChannel = calcServer.channels.cache.get('738926248700411994')
+    }
     let toggle = true
 
     setInterval(function () {
