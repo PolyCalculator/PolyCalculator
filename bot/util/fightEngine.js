@@ -199,6 +199,22 @@ module.exports.optim = function (attackers, defender, replyData, target) {
 }
 
 module.exports.calc = function (attackers, defender, replyData) {
+    // Expand ax/axi units: insert an exploding clone right after the attacker
+    const expandedAttackers = []
+    for (let i = 0; i < attackers.length; i++) {
+        expandedAttackers.push(attackers[i])
+        if (attackers[i].attackExplode) {
+            const clone = Object.assign({}, attackers[i])
+            clone.exploding = true
+            clone.attackExplode = false
+            clone.instantExplode = false
+            clone.description = `${clone.description} 💥`
+            clone._hitPairIndex = i
+            expandedAttackers.push(clone)
+        }
+    }
+    attackers = expandedAttackers
+
     const sequence = []
     for (let i = 1; i <= attackers.length; i++) {
         sequence.push(i)
