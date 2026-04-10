@@ -184,7 +184,12 @@ function combat(attacker, defender, solution) {
     // Total attacker damage = tentacles + retaliation (if any)
     let attdiff = tentacleDmg
     let hpattacker
-    if (solution.defenderHP <= 0) {
+    if (attacker.exploding || attacker.name === 'Segment') {
+        // Exploding units always die, even if they deliver the killing blow
+        attdiff = attacker.currenthp
+        solution.attackerCasualties = solution.attackerCasualties + 1
+        if (solution.defenderHP <= 0) solution.defenderHP = 0
+    } else if (solution.defenderHP <= 0) {
         hpattacker = effectiveHp
         solution.defenderHP = 0
     } else if (defender.tentacles && !attacker.noTentacles && !attacker.range) {
@@ -201,9 +206,6 @@ function combat(attacker, defender, solution) {
         attacker.forceRetaliation !== true
     ) {
         hpattacker = effectiveHp
-    } else if (attacker.exploding || attacker.name === 'Segment') {
-        attdiff = attacker.currenthp
-        solution.attackerCasualties = solution.attackerCasualties + 1
     } else {
         const retDmg = Number(defenderCalc(dforce, totaldam, defender))
         attdiff = tentacleDmg + retDmg
