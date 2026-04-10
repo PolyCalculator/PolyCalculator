@@ -203,6 +203,7 @@ function combat(attacker, defender, solution) {
         hpattacker = effectiveHp
     } else if (attacker.exploding || attacker.name === 'Segment') {
         attdiff = attacker.currenthp
+        solution.attackerCasualties = solution.attackerCasualties + 1
     } else {
         const retDmg = Number(defenderCalc(dforce, totaldam, defender))
         attdiff = tentacleDmg + retDmg
