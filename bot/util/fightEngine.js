@@ -35,53 +35,89 @@ module.exports.optim = function (attackers, defender, replyData, target) {
         }
     }
 
-    if (expandedAttackers.length > 8)
-        throw 'Too many attackers (including explode options) for optimization.\nTry reducing the number of attackers.'
+    // Generate all subsets of optional explosion clones to try
+    // Each ax/axi explosion is optional — the optimizer decides which are worth detonating
+    const explodeIndices = explodePairs.map((p) => p.explodeIndex)
+    const explodeSubsets = [[]]
+    for (const idx of explodeIndices) {
+        const len = explodeSubsets.length
+        for (let i = 0; i < len; i++) {
+            explodeSubsets.push([...explodeSubsets[i], idx])
+        }
+    }
 
-    const arrayNbAttackers = generateArraySequences(expandedAttackers.length)
-    const sequences = generateSequences(arrayNbAttackers)
     let solutions = []
-
     const hasFinal = expandedAttackers.some(
         (attacker) => attacker.final === true,
     )
-    sequences.forEach(function (sequence) {
-        // Enforce: exploding version must come after its hit version
-        // For instant (axi): explosion must be immediately after hit
-        let valid = true
-        for (const pair of explodePairs) {
-            const hitPos = sequence.indexOf(pair.hitIndex + 1)
-            const explodePos = sequence.indexOf(pair.explodeIndex + 1)
-            if (explodePos < hitPos) {
-                valid = false
-                break
-            }
-            if (pair.instant && explodePos !== hitPos + 1) {
-                valid = false
-                break
-            }
-        }
-        if (!valid) return
 
-        const attackersSorted = []
-
-        for (let j = 0; j < sequence.length; j++) {
-            attackersSorted.push(expandedAttackers[sequence[j] - 1])
+    for (const includedExplodes of explodeSubsets) {
+        // Build the unit list: all base attackers + only the included explosions
+        const unitIndices = []
+        for (let i = 0; i < expandedAttackers.length; i++) {
+            if (explodeIndices.includes(i) && !includedExplodes.includes(i))
+                continue
+            unitIndices.push(i)
         }
 
-        if (target) {
-            // Generate solutions for each prefix length to allow early stopping
-            for (let len = 1; len <= sequence.length; len++) {
-                const subAttackers = attackersSorted.slice(0, len)
-                const subSequence = sequence.slice(0, len)
-                const solution = multicombat(subAttackers, defender, subSequence)
+        if (unitIndices.length > 8)
+            throw 'Too many attackers (including explode options) for optimization.\nTry reducing the number of attackers.'
+
+        // Build the active explode pairs for this subset
+        const activePairs = explodePairs.filter((p) =>
+            includedExplodes.includes(p.explodeIndex),
+        )
+
+        const arrayNbAttackers = generateArraySequences(unitIndices.length)
+        const sequences = generateSequences(arrayNbAttackers)
+
+        sequences.forEach(function (sequence) {
+            // Map sequence back to expandedAttackers indices
+            const mappedSequence = sequence.map((s) => unitIndices[s - 1] + 1)
+
+            // Enforce: exploding version must come after its hit version
+            // For instant (axi): explosion must be immediately after hit
+            let valid = true
+            for (const pair of activePairs) {
+                const hitPos = mappedSequence.indexOf(pair.hitIndex + 1)
+                const explodePos = mappedSequence.indexOf(pair.explodeIndex + 1)
+                if (explodePos < hitPos) {
+                    valid = false
+                    break
+                }
+                if (pair.instant && explodePos !== hitPos + 1) {
+                    valid = false
+                    break
+                }
+            }
+            if (!valid) return
+
+            const attackersSorted = []
+            for (let j = 0; j < mappedSequence.length; j++) {
+                attackersSorted.push(expandedAttackers[mappedSequence[j] - 1])
+            }
+
+            if (target) {
+                for (let len = 1; len <= mappedSequence.length; len++) {
+                    const subAttackers = attackersSorted.slice(0, len)
+                    const subSequence = mappedSequence.slice(0, len)
+                    const solution = multicombat(
+                        subAttackers,
+                        defender,
+                        subSequence,
+                    )
+                    solutions.push(solution)
+                }
+            } else {
+                const solution = multicombat(
+                    attackersSorted,
+                    defender,
+                    mappedSequence,
+                )
                 solutions.push(solution)
             }
-        } else {
-            const solution = multicombat(attackersSorted, defender, sequence)
-            solutions.push(solution)
-        }
-    })
+        })
+    }
 
     // console.log(solutions)
     if (hasFinal)
