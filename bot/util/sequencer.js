@@ -270,6 +270,12 @@ function tiebreakers(bestSolution, newSolution) {
 }
 
 function normalEvaluate(bestSolution, newSolution) {
+    const bestDead = bestSolution.defenderHP <= 0
+    const newDead = newSolution.defenderHP <= 0
+    if (bestDead && newDead) {
+        // Both kill the defender — overkill doesn't matter, use tiebreakers
+        return tiebreakers(bestSolution, newSolution)
+    }
     if (newSolution.defenderHP < bestSolution.defenderHP) return true
     if (newSolution.defenderHP > bestSolution.defenderHP) return false
     if (bestSolution.attackerCasualties > newSolution.attackerCasualties)
