@@ -19,7 +19,7 @@ module.exports = {
         })
         replyData.discord.fields.push({
             name: 'Development team',
-            value: 'ibra9',
+            value: 'ibra9, ickydime',
         })
         replyData.discord.fields.push({
             name: 'Contributions',
