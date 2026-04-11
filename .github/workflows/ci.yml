@@ -26,3 +26,16 @@ jobs:
 
             - name: Run tests
               run: npm test
+
+    deploy:
+        needs: build
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to VPS
+              uses: appleboy/ssh-action@v1
+              with:
+                  host: ${{ secrets.VPS_HOST }}
+                  username: ${{ secrets.VPS_USER }}
+                  key: ${{ secrets.VPS_SSH_KEY }}
+                  script: cd /apps/PolyCalculator && git pull --all && sudo systemctl restart calc
