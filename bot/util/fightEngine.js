@@ -11,7 +11,8 @@ const {
 
 function getDefenderBonusLabel(defender) {
     const baseBonus = defender.poisoned ? defender.bonus * 2 : defender.bonus
-    const baseLabel = { 1: '', 1.5: ' (protected)', 4: ' (walled)' }[baseBonus] || ''
+    const baseLabel =
+        { 1: '', 1.5: ' (protected)', 4: ' (walled)' }[baseBonus] || ''
     return baseLabel + (defender.poisoned ? ' (poisoned)' : '')
 }
 
@@ -167,10 +168,8 @@ module.exports.optim = function (attackers, defender, replyData, target) {
         let beforehp = expandedAttackers[seqIndex].currenthp
         if (expandedAttackers[seqIndex]._hitPairIndex !== undefined) {
             // Find the hit's hpLoss in the solution
-            const hitSeqNum =
-                expandedAttackers[seqIndex]._hitPairIndex + 1
-            const hitOrder =
-                bestSolution.finalSequence.indexOf(hitSeqNum)
+            const hitSeqNum = expandedAttackers[seqIndex]._hitPairIndex + 1
+            const hitOrder = bestSolution.finalSequence.indexOf(hitSeqNum)
             if (hitOrder !== -1) {
                 beforehp = beforehp - bestSolution.hpLoss[hitOrder]
             }

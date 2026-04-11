@@ -140,17 +140,12 @@ module.exports.multicombat = function (attackers, defender, sequence) {
 function combat(attacker, defender, solution) {
     // TENTACLES PHASE: defender hits attacker BEFORE the attack
     let tentacleDmg = 0
-    if (
-        defender.tentacles &&
-        !attacker.noTentacles &&
-        !attacker.range
-    ) {
+    if (defender.tentacles && !attacker.noTentacles && !attacker.range) {
         const tAforce =
             (defender.iAtt() * BigInt(solution.defenderHP * 10) * 100n) /
             defender.iMaxHp()
         const tDforce =
-            (attacker.iDef() * attacker.iCurrentHp() * 100n) /
-            attacker.iMaxHp()
+            (attacker.iDef() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
         const tTotaldam = tAforce + tDforce
         tentacleDmg = Number(attackerCalc(tAforce, tTotaldam, defender))
 

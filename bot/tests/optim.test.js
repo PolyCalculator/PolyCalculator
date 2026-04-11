@@ -94,9 +94,7 @@ test('/o below target: wa x3, gi t<35', () => {
     // Below target = "dead", so use minimum units
     expect(reply.outcome.defender.afterhp).toBeLessThan(35)
     expect(reply.outcome.attackers.length).toBe(2)
-    expect(reply.discord.description).toContain(
-        'Target: defender below 35 HP',
-    )
+    expect(reply.discord.description).toContain('Target: defender below 35 HP')
 })
 
 test('/o below target uses best solution: ca, wa, wa, gi t<35', () => {

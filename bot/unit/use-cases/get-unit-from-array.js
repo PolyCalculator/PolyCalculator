@@ -82,7 +82,6 @@ module.exports = function makeGetUnitFromArray({
         if (unitModifiers.includes('r') || unitModifiers.includes('nr'))
             unit.overrideRetaliation(unitModifiers)
 
-
         if (unitModifiers.includes('fl')) unit.toFloorSplash()
 
         if (unitModifiers.includes('s')) unit.toSplash(replyData)
