@@ -16,6 +16,7 @@ test.*
 *.cpp
 test/**
 **/__pycache__/
+*.local.*
 
 # Firebase cache
 .firebase/
