@@ -6,43 +6,151 @@ const {
     generateSequences,
     multicombat,
     evaluate,
+    evaluateWithTarget,
 } = require('./sequencer')
 
-module.exports.optim = function (attackers, defender, replyData) {
-    const arrayNbAttackers = generateArraySequences(attackers.length)
-    const sequences = generateSequences(arrayNbAttackers)
+function getDefenderBonusLabel(defender) {
+    const baseBonus = defender.poisoned ? defender.bonus * 2 : defender.bonus
+    const baseLabel = { 1: '', 1.5: ' (protected)', 4: ' (walled)' }[baseBonus] || ''
+    return baseLabel + (defender.poisoned ? ' (poisoned)' : '')
+}
+
+module.exports.optim = function (attackers, defender, replyData, target) {
+    // For units with ax/axi modifier, create a paired exploding clone
+    const explodePairs = [] // { hitIndex, explodeIndex, instant }
+    const expandedAttackers = [...attackers]
+    for (let i = 0; i < attackers.length; i++) {
+        if (attackers[i].attackExplode) {
+            const clone = Object.assign({}, attackers[i])
+            clone.exploding = true
+            clone.attackExplode = false
+            clone.instantExplode = false
+            clone.description = `${clone.description} 💥`
+            clone._hitPairIndex = i
+            const explodeIndex = expandedAttackers.length
+            expandedAttackers.push(clone)
+            const pair = { hitIndex: i, explodeIndex: explodeIndex }
+            if (attackers[i].instantExplode) pair.instant = true
+            explodePairs.push(pair)
+        }
+    }
+
+    // Generate all subsets of optional explosion clones to try
+    // Each ax/axi explosion is optional — the optimizer decides which are worth detonating
+    const explodeIndices = explodePairs.map((p) => p.explodeIndex)
+    const explodeSubsets = [[]]
+    for (const idx of explodeIndices) {
+        const len = explodeSubsets.length
+        for (let i = 0; i < len; i++) {
+            explodeSubsets.push([...explodeSubsets[i], idx])
+        }
+    }
+
     let solutions = []
+    const hasFinal = expandedAttackers.some(
+        (attacker) => attacker.final === true,
+    )
 
-    const hasFinal = attackers.some((attacker) => attacker.final === true)
-    sequences.forEach(function (sequence) {
-        const attackersSorted = []
-
-        for (let j = 0; j < sequence.length; j++) {
-            attackersSorted.push(attackers[sequence[j] - 1])
+    for (const includedExplodes of explodeSubsets) {
+        // Build the unit list: all base attackers + only the included explosions
+        const unitIndices = []
+        for (let i = 0; i < expandedAttackers.length; i++) {
+            if (explodeIndices.includes(i) && !includedExplodes.includes(i))
+                continue
+            unitIndices.push(i)
         }
 
-        const solution = multicombat(attackersSorted, defender, sequence)
+        if (unitIndices.length > 8)
+            throw 'Too many attackers (including explode options) for optimization.\nTry reducing the number of attackers.'
 
-        solutions.push(solution)
-    })
+        // Build the active explode pairs for this subset
+        const activePairs = explodePairs.filter((p) =>
+            includedExplodes.includes(p.explodeIndex),
+        )
+
+        const arrayNbAttackers = generateArraySequences(unitIndices.length)
+        const sequences = generateSequences(arrayNbAttackers)
+
+        sequences.forEach(function (sequence) {
+            // Map sequence back to expandedAttackers indices
+            const mappedSequence = sequence.map((s) => unitIndices[s - 1] + 1)
+
+            // Enforce: exploding version must come after its hit version
+            // For instant (axi): explosion must be immediately after hit
+            let valid = true
+            for (const pair of activePairs) {
+                const hitPos = mappedSequence.indexOf(pair.hitIndex + 1)
+                const explodePos = mappedSequence.indexOf(pair.explodeIndex + 1)
+                if (explodePos < hitPos) {
+                    valid = false
+                    break
+                }
+                if (pair.instant && explodePos !== hitPos + 1) {
+                    valid = false
+                    break
+                }
+            }
+            if (!valid) return
+
+            const attackersSorted = []
+            for (let j = 0; j < mappedSequence.length; j++) {
+                attackersSorted.push(expandedAttackers[mappedSequence[j] - 1])
+            }
+
+            if (target) {
+                for (let len = 1; len <= mappedSequence.length; len++) {
+                    const subAttackers = attackersSorted.slice(0, len)
+                    const subSequence = mappedSequence.slice(0, len)
+                    const solution = multicombat(
+                        subAttackers,
+                        defender,
+                        subSequence,
+                    )
+                    solutions.push(solution)
+                }
+            } else {
+                const solution = multicombat(
+                    attackersSorted,
+                    defender,
+                    mappedSequence,
+                )
+                solutions.push(solution)
+            }
+        })
+    }
 
     // console.log(solutions)
     if (hasFinal)
         solutions = solutions.filter(
             (x) =>
-                attackers[x.finalSequence[x.finalSequence.length - 1] - 1]
-                    .final,
+                expandedAttackers[
+                    x.finalSequence[x.finalSequence.length - 1] - 1
+                ].final,
         )
 
     let bestSolution = solutions[0]
 
     if (!bestSolution)
         throw 'There is no order that can conform to your request.\nMaybe try without the `f`?'
+    const evaluator = target
+        ? (best, sol) => evaluateWithTarget(best, sol, target)
+        : evaluate
     solutions.forEach((solution) => {
-        if (evaluate(bestSolution, solution)) bestSolution = solution
+        if (evaluator(bestSolution, solution)) bestSolution = solution
     })
 
-    if (bestSolution.wasPoisoned) defender.bonus = 0.7
+    if (
+        target &&
+        target.mode === 'exact' &&
+        bestSolution.defenderHP !== target.hp
+    ) {
+        throw `No combination leaves the defender at exactly ${target.hp} HP.\nTry \`t<${target.hp}\` to get below ${target.hp} HP instead.`
+    }
+
+    if (bestSolution.wasPoisoned && !defender.poisoned) {
+        defender.bonus *= 0.5
+        defender.poisoned = true
+    }
 
     // if (bestSolution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -53,34 +161,41 @@ module.exports.optim = function (attackers, defender, replyData) {
     bestSolution.finalSequence.forEach((seqIndex, order) => {
         seqIndex--
         defHP = defHP - bestSolution.hpDealt[order]
-        attackers[seqIndex].defHP = defHP
+        expandedAttackers[seqIndex].defHP = defHP
+
+        // For exploding clones, show the HP after the paired hit
+        let beforehp = expandedAttackers[seqIndex].currenthp
+        if (expandedAttackers[seqIndex]._hitPairIndex !== undefined) {
+            // Find the hit's hpLoss in the solution
+            const hitSeqNum =
+                expandedAttackers[seqIndex]._hitPairIndex + 1
+            const hitOrder =
+                bestSolution.finalSequence.indexOf(hitSeqNum)
+            if (hitOrder !== -1) {
+                beforehp = beforehp - bestSolution.hpLoss[hitOrder]
+            }
+        }
+
         replyData.outcome.attackers.push({
-            name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
-                attackers[seqIndex].name
-            }${attackers[seqIndex].description}`,
-            beforehp: attackers[seqIndex].currenthp,
-            afterhp: attackers[seqIndex].currenthp - bestSolution.hpLoss[order],
-            maxhp: attackers[seqIndex].maxhp,
+            name: `${expandedAttackers[seqIndex].vetNow ? 'Veteran ' : ''}${
+                expandedAttackers[seqIndex].name
+            }${expandedAttackers[seqIndex].description}`,
+            beforehp: beforehp,
+            afterhp: beforehp - bestSolution.hpLoss[order],
+            maxhp: expandedAttackers[seqIndex].maxhp,
             hplost: bestSolution.hpLoss[order],
             hpdefender: defHP,
         })
         descriptionArray.push(
-            `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
-                attackers[seqIndex].name
-            }${attackers[seqIndex].description}: ${
-                attackers[seqIndex].currenthp
-            } ➔ ${
-                attackers[seqIndex].currenthp - bestSolution.hpLoss[order]
+            `${expandedAttackers[seqIndex].vetNow ? 'Veteran ' : ''}${
+                expandedAttackers[seqIndex].name
+            }${expandedAttackers[seqIndex].description}: ${beforehp} ➔ ${
+                beforehp - bestSolution.hpLoss[order]
             } (**${defHP}**)`,
         )
     })
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -92,7 +207,15 @@ module.exports.optim = function (attackers, defender, replyData) {
         hplost: defender.currenthp - defHP,
     }
 
-    replyData.discord.description = 'This is the order for best outcome:'
+    if (target) {
+        const targetLabel =
+            target.mode === 'exact'
+                ? `Target: defender at exactly ${target.hp} HP`
+                : `Target: defender below ${target.hp} HP`
+        replyData.discord.description = `${targetLabel}\nThis is the order for best outcome:`
+    } else {
+        replyData.discord.description = 'This is the order for best outcome:'
+    }
     replyData.discord.fields.push({
         name: 'Attacker: startHP ➔ endHP (enemyHP)',
         value: descriptionArray,
@@ -112,6 +235,22 @@ module.exports.optim = function (attackers, defender, replyData) {
 }
 
 module.exports.calc = function (attackers, defender, replyData) {
+    // Expand ax/axi units: insert an exploding clone right after the attacker
+    const expandedAttackers = []
+    for (let i = 0; i < attackers.length; i++) {
+        expandedAttackers.push(attackers[i])
+        if (attackers[i].attackExplode) {
+            const clone = Object.assign({}, attackers[i])
+            clone.exploding = true
+            clone.attackExplode = false
+            clone.instantExplode = false
+            clone.description = `${clone.description} 💥`
+            clone._hitPairIndex = i
+            expandedAttackers.push(clone)
+        }
+    }
+    attackers = expandedAttackers
+
     const sequence = []
     for (let i = 1; i <= attackers.length; i++) {
         sequence.push(i)
@@ -125,7 +264,10 @@ module.exports.calc = function (attackers, defender, replyData) {
 
     const solution = multicombat(attackersSorted, defender, sequence)
 
-    if (solution.wasPoisoned) defender.bonus = 0.7
+    if (solution.wasPoisoned && !defender.poisoned) {
+        defender.bonus *= 0.5
+        defender.poisoned = true
+    }
 
     // if (solution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
@@ -160,12 +302,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             descriptionArray.push('...')
     })
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
@@ -203,17 +340,12 @@ module.exports.bulk = function (attacker, defender, replyData) {
     let totaldam = aforce + dforce
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonusLabel = getDefenderBonusLabel(defender)
 
     if (attacker.att <= 0)
         throw `When will you ever be able to attack with a **${attacker.name}**...`
     if (defdiff < 1)
-        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonus}**.`
+        throw `This **${attacker.currenthp}hp ${attacker.name}${attacker.description}** doesn't deal any damage to a **${defender.currenthp}hp ${defender.name}${defender.description}${defenderBonusLabel}**.`
 
     let hpdefender = defender.currenthp
 
@@ -230,8 +362,12 @@ module.exports.bulk = function (attacker, defender, replyData) {
         if (
             attacker.poisonattack ||
             (attacker.poisonexplosion && attacker.exploding)
-        )
-            defender.bonus = 0.7
+        ) {
+            if (!defender.poisoned) {
+                defender.bonus *= 0.5
+                defender.poisoned = true
+            }
+        }
     }
 
     replyData.outcome.attackers.push({
@@ -245,14 +381,14 @@ module.exports.bulk = function (attacker, defender, replyData) {
     replyData.outcome.defender = {
         name: `${defender.vetNow ? 'Veteran ' : ''}${defender.name}${
             defender.description
-        }${defenderBonus}`,
+        }${defenderBonusLabel}`,
         currenthp: defender.currenthp,
         maxhp: defender.maxhp,
     }
 
     replyData.outcome.response = i
 
-    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonus}:`
+    replyData.discord.title = `You'll need this many hits from a ${attacker.name}${attacker.description} to kill the ${defender.name}${defender.description}${defenderBonusLabel}:`
     replyData.discord.fields.push({
         name: `**Number of ${
             i > 1 && attacker.description === ''
@@ -291,12 +427,7 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
         if (defender.currenthp - defdiff <= 0) break
     }
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${
@@ -362,12 +493,7 @@ module.exports.provideAttHP = function (attacker, defender, replyData) {
         if (defender.currenthp - defdiff <= 0) break
     }
 
-    const defenderBonus = {
-        0.7: ' (poisoned)',
-        1: '',
-        1.5: ' (protected)',
-        4: ' (walled)',
-    }[defender.bonus]
+    const defenderBonus = getDefenderBonusLabel(defender)
 
     replyData.outcome.attackers.push({
         name: `${attacker.vetNow ? 'Veteran ' : ''}${attacker.name}${

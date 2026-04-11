@@ -30,4 +30,6 @@ module.exports = [
     "COACHING GAME'D",
     'IN VALHALLA',
     'SKIPPED ON TURN 2',
+    'DEEBWEIGHT',
+    'PAID FOR BATTLECALC',
 ]
