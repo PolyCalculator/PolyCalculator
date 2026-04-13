@@ -1162,7 +1162,7 @@ module.exports = {
         retaliation: false,
         forceRetaliation: undefined,
         poisonattack: false,
-        poisonexplosion: false,
+        poisonexplosion: true,
         canExplode: true,
         exploding: false,
         freeze: false,
