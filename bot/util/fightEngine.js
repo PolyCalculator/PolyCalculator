@@ -20,7 +20,7 @@ module.exports.optim = function (attackers, defender, replyData, target) {
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
         if (
-            attacker.att <= 0 &&
+            attacker.canAttack === false &&
             !attacker.exploding &&
             !attacker.attackExplode
         ) {
@@ -248,7 +248,7 @@ module.exports.calc = function (attackers, defender, replyData) {
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
         if (
-            attacker.att <= 0 &&
+            attacker.canAttack === false &&
             !attacker.exploding &&
             !attacker.attackExplode
         ) {
