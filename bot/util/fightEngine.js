@@ -324,9 +324,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             descriptionArray.push(
                 `**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                     attackers[seqIndex].name
-                }${attackers[seqIndex].description}:** ${
-                    beforehp
-                } ➔ ${
+                }${attackers[seqIndex].description}:** ${beforehp} ➔ ${
                     beforehp - solution.hpLoss[order]
                 } (**${defHP}**)`,
             )
