@@ -19,11 +19,10 @@ function getDefenderBonusLabel(defender) {
 module.exports.optim = function (attackers, defender, replyData, target) {
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
-        if (
-            attacker.canAttack === false &&
-            !attacker.exploding &&
-            !attacker.attackExplode
-        ) {
+        if (attacker.canAttack === false && !attacker.exploding) {
+            if (attacker.attackExplode) {
+                throw `${attacker.name} can't attack! Use \`x\` instead of \`ax\` to explode without attacking.`
+            }
             throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
         }
     }
@@ -247,11 +246,10 @@ module.exports.optim = function (attackers, defender, replyData, target) {
 module.exports.calc = function (attackers, defender, replyData) {
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
-        if (
-            attacker.canAttack === false &&
-            !attacker.exploding &&
-            !attacker.attackExplode
-        ) {
+        if (attacker.canAttack === false && !attacker.exploding) {
+            if (attacker.attackExplode) {
+                throw `${attacker.name} can't attack! Use \`x\` instead of \`ax\` to explode without attacking.`
+            }
             throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
         }
     }
