@@ -277,12 +277,23 @@ module.exports.calc = function (attackers, defender, replyData) {
     solution.finalSequence.forEach((seqIndex, order) => {
         seqIndex--
         defHP = defHP - solution.hpDealt[order]
+
+        // For exploding clones, show the HP after the paired hit's retaliation
+        let beforehp = attackers[seqIndex].currenthp
+        if (attackers[seqIndex]._hitPairIndex !== undefined) {
+            const hitSeqNum = attackers[seqIndex]._hitPairIndex + 1
+            const hitOrder = solution.finalSequence.indexOf(hitSeqNum)
+            if (hitOrder !== -1) {
+                beforehp = beforehp - solution.hpLoss[hitOrder]
+            }
+        }
+
         replyData.outcome.attackers.push({
             name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                 attackers[seqIndex].name
             }${attackers[seqIndex].description}`,
-            beforehp: attackers[seqIndex].currenthp,
-            afterhp: attackers[seqIndex].currenthp - solution.hpLoss[order],
+            beforehp: beforehp,
+            afterhp: beforehp - solution.hpLoss[order],
             maxhp: attackers[seqIndex].maxhp,
             hplost: solution.hpLoss[order],
             hpdefender: defHP,
@@ -292,9 +303,9 @@ module.exports.calc = function (attackers, defender, replyData) {
                 `**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                     attackers[seqIndex].name
                 }${attackers[seqIndex].description}:** ${
-                    attackers[seqIndex].currenthp
+                    beforehp
                 } ➔ ${
-                    attackers[seqIndex].currenthp - solution.hpLoss[order]
+                    beforehp - solution.hpLoss[order]
                 } (**${defHP}**)`,
             )
         else if (!descriptionArray.toString().endsWith('...'))
