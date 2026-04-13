@@ -26,6 +26,7 @@ module.exports = function buildMakeUnit() {
         tentacles = false,
         final = false,
         canBoard = true,
+        canAttack = true,
     } = {}) {
         if (currenthp <= 0)
             throw new Error('One of the units is already dead. RIP.')
@@ -241,6 +242,7 @@ module.exports = function buildMakeUnit() {
                 this.final = true
             },
             canBoard: canBoard,
+            canAttack: canAttack,
             makeNaval: function (navalUnitCode) {
                 if (this.bonus === 4)
                     throw 'Are you saying a naval unit can be in a city :thinking:...'

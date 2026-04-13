@@ -17,6 +17,16 @@ function getDefenderBonusLabel(defender) {
 }
 
 module.exports.optim = function (attackers, defender, replyData, target) {
+    // Validate: units with no attack stat can only be used with explode modifiers
+    for (const attacker of attackers) {
+        if (attacker.canAttack === false && !attacker.exploding) {
+            if (attacker.attackExplode) {
+                throw `${attacker.name} can't attack! Use \`x\` instead of \`ax\` to explode without attacking.`
+            }
+            throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
+        }
+    }
+
     // For units with ax/axi modifier, create a paired exploding clone
     const explodePairs = [] // { hitIndex, explodeIndex, instant }
     const expandedAttackers = [...attackers]
@@ -234,6 +244,16 @@ module.exports.optim = function (attackers, defender, replyData, target) {
 }
 
 module.exports.calc = function (attackers, defender, replyData) {
+    // Validate: units with no attack stat can only be used with explode modifiers
+    for (const attacker of attackers) {
+        if (attacker.canAttack === false && !attacker.exploding) {
+            if (attacker.attackExplode) {
+                throw `${attacker.name} can't attack! Use \`x\` instead of \`ax\` to explode without attacking.`
+            }
+            throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
+        }
+    }
+
     // Expand ax/axi units: insert an exploding clone right after the attacker
     const expandedAttackers = []
     for (let i = 0; i < attackers.length; i++) {
@@ -277,12 +297,23 @@ module.exports.calc = function (attackers, defender, replyData) {
     solution.finalSequence.forEach((seqIndex, order) => {
         seqIndex--
         defHP = defHP - solution.hpDealt[order]
+
+        // For exploding clones, show the HP after the paired hit's retaliation
+        let beforehp = attackers[seqIndex].currenthp
+        if (attackers[seqIndex]._hitPairIndex !== undefined) {
+            const hitSeqNum = attackers[seqIndex]._hitPairIndex + 1
+            const hitOrder = solution.finalSequence.indexOf(hitSeqNum)
+            if (hitOrder !== -1) {
+                beforehp = beforehp - solution.hpLoss[hitOrder]
+            }
+        }
+
         replyData.outcome.attackers.push({
             name: `${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                 attackers[seqIndex].name
             }${attackers[seqIndex].description}`,
-            beforehp: attackers[seqIndex].currenthp,
-            afterhp: attackers[seqIndex].currenthp - solution.hpLoss[order],
+            beforehp: beforehp,
+            afterhp: beforehp - solution.hpLoss[order],
             maxhp: attackers[seqIndex].maxhp,
             hplost: solution.hpLoss[order],
             hpdefender: defHP,
@@ -291,10 +322,8 @@ module.exports.calc = function (attackers, defender, replyData) {
             descriptionArray.push(
                 `**${attackers[seqIndex].vetNow ? 'Veteran ' : ''}${
                     attackers[seqIndex].name
-                }${attackers[seqIndex].description}:** ${
-                    attackers[seqIndex].currenthp
-                } ➔ ${
-                    attackers[seqIndex].currenthp - solution.hpLoss[order]
+                }${attackers[seqIndex].description}:** ${beforehp} ➔ ${
+                    beforehp - solution.hpLoss[order]
                 } (**${defHP}**)`,
             )
         else if (!descriptionArray.toString().endsWith('...'))
