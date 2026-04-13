@@ -17,6 +17,17 @@ function getDefenderBonusLabel(defender) {
 }
 
 module.exports.optim = function (attackers, defender, replyData, target) {
+    // Validate: units with no attack stat can only be used with explode modifiers
+    for (const attacker of attackers) {
+        if (
+            attacker.att <= 0 &&
+            !attacker.exploding &&
+            !attacker.attackExplode
+        ) {
+            throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
+        }
+    }
+
     // For units with ax/axi modifier, create a paired exploding clone
     const explodePairs = [] // { hitIndex, explodeIndex, instant }
     const expandedAttackers = [...attackers]
@@ -234,6 +245,17 @@ module.exports.optim = function (attackers, defender, replyData, target) {
 }
 
 module.exports.calc = function (attackers, defender, replyData) {
+    // Validate: units with no attack stat can only be used with explode modifiers
+    for (const attacker of attackers) {
+        if (
+            attacker.att <= 0 &&
+            !attacker.exploding &&
+            !attacker.attackExplode
+        ) {
+            throw `${attacker.name} can't attack! Try adding \`x\` to explode instead.`
+        }
+    }
+
     // Expand ax/axi units: insert an exploding clone right after the attacker
     const expandedAttackers = []
     for (let i = 0; i < attackers.length; i++) {
