@@ -10,9 +10,10 @@ const {
 } = require('./sequencer')
 
 function getDefenderBonusLabel(defender) {
-    const baseBonus = defender.poisoned ? defender.bonus * 2 : defender.bonus
-    const baseLabel =
-        { 1: '', 1.5: ' (protected)', 4: ' (walled)' }[baseBonus] || ''
+    const labels = defender.poisoned
+        ? { 0.5: '', 0.7: ' (protected)', 2: ' (walled)' }
+        : { 1: '', 1.5: ' (protected)', 4: ' (walled)' }
+    const baseLabel = labels[defender.bonus] || ''
     return baseLabel + (defender.poisoned ? ' (poisoned)' : '')
 }
 
@@ -159,7 +160,7 @@ module.exports.optim = function (attackers, defender, replyData, target) {
     }
 
     if (bestSolution.wasPoisoned && !defender.poisoned) {
-        defender.bonus *= 0.5
+        defender.bonus = Math.floor(defender.bonus * 5) / 10
         defender.poisoned = true
     }
 
@@ -264,7 +265,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             clone.attackExplode = false
             clone.instantExplode = false
             clone.description = `${clone.description} 💥`
-            clone._hitPairIndex = i
+            clone._hitPairIndex = expandedAttackers.length - 1
             expandedAttackers.push(clone)
         }
     }
@@ -284,7 +285,7 @@ module.exports.calc = function (attackers, defender, replyData) {
     const solution = multicombat(attackersSorted, defender, sequence)
 
     if (solution.wasPoisoned && !defender.poisoned) {
-        defender.bonus *= 0.5
+        defender.bonus = Math.floor(defender.bonus * 5) / 10
         defender.poisoned = true
     }
 
@@ -392,7 +393,7 @@ module.exports.bulk = function (attacker, defender, replyData) {
             (attacker.poisonexplosion && attacker.exploding)
         ) {
             if (!defender.poisoned) {
-                defender.bonus *= 0.5
+                defender.bonus = Math.floor(defender.bonus * 5) / 10
                 defender.poisoned = true
             }
         }

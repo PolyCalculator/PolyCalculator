@@ -125,7 +125,7 @@ module.exports = function buildMakeUnit() {
             poisonexplosion: poisonexplosion,
             selfPoison: function () {
                 if (!this.poisoned) {
-                    this.bonus *= 0.5
+                    this.bonus = Math.floor(this.bonus * 5) / 10
                     this.poisoned = true
                 }
             },
@@ -135,7 +135,7 @@ module.exports = function buildMakeUnit() {
                     (this.poisonexplosion && this.exploding)
                 ) {
                     if (!defender.poisoned) {
-                        defender.bonus *= 0.5
+                        defender.bonus = Math.floor(defender.bonus * 5) / 10
                         defender.poisoned = true
                     }
                 } else
