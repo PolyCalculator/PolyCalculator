@@ -42,7 +42,7 @@ module.exports.buildEmbed = function (data) {
 
 module.exports.poison = function (unit) {
     if (!unit.poisoned) {
-        unit.bonus *= 0.5
+        unit.bonus = Math.floor(unit.bonus * 5) / 10
         unit.poisoned = true
     }
 }
