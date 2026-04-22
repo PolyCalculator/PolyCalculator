@@ -264,7 +264,7 @@ module.exports.calc = function (attackers, defender, replyData) {
             clone.attackExplode = false
             clone.instantExplode = false
             clone.description = `${clone.description} 💥`
-            clone._hitPairIndex = i
+            clone._hitPairIndex = expandedAttackers.length - 1
             expandedAttackers.push(clone)
         }
     }
