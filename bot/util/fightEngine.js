@@ -164,6 +164,12 @@ module.exports.optim = function (attackers, defender, replyData, target) {
         defender.poisoned = true
     }
 
+    if (bestSolution.wasFrozen && !defender.frozen) {
+        defender.description = `${defender.description} (frozen)`
+        defender.retaliation = false
+        defender.frozen = true
+    }
+
     // if (bestSolution.defenderHP === defender.currenthp)
     //   throw `No unit can make a dent in this ${defender.name}${defender.description}...`
 
@@ -287,6 +293,12 @@ module.exports.calc = function (attackers, defender, replyData) {
     if (solution.wasPoisoned && !defender.poisoned) {
         defender.bonus = Math.floor(defender.bonus * 5) / 10
         defender.poisoned = true
+    }
+
+    if (solution.wasFrozen && !defender.frozen) {
+        defender.description = `${defender.description} (frozen)`
+        defender.retaliation = false
+        defender.frozen = true
     }
 
     // if (solution.defenderHP === defender.currenthp)
