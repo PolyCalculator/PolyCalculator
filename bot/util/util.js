@@ -48,8 +48,11 @@ module.exports.poison = function (unit) {
 }
 
 module.exports.freeze = function (unit) {
-    unit.description = `${unit.description} (frozen)`
-    unit.retaliation = false
+    if (!unit.frozen) {
+        unit.description = `${unit.description} (frozen)`
+        unit.retaliation = false
+        unit.frozen = true
+    }
 }
 
 module.exports.boost = function (unit) {

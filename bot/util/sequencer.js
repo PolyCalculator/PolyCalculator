@@ -66,10 +66,14 @@ module.exports.multicombat = function (attackers, defender, sequence) {
         sequence: sequence,
         finalSequence: [],
         wasPoisoned: false,
+        wasFrozen: false,
     }
 
     const initialBonus = defender.bonus
     const initialPoisoned = defender.poisoned || false
+    const initialRetaliation = defender.retaliation
+    const initialFrozen = defender.frozen || false
+    const initialDescription = defender.description
 
     for (const attacker of attackers) {
         if (attacker.convert) convert(defender)
@@ -114,11 +118,17 @@ module.exports.multicombat = function (attackers, defender, sequence) {
             solution.wasPoisoned = true
         }
 
-        if (attacker.freeze) freeze(defender)
+        if (attacker.freeze) {
+            freeze(defender)
+            solution.wasFrozen = true
+        }
     }
 
     defender.bonus = initialBonus
     defender.poisoned = initialPoisoned
+    defender.retaliation = initialRetaliation
+    defender.frozen = initialFrozen
+    defender.description = initialDescription
 
     return solution
 }
