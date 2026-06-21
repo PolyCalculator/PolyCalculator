@@ -21,6 +21,7 @@ const rawPub = new Uint8Array(
 Deno.env.set('DISCORD_PUBLIC_KEY', encodeHex(rawPub))
 Deno.env.set('SUPABASE_URL', 'http://127.0.0.1:54321')
 Deno.env.set('SUPABASE_SERVICE_ROLE_KEY', 'test')
+Deno.env.set('SUPABASE_ANON_KEY', 'test')
 Deno.env.set('DISCORD_BOT_TOKEN', 'test')
 Deno.env.set('DEV_CHANNEL_ID', '0')
 Deno.env.set('NEWS_CHANNEL_ID', '0')
@@ -121,8 +122,8 @@ function check(cond, label, detail) {
         embed?.fields?.[1]?.value,
     )
     check(
-        (j?.data?.flags & 64) === 64,
-        '/c reply is ephemeral',
+        ((j?.data?.flags ?? 0) & 64) === 0,
+        '/c reply is public (not ephemeral)',
         String(j?.data?.flags),
     )
 }

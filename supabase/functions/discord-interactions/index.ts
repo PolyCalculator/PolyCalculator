@@ -1,7 +1,7 @@
 // Discord HTTP Interactions endpoint (serverless replacement for the gateway
 // bot). Verifies the request signature, handles the PING handshake, routes the
-// 11 slash commands to the pure engine, replies synchronously (ephemeral), and
-// records stats + derived server presence after replying.
+// 11 slash commands to the pure engine, replies synchronously (public, in
+// channel), and records stats + derived server presence after replying.
 //
 // Deployed with verify_jwt = false (Discord sends no Supabase JWT; auth is the
 // ed25519 signature check below).
@@ -29,7 +29,6 @@ const PING = 1
 const APPLICATION_COMMAND = 2
 const PONG = 1
 const CHANNEL_MESSAGE = 4
-const EPHEMERAL = 64
 
 // deno-lint-ignore no-explicit-any
 type Json = any
@@ -49,7 +48,7 @@ function userId(interaction: Json): string {
 }
 
 function reply(embed: unknown, content: string | undefined) {
-    const data: Json = { embeds: [embed], flags: EPHEMERAL }
+    const data: Json = { embeds: [embed] }
     if (content) data.content = content
     return json({ type: CHANNEL_MESSAGE, data })
 }

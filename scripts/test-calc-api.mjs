@@ -6,6 +6,7 @@
 
 Deno.env.set('SUPABASE_URL', 'http://127.0.0.1:54321')
 Deno.env.set('SUPABASE_SERVICE_ROLE_KEY', 'test')
+Deno.env.set('SUPABASE_ANON_KEY', 'test')
 
 const { handler } = await import('../supabase/functions/calc-api/index.ts')
 

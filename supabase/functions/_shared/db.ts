@@ -10,6 +10,15 @@ const supabase = createClient(
     { auth: { persistSession: false } },
 )
 
+// Anon client for the public read path. `units` is anon-readable via RLS
+// policy (migration 0003); reading it through the service-role key would
+// needlessly use the privileged key where the public one suffices.
+const supabaseAnon = createClient(
+    Deno.env.get('SUPABASE_URL') ?? '',
+    Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+    { auth: { persistSession: false } },
+)
+
 export interface StatsRow {
     content: string
     author_id: string
@@ -93,7 +102,7 @@ export async function statsForUser(
 
 /** Public API: full unit list from the DB (calc-api /units list mode). */
 export async function listUnits(): Promise<unknown[]> {
-    const { data, error } = await supabase.from('units').select('*')
+    const { data, error } = await supabaseAnon.from('units').select('*')
     if (error) {
         console.error('listUnits failed:', error.message)
         return []

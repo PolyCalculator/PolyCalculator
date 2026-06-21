@@ -11,6 +11,16 @@ import { decodeHex } from 'https://deno.land/std@0.224.0/encoding/hex.ts'
 
 const PUBLIC_KEY = Deno.env.get('DISCORD_PUBLIC_KEY') ?? ''
 
+// Misconfiguration guard. An unset key would make every request fail the
+// signature check (return null below), which looks identical to a forged
+// request — a silent, hard-to-diagnose outage. Log it loudly, once, at load.
+if (!PUBLIC_KEY) {
+    console.error(
+        'DISCORD_PUBLIC_KEY is not set — every interaction will be rejected. ' +
+            'Set it via `supabase secrets set DISCORD_PUBLIC_KEY=...`.',
+    )
+}
+
 let cachedKey: CryptoKey | null = null
 
 async function getKey(): Promise<CryptoKey> {

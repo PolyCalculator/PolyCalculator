@@ -5,19 +5,30 @@ project_id = "polycalculator"
 
 [api]
 enabled = true
-port = 54321
+port = 55321
 schemas = ["public"]
 extra_search_path = ["public"]
 max_rows = 1000
 
 [db]
-port = 54322
-shadow_port = 54320
+port = 55322
+shadow_port = 55320
 major_version = 15
 
 [studio]
 enabled = true
-port = 54323
+port = 55323
+
+[auth]
+enabled = true
+
+[inbucket]
+enabled = true
+port = 55324
+
+[analytics]
+enabled = true
+port = 55327
 
 # Discord posts unsigned (no Supabase JWT); auth is ed25519 inside the function.
 # The public calculator is open. Both must skip JWT verification.

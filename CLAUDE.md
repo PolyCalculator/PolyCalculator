@@ -17,6 +17,13 @@ endpoint, the public calculator API, and the Jest test suite.
 Fully serverless — no gateway, no always-on host. Discord posts signed HTTP
 interactions to a Supabase Edge Function (Deno).
 
+Lone exception (cosmetic, out of repo): the green "online" dot in Discord
+member lists needs a persistent gateway WebSocket, which HTTP interactions
+don't provide. A separate standalone Fly app, **bot-presence**
+(https://github.com/PolyCalculator/bot-presence), holds that connection and
+sets presence only. It handles no commands, shares no code with this repo, and
+shares only `DISCORD_BOT_TOKEN`. Nothing in this repo depends on it.
+
 -   `engine/` — **pure ESM combat engine, the source of truth.** No discord.js,
     no DB, no env. Shared verbatim by Node (Jest) and Deno (Edge Functions).
     -   `engine/combat/sequencer.js` — core `multicombat()` loop. Runs combat per
