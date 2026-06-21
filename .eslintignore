@@ -1,2 +1,10 @@
 /server/public
 .claude/
+node_modules
+coverage
+# Deno/TypeScript Edge Functions are linted + type-checked by Deno, not ESLint.
+supabase/functions/
+# CLI/Deno tooling scripts (run directly; use Deno globals + console output).
+scripts/
+# Jest snapshot artifacts.
+tests/**/__snapshots__/

@@ -33,5 +33,19 @@
         "no-var": "error",
         "prefer-const": "error",
         "yoda": "error"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["engine/**/*.js", "tests/**/*.js"],
+            "parserOptions": {
+                "ecmaVersion": 2022,
+                "sourceType": "module"
+            },
+            "env": {
+                "commonjs": false,
+                "node": true,
+                "es2022": true
+            }
+        }
+    ]
 }

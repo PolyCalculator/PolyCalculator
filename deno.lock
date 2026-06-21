@@ -1,0 +1,35 @@
+{
+  "version": "5",
+  "redirects": {
+    "https://esm.sh/@supabase/phoenix@^0.4.2?target=denonext": "https://esm.sh/@supabase/phoenix@0.4.4?target=denonext",
+    "https://esm.sh/@supabase/supabase-js@2": "https://esm.sh/@supabase/supabase-js@2.108.2",
+    "https://esm.sh/iceberg-js@^0.8.1?target=denonext": "https://esm.sh/iceberg-js@0.8.1?target=denonext"
+  },
+  "remote": {
+    "https://deno.land/std@0.224.0/encoding/_util.ts": "beacef316c1255da9bc8e95afb1fa56ed69baef919c88dc06ae6cb7a6103d376",
+    "https://deno.land/std@0.224.0/encoding/hex.ts": "6270f25e5d85f99fcf315278670ba012b04b7c94b67715b53f30d03249687c07",
+    "https://esm.sh/@supabase/auth-js@2.108.2/denonext/auth-js.mjs": "9f40126f47eb0bd2803bae8d48a9a90a341704395996806ac5cac87e345e4ab4",
+    "https://esm.sh/@supabase/functions-js@2.108.2/denonext/functions-js.mjs": "cb8c9f454e644c0e7ccf568c046ec026baaf88aca20185fe8365ec89026576d3",
+    "https://esm.sh/@supabase/phoenix@0.4.4/denonext/phoenix.mjs": "2c4954292d10fd9137d66a1b7abd73bf24f9771a444c3d4e267b12e1e2b132c8",
+    "https://esm.sh/@supabase/phoenix@0.4.4?target=denonext": "36e0196b26b84019309be01736f487249204f361dd85b4c2a7a19b5f5e911069",
+    "https://esm.sh/@supabase/postgrest-js@2.108.2/denonext/postgrest-js.mjs": "4f97eb01ffd7ed89869a5bcf910eb45e0e48230ab9462e0d3667fe243ce2ca94",
+    "https://esm.sh/@supabase/realtime-js@2.108.2/denonext/realtime-js.mjs": "7dd89b17c7617a5b4e9047144f53fa324a805853c77a5d3388e18b189c9d3be3",
+    "https://esm.sh/@supabase/storage-js@2.108.2/denonext/storage-js.mjs": "cc4cb3161c606e44108efad0ad1d6f770e6c337293b6ed068e2ba58ffd24fdfb",
+    "https://esm.sh/@supabase/supabase-js@2.108.2": "7fbe17c4ef67b80d388cef1f0a0c7ecb28b2b1c3c4110875925a4bc82ff28e13",
+    "https://esm.sh/@supabase/supabase-js@2.108.2/denonext/supabase-js.mjs": "46f2f36b66e96481e47095942551fea2d14069e97acafb2bc3a1a3b1c2442195",
+    "https://esm.sh/iceberg-js@0.8.1/denonext/iceberg-js.mjs": "d839d81a2e3966500ca2cdd0c1cb458e9608bacfc91f7bb67a69b2e878dcdb4f",
+    "https://esm.sh/iceberg-js@0.8.1?target=denonext": "58c849d7fe2bf4eca4a84eb501e83c161a7d8c34ca1bec15a962b3bec3062633",
+    "https://esm.sh/tslib@2.8.1/denonext/tslib.mjs": "c38da5dd6da6281964435002ce204cd586634fe3bdfb24a0ee116f48cf3292e9"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:cross-env@^10.1.0",
+        "npm:eslint-config-prettier@9.1.0",
+        "npm:eslint@8.56.0",
+        "npm:jest@29.7.0",
+        "npm:prettier@3.1.1"
+      ]
+    }
+  }
+}

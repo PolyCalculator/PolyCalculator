@@ -3,9 +3,11 @@ on:
     push:
         branches:
             - master
+            - serverless-migration
     pull_request:
         branches:
             - master
+            - serverless-migration
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -28,18 +30,59 @@ jobs:
               if: matrix.shard == 1
               run: npm run lint
 
-            - name: Run tests
+            - name: Run tests (ESM engine)
               run: npm test -- --shard=${{ matrix.shard }}/4
 
-    deploy:
-        needs: build
-        if: github.event_name == 'push'
+    deno:
         runs-on: ubuntu-latest
         steps:
-            - name: Deploy to VPS
-              uses: appleboy/ssh-action@v1
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Deno
+              uses: denoland/setup-deno@v2
               with:
-                  host: ${{ secrets.VPS_HOST }}
-                  username: ${{ secrets.VPS_USER }}
-                  key: ${{ secrets.VPS_SSH_KEY }}
-                  script: cd /apps/PolyCalculator && git pull --all && sudo systemctl restart calc
+                  deno-version: v2.x
+
+            - name: Engine loads under Deno
+              run: deno run --allow-read scripts/deno-smoke.mjs
+
+            - name: Edge functions type-check
+              run: deno check supabase/functions/discord-interactions/index.ts supabase/functions/calc-api/index.ts
+
+            - name: Edge function handler tests
+              run: |
+                  deno run --allow-read --allow-env --allow-net scripts/test-interaction.mjs
+                  deno run --allow-read --allow-env --allow-net scripts/test-calc-api.mjs
+
+    deploy:
+        needs: [build, deno]
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        runs-on: ubuntu-latest
+        env:
+            SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+            SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+            DISCORD_APPLICATION_ID: ${{ secrets.DISCORD_APPLICATION_ID }}
+            DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Supabase CLI
+              uses: supabase/setup-cli@v1
+              with:
+                  version: latest
+
+            - name: Link project
+              run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_REF }}
+
+            - name: Apply database migrations
+              run: supabase db push
+
+            - name: Deploy Edge Functions
+              run: |
+                  supabase functions deploy discord-interactions --no-verify-jwt
+                  supabase functions deploy calc-api --no-verify-jwt
+
+            - name: Register slash commands (global)
+              run: node scripts/register-commands.mjs

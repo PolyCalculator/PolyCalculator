@@ -11,6 +11,11 @@ firebase-debug.log*
 /frontend
 .vscode
 .env
+.env.local
+supabase/.env.local
+supabase/.branches
+supabase/.temp
+polycalc-data.dump
 test.*
 *.csv
 *.cpp

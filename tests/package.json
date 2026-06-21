@@ -1,0 +1,7 @@
+{
+    "name": "polycalculator-tests",
+    "version": "1.0.0",
+    "description": "ESM test suite for the PolyCalculator engine.",
+    "type": "module",
+    "private": true
+}

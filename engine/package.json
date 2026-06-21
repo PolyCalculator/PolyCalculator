@@ -1,0 +1,7 @@
+{
+    "name": "polycalculator-engine",
+    "version": "1.0.0",
+    "description": "Pure ESM combat engine for PolyCalculator (Node + Deno).",
+    "type": "module",
+    "private": true
+}

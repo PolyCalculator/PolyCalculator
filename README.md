@@ -9,3 +9,30 @@
 ### Now having been granted the Verified tag on Discord, the bot boasts over 310k uses and has used optimization to calculate the best outcome for a fight!
 
 ### To find the Discord server of the bot, follow this [link](https://discord.gg/rtSTmd8)
+
+---
+
+## Stack (v2 — serverless)
+
+PolyCalculator runs fully serverless on **Supabase** — no always-on host.
+
+-   **`engine/`** — a pure ESM combat engine (no discord.js, no DB, no env),
+    shared verbatim by the Edge Functions and the Jest test suite.
+-   **`supabase/functions/discord-interactions`** — Discord HTTP Interactions
+    endpoint (Deno): verifies the request signature, routes the slash commands to
+    the engine, and replies. Records usage to Postgres.
+-   **`supabase/functions/calc-api`** — public HTTP calculator,
+    `GET /calc-api/<command>?a=<args>`.
+-   **`supabase/migrations/`** — `stats`, `servers`, `units` schema + RLS.
+
+### Develop
+
+```sh
+npm install
+npm test            # Jest (ESM engine) — full unit-matchup snapshot suite
+npm run lint        # ESLint + Prettier
+npm run deno:smoke  # engine loads under Deno
+npm run deno:test   # Edge Function handler tests
+```
+
+See `CLAUDE.md` for architecture details and deploy steps.

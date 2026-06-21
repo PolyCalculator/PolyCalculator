@@ -1,0 +1,28 @@
+# Supabase project configuration for PolyCalculator.
+# project_id is the local linked ref; the remote project ref is set via
+# `supabase link --project-ref ovuptrqnxsutoocmamnp`.
+project_id = "polycalculator"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+# Discord posts unsigned (no Supabase JWT); auth is ed25519 inside the function.
+# The public calculator is open. Both must skip JWT verification.
+[functions.discord-interactions]
+verify_jwt = false
+
+[functions.calc-api]
+verify_jwt = false
