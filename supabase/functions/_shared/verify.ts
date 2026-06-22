@@ -23,11 +23,21 @@ if (!PUBLIC_KEY) {
 
 let cachedKey: CryptoKey | null = null
 
+// decodeHex returns a Uint8Array that may be backed by a SharedArrayBuffer
+// (Uint8Array<ArrayBufferLike>), which the Web Crypto types reject as a
+// BufferSource. Copy into a fresh Uint8Array<ArrayBuffer> to satisfy them.
+function toBytes(hex: string): Uint8Array<ArrayBuffer> {
+    const decoded = decodeHex(hex)
+    const bytes = new Uint8Array(decoded.length)
+    bytes.set(decoded)
+    return bytes
+}
+
 async function getKey(): Promise<CryptoKey> {
     if (cachedKey) return cachedKey
     cachedKey = await crypto.subtle.importKey(
         'raw',
-        decodeHex(PUBLIC_KEY),
+        toBytes(PUBLIC_KEY),
         { name: 'Ed25519' },
         false,
         ['verify'],
@@ -51,7 +61,7 @@ export async function verifyRequest(req: Request): Promise<string | null> {
         const valid = await crypto.subtle.verify(
             { name: 'Ed25519' },
             await getKey(),
-            decodeHex(signature),
+            toBytes(signature),
             new TextEncoder().encode(timestamp + body),
         )
         return valid ? body : null
