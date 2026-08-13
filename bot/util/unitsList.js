@@ -930,6 +930,9 @@ module.exports = {
         poisonexplosion: true,
         canExplode: true,
         exploding: true,
+        // The Segment's 2 attack is already its explosion strength
+        // (half the Centipede's 4), so the splash halving doesn't apply
+        fullDamageExplosion: true,
         freeze: false,
         convert: false,
         converted: false,
