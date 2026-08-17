@@ -157,7 +157,7 @@ test('/o do x — just explodes, no hit first', () => {
     )
     expect(doomEntries.length).toBe(1)
     expect(doomEntries[0].name).toContain('💥')
-    expect(reply.outcome.defender.afterhp).toBe(26.5)
+    expect(reply.outcome.defender.afterhp).toBe(27)
 })
 
 test('/o do ax — attack then explode, others can go between', () => {
@@ -169,7 +169,7 @@ test('/o do ax — attack then explode, others can go between', () => {
     )
     expect(doomEntries.length).toBe(2)
     expect(doomEntries[1].name).toContain('💥')
-    expect(reply.outcome.defender.afterhp).toBe(20.5)
+    expect(reply.outcome.defender.afterhp).toBe(21)
 })
 
 test('/o do axi — attack then instant explode', () => {
@@ -252,16 +252,17 @@ test('/o attackers: ca f, de, wa defender: de d', () => {
     })
 })
 
-test('/o attackers: se, ce 6, ki 3 defender: wa v — segment explosion at full damage', () => {
-    // Regression: segment damage was being halved twice (its 2 attack is
-    // already the halved explosion strength). A kill must be found here.
+test('/o attackers: se, ce 6, ki 3 defender: wa v — halved+floored explosion, no kill', () => {
+    // Segment explosion is halved and floored, so this trio can NOT kill a
+    // vet Warrior. Best line brings it to 1: Segment (15 ➔ 13, poisons),
+    // Centipede (13 ➔ 3, takes retaliation to 2), Kiton (3 ➔ 1).
     const reply = replyData()
     execute({}, 'se, ce 6, ki 3, wa v', reply, {})
-    expect(reply.outcome.defender.afterhp).toBeLessThanOrEqual(0)
-    // Best line: Segment (15 ➔ 10, poisons), Centipede kills — Kiton unused
-    expect(reply.outcome.attackers.length).toBe(2)
+    expect(reply.outcome.defender.afterhp).toBe(1)
+    expect(reply.outcome.attackers.length).toBe(3)
     expect(reply.outcome.attackers[0].name).toBe('Segment')
-    expect(reply.outcome.attackers[0].hpdefender).toBe(10)
+    expect(reply.outcome.attackers[0].hpdefender).toBe(13)
     expect(reply.outcome.attackers[1].name).toBe('Centipede')
-    expect(reply.outcome.attackers[1].afterhp).toBe(6)
+    expect(reply.outcome.attackers[1].afterhp).toBe(2)
+    expect(reply.outcome.attackers[1].hpdefender).toBe(3)
 })
