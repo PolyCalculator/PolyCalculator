@@ -6,7 +6,7 @@ test('de bo s, de', async () => {
     const reply = replyData()
     await execute({}, 'de bo s, de', reply, {})
     expect(reply.outcome.attackers[0].afterhp).toBe(15)
-    expect(reply.outcome.defender.afterhp).toBe(11.5)
+    expect(reply.outcome.defender.afterhp).toBe(12)
 })
 
 test('de bo, de', async () => {
@@ -63,14 +63,25 @@ test('ex, wa, de', async () => {
     expect(reply.outcome.defender.afterhp).toBe(2)
 })
 
-test('ce 6, se, ki 3, wa v', async () => {
-    // Segment explosions deal full damage — its 2 attack is already
-    // the halved explosion strength, so no splash halving on top
+test('se, ce 6, wa v — floored segment explosion (in-game verified)', async () => {
+    // Segment explosion is halved AND floored: 2.5 -> 2, taking the vet
+    // Warrior 15 -> 13 and poisoning it, then the Centipede deals 10 to the
+    // poisoned Warrior (13 -> 3) and takes 4 retaliation (6 -> 2).
+    const reply = replyData()
+    await execute({}, 'se, ce 6, wa v', reply, {})
+    expect(reply.outcome.attackers[0].name).toBe('Segment')
+    expect(reply.outcome.attackers[0].hpdefender).toBe(13)
+    expect(reply.outcome.attackers[1].name).toBe('Centipede')
+    expect(reply.outcome.attackers[1].afterhp).toBe(2)
+    expect(reply.outcome.attackers[1].hpdefender).toBe(3)
+    expect(reply.outcome.defender.afterhp).toBe(3)
+})
+
+test('ce 6, se, ki 3, wa v — halved+floored explosion, Warrior survives', async () => {
     const reply = replyData()
     await execute({}, 'ce 6, se, ki 3, wa v', reply, {})
     expect(reply.outcome.attackers[0].hpdefender).toBe(8)
-    expect(reply.outcome.attackers[1].hpdefender).toBe(2)
-    expect(reply.outcome.attackers[2].hpdefender).toBe(-1)
-    expect(reply.outcome.attackers[2].afterhp).toBe(3)
-    expect(reply.outcome.defender.afterhp).toBe(-1)
+    expect(reply.outcome.attackers[1].hpdefender).toBe(5)
+    expect(reply.outcome.attackers[2].hpdefender).toBe(3)
+    expect(reply.outcome.defender.afterhp).toBe(3)
 })

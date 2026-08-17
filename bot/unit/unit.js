@@ -18,7 +18,6 @@ module.exports = function buildMakeUnit() {
         poisonexplosion = false,
         canExplode = false,
         exploding = false,
-        fullDamageExplosion = false,
         freeze = false,
         convert = false,
         converted = false,
@@ -158,7 +157,6 @@ module.exports = function buildMakeUnit() {
             },
             canExplode: canExplode,
             exploding: exploding,
-            fullDamageExplosion: fullDamageExplosion,
             toExplode: function (replyData) {
                 if (canExplode) {
                     this.description = `${description} 💥`
@@ -214,10 +212,6 @@ module.exports = function buildMakeUnit() {
                         `${plural} can't splash, so I calculated it as a normal attack`,
                         {},
                     ])
-            },
-            floorSplash: false,
-            toFloorSplash: function () {
-                this.floorSplash = true
             },
             tentacles: tentacles,
             noTentacles: false,

@@ -179,11 +179,9 @@ function combat(attacker, defender, solution) {
 
     const totaldam = aforce + dforce
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
-    if (
-        (attacker.splash || attacker.exploding || attacker.splashNow) &&
-        !attacker.fullDamageExplosion
-    ) {
-        defdiff = attacker.floorSplash ? Math.floor(defdiff / 2) : defdiff / 2
+    if (attacker.splash || attacker.exploding || attacker.splashNow) {
+        // The game halves splash/explosion damage and floors the result
+        defdiff = Math.floor(defdiff / 2)
     }
 
     solution.hpDealt.push(defdiff)
