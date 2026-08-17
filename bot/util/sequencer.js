@@ -179,10 +179,7 @@ function combat(attacker, defender, solution) {
 
     const totaldam = aforce + dforce
     let defdiff = Number(attackerCalc(aforce, totaldam, attacker))
-    if (
-        (attacker.splash || attacker.exploding || attacker.splashNow) &&
-        !attacker.fullDamageExplosion
-    ) {
+    if (attacker.splash || attacker.exploding || attacker.splashNow) {
         defdiff = attacker.floorSplash ? Math.floor(defdiff / 2) : defdiff / 2
     }
 

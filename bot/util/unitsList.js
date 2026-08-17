@@ -930,9 +930,9 @@ module.exports = {
         poisonexplosion: true,
         canExplode: true,
         exploding: true,
-        // The Segment's 2 attack is already its explosion strength
-        // (half the Centipede's 4), so the splash halving doesn't apply
-        fullDamageExplosion: true,
+        // Segment explosions floor the halved damage rather than carrying
+        // a fraction: 5 raw -> 2, not 2.5
+        floorSplash: true,
         freeze: false,
         convert: false,
         converted: false,

@@ -63,14 +63,9 @@ test('ex, wa, de', async () => {
     expect(reply.outcome.defender.afterhp).toBe(2)
 })
 
-test('ce 6, se, ki 3, wa v', async () => {
-    // Segment explosions deal full damage — its 2 attack is already
-    // the halved explosion strength, so no splash halving on top
+test('se, wa — explosion halving floors', async () => {
+    // Segment raw damage 5, halved and floored to 2
     const reply = replyData()
-    await execute({}, 'ce 6, se, ki 3, wa v', reply, {})
-    expect(reply.outcome.attackers[0].hpdefender).toBe(8)
-    expect(reply.outcome.attackers[1].hpdefender).toBe(2)
-    expect(reply.outcome.attackers[2].hpdefender).toBe(-1)
-    expect(reply.outcome.attackers[2].afterhp).toBe(3)
-    expect(reply.outcome.defender.afterhp).toBe(-1)
+    await execute({}, 'se, wa', reply, {})
+    expect(reply.outcome.defender.afterhp).toBe(8)
 })

@@ -18,7 +18,7 @@ module.exports = function buildMakeUnit() {
         poisonexplosion = false,
         canExplode = false,
         exploding = false,
-        fullDamageExplosion = false,
+        floorSplash = false,
         freeze = false,
         convert = false,
         converted = false,
@@ -158,7 +158,6 @@ module.exports = function buildMakeUnit() {
             },
             canExplode: canExplode,
             exploding: exploding,
-            fullDamageExplosion: fullDamageExplosion,
             toExplode: function (replyData) {
                 if (canExplode) {
                     this.description = `${description} 💥`
@@ -215,7 +214,7 @@ module.exports = function buildMakeUnit() {
                         {},
                     ])
             },
-            floorSplash: false,
+            floorSplash: floorSplash,
             toFloorSplash: function () {
                 this.floorSplash = true
             },
