@@ -1,0 +1,16 @@
+.git
+.github
+node_modules
+coverage
+logs
+*.log
+.env
+.env.*
+!.env.example
+.vscode
+Dockerfile
+docker-compose.yml
+.dockerignore
+bot/tests
+img
+dist
