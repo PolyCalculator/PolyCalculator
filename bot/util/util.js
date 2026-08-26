@@ -58,7 +58,6 @@ module.exports.freeze = function (unit) {
 module.exports.boost = function (unit) {
     unit.name = `Boosted ${unit.name}`
     unit.plural = `Boosted ${unit.plural}`
-    unit.att = unit.att + 0.5
 }
 
 module.exports.convert = function (unit) {
