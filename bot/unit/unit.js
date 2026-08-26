@@ -148,7 +148,6 @@ module.exports = function buildMakeUnit() {
                 if (att > 0) {
                     this.name = `Boosted ${name}`
                     this.plural = `Boosted ${plural}`
-                    this.att = att + 0.5
                 } else
                     replyData.content.push([
                         `${plural} can't benefit from boosts because of their ${att} attack, so I'll procede without it`,
