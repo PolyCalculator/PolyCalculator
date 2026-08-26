@@ -1,0 +1,50 @@
+services:
+    postgres:
+        image: postgres:16-alpine
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER:-polycalculator}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+            POSTGRES_DB: ${POSTGRES_DB:-polycalculator}
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+            # Runs only on first start, when the data volume is empty
+            - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+        healthcheck:
+            test:
+                [
+                    'CMD-SHELL',
+                    'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}',
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+
+    bot:
+        build: .
+        command: ['node', 'bot/index.js']
+        restart: unless-stopped
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            TOKEN: ${TOKEN:?set TOKEN (Discord bot token) in .env}
+            PREFIX: ${PREFIX:-.}
+            DATABASE_URL: postgres://${POSTGRES_USER:-polycalculator}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-polycalculator}
+
+    api:
+        build: .
+        command: ['node', 'server/index.js']
+        restart: unless-stopped
+        depends_on:
+            postgres:
+                condition: service_healthy
+        environment:
+            NODE_ENV: production
+            PORT: 3333
+            DATABASE_URL: postgres://${POSTGRES_USER:-polycalculator}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-polycalculator}
+        ports:
+            - '${API_PORT:-3333}:3333'
+
+volumes:
+    postgres-data:
