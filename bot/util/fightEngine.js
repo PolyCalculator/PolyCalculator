@@ -9,6 +9,17 @@ const {
     evaluateWithTarget,
 } = require('./sequencer')
 
+function warnInfiltrateOnly(attackers, replyData) {
+    if (attackers.some((attacker) => attacker.infiltrateOnly)) {
+        replyData.content.push([
+            `The only way a ${
+                attackers.find((attacker) => attacker.infiltrateOnly).name
+            } attacks is by infiltrating a city, so this result only applies to a city infiltration.`,
+            {},
+        ])
+    }
+}
+
 function getDefenderBonusLabel(defender) {
     const labels = defender.poisoned
         ? { 0.5: '', 0.7: ' (protected)', 2: ' (walled)' }
@@ -18,6 +29,8 @@ function getDefenderBonusLabel(defender) {
 }
 
 module.exports.optim = function (attackers, defender, replyData, target) {
+    warnInfiltrateOnly(attackers, replyData)
+
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
         if (attacker.canAttack === false && !attacker.exploding) {
@@ -251,6 +264,8 @@ module.exports.optim = function (attackers, defender, replyData, target) {
 }
 
 module.exports.calc = function (attackers, defender, replyData) {
+    warnInfiltrateOnly(attackers, replyData)
+
     // Validate: units with no attack stat can only be used with explode modifiers
     for (const attacker of attackers) {
         if (attacker.canAttack === false && !attacker.exploding) {
@@ -373,6 +388,8 @@ module.exports.calc = function (attackers, defender, replyData) {
 }
 
 module.exports.bulk = function (attacker, defender, replyData) {
+    warnInfiltrateOnly([attacker], replyData)
+
     const aforce =
         (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     let dforce =
@@ -447,6 +464,8 @@ module.exports.bulk = function (attacker, defender, replyData) {
 }
 
 module.exports.provideDefHP = function (attacker, defender, replyData) {
+    warnInfiltrateOnly([attacker], replyData)
+
     let aforce =
         (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     const dforce =
@@ -513,6 +532,8 @@ module.exports.provideDefHP = function (attacker, defender, replyData) {
 }
 
 module.exports.provideAttHP = function (attacker, defender, replyData) {
+    warnInfiltrateOnly([attacker], replyData)
+
     const aforce =
         (attacker.iAtt() * attacker.iCurrentHp() * 100n) / attacker.iMaxHp()
     let dforce =

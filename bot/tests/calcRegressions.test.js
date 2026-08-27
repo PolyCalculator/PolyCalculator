@@ -85,3 +85,22 @@ test('ce 6, se, ki 3, wa v — halved+floored explosion, Warrior survives', asyn
     expect(reply.outcome.attackers[2].hpdefender).toBe(3)
     expect(reply.outcome.defender.afterhp).toBe(3)
 })
+
+test('cl, wa — cloak attacks with 2 att and warns about infiltration', async () => {
+    const reply = replyData()
+    await execute({}, 'cl, wa', reply, {})
+    expect(reply.content.length).toBe(1)
+    expect(reply.content[0][0]).toContain('infiltrating a city')
+    expect(reply.outcome.attackers[0].name).toBe('Cloak')
+    expect(reply.outcome.attackers[0].hpdefender).toBe(5)
+    expect(reply.outcome.attackers[0].afterhp).toBe(0)
+    expect(reply.outcome.defender.afterhp).toBe(5)
+})
+
+test('wa, cl — no infiltration warning when a Cloak defends', async () => {
+    const reply = replyData()
+    await execute({}, 'wa, cl', reply, {})
+    expect(reply.content).toEqual([])
+    expect(reply.outcome.attackers[0].afterhp).toBe(10)
+    expect(reply.outcome.defender.afterhp).toBe(-2)
+})

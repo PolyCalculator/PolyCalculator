@@ -971,7 +971,9 @@ module.exports = {
         maxhp: 5,
         vet: false,
         vetNow: false,
-        att: 0,
+        // Cloaks can't attack units; their 2 attack only applies when infiltrating a city
+        att: 2,
+        infiltrateOnly: true,
         def: 0.5,
         bonus: 1,
         fort: false,
