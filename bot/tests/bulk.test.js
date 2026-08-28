@@ -36,3 +36,11 @@ test('/b attackers: wa defender: de', () => {
         },
     })
 })
+
+test('/b attackers: cl defender: wa — cloak infiltration warning', () => {
+    const reply = replyData()
+    execute({}, 'cl, wa', reply, {})
+    expect(reply.content.length).toBe(1)
+    expect(reply.content[0][0]).toContain('infiltrating a city')
+    expect(reply.outcome.response).toBe(2)
+})

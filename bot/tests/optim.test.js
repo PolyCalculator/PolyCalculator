@@ -266,3 +266,11 @@ test('/o attackers: se, ce 6, ki 3 defender: wa v — halved+floored explosion, 
     expect(reply.outcome.attackers[1].afterhp).toBe(2)
     expect(reply.outcome.attackers[1].hpdefender).toBe(3)
 })
+
+test('/o attackers: cl, wa defender: de — cloak infiltration warning', async () => {
+    const reply = replyData()
+    await execute({}, 'cl, wa, de', reply, {})
+    expect(reply.content.length).toBe(1)
+    expect(reply.content[0][0]).toContain('infiltrating a city')
+    expect(reply.outcome.attackers.map((a) => a.name)).toContain('Cloak')
+})
