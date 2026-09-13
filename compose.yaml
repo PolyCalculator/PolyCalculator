@@ -6,9 +6,10 @@ services:
             POSTGRES_USER: ${POSTGRES_USER:-polycalculator}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
             POSTGRES_DB: ${POSTGRES_DB:-polycalculator}
+        ports:
+            - '5432:5432'
         volumes:
             - postgres-data:/var/lib/postgresql/data
-            # Runs only on first start, when the data volume is empty
             - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
         healthcheck:
             test:

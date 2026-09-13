@@ -9,6 +9,7 @@ logs
 !.env.example
 .vscode
 Dockerfile
+compose.yaml
 docker-compose.yml
 .dockerignore
 bot/tests
