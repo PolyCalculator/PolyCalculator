@@ -260,23 +260,6 @@ bot.on('guildDelete', (guild) => {
     return
 })
 
-// --------------------------------------
-//
-//  EVENT ON NEW MEMBER IN DEV SERVER
-//
-// --------------------------------------
-bot.on('guildMemberAdd', (newMember) => {
-    if (newMember.guild.id === '581872879386492929') {
-        newMember.roles
-            .add('654164652741099540')
-            .then((x) => {
-                // eslint-disable-next-line no-console
-                console.log(`${x.user.tag} just got in PolyCalculator server!`)
-            })
-            .catch(console.error)
-    }
-})
-
 process.on('unhandledRejection', (code) => {
     // eslint-disable-next-line no-console
     console.log(`unhandledRejection: ${code.stack}`)
